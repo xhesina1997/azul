@@ -1,0 +1,13 @@
+server:
+  port: 8181
+spring:
+  application:
+    name: metadata
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8282/eureka
+    register-with-eureka: true
+  instance:
+    preferIpAddress: true
