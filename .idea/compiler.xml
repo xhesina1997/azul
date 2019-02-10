@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-service" />
         <module name="core-domain" />
+        <module name="core-domains" />
         <module name="department-service" />
         <module name="discovery-service" />
         <module name="employee-service" />
@@ -17,28 +18,32 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="config-service" target="1.8" />
+      <module name="config-service" target="1.5" />
       <module name="core" target="1.5" />
       <module name="core-domain" target="1.5" />
-      <module name="department-service" target="1.8" />
-      <module name="discovery-service" target="1.8" />
-      <module name="employee-service" target="1.8" />
-      <module name="gateway-service" target="1.8" />
+      <module name="core-domains" target="1.8" />
+      <module name="department-service" target="8" />
+      <module name="discovery-service" target="1.5" />
+      <module name="employee-service" target="8" />
+      <module name="gateway-service" target="1.5" />
       <module name="lib" target="1.5" />
-      <module name="organization-service" target="1.8" />
-      <module name="proxy-service" target="1.8" />
+      <module name="microservices" target="1.5" />
+      <module name="organization-service" target="8" />
+      <module name="proxy-service" target="8" />
       <module name="sample-spring-microservices-new" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="config-service" options="-parameters" />
-      <module name="department-service" options="-parameters" />
-      <module name="discovery-service" options="-parameters" />
-      <module name="employee-service" options="-parameters" />
-      <module name="gateway-service" options="-parameters" />
-      <module name="organization-service" options="-parameters" />
-      <module name="proxy-service" options="-parameters" />
+      <module name="config-service" options="" />
+      <module name="core-domain" options="" />
+      <module name="core-domains" options="-parameters" />
+      <module name="department-service" options="" />
+      <module name="discovery-service" options="" />
+      <module name="employee-service" options="" />
+      <module name="gateway-service" options="" />
+      <module name="organization-service" options="" />
+      <module name="proxy-service" options="" />
     </option>
   </component>
 </project>
