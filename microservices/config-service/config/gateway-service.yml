@@ -12,21 +12,9 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: employee-service
-          uri: lb://employee-service
+        - id: metadata-service
+          uri: lb://metadata-service
           predicates:
-            - Path=/employee/**
+            - Path=/metadata/**
           filters:
-            - RewritePath=/employee/(?<path>.*), /$\{path}
-        - id: department-service
-          uri: lb://department-service
-          predicates:
-            - Path=/department/**
-          filters:
-            - RewritePath=/department/(?<path>.*), /$\{path}
-        - id: organization-service
-          uri: lb://organization-service
-          predicates:
-            - Path=/organization/**
-          filters:
-            - RewritePath=/organization/(?<path>.*), /$\{path}
+            - RewritePath=/metadata/(?<path>.*), /$\{path}
