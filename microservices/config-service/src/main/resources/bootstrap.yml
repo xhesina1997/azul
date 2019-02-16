@@ -16,7 +16,3 @@ spring:
           - type: native
             search-locations: file:///${config.dir}
         bootstrap: true
-    discovery:
-      client:
-        health-indicator:
-          include-description:

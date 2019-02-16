@@ -2,11 +2,69 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2f7085a-7c8b-41cf-b09d-422ed6ac5f83" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/microservices/config-service/config/gateway-service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_hystrix_hystrix_javanica_1_5_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_hystrix_hystrix_metrics_event_stream_1_5_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_hystrix_hystrix_serialization_1_5_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_zuul_zuul_core_1_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_reactivex_rxjava_reactive_streams_1_2_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger_ui_2_9_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_netflix_zuul_2_0_2_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_netflix_hystrix_2_0_2_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_netflix_zuul_2_0_2_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/gateway-service/gateway-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/gateway-service/gateway-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/gateway-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/core-domain/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/core-domain/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/config-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/config-service/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/config-service/src/main/resources/config/department-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/config-service/config/department-service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/config-service/src/main/resources/config/discovery-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/config-service/config/discovery-service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/config-service/src/main/resources/config/employee-service-instance2.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/config-service/src/main/resources/config/employee-service.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/config-service/src/main/resources/config/gateway-service.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/config-service/src/main/resources/config/organization-service.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/config-service/src/main/resources/config/proxy-service.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/department-service/department-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/department-service/department-service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/department-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/department-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/DepartmentApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/DepartmentApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/client/EmployeeClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/client/EmployeeClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/controller/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/controller/DepartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/model/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/example/coredomain/meta/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/example/coredomain/meta/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/repository/DepartmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/repository/DepartmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/department-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/department-service/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/discovery-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/discovery-service/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/employee-service/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/employee-service/employee-service.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/employee-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/employee-service/src/main/java/pl/piomin/services/employee/EmployeeApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/employee-service/src/main/java/pl/piomin/services/employee/controller/EmployeeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/employee-service/src/main/java/pl/piomin/services/employee/model/Employee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/employee-service/src/main/java/pl/piomin/services/employee/repository/EmployeeRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/employee-service/src/main/resources/bootstrap.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/microservices/gateway-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/gateway-service/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/organization-service.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/OrganizationApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/client/DepartmentClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/client/EmployeeClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/controller/OrganizationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/model/Department.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/model/Employee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/model/Organization.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/repository/OrganizationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/organization-service/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/proxy-service/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/proxy-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/proxy-service/proxy-service.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/proxy-service/src/main/java/pl/piomin/service/proxy/ProxyApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/proxy-service/src/main/java/pl/piomin/service/proxy/api/ProxyApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/proxy-service/src/main/resources/bootstrap.yml" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/discovery-service/target/" />
@@ -27,6 +85,7 @@
     <ignored path="$PROJECT_DIR$/microservices/config-service/target/" />
     <ignored path="$PROJECT_DIR$/microservices/gateway-service/target/" />
     <ignored path="$PROJECT_DIR$/microservices/organization-service/target/" />
+    <ignored path="$PROJECT_DIR$/microservices/metadata/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,17 +97,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/microservices/department-service/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+            <state relative-caret-position="136">
+              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/resources/bootstrap.yml">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/microservices/department-service/department-service.iml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+            <state relative-caret-position="232">
+              <caret line="18" column="55" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/bootstrap.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -56,44 +124,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/client/EmployeeClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="255">
+              <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/discovery-service/pom.xml">
+        <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/controller/DepartmentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="32" selection-end-column="25" />
+            <state relative-caret-position="255">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/gateway-service/src/main/java/pl/piomin/services/gateway/GatewayApplication.java">
+        <entry file="file://$PROJECT_DIR$/microservices/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="357">
+              <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/gateway-service/src/main/resources/bootstrap.yml">
+        <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/example/coredomain/meta/Department.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+            <state relative-caret-position="170">
+              <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/gateway-service/pom.xml">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/DepartmentApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+            <state relative-caret-position="183">
+              <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,26 +178,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/repository/DepartmentRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="20" column="77" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
+            <state relative-caret-position="204">
+              <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/proxy-service/src/main/java/pl/piomin/service/proxy/api/ProxyApi.java">
+        <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/example/coredomain/meta/Employee.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="26" column="79" selection-start-line="26" selection-start-column="79" selection-end-line="26" selection-end-column="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/proxy-service/src/main/resources/bootstrap.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -137,6 +208,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>piom</find>
+      <find>dep</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -165,12 +237,25 @@
         <option value="$PROJECT_DIR$/microservices/config-service/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/employee-service/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/organization-service/pom.xml" />
-        <option value="$PROJECT_DIR$/microservices/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/employee-service/src/main/java/pl/piomin/services/employee/repository/EmployeeRepository.java" />
         <option value="$PROJECT_DIR$/microservices/discovery-service/pom.xml" />
-        <option value="$PROJECT_DIR$/microservices/gateway-service/src/main/resources/bootstrap.yml" />
         <option value="$PROJECT_DIR$/microservices/gateway-service/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/metadata/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/config-service/src/main/resources/config/gateway-service.yml" />
+        <option value="$PROJECT_DIR$/microservices/gateway-service/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/microservices/config-service/config/discovery-service.yml" />
+        <option value="$PROJECT_DIR$/microservices/department-service/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/microservices/config-service/config/department-service.yml" />
+        <option value="$PROJECT_DIR$/microservices/config-service/config/gateway-service.yml" />
+        <option value="$PROJECT_DIR$/microservices/config-service/config/application.yml" />
+        <option value="$PROJECT_DIR$/microservices/discovery-service/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/microservices/config-service/src/main/resources/bootstrap.yml" />
         <option value="$PROJECT_DIR$/microservices/department-service/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/client/EmployeeClient.java" />
+        <option value="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/controller/DepartmentController.java" />
+        <option value="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/repository/DepartmentRepository.java" />
+        <option value="$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/DepartmentApplication.java" />
       </list>
     </option>
   </component>
@@ -204,7 +289,136 @@
             <path>
               <item name="azul" type="b2602c69:ProjectViewProjectNode" />
               <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="meta" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
               <item name="microservices" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="department-service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="department-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="department-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="department-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="department-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="department" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="department-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="department" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="department-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="department" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="department-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="department" type="462c0819:PsiDirectoryNode" />
+              <item name="repository" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -224,7 +438,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550310622053" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550317317928" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/core/core-domain" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -233,7 +447,11 @@
     <property name="project.structure.side.proportion" value="0.32963374" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/microservices/config-service/src/main/resources" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/microservices/config-service" />
       <recent name="$PROJECT_DIR$/microservices" />
     </key>
   </component>
@@ -253,7 +471,7 @@
         </RuleState>
       </list>
     </option>
-    <option name="contentProportion" value="0.20390455" />
+    <option name="contentProportion" value="0.19305857" />
   </component>
   <component name="RunManager" selected="Spring Boot.ConfigApplication">
     <configuration default="true" type="Application" factoryName="Application">
@@ -277,7 +495,7 @@
         <param>
           <option name="enabled" value="true" />
           <option name="name" value="config.dir" />
-          <option name="value" value="$PROJECT_DIR$/config-service/src/main/java/resources/config" />
+          <option name="value" value="$PROJECT_DIR$/microservices/config-service/config" />
         </param>
       </additionalParameters>
       <method v="2">
@@ -298,30 +516,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="employee-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.piomin.services.employee.EmployeeApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="gateway-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="pl.piomin.services.gateway.GatewayApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OrganizationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="organization-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.piomin.services.organization.OrganizationApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProxyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="proxy-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.piomin.service.proxy.ProxyApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -337,9 +534,6 @@
     <list>
       <item itemvalue="Spring Boot.DiscoveryApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
-      <item itemvalue="Spring Boot.OrganizationApplication" />
-      <item itemvalue="Spring Boot.ProxyApplication" />
-      <item itemvalue="Spring Boot.EmployeeApplication" />
       <item itemvalue="Spring Boot.ConfigApplication" />
       <item itemvalue="Spring Boot.DepartmentApplication" />
     </list>
@@ -357,11 +551,12 @@
       <workItem from="1549785186885" duration="10594000" />
       <workItem from="1549873084212" duration="29000" />
       <workItem from="1550309856863" duration="868000" />
+      <workItem from="1550314284496" duration="2826000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15486000" />
+    <option name="totallyTimeSpent" value="21164000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1040" extended-state="6" />
@@ -371,17 +566,17 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Web" order="4" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.19391026" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.22863248" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Spring" order="0" />
-      <window_info anchor="bottom" id="Terminal" order="1" weight="0.27960527" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.27753305" />
       <window_info anchor="bottom" id="Messages" order="2" weight="0.32929516" />
       <window_info anchor="bottom" id="Java Enterprise" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="4" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="5" />
+      <window_info anchor="bottom" id="Version Control" order="5" weight="0.3296582" />
       <window_info anchor="bottom" id="Compute Code Lines" order="6" />
-      <window_info anchor="bottom" id="Run Dashboard" order="7" visible="true" weight="0.41189426" />
+      <window_info active="true" anchor="bottom" id="Run Dashboard" order="7" visible="true" weight="0.4746696" />
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Find" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
@@ -408,55 +603,8 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/organization-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="2" selection-end-line="10" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/organization-service/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/employee-service/src/main/java/pl/piomin/services/employee/controller/EmployeeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="22" column="17" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/employee-service/src/main/java/pl/piomin/services/employee/model/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/model/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/OrganizationApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/employee-service/src/main/java/pl/piomin/services/employee/model/Employee.java" />
+    <entry file="file://$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/OrganizationApplication.java" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -464,13 +612,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/employee-service/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="9" lean-forward="true" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/employee-service/src/main/resources/bootstrap.yml" />
     <entry file="file://$PROJECT_DIR$/microservices/discovery-service/src/main/java/pl/piomin/services/discovery/DiscoveryApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -478,34 +620,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/discovery-service/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/proxy-service/src/main/java/pl/piomin/service/proxy/ProxyApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/client/EmployeeClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/java/pl/piomin/services/config/ConfigApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/proxy-service/src/main/java/pl/piomin/service/proxy/ProxyApplication.java" />
+    <entry file="file://$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/client/EmployeeClient.java" />
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -517,44 +633,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/microservices/gateway/gateway.iml" />
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/proxy-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/department-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/discovery-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="7" selection-start-line="3" selection-end-line="3" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/employee-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/employee-service-instance2.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/gateway-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/proxy-service.yml" />
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/employee-service.yml" />
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/employee-service-instance2.yml" />
     <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/example/coredomain/meta/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -569,24 +650,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/proxy-service/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/proxy-service/pom.xml" />
     <entry file="file://$PROJECT_DIR$/lib/core/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
         </state>
       </provider>
     </entry>
@@ -607,44 +675,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/employee-service/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/organization-service/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/employee-service/src/main/java/pl/piomin/services/employee/repository/EmployeeRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/repository/OrganizationRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="84" selection-start-line="19" selection-start-column="84" selection-end-line="19" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/employee-service/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/microservices/organization-service/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/microservices/employee-service/src/main/java/pl/piomin/services/employee/repository/EmployeeRepository.java" />
+    <entry file="file://$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/repository/OrganizationRepository.java" />
     <entry file="file://$PROJECT_DIR$/microservices/gateway-service/src/main/java/pl/piomin/services/gateway/GatewayApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -659,59 +693,163 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/proxy-service/src/main/java/pl/piomin/service/proxy/api/ProxyApi.java" />
+    <entry file="file://$PROJECT_DIR$/microservices/proxy-service/src/main/resources/bootstrap.yml" />
+    <entry file="file://$PROJECT_DIR$/microservices/metadata/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/microservices/gateway-service/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+        <state relative-caret-position="187">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/proxy-service/src/main/java/pl/piomin/service/proxy/api/ProxyApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="26" column="79" selection-start-line="26" selection-start-column="79" selection-end-line="26" selection-end-column="79" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/gateway-service.yml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/proxy-service/src/main/resources/bootstrap.yml">
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/java/pl/piomin/services/config/ConfigApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="102">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/microservices/gateway-service/src/main/resources/bootstrap.yml">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/repository/DepartmentRepository.java">
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/department-service.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="77" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
+        <state relative-caret-position="51">
+          <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/client/EmployeeClient.java">
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/discovery-service.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/department-service/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+        <state relative-caret-position="119">
+          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/resources/bootstrap.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+        <state>
+          <caret selection-end-line="1" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/discovery-service/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/department-service.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/discovery-service.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/department-service/department-service.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="18" column="55" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/department-service/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/example/coredomain/meta/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/client/EmployeeClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/controller/DepartmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/repository/DepartmentRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/example/coredomain/meta/Department.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/DepartmentApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -767,7 +905,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>employee-service</last-edited>
+          <last-edited>Spring|metadata</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

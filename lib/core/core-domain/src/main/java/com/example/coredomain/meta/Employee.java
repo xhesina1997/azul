@@ -1,4 +1,4 @@
-package pl.piomin.services.organization.model;
+package com.example.coredomain.meta;
 
 public class Employee {
 

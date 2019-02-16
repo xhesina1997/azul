@@ -1,4 +1,4 @@
-package pl.piomin.services.organization.model;
+package com.example.coredomain.meta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 public class Department {
 
 	private Long id;
+	private Long organizationId;
 	private String name;
 	private List<Employee> employees = new ArrayList<>();
 
@@ -13,8 +14,9 @@ public class Department {
 		
 	}
 
-	public Department(String name) {
+	public Department(Long organizationId, String name) {
 		super();
+		this.organizationId = organizationId;
 		this.name = name;
 	}
 
@@ -24,6 +26,14 @@ public class Department {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getOrganizationId() {
+		return organizationId;
+	}
+
+	public void setOrganizationId(Long organizationId) {
+		this.organizationId = organizationId;
 	}
 
 	public String getName() {
@@ -44,7 +54,7 @@ public class Department {
 
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", name=" + name + "]";
+		return "Department [id=" + id + ", organizationId=" + organizationId + ", name=" + name + "]";
 	}
 
 }

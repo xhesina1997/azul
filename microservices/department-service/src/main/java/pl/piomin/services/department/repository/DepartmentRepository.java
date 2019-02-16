@@ -1,11 +1,12 @@
 package pl.piomin.services.department.repository;
 
+import com.example.coredomain.meta.Department;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import pl.piomin.services.department.model.Department;
 
 public class DepartmentRepository {
 
