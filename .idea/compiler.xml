@@ -8,27 +8,20 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-service" />
         <module name="core-domain" />
-        <module name="core-domains" />
         <module name="discovery-service" />
         <module name="gateway-service" />
         <module name="metadata-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="azul" target="1.5" />
       <module name="config-service" target="1.5" />
-      <module name="core" target="1.5" />
       <module name="core-domain" target="7" />
-      <module name="core-domains" target="1.8" />
-      <module name="department-service" target="8" />
       <module name="discovery-service" target="1.5" />
-      <module name="employee-service" target="8" />
       <module name="gateway-service" target="1.5" />
       <module name="lib" target="1.5" />
-      <module name="metadata" target="1.8" />
-      <module name="metadata-service" target="8" />
+      <module name="metadata-service" target="1.5" />
       <module name="microservices" target="1.5" />
-      <module name="organization-service" target="8" />
-      <module name="proxy-service" target="8" />
       <module name="sample-spring-microservices-new" target="1.5" />
     </bytecodeTargetLevel>
   </component>
