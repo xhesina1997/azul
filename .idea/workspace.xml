@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f2f7085a-7c8b-41cf-b09d-422ed6ac5f83" name="Default" comment="">
+    <list default="true" id="d36ef6d0-afac-4475-b136-296e8fa80d31" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Extendables/BaseModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Extendables/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Models/Phone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Models/Price.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/azul.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/core-domain/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/core-domain/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/TestModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lib.iml" beforeDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/microservices/gateway-service/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
-    <ignored path="$PROJECT_DIR$/discovery-service/target/" />
-    <ignored path="$PROJECT_DIR$/gateway-service/target/" />
-    <ignored path="$PROJECT_DIR$/organization-service/target/" />
-    <ignored path="$PROJECT_DIR$/proxy-service/target/" />
-    <ignored path="$PROJECT_DIR$/employee-service/target/" />
-    <ignored path="$PROJECT_DIR$/config-service/target/" />
-    <ignored path="$PROJECT_DIR$/department-service/target/" />
+    <ignored path="$PROJECT_DIR$/microservices/config-service/target/" />
     <ignored path="$PROJECT_DIR$/lib/target/" />
+    <ignored path="$PROJECT_DIR$/microservices/discovery-service/target/" />
+    <ignored path="$PROJECT_DIR$/microservices/metadata-service/target/" />
+    <ignored path="$PROJECT_DIR$/microservices/target/" />
     <ignored path="$PROJECT_DIR$/lib/core/target/" />
     <ignored path="$PROJECT_DIR$/lib/core/core-domain/target/" />
-    <ignored path="$PROJECT_DIR$/microservices/target/" />
-    <ignored path="$PROJECT_DIR$/microservices/department-service/target/" />
-    <ignored path="$PROJECT_DIR$/microservices/discovery-service/target/" />
-    <ignored path="$PROJECT_DIR$/microservices/proxy-service/target/" />
-    <ignored path="$PROJECT_DIR$/microservices/employee-service/target/" />
-    <ignored path="$PROJECT_DIR$/microservices/config-service/target/" />
-    <ignored path="$PROJECT_DIR$/microservices/gateway-service/target/" />
-    <ignored path="$PROJECT_DIR$/microservices/organization-service/target/" />
-    <ignored path="$PROJECT_DIR$/microservices/metadata/target/" />
-    <ignored path="$PROJECT_DIR$/metadata/target/" />
-    <ignored path="$PROJECT_DIR$/microservices/metadata-service/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,27 +31,40 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DiscoveryApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/discovery-service/src/main/java/com/azul/services/discovery/DiscoveryApplication.java">
+    <leaf>
+      <file leaf-file-name="BaseModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Extendables/BaseModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="69">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Phone.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Models/Phone.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="5" column="24" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Extendables/Item.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="16" column="31" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Price.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Models/Price.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="10" column="27" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,20 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/microservices/discovery-service/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="6" column="24" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/lib/core/core-domain/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
+            <state relative-caret-position="253">
+              <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -89,22 +90,18 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>piom</find>
-      <find>dep</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/microservices/config-service/pom.xml" />
-        <option value="$PROJECT_DIR$/microservices/gateway-service/pom.xml" />
-        <option value="$PROJECT_DIR$/microservices/metadata-service/pom.xml" />
-        <option value="$PROJECT_DIR$/microservices/discovery-service/pom.xml" />
+        <option value="$PROJECT_DIR$/lib/core/core-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/BaseModel.java" />
+        <option value="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Item.java" />
+        <option value="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Models/Price.java" />
+        <option value="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Models/Phone.java" />
+        <option value="$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Extendables/Item.java" />
       </list>
     </option>
   </component>
@@ -131,8 +128,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="959" />
-    <option name="height" value="1039" />
+    <option name="x" value="59" />
+    <option name="y" value="25" />
+    <option name="width" value="1861" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -140,6 +139,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -150,21 +152,143 @@
             <path>
               <item name="azul" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="meta" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="meta" type="462c0819:PsiDirectoryNode" />
+              <item name="Extendables" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="core-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="meta" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
               <item name="microservices" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="azul" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-azul" type="462c0819:PsiDirectoryNode" />
               <item name="microservices" type="462c0819:PsiDirectoryNode" />
-              <item name="discovery-service" type="462c0819:PsiDirectoryNode" />
+              <item name="metadata-service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="metadata-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="metadata-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="metadata-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="metadata-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="metadataservice" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-azul" type="462c0819:PsiDirectoryNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="metadata-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="metadataservice" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -174,18 +298,10 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../smartScada/X" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SMARTSCADA" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/microservices/config-service/src/main/resources" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/microservices/config-service" />
-      <recent name="$PROJECT_DIR$/microservices" />
-    </key>
+    <property name="settings.editor.selected.configurable" value="com.chrisrm.idea.config" />
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -203,14 +319,10 @@
         </RuleState>
       </list>
     </option>
-    <option name="contentProportion" value="0.19305857" />
   </component>
-  <component name="RunManager" selected="Spring Boot.DiscoveryApplication ">
+  <component name="RunManager" selected="Spring Boot.GatewayApplication">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method>
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -219,7 +331,7 @@
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
+      <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <option name="PASS_PARENT_ENVS" value="true" />
@@ -227,12 +339,9 @@
         <value defaultName="singleModule" />
       </option>
       <patterns />
-      <method>
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration name="ConfigApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="config-service" />
+      <module name="config.service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.azul.services.config.ConfigApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <additionalParameters>
@@ -243,21 +352,13 @@
         </param>
       </additionalParameters>
     </configuration>
-    <configuration name="DiscoveryApplication " type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
-      <module name="discovery-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.azul.services.discovery.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="DiscoveryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="discovery.service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.azul.services.discovery.DiscoveryApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
     </configuration>
     <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="gateway-service" />
+      <module name="gateway.service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.azul.services.gateway.GatewayApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
     </configuration>
     <configuration name="MetadataServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="metadata-service" />
@@ -272,7 +373,7 @@
       <option name="METHOD_NAME" />
       <option name="GROUP_NAME" />
       <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" />
+      <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <option name="OUTPUT_DIRECTORY" />
@@ -284,80 +385,69 @@
       <option name="PROPERTIES_FILE" />
       <properties />
       <listeners />
-      <method>
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <list>
       <item itemvalue="Spring Boot.GatewayApplication" />
       <item itemvalue="Spring Boot.ConfigApplication" />
+      <item itemvalue="Spring Boot.DiscoveryApplication" />
       <item itemvalue="Spring Boot.MetadataServiceApplication" />
-      <item itemvalue="Spring Boot.DiscoveryApplication " />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Spring Boot.DiscoveryApplication " />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f2f7085a-7c8b-41cf-b09d-422ed6ac5f83" name="Default" comment="" />
-      <created>1549750433015</created>
+      <changelist id="d36ef6d0-afac-4475-b136-296e8fa80d31" name="Default" comment="" />
+      <created>1553800778289</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1549750433015</updated>
-      <workItem from="1549750434848" duration="142000" />
-      <workItem from="1550403701830" duration="297000" />
-      <workItem from="1550404022572" duration="293000" />
-      <workItem from="1550404765930" duration="2586000" />
+      <updated>1553800778289</updated>
+      <workItem from="1553800782147" duration="3437000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27951000" />
+    <option name="totallyTimeSpent" value="3437000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="25" width="1861" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" weight="0.32985157" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32985157" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" weight="0.32985157" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info id="Capture Tool" />
+      <window_info id="Designer" />
+      <window_info anchor="right" id="Database" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24958768" />
-      <window_info id="UI Designer" order="2" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.32930845" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="bottom" id="Java Enterprise" order="8" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Run Dashboard" order="9" visible="true" weight="0.32930845" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Messages" weight="0.32930845" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info id="Image Layers" />
+      <window_info anchor="bottom" id="Java Enterprise" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="bottom" id="Run Dashboard" visible="true" weight="0.26564217" />
+      <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Spring" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32930845" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.257834" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24958768" />
       <window_info anchor="right" id="Bean Validation" />
-      <window_info id="Web" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Compute Code Lines" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Web" side_tool="true" />
+      <window_info anchor="bottom" id="Compute Code Lines" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info id="Favorites" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,283 +456,65 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="antWorkspaceConfiguration">
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
-    <option name="FILTER_TARGETS" value="false" />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/employee-service.yml" />
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/config/employee-service-instance2.yml" />
-    <entry file="file://$PROJECT_DIR$/lib/pom.xml">
+    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/TestModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+        <state relative-caret-position="46">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/proxy-service/pom.xml" />
-    <entry file="file://$PROJECT_DIR$/lib/core/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Models/BaseModel.java">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/core/core-domain/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/lib.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/employee-service/pom.xml" />
-    <entry file="file://$PROJECT_DIR$/microservices/organization-service/pom.xml" />
-    <entry file="file://$PROJECT_DIR$/microservices/employee-service/src/main/java/pl/piomin/services/employee/repository/EmployeeRepository.java" />
-    <entry file="file://$PROJECT_DIR$/microservices/organization-service/src/main/java/pl/piomin/services/organization/repository/OrganizationRepository.java" />
-    <entry file="file://$PROJECT_DIR$/microservices/gateway-service/src/main/java/com/azul/services/gateway/GatewayApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/proxy-service/src/main/java/pl/piomin/service/proxy/api/ProxyApi.java" />
-    <entry file="file://$PROJECT_DIR$/microservices/proxy-service/src/main/resources/bootstrap.yml" />
-    <entry file="file://$PROJECT_DIR$/microservices/metadata/pom.xml" />
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/java/com/azul/services/config/ConfigApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/gateway-service/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/application.yml" />
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/application.yml" />
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/department-service.yml" />
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/discovery-service.yml" />
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/department-service/department-service.iml" />
-    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/client/EmployeeClient.java" />
-    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/controller/DepartmentController.java" />
-    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/example/coredomain/meta/Department.java" />
-    <entry file="file://$PROJECT_DIR$/metadata/pom.xml" />
-    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/repository/DepartmentRepository.java" />
-    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/example/coredomain/meta/Employee.java" />
-    <entry file="file://$PROJECT_DIR$/microservices/department-service/pom.xml" />
-    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/java/pl/piomin/services/department/DepartmentApplication.java" />
-    <entry file="file://$PROJECT_DIR$/microservices/department-service/src/main/resources/bootstrap.yml" />
-    <entry file="file://$PROJECT_DIR$/microservices/metadata-service/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/department-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="3" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/metadata-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/TestModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/metadata-service/src/test/java/com/azul/metadataservice/MetadataServiceApplicationTests.java" />
-    <entry file="file://$PROJECT_DIR$/microservices/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/example/coredomain/meta/Test.java" />
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/gateway-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/discovery-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/discovery-service/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        <state relative-caret-position="253">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/microservices/metadata-service/src/main/java/com/azul/metadataservice/controller/TestModelController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
+        <state relative-caret-position="138">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="uml://MAVEN/azul.project:core-domain:1.0-SNAPSHOT">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>MAVEN</ID>
-          <OriginalElement>azul.project:core-domain:1.0-SNAPSHOT</OriginalElement>
-          <nodes>
-            <node x="" y="">azul.project:core-domain:1.0-SNAPSHOT</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="53.0" y="14.5" />
-          <SelectedNodes />
-          <Categories />
-          <VISIBILITY>All</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/pom.xml">
+    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Extendables/BaseModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        <state relative-caret-position="69">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/gateway-service/pom.xml">
+    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Models/Price.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/metadata-service/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1081">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/metadata-service/src/main/java/com/azul/metadataservice/MetadataServiceApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/discovery-service/src/main/java/com/azul/services/discovery/DiscoveryApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="230">
+          <caret line="10" column="27" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Extendables/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
+        <state relative-caret-position="230">
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/discovery-service/pom.xml">
+    <entry file="file://$PROJECT_DIR$/lib/core/core-domain/src/main/java/com/azul/coredomain/meta/Models/Phone.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="24" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="24" />
+        <state relative-caret-position="115">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Spring</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>metadata</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.32963374" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
@@ -650,18 +522,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.32963374" />
               </list>
             </option>
           </splitter-proportions>
