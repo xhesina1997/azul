@@ -1,4 +1,4 @@
-package com.azul.coredomain.meta.Extendables;
+package com.azul.coredomain.meta.extendable;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,19 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
 @Document
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BaseModel {
-    @Id private String id;
-    @CreatedDate private long created;
-    @LastModifiedDate private long updated;
+
+    @Id
+    private String id;
+
+    @CreatedDate
+    private long created;
+
+    @LastModifiedDate
+    private long updated;
 }
