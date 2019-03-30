@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: images-service
+  cloud:
+    config:
+      uri: http://localhost:8088
+      fail-fast: true
+      retry:
+        max-attempts: 3600
+        initial-interval: 5000

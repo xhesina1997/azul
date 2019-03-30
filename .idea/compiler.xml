@@ -10,6 +10,7 @@
         <module name="core-domain" />
         <module name="discovery.service" />
         <module name="gateway.service" />
+        <module name="images-service" />
         <module name="metadata-service" />
       </profile>
     </annotationProcessing>
@@ -20,6 +21,7 @@
       <module name="core-domain" target="7" />
       <module name="discovery.service" target="1.5" />
       <module name="gateway.service" target="1.5" />
+      <module name="images-service" target="1.8" />
       <module name="lib" target="1.5" />
       <module name="metadata-service" target="8" />
       <module name="microservice" target="1.5" />
