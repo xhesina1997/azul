@@ -18,9 +18,17 @@ public class Item extends BaseModel {
 
     private String description;
 
-    private String transactionType; // IE for sale or for rent
+    private String transactionType; // IE for sale or for rent or swap?
 
     private Price price;
 
     private List<String> images;
+
+    private Condition condition;
+
+    private String color; // TODO: Enum? There are colors like Space Gray, Midnight Black etc... maybe we get them with the phone data we get online?
+
+    public enum Condition {
+        NEW, USED, REFURBISHED;
+    }
 }
