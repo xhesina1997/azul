@@ -50,14 +50,13 @@ public class FileUploadController {
     }
 
     @PostMapping("/")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
-            RedirectAttributes redirectAttributes) {
-
+    public void handleFileUpload(@RequestParam("file") MultipartFile file) {
         storageService.store(file);
-        redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + file.getOriginalFilename() + "!");
+    }
 
-        return "redirect:/";
+    @PostMapping("/directory/{directory}/name/{name}")
+    public void handleFileUpload(@RequestParam("file") MultipartFile file, @PathVariable String directory, @PathVariable String name) {
+        storageService.storeInDirectory(file, name, directory);
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)
