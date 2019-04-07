@@ -18,3 +18,9 @@ spring:
             - Path=/metadata/**
           filters:
             - RewritePath=/metadata/(?<path>.*), /$\{path}
+        - id: images-service
+          uri: lb://images-service
+          predicates:
+            - Path=/images/**
+          filters:
+            - RewritePath=/images/(?<path>.*), /$\{path}

@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>com.azul</groupId>
-    <artifactId>images-application</artifactId>
+    <artifactId>images-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>images-application</name>
-    <description>Image CRUD module</description>
+    <name>images-service</name>
+    <description>Images CRUD Module</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -41,9 +41,20 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-openfeign-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
