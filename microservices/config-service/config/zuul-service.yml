@@ -8,7 +8,7 @@ zuul:
   routes:
     images-service:
       path: /images/**
-      service-id: images-service
+      service-id: IMAGES-SERVICE
     auth-service:
       path: /auth/**
       service-id: auth-service

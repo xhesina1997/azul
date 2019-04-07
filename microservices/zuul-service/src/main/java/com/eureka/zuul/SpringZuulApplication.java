@@ -12,6 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableSwagger2
+@EnableZuulProxy
 public class SpringZuulApplication {
 
 	public static void main(String[] args) {
