@@ -1,0 +1,16 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+
+zuul:
+  ignored-services: *
+  routes:
+    images-service:
+      path: /images/**
+      service-id: images-service
+    auth-service:
+      path: /auth/**
+      service-id: auth-service
+      strip-prefix: false
+      sensitive-headers: Cookie, Set-Cookie
