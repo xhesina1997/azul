@@ -7,11 +7,11 @@
         <option value="$PROJECT_DIR$/microservices/images-service/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/spring-eureka-auth/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/spring-eureka-zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/metadata-service/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/microservices/metadata-service/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
       </set>
     </option>
