@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/microservices/auth-service/auth-service.iml" filepath="$PROJECT_DIR$/microservices/auth-service/auth-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservices/config-service/config.service.iml" filepath="$PROJECT_DIR$/microservices/config-service/config.service.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/core/core.iml" filepath="$PROJECT_DIR$/lib/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/core/core-domain/core-domain.iml" filepath="$PROJECT_DIR$/lib/core/core-domain/core-domain.iml" />
