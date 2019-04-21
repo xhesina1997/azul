@@ -1,12 +1,23 @@
 package com.eureka.zuul.model;
 
-import org.springframework.security.core.GrantedAuthority;
+public class Role {
 
-public enum Role implements GrantedAuthority {
-  ROLE_ADMIN, ROLE_CLIENT;
+    private RoleName name;
 
-  public String getAuthority() {
-    return name();
-  }
+    public Role() {
+
+    }
+
+    public Role(RoleName name) {
+        this.name = name;
+    }
+
+    public RoleName getName() {
+        return name;
+    }
+
+    public void setName(RoleName name) {
+        this.name = name;
+    }
 
 }

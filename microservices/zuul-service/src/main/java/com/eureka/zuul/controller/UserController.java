@@ -1,67 +1,53 @@
 package com.eureka.zuul.controller;
 
-
-import com.eureka.zuul.dto.UserDataDTO;
+import com.eureka.zuul.exception.ResourceNotFoundException;
 import com.eureka.zuul.model.User;
-import com.eureka.zuul.service.UserService;
+import com.eureka.zuul.payload.*;
+import com.eureka.zuul.repository.UserRepository;
+import com.eureka.zuul.security.CurrentUser;
+import com.eureka.zuul.security.UserPrincipal;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.swagger2.mappers.ModelMapper;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api")
 public class UserController {
 
-  @Autowired
-  private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
-  @Autowired
-  private ModelMapper modelMapper;
 
-  @PostMapping("/signin")
-  public String login(@RequestParam String username,  @RequestParam String password) {
-    return userService.signin(username, password);
-  }
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-  @PostMapping("/signup")
-  public String signup(@RequestBody UserDataDTO user) {
-    return userService.signup(this.userFromUserDataDTO(user));
-  }
+    @GetMapping("/user/me")
+    @PreAuthorize("hasRole('USER')")
+    public UserSummary getCurrentUser(@CurrentUser UserPrincipal currentUser) {
+        UserSummary userSummary = new UserSummary(currentUser.getId(), currentUser.getUsername(), currentUser.getName());
+        return userSummary;
+    }
 
-  @DeleteMapping(value = "/{username}")
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
-  public String delete(@PathVariable String username) {
-    userService.delete(username);
-    return username;
-  }
+    @GetMapping("/user/checkUsernameAvailability")
+    public UserIdentityAvailability checkUsernameAvailability(@RequestParam(value = "username") String username) {
+        Boolean isAvailable = !userRepository.existsByUsername(username);
+        return new UserIdentityAvailability(isAvailable);
+    }
 
-  @GetMapping(value = "/{username}")
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
-  public User search(@PathVariable String username) {
-    return userService.search(username);
-  }
+    @GetMapping("/user/checkEmailAvailability")
+    public UserIdentityAvailability checkEmailAvailability(@RequestParam(value = "email") String email) {
+        Boolean isAvailable = !userRepository.existsByEmail(email);
+        return new UserIdentityAvailability(isAvailable);
+    }
 
-  @GetMapping(value = "/me")
-  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
-  public User whoAmI(HttpServletRequest req) {
-    return userService.whoami(req);
-  }
+    @GetMapping("/users/{username}")
+    public UserProfile getUserProfile(@PathVariable(value = "username") String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
 
-  @GetMapping("/refresh")
-  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
-  public String refresh(HttpServletRequest req) {
-    return userService.refresh(req.getRemoteUser());
-  }
+        UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getName(), user.getCreated());
 
-  private User userFromUserDataDTO(UserDataDTO userDataDTO){
-    User user = new User();
-    user.setEmail(userDataDTO.getEmail());
-    user.setRoles(userDataDTO.getRoles());
-    user.setUsername(userDataDTO.getUsername());
-    return user;
-  }
-
+        return userProfile;
+    }
 }

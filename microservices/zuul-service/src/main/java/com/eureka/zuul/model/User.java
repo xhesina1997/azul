@@ -1,69 +1,122 @@
 package com.eureka.zuul.model;
 
-import com.eureka.zuul.dto.UserDataDTO;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Created by rajeevkumarsingh on 01/08/17.
+ */
 
 @Document
-public class User {
+public class User  {
+    @Id
+    private String id;
 
-  @Id
-  private String id;
+    @NotBlank
+    @Size(max = 40)
+    private String name;
 
-  @Size(min = 4, max = 255, message = "Minimum username length: 4 characters")
-  @Indexed(unique = true)
-  private String username;
+    @NotBlank
+    @Size(max = 15)
+    private String username;
 
-  @Indexed(unique = true)
-  private String email;
+    @NotBlank
+    @Size(max = 40)
+    @Email
+    private String email;
 
-  @Size(min = 8, message = "Minimum password length: 8 characters")
-  private String password;
+    @NotBlank
+    @Size(max = 100)
+    private String password;
 
-  List<Role> roles;
+    @CreatedDate
+    private long created;
 
-  public String getId() {
-    return id;
-  }
+    @LastModifiedDate
+    private long modified;
 
-  public void setId(String id) {
-    this.id = id;
-  }
+    private Set<Role> roles = new HashSet<>();
 
-  public String getUsername() {
-    return username;
-  }
+    public User() {
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    }
 
-  public String getEmail() {
-    return email;
-  }
+    public User(String name, String username, String email, String password) {
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  public List<Role> getRoles() {
-    return roles;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public void setRoles(List<Role> roles) {
-    this.roles = roles;
-  }
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public long getCreated() {
+        return created;
+    }
+
+    public void setCreated(long created) {
+        this.created = created;
+    }
+
+    public long getModified() {
+        return modified;
+    }
+
+    public void setModified(long modified) {
+        this.modified = modified;
+    }
 }
