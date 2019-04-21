@@ -12,9 +12,11 @@
         <module name="gateway.service" />
         <module name="images-application" />
         <module name="metadata-service" />
+        <module name="zuul-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="auth-service" target="8" />
       <module name="azul" target="1.5" />
       <module name="config.service" target="1.5" />
       <module name="core" target="1.5" />
@@ -25,6 +27,13 @@
       <module name="lib" target="1.5" />
       <module name="metadata-service" target="8" />
       <module name="microservice" target="1.5" />
+      <module name="zuul-service" target="8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-service" options="" />
+      <module name="zuul-service" options="" />
+    </option>
   </component>
 </project>

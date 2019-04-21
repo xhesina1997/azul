@@ -22,6 +22,7 @@
         <module>gateway-service</module>
         <module>metadata-service</module>
         <module>images-service</module>
+        <module>zuul-service</module>
     </modules>
 
     
