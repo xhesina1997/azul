@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d36ef6d0-afac-4475-b136-296e8fa80d31" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/web/src/app/base-layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lib.iml" afterDir="false" />
-    </list>
+    <list default="true" id="d36ef6d0-afac-4475-b136-296e8fa80d31" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/microservices/gateway-service/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/microservices/config-service/target/" />
@@ -175,10 +171,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="12" />
-    <option name="y" value="271" />
-    <option name="width" value="1280" />
-    <option name="height" value="697" />
+    <option name="x" value="59" />
+    <option name="y" value="25" />
+    <option name="width" value="1861" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -413,7 +409,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33150000" />
+    <option name="totallyTimeSpent" value="34043000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -425,8 +421,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="59" y="393" width="1861" height="1055" extended-state="6" />
-    <editor active="true" />
+    <frame x="59" y="25" width="1861" height="1055" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="12" />
       <window_info anchor="bottom" id="Event Log" order="19" sideWeight="0.5002749" side_tool="true" weight="0.28210756" />
@@ -446,13 +441,13 @@
       <window_info id="Image Layers" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="20" />
       <window_info anchor="right" id="Capture Analysis" order="17" />
-      <window_info anchor="bottom" id="Run Dashboard" order="23" weight="0.26454446" />
+      <window_info active="true" anchor="bottom" id="Run Dashboard" order="23" visible="true" weight="0.26454446" />
       <window_info anchor="bottom" id="Version Control" order="25" />
       <window_info anchor="bottom" id="Run" order="4" weight="0.32930845" />
       <window_info id="npm" side_tool="true" />
       <window_info anchor="bottom" id="Spring" order="27" />
-      <window_info anchor="bottom" id="Terminal" order="21" sideWeight="0.49972513" visible="true" weight="0.28210756" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.26058275" />
+      <window_info anchor="bottom" id="Terminal" order="21" sideWeight="0.49972513" weight="0.28210756" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.26058275" />
       <window_info anchor="right" id="Bean Validation" order="15" />
       <window_info id="Web" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Compute Code Lines" order="24" />
