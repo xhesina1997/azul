@@ -8,9 +8,11 @@
       <module fileurl="file://$PROJECT_DIR$/microservices/discovery-service/discovery.service.iml" filepath="$PROJECT_DIR$/microservices/discovery-service/discovery.service.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservices/gateway-service/gateway.service.iml" filepath="$PROJECT_DIR$/microservices/gateway-service/gateway.service.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservices/images-service/images-application.iml" filepath="$PROJECT_DIR$/microservices/images-service/images-application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/images-service/images-service.iml" filepath="$PROJECT_DIR$/microservices/images-service/images-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservices/metadata-service/metadata-service.iml" filepath="$PROJECT_DIR$/microservices/metadata-service/metadata-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservices/microservice.iml" filepath="$PROJECT_DIR$/microservices/microservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/zuul-service/zuul-service.iml" filepath="$PROJECT_DIR$/microservices/zuul-service/zuul-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservices/zuul-service/zuul-service.iml" filepath="$PROJECT_DIR$/microservices/zuul-service/zuul-service.iml" />
     </modules>
   </component>
