@@ -1,8 +1,5 @@
 package com.eureka.zuul.payload;
 
-/**
- * Created by rajeevkumarsingh on 19/08/17.
- */
 public class ApiResponse {
     private Boolean success;
     private String message;

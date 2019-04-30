@@ -9,11 +9,6 @@ zuul:
     images-service:
       path: /images/**
       service-id: IMAGES-SERVICE
-    auth-service:
-      path: /auth/**
-      service-id: auth-service
-      strip-prefix: false
-      sensitive-headers: Cookie, Set-Cookie
 
 app:
   jwtSecret: JWTSuperSecretKey
