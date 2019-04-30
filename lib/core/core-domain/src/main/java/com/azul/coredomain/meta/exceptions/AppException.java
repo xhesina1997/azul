@@ -1,4 +1,5 @@
-package com.eureka.zuul.exception;
+package com.azul.coredomain.meta.exceptions;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

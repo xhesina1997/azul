@@ -1,4 +1,4 @@
-package com.eureka.zuul.payload;
+package com.azul.coredomain.meta.authentication;
 
 import javax.validation.constraints.*;
 

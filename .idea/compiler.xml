@@ -11,6 +11,7 @@
         <module name="discovery.service" />
         <module name="images-application" />
         <module name="metadata-service" />
+        <module name="user-service" />
         <module name="zuul-service" />
       </profile>
     </annotationProcessing>
@@ -26,12 +27,14 @@
       <module name="lib" target="1.5" />
       <module name="metadata-service" target="8" />
       <module name="microservice" target="1.5" />
+      <module name="user-service" target="8" />
       <module name="zuul-service" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="auth-service" options="" />
+      <module name="user-service" options="" />
       <module name="zuul-service" options="" />
     </option>
   </component>

@@ -9,6 +9,9 @@ zuul:
     images-service:
       path: /images/**
       service-id: IMAGES-SERVICE
+    user-service:
+      path: /user/**
+      service-id: USER-SERVICE
 
 app:
   jwtSecret: JWTSuperSecretKey

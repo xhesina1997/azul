@@ -1,6 +1,6 @@
 package com.eureka.zuul.security;
 
-import com.eureka.zuul.model.User;
+import com.azul.coredomain.meta.authentication.User;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

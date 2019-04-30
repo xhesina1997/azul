@@ -22,7 +22,7 @@
         <module>metadata-service</module>
         <module>images-service</module>
         <module>zuul-service</module>
-        <!--<module>user-service</module-->
+        <module>user-service</module>
     </modules>
 
     

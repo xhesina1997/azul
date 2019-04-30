@@ -1,6 +1,6 @@
 package com.eureka.zuul.config;
 
-import com.eureka.zuul.model.User;
+import com.azul.coredomain.meta.authentication.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
