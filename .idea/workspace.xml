@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d36ef6d0-afac-4475-b136-296e8fa80d31" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/config-service/config/zuul-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/config-service/config/zuul-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/config/AuditingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/config/AuditingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/model/RoleName.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/model/RoleName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/ApiResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/JwtAuthenticationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/JwtAuthenticationResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/SignUpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/SignUpRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/UserProfile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/UserSummary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/security/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/security/CustomUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/security/JwtAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/security/JwtAuthenticationEntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/security/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/security/JwtTokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/security/UserPrincipal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/controller/AuthController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/microservices/gateway-service/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/controller/AuthController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="73" selection-start-line="73" selection-end-line="73" />
+            <state relative-caret-position="274">
+              <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,19 +47,52 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/config-service/config/zuul-service.yml">
+        <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/SpringZuulApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+            <state relative-caret-position="289">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/model/RoleName.java">
+        <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/client/UserClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="170">
+              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/SignUpRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/microservices/images-service/src/main/java/azul/project/imagesapplication/controller/FileUploadController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="33" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/microservices/config-service/config/zuul-service.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -93,7 +109,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/config/SecurityConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
@@ -110,37 +126,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/config/WebMvcConfig.java">
+        <entry file="file://$PROJECT_DIR$/microservices/zuul-service/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/exception/ResourceNotFoundException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/exception/AppException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/exception/BadRequestException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="216">
+              <caret line="52" column="51" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -151,6 +140,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -160,6 +150,7 @@
       <find>.json</find>
       <find>rx</find>
       <find>cre</find>
+      <find>fe</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/lib/web</dir>
@@ -217,6 +208,8 @@
         <option value="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/controller/UserController.java" />
         <option value="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/config/AuditingConfig.java" />
         <option value="$PROJECT_DIR$/microservices/config-service/config/zuul-service.yml" />
+        <option value="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/client/UserClient.java" />
+        <option value="$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/controller/AuthController.java" />
       </list>
     </option>
   </component>
@@ -272,6 +265,51 @@
               <item name="microservices" type="462c0819:PsiDirectoryNode" />
               <item name="config-service" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="images-service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="images-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="images-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="images-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="images-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="imagesapplication" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="azul" type="b2602c69:ProjectViewProjectNode" />
+              <item name="microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="images-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="imagesapplication" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="azul" type="b2602c69:ProjectViewProjectNode" />
@@ -400,7 +438,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556632237078" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556634042493" />
     <property name="last_opened_file_path" value="$USER_HOME$/SMARTSCADA" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -557,12 +595,12 @@
       <updated>1553800778289</updated>
       <workItem from="1553800782147" duration="3437000" />
       <workItem from="1554103780131" duration="193000" />
-      <workItem from="1556549339969" duration="6262000" />
+      <workItem from="1556549339969" duration="7960000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40296000" />
+    <option name="totallyTimeSpent" value="41994000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -577,7 +615,7 @@
     <frame x="0" y="-1" width="1920" height="1040" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23824786" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23824786" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Web" order="3" side_tool="true" />
@@ -596,9 +634,9 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Java Enterprise" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.13656388" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.19273128" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run Dashboard" order="11" visible="true" weight="0.42621145" />
+      <window_info active="true" anchor="bottom" id="Run Dashboard" order="11" visible="true" weight="0.42621145" />
       <window_info anchor="bottom" id="Compute Code Lines" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="bottom" id="Messages" order="14" weight="0.32929516" />
@@ -621,23 +659,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/microservices/gateway-service/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/images-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" lean-forward="true" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/images-service/src/main/resources/bootstrap.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/microservices/config-service/config/gateway-service.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -747,16 +768,6 @@
           <caret line="7" column="60" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="60" />
           <folding>
             <element signature="n#style#0;n#div#0;n#mat-toolbar#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/SpringZuulApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -886,13 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/SignUpRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/LoginRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -942,26 +946,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/controller/AuthController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/config/WebMvcConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -979,13 +963,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/zuul-service.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/config/SecurityConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -996,6 +973,74 @@
             <element signature="e#1895#1896#0" expanded="true" />
             <element signature="e#2423#2424#0" expanded="true" />
             <element signature="e#2473#2474#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/zuul-service/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="52" column="51" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/SpringZuulApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/config-service/config/zuul-service.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/images-service/src/main/java/azul/project/imagesapplication/controller/FileUploadController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="33" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/client/UserClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/payload/SignUpRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microservices/zuul-service/src/main/java/com/eureka/zuul/controller/AuthController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -9,7 +9,6 @@
         <module name="config.service" />
         <module name="core-domain" />
         <module name="discovery.service" />
-        <module name="gateway.service" />
         <module name="images-application" />
         <module name="metadata-service" />
         <module name="zuul-service" />

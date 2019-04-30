@@ -1,5 +1,6 @@
 package com.eureka.zuul.controller;
 
+import com.eureka.zuul.client.UserClient;
 import com.eureka.zuul.exception.AppException;
 import com.eureka.zuul.model.Role;
 import com.eureka.zuul.model.RoleName;
