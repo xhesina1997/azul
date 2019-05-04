@@ -4,16 +4,16 @@ eureka:
       defaultZone: http://localhost:8061/eureka/
 
 zuul:
-#  ignored-services: *
   routes:
     images-service:
       path: /images/**
       service-id: IMAGES-SERVICE
-    auth-service:
-      path: /auth/**
-      service-id: auth-service
-      strip-prefix: false
-      sensitive-headers: Cookie, Set-Cookie
+    user-service:
+      path: /user/**
+      service-id: USER-SERVICE
+    metadata-service:
+      path: /metadata/**
+      service-id: METADATA-SERVICE
 
 app:
   jwtSecret: JWTSuperSecretKey

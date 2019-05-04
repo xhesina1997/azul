@@ -1,6 +1,6 @@
 package com.eureka.zuul.config;
 
-import com.eureka.zuul.security.UserPrincipal;
+import com.azul.coredomain.meta.authentication.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -31,7 +31,7 @@ class SpringSecurityAuditAwareImpl implements AuditorAware<String> {
             return Optional.empty();
         }
 
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        User userPrincipal = (User) authentication.getPrincipal();
 
         return Optional.ofNullable(userPrincipal.getId());
     }

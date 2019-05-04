@@ -19,10 +19,10 @@
     <modules>
         <module>discovery-service</module>
         <module>config-service</module>
-        <module>gateway-service</module>
         <module>metadata-service</module>
         <module>images-service</module>
         <module>zuul-service</module>
+        <module>user-service</module>
     </modules>
 
     

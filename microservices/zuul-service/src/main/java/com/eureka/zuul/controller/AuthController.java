@@ -1,14 +1,8 @@
 package com.eureka.zuul.controller;
 
-import com.eureka.zuul.exception.AppException;
-import com.eureka.zuul.model.Role;
-import com.eureka.zuul.model.RoleName;
-import com.eureka.zuul.model.User;
-import com.eureka.zuul.payload.ApiResponse;
-import com.eureka.zuul.payload.JwtAuthenticationResponse;
-import com.eureka.zuul.payload.LoginRequest;
-import com.eureka.zuul.payload.SignUpRequest;
-import com.eureka.zuul.repository.UserRepository;
+import com.azul.coredomain.meta.authentication.*;
+import com.eureka.zuul.client.UserClient;
+import com.azul.coredomain.meta.model.ApiResponse;
 import com.eureka.zuul.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
@@ -36,13 +31,25 @@ public class AuthController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
     PasswordEncoder passwordEncoder;
 
     @Autowired
     JwtTokenProvider tokenProvider;
+
+    @Autowired
+    UserClient userClient;
+
+    @PostConstruct
+    private void addAdminUser() {
+        User user = new User("admin", "admin", "admin@admin.com", "admin");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Role userRole = new Role();
+        userRole.setName(RoleName.ROLE_ADMIN);
+        user.setRoles(Collections.singleton(userRole));
+        if (userClient.getUserByUsernameOrEmail(user.getUsername()) == null) {
+            userClient.addUser(user);
+        }
+    }
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -62,32 +69,27 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
-                    HttpStatus.BAD_REQUEST);
-        }
 
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
-                    HttpStatus.BAD_REQUEST);
-        }
-
-        // Creating user's account
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
                 signUpRequest.getEmail(), signUpRequest.getPassword());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         Role userRole = new Role();
+
         userRole.setName(RoleName.ROLE_USER);
 
         user.setRoles(Collections.singleton(userRole));
 
-        User result = userRepository.save(user);
+        ApiResponse apiResponse = userClient.addUser(user);
+
+        if (!apiResponse.getSuccess()) {
+            return new ResponseEntity(apiResponse, HttpStatus.BAD_REQUEST);
+        }
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/users/{username}")
-                .buildAndExpand(result.getUsername()).toUri();
+                .buildAndExpand(user.getUsername()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }
