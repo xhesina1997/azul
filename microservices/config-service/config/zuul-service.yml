@@ -4,7 +4,6 @@ eureka:
       defaultZone: http://localhost:8061/eureka/
 
 zuul:
-#  ignored-services: *
   routes:
     images-service:
       path: /images/**
@@ -12,6 +11,9 @@ zuul:
     user-service:
       path: /user/**
       service-id: USER-SERVICE
+    metadata-service:
+      path: /metadata/**
+      service-id: METADATA-SERVICE
 
 app:
   jwtSecret: JWTSuperSecretKey
