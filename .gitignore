@@ -65,3 +65,5 @@ mvnw.cmd
 # logging
 logs/
 /bin/
+
+lib/webApp/node_modules
