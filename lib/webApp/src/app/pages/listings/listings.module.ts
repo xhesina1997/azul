@@ -6,6 +6,7 @@ import {ListingsComponent} from './listings.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from "@angular/material";
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
     declarations: [ListingsComponent],
@@ -14,6 +15,7 @@ import {MatButtonModule} from "@angular/material";
         FlexLayoutModule,
         MatCardModule,
         MatButtonModule,
+        MatListModule,
         ListingsRoutingModule
     ]
 })

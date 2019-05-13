@@ -1,0 +1,43 @@
+<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between" style="padding-top: 20px">
+    <div fxFlex="100">
+        <mat-card class="mat-elevation-z0" style="margin-bottom: 20px; height: 35px">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>
+                    <h2 style="margin: 0">Listing details</h2>
+                </div>
+                <div fxLayout="row">
+                    <button mat-stroked-button color="primary">Primary</button>
+                    &nbsp;
+                    <button mat-stroked-button color="accent">Accent</button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between" style="padding-bottom: 20px">
+    <div fxFlex="70">
+        <mat-card class="mat-elevation-z0" style="height: 500px;">
+            <owl-carousel-o [options]="customOptions">
+                <ng-template carouselSlide>
+                    <img style=" height: 480px; width: 100%; object-fit:cover;"
+                         src="https://40pg2e2187urs70xz2sj2xo6-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/11364263_web1_180413-KIR-HorseM.jpg">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img style=" height: 480px; width: 100%; object-fit:cover;"
+                         src="https://thehorse.com/wp-content/uploads/2017/09/paint-horse-running-in-field.jpg">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img style=" height: 480px; width: 100%; object-fit:cover;"
+                         src="https://static.agcanada.com/wp-content/uploads/sites/5/2016/11/horses-pasture-thinkstock.jpg">
+                </ng-template>
+            </owl-carousel-o>
+        </mat-card>
+    </div>
+    <div fxFlex="30">
+        <mat-card class="mat-elevation-z0" style=" height: 500px">
+            <div fxLayout="row">
+            </div>
+        </mat-card>
+    </div>
+
+</div>
