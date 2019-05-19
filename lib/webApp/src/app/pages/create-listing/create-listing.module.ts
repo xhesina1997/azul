@@ -8,7 +8,9 @@ import {
     MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule,
+    MatIconModule
 } from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
@@ -25,7 +27,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatFormFieldModule,
         FlexLayoutModule,
         MatCheckboxModule,
-        MatButtonModule
+        MatButtonModule,
+        MatDividerModule,
+        MatIconModule
     ]
 })
 export class CreateListingModule {

@@ -3,29 +3,36 @@
         <mat-card class="mat-elevation-z0" style="margin-bottom: 20px;">
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div>
-                    <h2 style="margin: 0">Create new listing</h2>
+                    <h2 style="margin: 0;letter-spacing: 1px">Create new post</h2>
                 </div>
             </div>
             <br>
+            <mat-divider></mat-divider>
+            <br>
             <div fxLayout="row">
-                <div fxFlex="80" fxFlexOffset="10">
+                <div fxFlex="80" fxFlexOffset="10" fxFlexOffset.xs="0">
                     <form [formGroup]="createForm" (ngSubmit)="createItem(createForm.value)">
                         <div fxLayout="row" fxLayoutGap="5%">
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width: 100%">
-                                    <mat-label> Type:</mat-label>
-                                    <mat-select formControlName="type">
-                                        <mat-option [value]="'phone'"> Phone</mat-option>
-                                        <mat-option [value]="'tablet'"> Tablet:</mat-option>
+
+                                    <mat-label>
+                                        <mat-icon>build</mat-icon> &nbsp; Prodhuesi:
+                                    </mat-label>
+                                    <mat-select formControlName="prodhuesi">
+                                        <mat-option [value]="''">Audi</mat-option>
+                                        <mat-option [value]="''"> BMW</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width: 100%">
-                                    <mat-label> Brand:</mat-label>
-                                    <mat-select formControlName="brand">
-                                        <mat-option [value]="'iphone'"> Iphone</mat-option>
-                                        <mat-option [value]="'samsung'"> Samsung</mat-option>
+                                    <mat-label>
+                                        <mat-icon>merge_type</mat-icon> &nbsp; Modeli:
+                                    </mat-label>
+                                    <mat-select formControlName="modeli">
+                                        <mat-option [value]="''"> A4</mat-option>
+                                        <mat-option [value]="''"> A6</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
@@ -34,8 +41,10 @@
                         <div fxLayout="row" fxLayoutGap="5%">
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width: 100%">
-                                    <mat-label> Model:</mat-label>
-                                    <mat-select formControlName="model">
+                                    <mat-label>
+                                        <mat-icon>directions_car</mat-icon> &nbsp; Struktura:
+                                    </mat-label>
+                                    <mat-select formControlName="struktura">
                                         <mat-option [value]="'model1'"> Model1</mat-option>
                                         <mat-option [value]="'model2'"> Model2:</mat-option>
                                     </mat-select>
@@ -43,10 +52,12 @@
                             </div>
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width: 100%">
-                                    <mat-label> Storage:</mat-label>
-                                    <mat-select formControlName="storage">
-                                        <mat-option [value]="'8gb'"> 8GB</mat-option>
-                                        <mat-option [value]="'16gb'"> 16GB</mat-option>
+                                    <mat-label>
+                                        <mat-icon>calendar_today</mat-icon> &nbsp;Viti:
+                                    </mat-label>
+                                    <mat-select formControlName="viti">
+                                        <mat-option [value]="''"> 2000</mat-option>
+                                        <mat-option [value]="''"> 2007</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
@@ -54,21 +65,88 @@
                         <div fxLayout="row" fxLayoutGap="5%">
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width: 100%">
-                                    <mat-label> Factory state:</mat-label>
-                                    <mat-select formControlName="factoryState">
-                                        <mat-option [value]="'locked'"> LOCKED</mat-option>
-                                        <mat-option [value]="'unlocked'"> UNLOCKED</mat-option>
+                                    <mat-label>
+                                        <mat-icon>invert_colors</mat-icon> &nbsp; Ngjyra:
+                                    </mat-label>
+                                    <mat-select formControlName="ngjyra">
+                                        <mat-option [value]="''"> E bardhe</mat-option>
+                                        <mat-option [value]="''"> E zeze</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
                             <div fxFlex="50">
-                                <section class="checkbox-section">
+                                <!-- <section class="checkbox-section">
                                     <mat-checkbox class="item" formControlName="headphones">Kufje</mat-checkbox>
                                     <mat-checkbox class="item" formControlName="charger">Karikues</mat-checkbox>
                                     <mat-checkbox class="item" formControlName="cable">Fish</mat-checkbox>
-                                </section>
+                                </section> -->
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        <mat-icon>timeline</mat-icon> &nbsp;Kilometrat:
+                                    </mat-label>
+                                    <mat-select formControlName="kilometrat">
+                                        <mat-option [value]="''"> 0-10000</mat-option>
+                                        <mat-option [value]="''"> 20000-50000</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
                             </div>
                         </div>
+
+                        <div fxLayout="row" fxLayoutGap="5%">
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        <mat-icon>commute</mat-icon> &nbsp;Kambio:
+                                    </mat-label>
+                                    <mat-select formControlName="kambio">
+                                        <mat-option [value]="''"> Automatike</mat-option>
+                                        <mat-option [value]="''"> Manuale</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        <mat-icon>category</mat-icon> &nbsp; Karburanti:
+                                    </mat-label>
+                                    <mat-select formControlName="karburanti">
+                                        <mat-option [value]="''"> Nafte</mat-option>
+                                        <mat-option [value]="''"> Benzine</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutGap="5%">
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        <mat-icon>style</mat-icon> &nbsp; Targa:
+                                    </mat-label>
+                                    <mat-select formControlName="targa">
+                                        <mat-option [value]="''"> E huaj</mat-option>
+                                        <mat-option [value]="''"> Shqiptare</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        <mat-icon>map</mat-icon> &nbsp;Qyteti:
+                                    </mat-label>
+                                    <mat-select formControlName="qyteti">
+                                        <mat-option [value]="''"> Fier</mat-option>
+                                        <mat-option [value]="''"> Tirane</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
+                            <input hidden type="file" #fileInput>
+                        </div>
+                        <br>
                         <div fxLayout="row">
                             <div fxFlexFill fxFlex="100">
                                 <button mat-raised-button color="primary" type="submit" style="float:right">Submit</button>
