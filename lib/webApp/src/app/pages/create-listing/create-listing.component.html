@@ -1,0 +1,82 @@
+<div fxLayout="row" fxLayoutAlign="space-between" style="padding-top: 20px">
+    <div fxFlex="100">
+        <mat-card class="mat-elevation-z0" style="margin-bottom: 20px;">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>
+                    <h2 style="margin: 0">Create new listing</h2>
+                </div>
+            </div>
+            <br>
+            <div fxLayout="row">
+                <div fxFlex="80" fxFlexOffset="10">
+                    <form [formGroup]="createForm" (ngSubmit)="createItem(createForm.value)">
+                        <div fxLayout="row" fxLayoutGap="5%">
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label> Type:</mat-label>
+                                    <mat-select formControlName="type">
+                                        <mat-option [value]="'phone'"> Phone</mat-option>
+                                        <mat-option [value]="'tablet'"> Tablet:</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label> Brand:</mat-label>
+                                    <mat-select formControlName="brand">
+                                        <mat-option [value]="'iphone'"> Iphone</mat-option>
+                                        <mat-option [value]="'samsung'"> Samsung</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutGap="5%">
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label> Model:</mat-label>
+                                    <mat-select formControlName="model">
+                                        <mat-option [value]="'model1'"> Model1</mat-option>
+                                        <mat-option [value]="'model2'"> Model2:</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label> Storage:</mat-label>
+                                    <mat-select formControlName="storage">
+                                        <mat-option [value]="'8gb'"> 8GB</mat-option>
+                                        <mat-option [value]="'16gb'"> 16GB</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="5%">
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label> Factory state:</mat-label>
+                                    <mat-select formControlName="factoryState">
+                                        <mat-option [value]="'locked'"> LOCKED</mat-option>
+                                        <mat-option [value]="'unlocked'"> UNLOCKED</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="50">
+                                <section class="checkbox-section">
+                                    <mat-checkbox class="item" formControlName="headphones">Kufje</mat-checkbox>
+                                    <mat-checkbox class="item" formControlName="charger">Karikues</mat-checkbox>
+                                    <mat-checkbox class="item" formControlName="cable">Fish</mat-checkbox>
+                                </section>
+                            </div>
+                        </div>
+                        <div fxLayout="row">
+                            <div fxFlexFill fxFlex="100">
+                                <button mat-raised-button color="primary" type="submit" style="float:right">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
