@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="space-between" style="padding-top: 20px">
+<div fxLayout="row" fxLayoutAlign="space-between" style="padding-top: 20px;">
     <div fxFlex="100">
         <mat-card class="mat-elevation-z0" style="margin-bottom: 20px;">
             <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -12,7 +12,54 @@
             <div fxLayout="row">
                 <div fxFlex="80" fxFlex.xs="100" fxFlexOffset="10" fxFlexOffset.xs="0">
                     <form [formGroup]="createForm" (ngSubmit)="createItem(createForm.value)">
-                        <div fxLayout="row" fxLayoutGap="5%">
+                        <div fxLayout="row" fxLayoutGap="15px">
+                            <div fxFlex="50">
+
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        <mat-icon>title</mat-icon> &nbsp; Titulli:
+                                    </mat-label>
+                                    <input formControlName="title" matInput placeholder="...">
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="50" fxLayout="row" fxLayoutGap="15px">
+                                <div fxFlex="50">
+                                    <mat-form-field appearance="outline" style="width: 100%">
+                                        <mat-label>
+                                            <mat-icon>money</mat-icon> &nbsp; Cmimi:
+                                        </mat-label>
+                                        <input formControlName="price" matInput type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div fxFlex="50">
+                                    <mat-form-field appearance="outline" style="width: 100%">
+                                        <mat-label>
+                                            <mat-icon>attach_money</mat-icon> &nbsp; Valuta:
+                                        </mat-label>
+                                        <mat-select formControlName="currency">
+                                            <mat-option [value]="'EUR'">Euro</mat-option>
+                                            <mat-option [value]="'ALL'">Lek</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div fxLayout="row" fxLayoutGap="15px">
+                            <div fxFlex="100">
+
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        <mat-icon>format_align_left</mat-icon> &nbsp; Pershkrimi:
+                                    </mat-label>
+                                    <textarea matInput placeholder="..." rows="7"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutGap="15px">
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width: 100%">
 
@@ -38,7 +85,7 @@
                             </div>
                         </div>
 
-                        <div fxLayout="row" fxLayoutGap="5%">
+                        <div fxLayout="row" fxLayoutGap="15px">
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width: 100%">
                                     <mat-label>
@@ -47,7 +94,8 @@
                                     <mat-select formControlName="structure">
                                         <mat-option *ngFor="let type of carTypes" [value]="type.name">
                                             <div fxLayout="row">
-                                                <img style="width: 90px; height: 40px;" src="{{type.imageURL}}" alt="{{type.title}}">
+                                                <img style="width: 90px; height: 40px;" src="{{type.imageURL}}"
+                                                     alt="{{type.title}}">
                                                 &nbsp;&nbsp;{{type.title}}
                                             </div>
                                         </mat-option>
@@ -84,7 +132,7 @@
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div fxLayout="row" fxLayoutGap="5%">
+                        <div fxLayout="row" fxLayoutGap="15px">
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width: 100%">
                                     <mat-label>
@@ -164,7 +212,7 @@
                             </div>
                         </div>
 
-                        <div fxLayout="row" fxLayoutGap="5%">
+                        <div fxLayout="row" fxLayoutGap="15px">
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width: 100%">
                                     <mat-label>
@@ -190,7 +238,7 @@
                             </div>
                         </div>
 
-                        <div fxLayout="row" fxLayoutGap="5%">
+                        <div fxLayout="row" fxLayoutGap="15px">
                             <div fxFlex="50">
                                 <mat-form-field appearance="outline" style="width: 100%">
                                     <mat-label>
@@ -226,7 +274,8 @@
                         <div fxLayout="row">
                             <div fxFlexFill fxFlex="100">
                                 <button mat-raised-button color="primary" type="submit"
-                                    style="float:right">Krijo postimin</button>
+                                        style="float:right">Krijo postimin
+                                </button>
                             </div>
                         </div>
                         <br>

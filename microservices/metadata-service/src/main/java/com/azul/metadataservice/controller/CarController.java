@@ -7,10 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.naming.LimitExceededException;
 import java.util.List;
@@ -26,6 +23,7 @@ public class CarController {
     @Autowired
     private CarRepository repos;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Get all cars")
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public List<Car> getAll(){
@@ -41,6 +39,7 @@ public class CarController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Upload new Car")
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public Boolean upload(@RequestBody Car car){

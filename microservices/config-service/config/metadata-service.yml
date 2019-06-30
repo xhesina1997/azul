@@ -2,3 +2,13 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8061/eureka/
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: cars
+      connectTimeout: 120000
+      socketTimeout: 60000
+      maxWaitTime: 120000
+      socketKeepAlive: true

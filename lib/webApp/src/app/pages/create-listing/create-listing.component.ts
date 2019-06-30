@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {CarService} from "../../api/car.service";
+import {log} from "util";
 
 @Component({
     selector: 'app-create-listing',
@@ -12,9 +14,14 @@ export class CreateListingComponent implements OnInit {
     @ViewChild('myPond') myPond: any;
 
     constructor(
-        private fb: FormBuilder,
+        private carService: CarService,
+        private fb: FormBuilder
     ) {
         this.createForm = fb.group({
+            'title': [null, Validators.required],
+            'description': [null, Validators.required],
+            'price': [null, Validators.required],
+            'currency': [null, Validators.required],
             'manufacturer': [null, Validators.required],
             'model': [null, Validators.required],
             'structure': [null, Validators.required],
@@ -132,8 +139,32 @@ export class CreateListingComponent implements OnInit {
     }
 
     createItem(post) {
-        console.log(post)
+        this.uploadedFiles = this.myPond.getFiles();
+        console.log(this.uploadedFiles);
+        // this.carService.uploadCar(this.generateCarFromPost(post)).subscribe(res => {
+        //     console.log(res);
+        // })
     }
 
+    generateCarFromPost(post){
+        return {
+            title: post.title,
+            description: post.description,
+            price: {
+                value: post.price,
+                currency: post.currency
+            },
+            manufacturer: post.manufacturer,
+            model: post.model,
+            structure: post.structure,
+            year: post.year,
+            color: post.color,
+            mileage: post.mileage,
+            transmission: post.transmission,
+            fuel: post.fuel,
+            plateRegistration: post.plateRegistration,
+            city: post.city
+        }
+    }
 
 }

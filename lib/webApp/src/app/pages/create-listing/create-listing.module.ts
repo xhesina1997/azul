@@ -11,9 +11,11 @@ import {
     MatDividerModule,
     MatIconModule
 } from "@angular/material";
+import {MatInputModule} from '@angular/material/input';
+
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { HttpClientModule } from '@angular/common/http';
+
 
 // import filepond module
 import { FilePondModule, registerPlugin } from 'ngx-filepond';
@@ -26,6 +28,7 @@ registerPlugin(FilePondPluginFileValidateType);
     imports: [
         CommonModule,
         MatCardModule,
+        MatInputModule,
         CreateListingRoutingModule,
         FormsModule,
         ReactiveFormsModule,
@@ -37,7 +40,7 @@ registerPlugin(FilePondPluginFileValidateType);
         MatButtonModule,
         MatDividerModule,
         MatIconModule,
-        HttpClientModule
+
     ]
 })
 export class CreateListingModule {
