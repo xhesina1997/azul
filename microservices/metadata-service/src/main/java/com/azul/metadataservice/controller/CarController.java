@@ -40,6 +40,18 @@ public class CarController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+    @ApiOperation(value = "Get car by uuid")
+    @RequestMapping(value = "/uuid/{uuid}",method = RequestMethod.GET)
+    public Car getByUUID(@PathVariable String uuid){
+        try {
+            return repos.findFirstByUuid(uuid);
+        }catch (Exception e){
+            logger.error(ERR_GET + e.getMessage());
+            throw new ServiceException(e);
+        }
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Upload new Car")
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public Boolean upload(@RequestBody Car car){

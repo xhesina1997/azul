@@ -4,137 +4,66 @@
          [ngStyle.xs]="{display: 'none'}">
         <mat-card class="mat-elevation-z0" style=" height: calc(100% - 34px)">
             <div fxLayout="row">
-                <h2 style="margin: 0">Filters</h2>
+                <h2 style="margin: 0">Filtra</h2>
             </div>
         </mat-card>
     </div>
     <div fxFlex="70" fxFlex.sm="100" fxFlex.xs="100">
         <mat-card class="mat-elevation-z0" style="margin-bottom: 20px; height: 30px">
             <div fxLayout="row" fxLayoutAlign="space-bewteen center">
-                <h2 style="margin: 0">Results</h2>
+                <h2 style="margin: 0">Rezultatet</h2>
             </div>
         </mat-card>
 
         <mat-card class="mat-elevation-z0" style="height: calc(100% - 86px); padding: 0; overflow-y: auto">
-            <div class="item-wrapper" style="padding: 16px">
 
-                <div class="item" fxLayout="row" fxLayoutGap="16px">
-                    <div fxFlex="30" style="height: 160px; width: 100%; overflow: hidden">
-                        <img src="https://thehorse.com/wp-content/uploads/2017/09/paint-horse-running-in-field.jpg"
-                             style=" height: 100%; width: 100%; object-fit:cover;">
-                    </div>
-                    <div fxFlex="70" style="" fxLayout="column">
-                        <div fxLayout="row" fxLayoutAlign="space-between start">
-                            <div>
-                                <mat-card-title>Shiba Inu</mat-card-title>
-                                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            <div *ngFor="let car of cars">
+                <div class="item-wrapper" style="padding: 16px">
+
+                    <div class="item" fxLayout="row" fxLayoutGap="16px">
+                        <div fxFlex="30" style="height: 167px; width: 100%; overflow: hidden">
+                            <img src="http://localhost:8888/cdn/{{car.uuid}}/{{car.images[0]}}"
+                                 style=" height: 100%; width: 100%; object-fit:cover;">
+                        </div>
+                        <div fxFlex="70" style="" fxLayout="column">
+                            <div fxLayout="row" fxLayoutAlign="space-between start">
+                                <div>
+                                    <a [routerLink]="['/pages/listing']" [queryParams]="{id: car.uuid}"><mat-card-title style="font-size: 16px">{{car.title}}</mat-card-title></a>
+                                    <mat-card-subtitle>{{car.price.value}} {{car.price.currency}}</mat-card-subtitle>
+                                </div>
+                                <div fxLayout="row">
+                                    <button mat-stroked-button color="primary">Primary</button>
+                                    &nbsp;
+                                    <button mat-stroked-button color="accent">Accent</button>
+                                </div>
                             </div>
-                            <div fxLayout="row">
-                                <button mat-stroked-button color="primary">Primary</button>
-                                &nbsp;
-                                <button mat-stroked-button color="accent">Accent</button>
+                            <div fxLayout="row wrap" fxLayoutAlign="space-between center"
+                                 style="width: 100%; margin-top: 10px">
+                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
+                                    <i style="color: #a8a8a8;">prodhuesi:</i>&nbsp;{{car.manufacturer}}
+                                </div>
+                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
+                                    <i style="color: #a8a8a8;">modeli:</i>&nbsp;{{car.model}}
+                                </div>
+                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
+                                    <i style="color: #a8a8a8;">viti:</i>&nbsp;{{car.year}}
+                                </div>
+                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
+                                    <i style="color: #a8a8a8;">kambio:</i>&nbsp;{{car.transmission}}
+                                </div>
+                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
+                                    <i style="color: #a8a8a8;">Karburanti:</i>&nbsp;{{car.fuel}}
+                                </div>
+                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
+                                    <i style="color: #a8a8a8;">qyteti:</i>&nbsp;{{car.city}}
+                                </div>
                             </div>
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="space-between center"
-                             style="width: 100%; margin-top: 10px">
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">label:</i>&nbsp;values
-                            </div>
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">fwefefw:</i>&nbsp;testing
-                            </div>
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">descr:</i>&nbsp;description
-                            </div>
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">efwfewf:</i>&nbsp;weaf
-                            </div>
-                        </div>
                     </div>
+
                 </div>
-
+                <mat-divider></mat-divider>
             </div>
-            <mat-divider></mat-divider>
-
-            <div class="item-wrapper" style="padding: 16px">
-
-                <div class="item" fxLayout="row" fxLayoutGap="16px">
-                    <div fxFlex="30" style="height: 160px; width: 100%; overflow: hidden">
-                        <img src="https://40pg2e2187urs70xz2sj2xo6-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/11364263_web1_180413-KIR-HorseM.jpg"
-                             style=" height: 100%; width: 100%; object-fit:cover;">
-                    </div>
-                    <div fxFlex="70" style="" fxLayout="column">
-                        <div fxLayout="row" fxLayoutAlign="space-between start">
-                            <div>
-                                <mat-card-title>Shiba Inu</mat-card-title>
-                                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                            </div>
-                            <div fxLayout="row">
-                                <button mat-stroked-button color="primary">Primary</button>
-                                &nbsp;
-                                <button mat-stroked-button color="accent">Accent</button>
-                            </div>
-                        </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="space-between center"
-                             style="width: 100%; margin-top: 10px">
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">label:</i>&nbsp;values
-                            </div>
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">fwefefw:</i>&nbsp;testing
-                            </div>
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">descr:</i>&nbsp;description
-                            </div>
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">efwfewf:</i>&nbsp;weaf
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <mat-divider></mat-divider>
-
-            <div class="item-wrapper" style="padding: 16px">
-
-                <div class="item" fxLayout="row" fxLayoutGap="16px">
-                    <div fxFlex="30" style="height: 160px; width: 100%; overflow: hidden">
-                        <img src="https://static.agcanada.com/wp-content/uploads/sites/5/2016/11/horses-pasture-thinkstock.jpg"
-                             style=" height: 100%; width: 100%; object-fit:cover;">
-                    </div>
-                    <div fxFlex="70" style="" fxLayout="column">
-                        <div fxLayout="row" fxLayoutAlign="space-between start">
-                            <div>
-                                <mat-card-title>Shiba Inu</mat-card-title>
-                                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                            </div>
-                            <div fxLayout="row">
-                                <button mat-stroked-button color="primary">Primary</button>
-                                &nbsp;
-                                <button mat-stroked-button color="accent">Accent</button>
-                            </div>
-                        </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="space-between center"
-                             style="width: 100%; margin-top: 10px">
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">label:</i>&nbsp;values
-                            </div>
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">fwefefw:</i>&nbsp;testing
-                            </div>
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">descr:</i>&nbsp;description
-                            </div>
-                            <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                <i style="color: #a8a8a8;">efwfewf:</i>&nbsp;weaf
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <mat-divider></mat-divider>
 
         </mat-card>
     </div>

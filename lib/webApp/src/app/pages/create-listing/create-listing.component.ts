@@ -1,7 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import {CarService} from "../../api/car.service";
-import {log} from "util";
+import {CdnService} from "../../api/cdn.service";
+import { UUID } from 'angular2-uuid';
+import {Subject} from "rxjs/internal/Subject";
 
 @Component({
     selector: 'app-create-listing',
@@ -13,8 +15,11 @@ export class CreateListingComponent implements OnInit {
     public createForm: FormGroup;
     @ViewChild('myPond') myPond: any;
 
+    protected progress = new Subject();
+
     constructor(
         private carService: CarService,
+        private cdn: CdnService,
         private fb: FormBuilder
     ) {
         this.createForm = fb.group({
@@ -139,14 +144,36 @@ export class CreateListingComponent implements OnInit {
     }
 
     createItem(post) {
-        this.uploadedFiles = this.myPond.getFiles();
-        console.log(this.uploadedFiles);
-        // this.carService.uploadCar(this.generateCarFromPost(post)).subscribe(res => {
-        //     console.log(res);
-        // })
+        let car: any = CreateListingComponent.generateCarFromPost(post);
+        let pondFiles = this.myPond.getFiles();
+        let count = 1;
+
+        pondFiles.forEach(pondFile => {
+            let fileType = pondFile.filename.split('.')[pondFile.filename.split('.').length - 1];
+            car.images.push('img' + count + '.' + fileType);
+            count++;
+        });
+
+        let completed = 0;
+        let steps = car.images.length + 1;
+
+        this.carService.uploadCar(car).subscribe(res => {
+            this.progress.next();
+            for(let i = 0; i < car.images.length; i++){
+                this.cdn.uploadImage(pondFiles[i].file, car.images[i], car.uuid)
+                    .subscribe(res => this.progress.next())
+            }
+        });
+
+        this.progress.subscribe(progress => {
+            completed = completed + 1;
+            console.log(((completed/steps) * 100) + "%");
+            if(completed == steps) console.log("Done");
+        })
+
     }
 
-    generateCarFromPost(post){
+    static generateCarFromPost(post){
         return {
             title: post.title,
             description: post.description,
@@ -163,7 +190,9 @@ export class CreateListingComponent implements OnInit {
             transmission: post.transmission,
             fuel: post.fuel,
             plateRegistration: post.plateRegistration,
-            city: post.city
+            city: post.city,
+            images: [],
+            uuid: UUID.UUID()
         }
     }
 

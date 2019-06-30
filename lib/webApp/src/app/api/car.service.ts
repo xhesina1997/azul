@@ -17,6 +17,12 @@ export class CarService {
         }));
     }
 
+    getCarByUUID(uuid){
+        return this.http.get(environment.apiUrl + '/cars/uuid/'+uuid).pipe(map(res => {
+            return res;
+        }));
+    }
+
     uploadCar(car) {
         return this.http.post(environment.apiUrl + "cars/upload", car,
             {responseType: 'text', headers: {'Content-Type': 'application/json'}})

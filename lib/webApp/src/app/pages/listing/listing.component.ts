@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
+import {CarService} from "../../api/car.service";
 
 @Component({
     selector: 'app-listing',
@@ -8,10 +10,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class ListingComponent implements OnInit {
 
-    constructor() {
-    }
-
-    ngOnInit() {
+    constructor(private activatedRoute: ActivatedRoute,
+                private carService: CarService) {
     }
 
     customOptions: any = {
@@ -38,6 +38,16 @@ export class ListingComponent implements OnInit {
                 items: 1
             }
         },
+    }
+
+    protected selectedCar : any = {};
+
+    ngOnInit() {
+        this.activatedRoute.queryParams.subscribe(params => {
+            this.carService.getCarByUUID(params.id).subscribe(res => {
+                this.selectedCar = res;
+            })
+        })
     }
 
 }

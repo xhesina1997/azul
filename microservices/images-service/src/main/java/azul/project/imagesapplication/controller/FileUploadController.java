@@ -30,30 +30,43 @@ public class FileUploadController {
         return "IMAGES WORKING";
     }
 
-    @GetMapping(value = "/all-files")
-    public List<String> listUploadedFiles() throws IOException {
-        return storageService.loadAll().map(path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
-                "serveFile", path.getFileName().toString()).build().toString())
-                .collect(Collectors.toList());
-    }
 
-    @GetMapping("/files/{filename:.+}")
+//    @GetMapping("/files/{filename:.+}")
+//    @ResponseBody
+//    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+//
+//        Resource file = storageService.loadAsResource(filename);
+//        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+//                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+//    }
+
+//    @GetMapping(value = "/all-files")
+//    public List<String> listUploadedFiles() throws IOException {
+//        return storageService.loadAll().map(path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
+//                "serveFile", path.getFileName().toString()).build().toString())
+//                .collect(Collectors.toList());
+//    }
+
+//    @PostMapping("/")
+//    public void handleFileUpload(@RequestParam("file") MultipartFile file) {
+//             storageService.store(file);
+//    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/cdn/{directory}/{filename}")
     @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+    public ResponseEntity<Resource> serveFile(@PathVariable String filename, @PathVariable String directory) {
 
-        Resource file = storageService.loadAsResource(filename);
+        Resource file = storageService.loadAsResource(directory + '/' + filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @PostMapping("/")
-    public void handleFileUpload(@RequestParam("file") MultipartFile file) {
-             storageService.store(file);
-    }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/directory/{directory}/name/{name}")
-    public void handleFileUpload(@RequestParam("file") MultipartFile file, @PathVariable String directory, @PathVariable String name) {
+    public boolean handleFileUpload(@RequestParam("file") MultipartFile file, @PathVariable String directory, @PathVariable String name) {
         storageService.storeInDirectory(file, name, directory);
+        return true;
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)

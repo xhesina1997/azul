@@ -29,4 +29,7 @@ public class Car {
     private String fuel;
     private String plateRegistration;
     private String city;
+
+    private String uuid;
+    private List<String> images;
 }

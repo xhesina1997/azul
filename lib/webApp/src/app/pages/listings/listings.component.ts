@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CarService} from "../../api/car.service";
 
 @Component({
-  selector: 'app-listings',
-  templateUrl: './listings.component.html',
-  styleUrls: ['./listings.component.scss']
+    selector: 'app-listings',
+    templateUrl: './listings.component.html',
+    styleUrls: ['./listings.component.scss']
 })
 export class ListingsComponent implements OnInit {
 
-  constructor() { }
+    constructor(private carService: CarService) {
+    }
 
-  ngOnInit() {
-  }
+    protected cars: any;
+
+    ngOnInit() {
+        this.getALlCars();
+    }
+
+    private getALlCars(){
+        this.carService.getAllCars().subscribe(res => {
+            this.cars = res;
+            // console.log(this.cars);
+        });
+    }
 
 }
