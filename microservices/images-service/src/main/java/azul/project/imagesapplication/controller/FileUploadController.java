@@ -15,11 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-
 @RestController
 public class FileUploadController {
-
 
     private final StorageService storageService;
 
@@ -51,7 +48,7 @@ public class FileUploadController {
 
     @PostMapping("/")
     public void handleFileUpload(@RequestParam("file") MultipartFile file) {
-        storageService.store(file);
+             storageService.store(file);
     }
 
     @PostMapping("/directory/{directory}/name/{name}")
