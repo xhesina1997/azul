@@ -14,6 +14,10 @@ const routes: Routes = [
             {
                 path: 'listing',
                 loadChildren: './listing/listing.module#ListingModule'
+            },
+            {
+                path: 'create',
+                loadChildren: './create-listing/create-listing.module#CreateListingModule'
             }
         ]
     }

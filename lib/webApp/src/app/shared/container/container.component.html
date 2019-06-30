@@ -1,11 +1,10 @@
-<div fxLayout="row" style="height: calc(100vh - 65px)" fxLayoutAlign="space-between center" >
+<div fxLayout="row" style="height: calc(100vh - 65px); overflow-y: auto" fxLayoutAlign="space-between center" >
     <div fxFlex.gt="70" fxFlexOffset.gt="15"
          fxFlex.lg="70" fxFlexOffset.lg="15"
          fxFlex.md="80" fxFlexOffset.md="10"
-         fxFlex.sm="100"
-         fxFlex.xs="100"
-         [ngStyle.sm]="{padding: '0 10px'}"
-         [ngStyle.xs]="{padding: '0 10px'}"
+         fxFlex.sm="96" fxFlexOffset.sm="2"
+         fxFlex.xs="96" fxFlexOffset.xs="2"
+
          style="height: 100%">
         <ng-content style="height: 100%"></ng-content>
     </div>
