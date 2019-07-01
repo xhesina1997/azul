@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="space-between" style="padding-top: 20px;">
+<div fxLayout="row" fxLayoutAlign="space-between" style="padding-top: 20px;" >
     <div fxFlex="100">
         <mat-card class="mat-elevation-z0" style="margin-bottom: 20px;">
             <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -9,7 +9,7 @@
             <br>
             <mat-divider></mat-divider>
             <br>
-            <div fxLayout="row">
+            <div fxLayout="row" *ngIf="finishedUploading == false">
                 <div fxFlex="80" fxFlex.xs="100" fxFlexOffset="10" fxFlexOffset.xs="0">
                     <form [formGroup]="createForm" (ngSubmit)="createItem(createForm.value)">
                         <div fxLayout="row" fxLayoutGap="15px">
@@ -284,6 +284,9 @@
                         <br>
                     </form>
                 </div>
+            </div>
+            <div *ngIf="finishedUploading == true">
+                <mat-icon style="color:green">check_circle_outline</mat-icon> Postimi u krijua me sukses !
             </div>
         </mat-card>
     </div>

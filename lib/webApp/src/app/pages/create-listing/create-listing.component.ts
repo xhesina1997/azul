@@ -14,6 +14,7 @@ export class CreateListingComponent implements OnInit {
 
     public createForm: FormGroup;
     @ViewChild('myPond') myPond: any;
+    public finishedUploading: boolean = false;
 
     protected progress = new Subject();
 
@@ -168,7 +169,9 @@ export class CreateListingComponent implements OnInit {
         this.progress.subscribe(progress => {
             completed = completed + 1;
             console.log(((completed/steps) * 100) + "%");
-            if(completed == steps) console.log("Done");
+            if(completed == steps) {
+                this.finishedUploading = true;
+            }
         })
 
     }

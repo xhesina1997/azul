@@ -3,7 +3,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8061/eureka/
 
-upload-dir : /home/rei/Desktop/personal/project-azul/images
+upload-dir : /home/xhesina/Desktop/project-azul/images
 
 spring.servlet.multipart.max-file-size : 2MB
 spring.servlet.multipart.max-request-size : 2MB

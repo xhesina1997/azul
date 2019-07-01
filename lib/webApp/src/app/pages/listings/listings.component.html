@@ -28,8 +28,8 @@
                         <div fxFlex="70" style="" fxLayout="column">
                             <div fxLayout="row" fxLayoutAlign="space-between start">
                                 <div>
-                                    <a [routerLink]="['/pages/listing']" [queryParams]="{id: car.uuid}"><mat-card-title style="font-size: 16px">{{car.title}}</mat-card-title></a>
-                                    <mat-card-subtitle>{{car.price.value}} {{car.price.currency}}</mat-card-subtitle>
+                                    <a [routerLink]="['/pages/listing']" [queryParams]="{id: car.uuid}"><mat-card-title style="font-size: 16px">{{car?.title}}</mat-card-title></a>
+                                    <mat-card-subtitle>{{car?.price?.value}} {{car?.price?.currency}}</mat-card-subtitle>
                                 </div>
                                 <div fxLayout="row">
                                     <button mat-stroked-button color="primary">Primary</button>
