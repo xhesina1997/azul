@@ -22,6 +22,9 @@ import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -39,6 +42,14 @@ public class AuthController {
     @Autowired
     UserClient userClient;
 
+    Logger logger = Logger.getLogger(AuthController.class.getName());
+
+    private int initAttempts = 0;
+
+    private long initInterval = 5000;
+
+    private int initRetries = 40;
+
     @PostConstruct
     private void addAdminUser() {
         User user = new User("admin", "admin", "admin@admin.com", "admin");
@@ -46,8 +57,25 @@ public class AuthController {
         Role userRole = new Role();
         userRole.setName(RoleName.ROLE_ADMIN);
         user.setRoles(Collections.singleton(userRole));
-        if (userClient.getUserByUsernameOrEmail(user.getUsername()) == null) {
-            userClient.addUser(user);
+        try {
+            initAttempts++;
+            logger.info("Attempting to add Admin User! Attempt number: " + initAttempts);
+            if (userClient.getUserByUsernameOrEmail(user.getUsername()) == null) {
+                userClient.addUser(user);
+            }
+        } catch (Exception e) {
+            if (initAttempts < initRetries) {
+                logger.log(Level.WARNING, "Could add Admin User! " + e.getMessage());
+                logger.log(Level.WARNING, "Retrying after " + initInterval + " ms!");
+                try {
+                    Thread.sleep(initInterval);
+                } catch (InterruptedException e1) {
+                    Thread.currentThread().interrupt();
+                }
+                this.addAdminUser();
+            } else {
+                logger.log(Level.WARNING, "Could not add Admin User after " + initAttempts + " failed retries! Starting with an empty actives Map!");
+            }
         }
     }
 
