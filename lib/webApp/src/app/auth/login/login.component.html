@@ -8,8 +8,8 @@
         <tr>
           <td>
             <mat-form-field appearance="outline"class="example-full-width">
-              <input matInput placeholder="Email"[(ngModel)]="email"name="email"required>
-                </mat-form-field>
+              <input matInput placeholder="Username or Email"[(ngModel)]="userNameOrEmail"name="userNameOrEmail"required>
+            </mat-form-field>
           </td>
         </tr>
         <tr>
@@ -23,9 +23,16 @@
     </form>
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <div fxFlexFillfxFlex="100">
-      <button mat-raised-button color="primary" type="submit" style="margin-left:42%">Log in</button>
+  <div fxLayout="row" fxLayoutAlign="start center" style="margin-left: 3px">
+
+    <div fxFlexFill fxFlex="19" >
+      <button (click)="submit()" mat-raised-button color="primary" type="submit" >Log in</button>
     </div>
+
+    <div fxFlexFill fxFlex="30">
+      <a routerLink="/auth/register" mat-raised-button>Register</a>
+    </div>
+
   </div>
+
 </mat-card>

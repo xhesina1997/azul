@@ -12,19 +12,19 @@ export class CarService {
     }
 
     getAllCars() {
-        return this.http.get(environment.apiUrl + '/cars/all').pipe(map(res => {
+        return this.http.get(environment.apiUrl + 'metadata/cars/all').pipe(map(res => {
             return res;
         }));
     }
 
     getCarByUUID(uuid){
-        return this.http.get(environment.apiUrl + '/cars/uuid/'+uuid).pipe(map(res => {
+        return this.http.get(environment.apiUrl + 'metadata/cars/uuid/'+uuid).pipe(map(res => {
             return res;
         }));
     }
 
     uploadCar(car) {
-        return this.http.post(environment.apiUrl + "cars/upload", car,
+        return this.http.post(environment.apiUrl + "metadata/cars/upload", car,
             {responseType: 'text', headers: {'Content-Type': 'application/json'}})
             .pipe(map(res  => {
                 return res

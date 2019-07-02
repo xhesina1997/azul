@@ -92,11 +92,12 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        User userPrincipal = (User) authentication.getPrincipal();
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, userPrincipal));
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+    public ResponseEntity<User> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
 
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
                 signUpRequest.getEmail(), signUpRequest.getPassword());
@@ -115,10 +116,10 @@ public class AuthController {
             return new ResponseEntity(apiResponse, HttpStatus.BAD_REQUEST);
         }
 
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/users/{username}")
-                .buildAndExpand(user.getUsername()).toUri();
-
-        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+//        URI location = ServletUriComponentsBuilder
+//                .fromCurrentContextPath().path("/users/{username}")
+//                .buildAndExpand(user.getUsername()).toUri();
+        return ResponseEntity.ok(user);
+//        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }
 }
