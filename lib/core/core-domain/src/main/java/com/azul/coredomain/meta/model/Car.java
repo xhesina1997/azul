@@ -1,6 +1,7 @@
 package com.azul.coredomain.meta.model;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -13,7 +14,8 @@ import java.util.List;
 @Document
 public class Car {
 
-    private Date dateAdded;
+    @CreatedDate
+    private long created;
 
     private String title;
     private String description;

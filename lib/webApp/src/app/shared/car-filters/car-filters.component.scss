@@ -1,0 +1,7 @@
+mat-card {
+  border: 1px solid #e0e0e0;
+}
+
+:host /deep/ .mat-form-field-wrapper{
+  padding-bottom: 6px;
+}
