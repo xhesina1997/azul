@@ -2,7 +2,7 @@ server:
   port: 8091
 spring:
   application:
-    name: metadata-service
+    name: discovery-service
   cloud:
     config:
       uri: http://localhost:8088
@@ -10,5 +10,3 @@ spring:
       retry:
         max-attempts: 3600
         initial-interval: 5000
-
-

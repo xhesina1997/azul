@@ -6,7 +6,7 @@ import {PagesComponent} from './pages.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {SharedModule} from "../shared/shared.module";
-import {MatButtonModule} from "@angular/material";
+import {MatButtonModule, MatMenuModule} from "@angular/material";
 import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
@@ -19,7 +19,8 @@ import {MatIconModule} from '@angular/material/icon';
         SharedModule,
         MatButtonModule,
         MatIconModule,
-        PagesRoutingModule
+        PagesRoutingModule,
+        MatMenuModule
     ]
 })
 export class PagesModule {
