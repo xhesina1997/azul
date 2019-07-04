@@ -1,9 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import {CarService} from "../../api/car.service";
-import {CdnService} from "../../api/cdn.service";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
+import { CarService } from "../../api/car.service";
+import { CdnService } from "../../api/cdn.service";
 import { UUID } from 'angular2-uuid';
-import {Subject} from "rxjs/internal/Subject";
+import { Subject } from "rxjs/internal/Subject";
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-create-listing',
@@ -17,33 +19,20 @@ export class CreateListingComponent implements OnInit {
     public finishedUploading: boolean = false;
 
     protected progress = new Subject();
-
-    constructor(
-        private carService: CarService,
-        private cdn: CdnService,
-        private fb: FormBuilder
-    ) {
-        this.createForm = fb.group({
-            'title': [null, Validators.required],
-            'description': [null, Validators.required],
-            'price': [null, Validators.required],
-            'currency': [null, Validators.required],
-            'manufacturer': [null, Validators.required],
-            'model': [null, Validators.required],
-            'structure': [null, Validators.required],
-            'year': [null, Validators.required],
-            'color': [null, Validators.required],
-            'mileage': [null, Validators.required],
-            'transmission': [null, Validators.required],
-            'fuel': [null, Validators.required],
-            'plateRegistration': [null, Validators.required],
-            'city': [null, Validators.required],
-        });
-    }
-
-    ngOnInit() {
-    }
-
+    selectedCurrency: FormControl = new FormControl();
+    searchedValue: FormControl = new FormControl();
+    filteredCurrency: Observable<string[]>;
+    filteredProducers: Observable<string[]>;
+    filteredModels: Observable<string[]>;
+    filteredCarTypes: Observable<string[]>;
+    filteredYears: Observable<string[]>;
+    filteredColors: Observable<string[]>;
+    filteredKilometers:Observable<string[]>;
+    filteredCities: Observable<string[]>;
+    public currencyList: any[] = [];
+    public producerList: any[] = [];
+    public modelList: any[] = [];
+    productionYear = ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019']
     carTypes = [
         {
             name: 'micro',
@@ -126,7 +115,90 @@ export class CreateListingComponent implements OnInit {
             imageURL: 'assets/car-types/bigtruck.png'
         }
     ];
+    colors = ['E bardhe','E zeze', 'E hirit/gri','Kafe/bezhe',' E kuqe','E verdhe','E gjelber',' E kalter'];
+    kilometers = ['0 - 4,999 km','5,000 - 9,999 km','10,000 - 14,999 km'];
+    cities = ['Tirane','Fier','Lushnje','Korce','Pogradec','Durres','Berat','Sarande','Tropoje']
+    constructor(
+        private carService: CarService,
+        private cdn: CdnService,
+        private fb: FormBuilder
+    ) {
+        this.createForm = fb.group({
+            'title': [null, Validators.required],
+            'description': [null, Validators.required],
+            'price': [null, Validators.required],
+            'currency': [null, Validators.required],
+            'manufacturer': [null, Validators.required],
+            'model': [null, Validators.required],
+            'structure': [null, Validators.required],
+            'year': [null, Validators.required],
+            'color': [null, Validators.required],
+            'mileage': [null, Validators.required],
+            'transmission': [null, Validators.required],
+            'fuel': [null, Validators.required],
+            'plateRegistration': [null, Validators.required],
+            'city': [null, Validators.required],
+        });
+    }
 
+    
+ 
+      ngOnInit() {
+        this.currencyList = ['Euro', 'Lek'];
+        this.producerList = ['BMW', 'Audi'];
+        this.modelList = ['3 Series' ,'5 Series','A3f','A4', 'A6'];
+       
+        this.filteredCurrency = this.searchedValue.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => this._filter(value,this.currencyList))
+        );
+        this.filteredProducers = this.searchedValue.valueChanges
+        .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.producerList))
+          );
+          this.filteredModels = this.searchedValue.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.modelList))
+          )
+          this.filteredCarTypes = this.searchedValue.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filterCar(value,this.carTypes))
+          );
+          this.filteredYears = this.searchedValue.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.productionYear))
+          );
+          this.filteredColors = this.searchedValue.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.colors))
+          )
+          this.filteredKilometers = this.searchedValue.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.kilometers))
+          )
+          this.filteredCities = this.searchedValue.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.cities))
+          )
+
+    }
+    private _filter(value: string,list): string[] {
+        const filterValue = value.toLowerCase();
+        return list.filter(option => option.toLowerCase().includes(filterValue));
+      }
+
+      private _filterCar(value: string,list): string[] {
+        const filterValue = value.toLowerCase();
+        return list.filter(option => option.name.toLowerCase().includes(filterValue));
+      }
     pondOptions = {
         class: 'my-filepond',
         multiple: true,
@@ -160,7 +232,7 @@ export class CreateListingComponent implements OnInit {
 
         this.carService.uploadCar(car).subscribe(res => {
             this.progress.next();
-            for(let i = 0; i < car.images.length; i++){
+            for (let i = 0; i < car.images.length; i++) {
                 this.cdn.uploadImage(pondFiles[i].file, car.images[i], car.uuid)
                     .subscribe(res => this.progress.next())
             }
@@ -168,15 +240,15 @@ export class CreateListingComponent implements OnInit {
 
         this.progress.subscribe(progress => {
             completed = completed + 1;
-            console.log(((completed/steps) * 100) + "%");
-            if(completed == steps) {
+            console.log(((completed / steps) * 100) + "%");
+            if (completed == steps) {
                 this.finishedUploading = true;
             }
         })
 
     }
 
-    static generateCarFromPost(post){
+    static generateCarFromPost(post) {
         return {
             title: post.title,
             description: post.description,
@@ -197,6 +269,10 @@ export class CreateListingComponent implements OnInit {
             images: [],
             uuid: UUID.UUID()
         }
+    }
+
+    resetView() {
+        this.finishedUploading = false;
     }
 
 }
