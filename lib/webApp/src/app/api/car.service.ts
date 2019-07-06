@@ -23,6 +23,18 @@ export class CarService {
         }));
     }
 
+    getAllCarModels() {
+        return this.http.get(environment.apiUrl + '/cars/models').pipe(map(res => {
+            return res;
+        }));
+    }
+
+    getAllCarBrands() {
+        return this.http.get(environment.apiUrl + '/cars/brands').pipe(map(res => {
+            return res;
+        }));
+    }
+
     getCarByUUID(uuid){
         return this.http.get(environment.metadataUrl + 'cars/uuid/'+uuid).pipe(map(res => {
             return res;

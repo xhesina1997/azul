@@ -72,7 +72,7 @@
                                     <mat-label>
                                         <mat-icon>build</mat-icon> &nbsp; Prodhuesi:
                                     </mat-label>
-                                    <mat-select ngDefaultControl formControlName="manufacturer" placeholder="Prodhuesi">
+                                    <mat-select ngDefaultControl formControlName="manufacturer" placeholder="Prodhuesi" (ngModelChange)="filterModelsByBrand($event)">
                                         <mat-option>
                                             <ngx-mat-select-search [formControl]="searchedValue" [placeholderLabel]="'Kerko'"
                                                 [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
