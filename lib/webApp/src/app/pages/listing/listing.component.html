@@ -20,7 +20,7 @@
             <owl-carousel-o [options]="customOptions">
                 <ng-template carouselSlide *ngFor="let image of selectedCar?.images">
                     <img style=" height: 480px; width: 100%; object-fit:cover;"
-                         src="http://localhost:8888/cdn/{{selectedCar.uuid}}/{{image}}">
+                         src="http://localhost:9090/cdn/{{selectedCar.uuid}}/{{image}}">
                 </ng-template>
             </owl-carousel-o>
         </mat-card>

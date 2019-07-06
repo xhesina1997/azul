@@ -12,7 +12,13 @@ export class CarService {
     }
 
     getAllCars() {
-        return this.http.get(environment.apiUrl + '/cars/all').pipe(map(res => {
+        return this.http.get(environment.metadataUrl + 'cars/all').pipe(map(res => {
+            return res;
+        }));
+    }
+
+    searchCars(parameters) {
+        return this.http.get(environment.metadataUrl + 'cars/search', {params: parameters}).pipe(map(res => {
             return res;
         }));
     }
@@ -30,13 +36,13 @@ export class CarService {
     }
 
     getCarByUUID(uuid){
-        return this.http.get(environment.apiUrl + '/cars/uuid/'+uuid).pipe(map(res => {
+        return this.http.get(environment.metadataUrl + 'cars/uuid/'+uuid).pipe(map(res => {
             return res;
         }));
     }
 
     uploadCar(car) {
-        return this.http.post(environment.apiUrl + "cars/upload", car,
+        return this.http.post(environment.metadataUrl + "cars/upload", car,
             {responseType: 'text', headers: {'Content-Type': 'application/json'}})
             .pipe(map(res  => {
                 return res

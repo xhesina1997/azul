@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../auth/authentication.service";
 
 @Component({
   selector: 'app-pages',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+      private router: Router,
+      protected authenticationService: AuthenticationService
+  ) { }
 
   ngOnInit() {
+  }
+
+  logOut() {
+    this.authenticationService.user = null;
+    this.router.navigate(["/pages/listings"]);
   }
 
 }

@@ -6,7 +6,9 @@ import {ListingsComponent} from './listings.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from "@angular/material";
+import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatListModule} from '@angular/material/list';
+import {SharedModule} from "../../shared/shared.module";
 
 @NgModule({
     declarations: [ListingsComponent],
@@ -16,7 +18,9 @@ import {MatListModule} from '@angular/material/list';
         MatCardModule,
         MatButtonModule,
         MatListModule,
-        ListingsRoutingModule
+        MatPaginatorModule,
+        ListingsRoutingModule,
+        SharedModule
     ]
 })
 export class ListingsModule {

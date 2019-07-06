@@ -4,8 +4,9 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:8080/',
-    cdnUrl: 'http://localhost:8888/'
+    apiUrl: 'http://localhost:8762/',
+    cdnUrl: 'http://localhost:9090/',
+    metadataUrl: 'http://localhost:8080/'
 };
 
 /*

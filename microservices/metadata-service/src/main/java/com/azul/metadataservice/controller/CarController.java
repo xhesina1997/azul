@@ -8,10 +8,16 @@ import com.azul.metadataservice.dao.CarBrandRepository;
 import com.azul.metadataservice.dao.CarModelRepository;
 import com.azul.metadataservice.dao.CarRepository;
 import com.netflix.discovery.converters.Auto;
+import com.querydsl.core.types.Predicate;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.naming.LimitExceededException;
@@ -33,6 +39,17 @@ public class CarController {
 
     @Autowired
     private CarModelRepository modelRepository;
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @ApiOperation(value = "Fetch a specific page from repository")
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public Page<Car> search(@QuerydslPredicate Predicate predicate,
+                               @PageableDefault(sort = {"created"}, direction = Sort.Direction.DESC) Pageable pageable) {
+        if (predicate == null) {
+            return repos.findAll(pageable);
+        }
+        return repos.findAll(predicate, pageable);
+    }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Get all cars")

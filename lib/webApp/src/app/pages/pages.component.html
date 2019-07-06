@@ -22,8 +22,12 @@
         &nbsp;<button mat-stroked-button routerLink="/pages/listing">listing</button>
         &nbsp;<button mat-stroked-button routerLink="/pages/create">create</button>
         <div style="float: right">
-            <button mat-stroked-button routerLink="/pages/listings" fxLayout="row" fxLayoutAlign="space-around center"><mat-icon>person</mat-icon>&nbsp;Login</button>
+            <button *ngIf="authenticationService.user==null" mat-stroked-button routerLink="/auth/login" fxLayout="row" fxLayoutAlign="space-around center"><mat-icon>person</mat-icon>&nbsp;Login/Register</button>
+            <button *ngIf="authenticationService.user!=null" [matMenuTriggerFor]="appMenu" mat-stroked-button fxLayout="row" fxLayoutAlign="space-around center"><mat-icon>person</mat-icon>&nbsp;{{authenticationService.user.username}}</button>
         </div>
+        <mat-menu #appMenu="matMenu">
+            <button mat-menu-item>Log out</button>
+        </mat-menu>
     </div>
 </mat-toolbar>
 

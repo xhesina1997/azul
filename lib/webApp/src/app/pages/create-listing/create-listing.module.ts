@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateListingRoutingModule } from './create-listing-routing.module';
 import { CreateListingComponent } from "./create-listing.component";
@@ -13,7 +13,7 @@ import {
 } from "@angular/material";
 import {MatInputModule} from '@angular/material/input';
 
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 
@@ -21,6 +21,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { FilePondModule, registerPlugin } from 'ngx-filepond';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 registerPlugin(FilePondPluginFileValidateType);
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 
 @NgModule({
@@ -40,8 +41,15 @@ registerPlugin(FilePondPluginFileValidateType);
         MatButtonModule,
         MatDividerModule,
         MatIconModule,
-
-    ]
+        NgxMatSelectSearchModule
+    ],
+    providers: [
+        {
+          provide: NG_VALUE_ACCESSOR,
+          useExisting: forwardRef(() => CreateListingComponent),  
+          multi: true
+        }
+      ]
 })
 export class CreateListingModule {
 }
