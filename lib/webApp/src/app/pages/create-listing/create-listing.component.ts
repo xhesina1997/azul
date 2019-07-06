@@ -141,14 +141,17 @@ export class CreateListingComponent implements OnInit {
         });
     }
 
-    
- 
+
+
       ngOnInit() {
         this.currencyList = ['Euro', 'Lek'];
-        this.producerList = ['BMW', 'Audi'];
-        this.modelList = ['3 Series' ,'5 Series','A3f','A4', 'A6'];
-       
-        this.filteredCurrency = this.searchedValue.valueChanges
+        this.producerList = [];
+        this.modelList = [];
+
+        this.getCarBrands();
+        this.getCarModels();
+
+          this.filteredCurrency = this.searchedValue.valueChanges
         .pipe(
           startWith(''),
           map(value => this._filter(value,this.currencyList))
@@ -177,7 +180,7 @@ export class CreateListingComponent implements OnInit {
           .pipe(
             startWith(''),
             map(value => this._filter(value,this.colors))
-          )
+          );
           this.filteredKilometers = this.searchedValue.valueChanges
           .pipe(
             startWith(''),
@@ -214,6 +217,45 @@ export class CreateListingComponent implements OnInit {
 
     pondHandleAddFile(event: any) {
         console.log('A file was added', event);
+    }
+
+    public carModelList: any;
+    public carBrandsList: any;
+
+    getCarModels(){
+        this.carService.getAllCarModels().subscribe(data => {
+            this.carModelList = data;
+        });
+    }
+
+    public filteredModelList: any;
+    filterModelsByBrand(event) {
+        this.filteredModelList = [];
+        this.modelList = [];
+        let brandId: any;
+
+        for(let brand of this.carBrandsList){
+            if(brand.name == event){
+                brandId = brand.id;
+                break;
+            }
+        }
+
+        this.carModelList.forEach(model => {
+            if(model.brand_id == brandId){
+                this.filteredModelList.push(model.name);
+            }
+        });
+        this.modelList = this.filteredModelList;
+    }
+
+    getCarBrands() {
+        this.carService.getAllCarBrands().subscribe(data => {
+            this.carBrandsList = data;
+            this.carBrandsList.forEach(brand => {
+                this.producerList.push(brand.name);
+            })
+        });
     }
 
     createItem(post) {

@@ -14,7 +14,7 @@ export class CdnService {
     uploadImage(image, imageName, directory) {
         let body = new FormData();
         body.append('file', image, imageName);
-        return this.http.post(environment.cdnUrl + 'directory/' + directory + "/name/" + imageName, body).pipe(map(res => {
+        return this.http.post(environment.apiUrl + 'images/directory/' + directory + "/name/" + imageName, body).pipe(map(res => {
             return res
         }));
     }
