@@ -12,7 +12,7 @@ export class CarService {
     }
 
     getAllCars() {
-        return this.http.get(environment.apiUrl + 'medata/cars/all').pipe(map(res => {
+        return this.http.get(environment.apiUrl + 'metadata/cars/all').pipe(map(res => {
             return res;
         }));
     }
@@ -43,7 +43,7 @@ export class CarService {
 
     uploadCar(car) {
         return this.http.post(environment.apiUrl + "metadata/cars/upload", car,
-            {responseType: 'text', headers: {'Content-Type': 'application/json'}})
+          {responseType: 'text', headers: {'Content-Type': 'application/json'}})
             .pipe(map(res  => {
                 return res
             }));
