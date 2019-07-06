@@ -2,7 +2,12 @@ package com.azul.metadataservice.controller;
 
 import com.azul.coredomain.meta.exceptions.ServiceException;
 import com.azul.coredomain.meta.model.Car;
+import com.azul.coredomain.meta.model.CarBrand;
+import com.azul.coredomain.meta.model.CarModel;
+import com.azul.metadataservice.dao.CarBrandRepository;
+import com.azul.metadataservice.dao.CarModelRepository;
 import com.azul.metadataservice.dao.CarRepository;
+import com.netflix.discovery.converters.Auto;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +27,12 @@ public class CarController {
 
     @Autowired
     private CarRepository repos;
+
+    @Autowired
+    private CarBrandRepository brandRepository;
+
+    @Autowired
+    private CarModelRepository modelRepository;
 
     @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Get all cars")
@@ -66,6 +77,38 @@ public class CarController {
             throw new ServiceException(e);
         }
 
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @ApiOperation(value = "Get all brands")
+    @RequestMapping(value = "/brands",method = RequestMethod.GET)
+    public List<CarBrand> getAllBrands(){
+        try {
+            if(brandRepository.findAll().size() > MAX_QUERY) {
+                throw new LimitExceededException("Query limit exceeded!");
+            }else{
+                return brandRepository.findAll();
+            }
+        }catch (Exception e){
+            logger.error(ERR_GET + e.getMessage());
+            throw new ServiceException(e);
+        }
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @ApiOperation(value = "Get all models")
+    @RequestMapping(value = "/models",method = RequestMethod.GET)
+    public List<CarModel> getAllModels(){
+        try {
+            if(modelRepository.findAll().size() > MAX_QUERY) {
+                throw new LimitExceededException("Query limit exceeded!");
+            }else{
+                return modelRepository.findAll();
+            }
+        }catch (Exception e){
+            logger.error(ERR_GET + e.getMessage());
+            throw new ServiceException(e);
+        }
     }
 
     //Helpers

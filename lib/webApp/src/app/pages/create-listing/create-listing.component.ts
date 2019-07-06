@@ -42,6 +42,7 @@ export class CreateListingComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getCarBrands();
     }
 
     carTypes = [
@@ -142,6 +143,40 @@ export class CreateListingComponent implements OnInit {
 
     pondHandleAddFile(event: any) {
         console.log('A file was added', event);
+    }
+
+    public carModelList: any;
+    public carBrandsList: any;
+
+    getCarModels(){
+        this.carService.getAllCarModels().subscribe(data => {
+            this.carModelList = data;
+        })
+    }
+
+    public filteredModelList: any;
+    filterModelsByBrand(event){
+        this.filteredModelList = [];
+        let brandId: any;
+
+        for(let brand of this.carBrandsList){
+            if(brand.name == event){
+                brandId = brand.id;
+                break;
+            }
+        }
+
+        this.carModelList.forEach(model => {
+            if(model.brand_id == brandId){
+                this.filteredModelList.push(model);
+            }
+        })
+    }
+
+    getCarBrands(){
+        this.carService.getAllCarBrands().subscribe(data => {
+            this.carBrandsList = data;
+        })
     }
 
     createItem(post) {

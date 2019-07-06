@@ -66,9 +66,8 @@
                                     <mat-label>
                                         <mat-icon>build</mat-icon> &nbsp; Prodhuesi:
                                     </mat-label>
-                                    <mat-select formControlName="manufacturer">
-                                        <mat-option [value]="'Audi'">Audi</mat-option>
-                                        <mat-option [value]="'BMW'"> BMW</mat-option>
+                                    <mat-select formControlName="manufacturer" (ngModelChange)="filterModelsByBrand($event)">
+                                        <mat-option *ngFor="let brand of carBrandsList" [value]="brand.name">{{brand.name}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
@@ -78,11 +77,7 @@
                                         <mat-icon>merge_type</mat-icon> &nbsp; Modeli:
                                     </mat-label>
                                     <mat-select formControlName="model">
-                                        <mat-option [value]="'3 Series'">3 Series</mat-option>
-                                        <mat-option [value]="'5 Series'">5 Series</mat-option>
-                                        <mat-option [value]="'A3'">A3f</mat-option>
-                                        <mat-option [value]="'A4'">A4</mat-option>
-                                        <mat-option [value]="'A6'">A6</mat-option>
+                                        <mat-option *ngFor="let model of filteredModelList" [value]="model.name">{{model.name}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
