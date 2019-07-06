@@ -40,8 +40,8 @@
                                         <mat-select [formControl]="selectedCurrency" ngDefaultControl formControlName="currency"
                                             placeholder="Valuta">
                                             <mat-option>
-                                                <ngx-mat-select-search [formControl]="searchedValue" [placeholderLabel]="'Kerko'"
-                                                    [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
+                                                <ngx-mat-select-search [formControl]="searchedCurrency"
+                                                    [placeholderLabel]="'Kerko'" [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
                                             </mat-option>
                                             <mat-option *ngFor="let curr of filteredCurrency| async" [value]="curr">
                                                 {{curr}}
@@ -61,7 +61,7 @@
                                     <mat-label>
                                         <mat-icon>format_align_left</mat-icon> &nbsp; Pershkrimi:
                                     </mat-label>
-                                    <textarea matInput placeholder="..." rows="7"></textarea>
+                                    <textarea matInput placeholder="..." rows="7" formControlName="description"></textarea>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -74,8 +74,8 @@
                                     </mat-label>
                                     <mat-select ngDefaultControl formControlName="manufacturer" placeholder="Prodhuesi">
                                         <mat-option>
-                                            <ngx-mat-select-search [formControl]="searchedValue" [placeholderLabel]="'Kerko'"
-                                                [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
+                                            <ngx-mat-select-search [formControl]="searchedManufacturer"
+                                                [placeholderLabel]="'Kerko'" [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
                                         </mat-option>
                                         <mat-option *ngFor="let prod of filteredProducers| async" [value]="prod">
                                             {{prod}}
@@ -90,7 +90,7 @@
                                     </mat-label>
                                     <mat-select ngDefaultControl formControlName="model" placeholder="Modeli">
                                         <mat-option>
-                                            <ngx-mat-select-search [formControl]="searchedValue" [placeholderLabel]="'Kerko'"
+                                            <ngx-mat-select-search [formControl]="searchedModel" [placeholderLabel]="'Kerko'"
                                                 [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
                                         </mat-option>
                                         <mat-option *ngFor="let model of filteredModels| async" [value]="model">
@@ -109,7 +109,7 @@
                                     </mat-label>
                                     <mat-select ngDefaultControl formControlName="structure" placeholder="Struktura">
                                         <mat-option>
-                                            <ngx-mat-select-search [formControl]="searchedValue" [placeholderLabel]="'Kerko'"
+                                            <ngx-mat-select-search [formControl]="searchedStructure" [placeholderLabel]="'Kerko'"
                                                 [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
                                         </mat-option>
                                         <mat-option *ngFor="let type of filteredCarTypes| async" [value]="type.name">
@@ -126,7 +126,7 @@
                                     </mat-label>
                                     <mat-select ngDefaultControl formControlName="year" placeholder="viti">
                                         <mat-option>
-                                            <ngx-mat-select-search [formControl]="searchedValue" [placeholderLabel]="'Kerko'"
+                                            <ngx-mat-select-search [formControl]="searchedYear" [placeholderLabel]="'Kerko'"
                                                 [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
                                         </mat-option>
                                         <mat-option *ngFor="let year of filteredYears| async" [value]="year">
@@ -144,7 +144,7 @@
                                     </mat-label>
                                     <mat-select ngDefaultControl formControlName="color" placeholder="viti">
                                         <mat-option>
-                                            <ngx-mat-select-search [formControl]="searchedValue" [placeholderLabel]="'Kerko'"
+                                            <ngx-mat-select-search [formControl]="searchedColor" [placeholderLabel]="'Kerko'"
                                                 [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
                                         </mat-option>
                                         <mat-option *ngFor="let color of filteredColors| async" [value]="color">
@@ -160,11 +160,11 @@
                                     </mat-label>
                                     <mat-select ngDefaultControl formControlName="mileage" placeholder="Kilometrat">
                                         <mat-option>
-                                            <ngx-mat-select-search [formControl]="searchedValue" [placeholderLabel]="'Kerko'"
+                                            <ngx-mat-select-search [formControl]="searchedMileage" [placeholderLabel]="'Kerko'"
                                                 [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
                                         </mat-option>
-                                        <mat-option *ngFor="let km of  filteredKilometers| async" [value]="km">
-                                            {{km}}
+                                        <mat-option *ngFor="let km of  filteredKilometers| async" [value]="km.value">
+                                            {{km.title}}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
@@ -216,7 +216,7 @@
                                     </mat-label>
                                     <mat-select ngDefaultControl formControlName="city" placeholder="Qyteti">
                                         <mat-option>
-                                            <ngx-mat-select-search [formControl]="searchedValue" [placeholderLabel]="'Kerko'"
+                                            <ngx-mat-select-search [formControl]="searchedCity" [placeholderLabel]="'Kerko'"
                                                 [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
                                         </mat-option>
                                         <mat-option *ngFor="let city of  filteredCities| async" [value]="city">
@@ -246,9 +246,12 @@
 
             <div *ngIf="finishedUploading == true">
 
-                <div fxLayout="row">
-                    <mat-icon style="color:green">check_circle_outline</mat-icon>
+                <div fxLayout="row" style="margin-left:44%">
                     <span style="margin-top:3px">Postimi u krijua me sukses !</span>
+                </div>
+                <div fxLayout="row" style="margin-left:47%">
+                    <mat-icon style="color:green;font-size: 106px">check_circle_outline</mat-icon>
+
                 </div>
                 <div fxLayout="row" style="margin: 7% 0 0 45%">
                     <button mat-raised-button color="primary" routerLink="/pages/listings">

@@ -20,7 +20,14 @@ export class CreateListingComponent implements OnInit {
 
     protected progress = new Subject();
     selectedCurrency: FormControl = new FormControl();
-    searchedValue: FormControl = new FormControl();
+    searchedCurrency: FormControl = new FormControl();
+    searchedManufacturer: FormControl = new FormControl();
+    searchedModel: FormControl = new FormControl();
+    searchedStructure: FormControl = new FormControl();
+    searchedYear: FormControl = new FormControl();
+    searchedColor: FormControl = new FormControl();
+    searchedMileage: FormControl = new FormControl();
+    searchedCity: FormControl = new FormControl();
     filteredCurrency: Observable<string[]>;
     filteredProducers: Observable<string[]>;
     filteredModels: Observable<string[]>;
@@ -116,7 +123,14 @@ export class CreateListingComponent implements OnInit {
         }
     ];
     colors = ['E bardhe','E zeze', 'E hirit/gri','Kafe/bezhe',' E kuqe','E verdhe','E gjelber',' E kalter'];
-    kilometers = ['0 - 4,999 km','5,000 - 9,999 km','10,000 - 14,999 km'];
+    // kilometers = ['0 - 4,999 km','5,000 - 9,999 km','10,000 - 14,999 km'];
+    kilometers = [
+        {
+            title: '0 - 4,999 km',
+            value: [0, 4999]
+        },
+
+    ];
     cities = ['Tirane','Fier','Lushnje','Korce','Pogradec','Durres','Berat','Sarande','Tropoje']
     constructor(
         private carService: CarService,
@@ -148,42 +162,42 @@ export class CreateListingComponent implements OnInit {
         this.producerList = ['BMW', 'Audi'];
         this.modelList = ['3 Series' ,'5 Series','A3f','A4', 'A6'];
        
-        this.filteredCurrency = this.searchedValue.valueChanges
+        this.filteredCurrency = this.searchedCurrency.valueChanges
         .pipe(
           startWith(''),
           map(value => this._filter(value,this.currencyList))
         );
-        this.filteredProducers = this.searchedValue.valueChanges
+        this.filteredProducers = this.searchedManufacturer.valueChanges
         .pipe(
             startWith(''),
             map(value => this._filter(value,this.producerList))
           );
-          this.filteredModels = this.searchedValue.valueChanges
+          this.filteredModels = this.searchedModel.valueChanges
           .pipe(
             startWith(''),
             map(value => this._filter(value,this.modelList))
           )
-          this.filteredCarTypes = this.searchedValue.valueChanges
+          this.filteredCarTypes = this.searchedStructure.valueChanges
           .pipe(
             startWith(''),
             map(value => this._filterCar(value,this.carTypes))
           );
-          this.filteredYears = this.searchedValue.valueChanges
+          this.filteredYears = this.searchedYear.valueChanges
           .pipe(
             startWith(''),
             map(value => this._filter(value,this.productionYear))
           );
-          this.filteredColors = this.searchedValue.valueChanges
+          this.filteredColors = this.searchedColor.valueChanges
           .pipe(
             startWith(''),
             map(value => this._filter(value,this.colors))
           )
-          this.filteredKilometers = this.searchedValue.valueChanges
+          this.filteredKilometers = this.searchedMileage.valueChanges
           .pipe(
             startWith(''),
-            map(value => this._filter(value,this.kilometers))
+            map(value => this._filterKm(value,this.kilometers))
           )
-          this.filteredCities = this.searchedValue.valueChanges
+          this.filteredCities = this.searchedCity.valueChanges
           .pipe(
             startWith(''),
             map(value => this._filter(value,this.cities))
@@ -198,6 +212,10 @@ export class CreateListingComponent implements OnInit {
       private _filterCar(value: string,list): string[] {
         const filterValue = value.toLowerCase();
         return list.filter(option => option.name.toLowerCase().includes(filterValue));
+      }
+      private _filterKm(value: string,list): string[] {
+        const filterValue = value.toLowerCase();
+        return list.filter(option => option.title.toLowerCase().includes(filterValue));
       }
     pondOptions = {
         class: 'my-filepond',
@@ -217,6 +235,8 @@ export class CreateListingComponent implements OnInit {
     }
 
     createItem(post) {
+        console.log(post);
+        
         let car: any = CreateListingComponent.generateCarFromPost(post);
         let pondFiles = this.myPond.getFiles();
         let count = 1;
