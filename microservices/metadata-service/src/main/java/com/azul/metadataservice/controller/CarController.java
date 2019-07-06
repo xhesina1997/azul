@@ -21,6 +21,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.naming.LimitExceededException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class CarController {
 
     private static final Logger logger = LoggerFactory.getLogger(CarController.class);
     private static final String ERR_GET = "Error getting results:  ";
-    private static final int MAX_QUERY = 100;
+    private static final int MAX_QUERY = 5000;
 
     @Autowired
     private CarRepository repos;
