@@ -20,7 +20,14 @@ export class CreateListingComponent implements OnInit {
 
     protected progress = new Subject();
     selectedCurrency: FormControl = new FormControl();
-    searchedValue: FormControl = new FormControl();
+    searchedCurrency: FormControl = new FormControl();
+    searchedManufacturer: FormControl = new FormControl();
+    searchedModel: FormControl = new FormControl();
+    searchedStructure: FormControl = new FormControl();
+    searchedYear: FormControl = new FormControl();
+    searchedColor: FormControl = new FormControl();
+    searchedMileage: FormControl = new FormControl();
+    searchedCity: FormControl = new FormControl();
     filteredCurrency: Observable<string[]>;
     filteredProducers: Observable<string[]>;
     filteredModels: Observable<string[]>;
@@ -116,7 +123,14 @@ export class CreateListingComponent implements OnInit {
         }
     ];
     colors = ['E bardhe','E zeze', 'E hirit/gri','Kafe/bezhe',' E kuqe','E verdhe','E gjelber',' E kalter'];
-    kilometers = ['0 - 4,999 km','5,000 - 9,999 km','10,000 - 14,999 km'];
+    // kilometers = ['0 - 4,999 km','5,000 - 9,999 km','10,000 - 14,999 km'];
+    kilometers = [
+        {
+            title: '0 - 4,999 km',
+            value: [0, 4999]
+        },
+
+    ];
     cities = ['Tirane','Fier','Lushnje','Korce','Pogradec','Durres','Berat','Sarande','Tropoje']
     constructor(
         private carService: CarService,
@@ -143,52 +157,49 @@ export class CreateListingComponent implements OnInit {
 
       ngOnInit() {
         this.currencyList = ['Euro', 'Lek'];
-        
-        this.getCarModels();
-        this.getCarBrands().then(() => {
-            
-            this.filteredCurrency = this.searchedValue.valueChanges
-            .pipe(
-              startWith(''),
-              map(value => this._filter(value,this.currencyList))
-            );
-            this.filteredProducers = this.searchedValue.valueChanges
-            .pipe(
-                startWith(''),
-                map(value => this._filter(value,this.producerList))
-              );
-              this.filteredModels = this.searchedValue.valueChanges
-              .pipe(
-                startWith(''),
-                map(value => this._filter(value,this.modelList))
-              );
-              this.filteredCarTypes = this.searchedValue.valueChanges
-              .pipe(
-                startWith(''),
-                map(value => this._filterCar(value,this.carTypes))
-              );
-              this.filteredYears = this.searchedValue.valueChanges
-              .pipe(
-                startWith(''),
-                map(value => this._filter(value,this.productionYear))
-              );
-              this.filteredColors = this.searchedValue.valueChanges
-              .pipe(
-                startWith(''),
-                map(value => this._filter(value,this.colors))
-              );
-              this.filteredKilometers = this.searchedValue.valueChanges
-              .pipe(
-                startWith(''),
-                map(value => this._filter(value,this.kilometers))
-              )
-              this.filteredCities = this.searchedValue.valueChanges
-              .pipe(
-                startWith(''),
-                map(value => this._filter(value,this.cities))
-              )
-        });
 
+        this.getCarModels();
+
+          this.filteredCurrency = this.searchedValue.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => this._filter(value,this.currencyList))
+        );
+        this.filteredProducers = this.searchedManufacturer.valueChanges
+        .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.producerList))
+          );
+          this.filteredModels = this.searchedModel.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.modelList))
+          )
+          this.filteredCarTypes = this.searchedStructure.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filterCar(value,this.carTypes))
+          );
+          this.filteredYears = this.searchedYear.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.productionYear))
+          );
+          this.filteredColors = this.searchedColor.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.colors))
+          )
+          this.filteredKilometers = this.searchedMileage.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filterKm(value,this.kilometers))
+          )
+          this.filteredCities = this.searchedCity.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.cities))
+          )
 
     }
     private _filter(value: string,list): string[] {
@@ -199,6 +210,10 @@ export class CreateListingComponent implements OnInit {
       private _filterCar(value: string,list): string[] {
         const filterValue = value.toLowerCase();
         return list.filter(option => option.name.toLowerCase().includes(filterValue));
+      }
+      private _filterKm(value: string,list): string[] {
+        const filterValue = value.toLowerCase();
+        return list.filter(option => option.title.toLowerCase().includes(filterValue));
       }
     pondOptions = {
         class: 'my-filepond',
@@ -237,7 +252,7 @@ export class CreateListingComponent implements OnInit {
                 break;
             }
         };
-        
+
         this.carModelList.forEach(model => {
             if(model.brand_id == brandId){
                 this.filteredModelList.push(model.name);
@@ -249,7 +264,7 @@ export class CreateListingComponent implements OnInit {
             startWith(''),
             map(value => this._filter(value,this.modelList))
           );
-        
+
     }
 
     getCarBrands() {
@@ -266,6 +281,8 @@ export class CreateListingComponent implements OnInit {
     }
 
     createItem(post) {
+        console.log(post);
+
         let car: any = CreateListingComponent.generateCarFromPost(post);
         let pondFiles = this.myPond.getFiles();
         let count = 1;
