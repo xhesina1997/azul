@@ -7,12 +7,15 @@ import com.azul.coredomain.meta.model.CarModel;
 import com.azul.metadataservice.dao.CarBrandRepository;
 import com.azul.metadataservice.dao.CarModelRepository;
 import com.azul.metadataservice.dao.CarRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.discovery.converters.Auto;
 import com.querydsl.core.types.Predicate;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,6 +23,7 @@ import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.naming.LimitExceededException;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,16 +101,38 @@ public class CarController {
 
     }
 
+    /*================== BRANDS & MODELS ==================*/
+
+    @Autowired
+    private ResourceLoader resourceLoader;
+
+    @PostConstruct
+    private void populateBrandsAndModels(){
+        ObjectMapper objectMapper = new ObjectMapper();
+        try{
+            if(brandRepository.findAll().size() == 0){
+                logger.info("======= CREATING MANUFACTURER REPOSITORY =======");
+                List<CarBrand> carBrands = objectMapper.readValue(resourceLoader.getResource("classpath:/car_brands.json").getInputStream(), new TypeReference<List<CarBrand>>(){});
+                brandRepository.saveAll(carBrands);
+                logger.info("======= MANUFACTURER CREATION FINISHED =======");
+            }
+            if(modelRepository.findAll().size() == 0){
+                logger.info("======= CREATING MODEL REPOSITORY =======");
+                List<CarModel> carModels = objectMapper.readValue(resourceLoader.getResource("classpath:/car_models.json").getInputStream(), new TypeReference<List<CarModel>>(){});
+                modelRepository.saveAll(carModels);
+                logger.info("======= MODEL CREATION FINISHED =======");
+            }
+        }catch (Exception e){
+            logger.error(e.toString());
+        }
+    }
+
     @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Get all brands")
     @RequestMapping(value = "/brands",method = RequestMethod.GET)
     public List<CarBrand> getAllBrands(){
         try {
-            if(brandRepository.findAll().size() > MAX_QUERY) {
-                throw new LimitExceededException("Query limit exceeded!");
-            }else{
-                return brandRepository.findAll();
-            }
+            return brandRepository.findAll();
         }catch (Exception e){
             logger.error(ERR_GET + e.getMessage());
             throw new ServiceException(e);
@@ -118,20 +144,18 @@ public class CarController {
     @RequestMapping(value = "/models",method = RequestMethod.GET)
     public List<CarModel> getAllModels(){
         try {
-            if(modelRepository.findAll().size() > MAX_QUERY) {
-                throw new LimitExceededException("Query limit exceeded!");
-            }else{
-                return modelRepository.findAll();
-            }
+            return modelRepository.findAll();
         }catch (Exception e){
             logger.error(ERR_GET + e.getMessage());
             throw new ServiceException(e);
         }
     }
+    /*================== BRANDS & MODELS ==================*/
 
-    //Helpers
+    /*===================== HELPERS ======================*/
     private Boolean validateCar(Car car){
         return true;
     }
+    /*===================== HELPERS ======================*/
 
 }

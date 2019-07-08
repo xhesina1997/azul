@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
-import { CarService } from "../../api/car.service";
-import { CdnService } from "../../api/cdn.service";
-import { UUID } from 'angular2-uuid';
-import { Subject } from "rxjs/internal/Subject";
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
+import {CarService} from "../../api/car.service";
+import {CdnService} from "../../api/cdn.service";
+import {UUID} from 'angular2-uuid';
+import {Subject} from "rxjs/internal/Subject";
+import {Observable} from 'rxjs';
+import {startWith, map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-create-listing',
@@ -34,12 +34,12 @@ export class CreateListingComponent implements OnInit {
     filteredCarTypes: Observable<string[]>;
     filteredYears: Observable<string[]>;
     filteredColors: Observable<string[]>;
-    filteredKilometers:Observable<string[]>;
+    filteredKilometers: Observable<string[]>;
     filteredCities: Observable<string[]>;
-    public currencyList: any[] = [];
+    public currencyList: any[] = ['Euro', 'Lek'];
     public producerList: any = [];
     public modelList: any = [];
-    productionYear = ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019']
+    productionYear = ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'];
     carTypes = [
         {
             name: 'micro',
@@ -122,8 +122,7 @@ export class CreateListingComponent implements OnInit {
             imageURL: 'assets/car-types/bigtruck.png'
         }
     ];
-    colors = ['E bardhe','E zeze', 'E hirit/gri','Kafe/bezhe',' E kuqe','E verdhe','E gjelber',' E kalter'];
-    // kilometers = ['0 - 4,999 km','5,000 - 9,999 km','10,000 - 14,999 km'];
+    colors = ['E bardhe', 'E zeze', 'E hirit/gri', 'Kafe/bezhe', ' E kuqe', 'E verdhe', 'E gjelber', ' E kalter'];
     kilometers = [
         {
             title: '0 - 4,999 km',
@@ -131,7 +130,8 @@ export class CreateListingComponent implements OnInit {
         },
 
     ];
-    cities = ['Tirane','Fier','Lushnje','Korce','Pogradec','Durres','Berat','Sarande','Tropoje']
+    cities = ['Tirane', 'Fier', 'Lushnje', 'Korce', 'Pogradec', 'Durres', 'Berat', 'Sarande', 'Tropoje']
+
     constructor(
         private carService: CarService,
         private cdn: CdnService,
@@ -155,66 +155,68 @@ export class CreateListingComponent implements OnInit {
         });
     }
 
-      ngOnInit() {
-        this.currencyList = ['Euro', 'Lek'];
-
+    ngOnInit() {
+        this.getCarBrands();
         this.getCarModels();
 
-          this.filteredCurrency = this.searchedValue.valueChanges
-        .pipe(
-          startWith(''),
-          map(value => this._filter(value,this.currencyList))
-        );
+        this.filteredCurrency = this.searchedCurrency.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filter(value, this.currencyList))
+            );
         this.filteredProducers = this.searchedManufacturer.valueChanges
-        .pipe(
-            startWith(''),
-            map(value => this._filter(value,this.producerList))
-          );
-          this.filteredModels = this.searchedModel.valueChanges
-          .pipe(
-            startWith(''),
-            map(value => this._filter(value,this.modelList))
-          )
-          this.filteredCarTypes = this.searchedStructure.valueChanges
-          .pipe(
-            startWith(''),
-            map(value => this._filterCar(value,this.carTypes))
-          );
-          this.filteredYears = this.searchedYear.valueChanges
-          .pipe(
-            startWith(''),
-            map(value => this._filter(value,this.productionYear))
-          );
-          this.filteredColors = this.searchedColor.valueChanges
-          .pipe(
-            startWith(''),
-            map(value => this._filter(value,this.colors))
-          )
-          this.filteredKilometers = this.searchedMileage.valueChanges
-          .pipe(
-            startWith(''),
-            map(value => this._filterKm(value,this.kilometers))
-          )
-          this.filteredCities = this.searchedCity.valueChanges
-          .pipe(
-            startWith(''),
-            map(value => this._filter(value,this.cities))
-          )
+            .pipe(
+                startWith(''),
+                map(value => this._filter(value, this.producerList))
+            );
+        this.filteredModels = this.searchedModel.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filter(value, this.modelList))
+            )
+        this.filteredCarTypes = this.searchedStructure.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filterCar(value, this.carTypes))
+            );
+        this.filteredYears = this.searchedYear.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filter(value, this.productionYear))
+            );
+        this.filteredColors = this.searchedColor.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filter(value, this.colors))
+            )
+        this.filteredKilometers = this.searchedMileage.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filterKm(value, this.kilometers))
+            )
+        this.filteredCities = this.searchedCity.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filter(value, this.cities))
+            )
 
     }
-    private _filter(value: string,list): string[] {
+
+    private _filter(value: string, list): string[] {
         const filterValue = value.toLowerCase();
         return list.filter(option => option.toLowerCase().includes(filterValue));
-      }
+    }
 
-      private _filterCar(value: string,list): string[] {
+    private _filterCar(value: string, list): string[] {
         const filterValue = value.toLowerCase();
         return list.filter(option => option.name.toLowerCase().includes(filterValue));
-      }
-      private _filterKm(value: string,list): string[] {
+    }
+
+    private _filterKm(value: string, list): string[] {
         const filterValue = value.toLowerCase();
         return list.filter(option => option.title.toLowerCase().includes(filterValue));
-      }
+    }
+
     pondOptions = {
         class: 'my-filepond',
         multiple: true,
@@ -235,50 +237,49 @@ export class CreateListingComponent implements OnInit {
     public carModelList: any;
     public carBrandsList: any;
 
-    getCarModels(){
+    getCarBrands() {
+        this.carService.getAllCarBrands().subscribe(data => {
+            this.carBrandsList = data;
+            this.carBrandsList.forEach(brand => {
+                this.producerList.push(brand.name);
+            });
+        });
+    }
+
+    getCarModels() {
         this.carService.getAllCarModels().subscribe(data => {
             this.carModelList = data;
         });
     }
 
     public filteredModelList: any;
+
     filterModelsByBrand(event) {
         this.filteredModelList = [];
         let brandId: any;
 
-        for(let brand of this.carBrandsList){
-            if(brand.name == event){
+        for (let brand of this.carBrandsList) {
+            if (brand.name == event) {
                 brandId = brand.brand_id;
                 break;
             }
-        };
+        }
 
         this.carModelList.forEach(model => {
-            if(model.brand_id == brandId){
+            if (model.brand_id == brandId) {
                 this.filteredModelList.push(model.name);
             }
         });
         this.modelList = this.filteredModelList;
-        this.filteredModels = this.searchedValue.valueChanges
-          .pipe(
-            startWith(''),
-            map(value => this._filter(value,this.modelList))
-          );
+        this.filteredModels = this.searchedModel.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filter(value, this.modelList))
+            );
 
     }
 
-    getCarBrands() {
-        let promise = new Promise((resolve, reject) => {
-            this.carService.getAllCarBrands().subscribe(data => {
-                this.carBrandsList = data;
-                this.carBrandsList.forEach(brand => {
-                    this.producerList.push(brand.name);
-                });
-            });
-            resolve(this.producerList);
-          });
-        return promise;
-    }
+
 
     createItem(post) {
         console.log(post);
