@@ -19,7 +19,7 @@ export class CreateListingComponent implements OnInit {
     public finishedUploading: boolean = false;
 
     protected progress = new Subject();
-    selectedCurrency: FormControl = new FormControl();
+    selectedManufacturer: FormControl = new FormControl();
     searchedCurrency: FormControl = new FormControl();
     searchedManufacturer: FormControl = new FormControl();
     searchedModel: FormControl = new FormControl();
@@ -29,7 +29,7 @@ export class CreateListingComponent implements OnInit {
     searchedMileage: FormControl = new FormControl();
     searchedCity: FormControl = new FormControl();
     filteredCurrency: Observable<string[]>;
-    filteredProducers: Observable<string[]>;
+    filteredManufacturer: Observable<string[]>;
     filteredModels: Observable<string[]>;
     filteredCarTypes: Observable<string[]>;
     filteredYears: Observable<string[]>;
@@ -39,6 +39,7 @@ export class CreateListingComponent implements OnInit {
     public currencyList: any[] = ['Euro', 'Lek'];
     public producerList: any = [];
     public modelList: any = [];
+    disableModel:any = true;
     productionYear = ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'];
     carTypes = [
         {
@@ -164,7 +165,7 @@ export class CreateListingComponent implements OnInit {
                 startWith(''),
                 map(value => this._filter(value, this.currencyList))
             );
-        this.filteredProducers = this.searchedManufacturer.valueChanges
+        this.filteredManufacturer = this.searchedManufacturer.valueChanges
             .pipe(
                 startWith(''),
                 map(value => this._filter(value, this.producerList))
@@ -243,6 +244,7 @@ export class CreateListingComponent implements OnInit {
             this.carBrandsList.forEach(brand => {
                 this.producerList.push(brand.name);
             });
+            this.searchedManufacturer.setValue("");
         });
     }
 
@@ -257,6 +259,7 @@ export class CreateListingComponent implements OnInit {
     filterModelsByBrand(event) {
         this.filteredModelList = [];
         let brandId: any;
+        if(event != null ){ this.disableModel = false}
 
         for (let brand of this.carBrandsList) {
             if (brand.name == event) {

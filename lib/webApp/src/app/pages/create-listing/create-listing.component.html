@@ -72,12 +72,12 @@
                                     <mat-label>
                                         <mat-icon>build</mat-icon> &nbsp; Prodhuesi:
                                     </mat-label>
-                                    <mat-select ngDefaultControl formControlName="manufacturer" placeholder="Prodhuesi" (ngModelChange)="filterModelsByBrand($event)">
+                                    <mat-select ngDefaultControl [formControl]="selectedManufacturer" formControlName="manufacturer" placeholder="Prodhuesi" (ngModelChange)="filterModelsByBrand($event)">
                                         <mat-option>
                                             <ngx-mat-select-search [formControl]="searchedManufacturer"
                                                 [placeholderLabel]="'Kerko'" [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
                                         </mat-option>
-                                        <mat-option *ngFor="let prod of filteredProducers| async" [value]="prod">
+                                        <mat-option *ngFor="let prod of filteredManufacturer | async" [value]="prod">
                                             {{prod}}
                                         </mat-option>
                                     </mat-select>
@@ -88,7 +88,7 @@
                                     <mat-label>
                                         <mat-icon>merge_type</mat-icon> &nbsp; Modeli:
                                     </mat-label>
-                                    <mat-select ngDefaultControl formControlName="model" placeholder="Modeli">
+                                    <mat-select ngDefaultControl formControlName="model" placeholder="Modeli" [disabled]="disableModel">
                                         <mat-option>
                                             <ngx-mat-select-search [formControl]="searchedModel" [placeholderLabel]="'Kerko'"
                                                 [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
