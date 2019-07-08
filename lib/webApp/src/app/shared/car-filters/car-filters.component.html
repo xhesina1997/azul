@@ -14,8 +14,8 @@
             <mat-option [value]="'BMW'"> BMW</mat-option>
         </mat-select>
         <button mat-button matSuffix mat-icon-button aria-label="Clear"
-                (click)="clearFilter('manufacturer', manufacturer); $event.preventDefault()">
-            <mat-icon>close</mat-icon>
+                (click)="clearFilter('manufacturer'); $event.stopPropagation(); manufacturer = undefined">
+            <mat-icon color="primary">close</mat-icon>
         </button>
     </mat-form-field>
 
@@ -23,13 +23,17 @@
         <mat-label>
             <mat-icon>merge_type</mat-icon> &nbsp; Modeli:
         </mat-label>
-        <mat-select (selectionChange)="changedFilters('model', $event)">
+        <mat-select [(ngModel)]="model" (selectionChange)="changedFilters('model', $event)">
             <mat-option [value]="'3 Series'">3 Series</mat-option>
             <mat-option [value]="'5 Series'">5 Series</mat-option>
             <mat-option [value]="'A3'">A3</mat-option>
             <mat-option [value]="'A4'">A4</mat-option>
             <mat-option [value]="'A6'">A6</mat-option>
         </mat-select>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                (click)="clearFilter('model'); $event.stopPropagation(); model = undefined">
+            <mat-icon color="primary">close</mat-icon>
+        </button>
     </mat-form-field>
 
 </mat-card>

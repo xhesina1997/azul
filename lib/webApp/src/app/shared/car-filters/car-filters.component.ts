@@ -14,16 +14,16 @@ export class CarFiltersComponent implements OnInit {
     @Output() filtersListener = new Subject();
 
     protected filters: any = {};
-    public manufacturer: any;
+    protected manufacturer: any;
+    protected model: any;
 
     changedFilters(filter, event) {
         this.filters[filter] = event.value;
         this.filtersListener.next(this.filters);
     }
 
-    clearFilter(filter, model) {
+    clearFilter(filter) {
         delete this.filters[filter];
-        model = undefined;
         this.filtersListener.next(this.filters);
     }
 

@@ -13,7 +13,7 @@
             </div>
         </mat-card>
 
-        <mat-card class="mat-elevation-z0" style="height: auto; padding: 0;">
+        <mat-card *ngIf="cars?.length != 0; else noCars" class="mat-elevation-z0" style="height: auto; padding: 0;">
 
             <div *ngFor="let car of cars">
                 <div class="item-wrapper" style="padding: 16px">
@@ -68,12 +68,18 @@
 
         </mat-card>
 
-        <mat-card class="mat-elevation-z0" style="margin: 20px 0 20px 0; height: auto; padding: 0px;">
+        <mat-card *ngIf="cars?.length != 0;" class="mat-elevation-z0" style="margin: 20px 0 20px 0; height: auto; padding: 0px;">
             <mat-paginator  (page)="changedQueryOptions($event)"
                             style="width: 100%" [length]="queryOptions.total"
                             [pageSize]="queryOptions.size"
                             [pageSizeOptions]="[1, 2, 5, 10, 25]">
             </mat-paginator>
         </mat-card>
+
+        <ng-template #noCars>
+            <mat-card class="mat-elevation-z0">
+                Nuk ka rezultategot
+            </mat-card>
+        </ng-template>
     </div>
 </div>
