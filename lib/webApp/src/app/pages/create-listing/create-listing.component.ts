@@ -165,7 +165,7 @@ export class CreateListingComponent implements OnInit {
         this.getCarBrands();
         this.getCarModels();
 
-          this.filteredCurrency = this.searchedValue.valueChanges
+          this.filteredCurrency = this.searchedCurrency.valueChanges
         .pipe(
           startWith(''),
           map(value => this._filter(value,this.currencyList))
