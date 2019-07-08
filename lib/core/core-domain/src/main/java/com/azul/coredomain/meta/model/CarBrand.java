@@ -12,5 +12,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class CarBrand {
 
     private String id;
+    private String brand_id;
     private String name;
 }

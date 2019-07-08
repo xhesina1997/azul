@@ -37,8 +37,8 @@ export class CreateListingComponent implements OnInit {
     filteredKilometers:Observable<string[]>;
     filteredCities: Observable<string[]>;
     public currencyList: any[] = [];
-    public producerList: any[] = [];
-    public modelList: any[] = [];
+    public producerList: any = [];
+    public modelList: any = [];
     productionYear = ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019']
     carTypes = [
         {
@@ -155,14 +155,9 @@ export class CreateListingComponent implements OnInit {
         });
     }
 
-
-
       ngOnInit() {
         this.currencyList = ['Euro', 'Lek'];
-        this.producerList = [];
-        this.modelList = [];
 
-        this.getCarBrands();
         this.getCarModels();
 
           this.filteredCurrency = this.searchedCurrency.valueChanges
@@ -249,15 +244,14 @@ export class CreateListingComponent implements OnInit {
     public filteredModelList: any;
     filterModelsByBrand(event) {
         this.filteredModelList = [];
-        this.modelList = [];
         let brandId: any;
 
         for(let brand of this.carBrandsList){
             if(brand.name == event){
-                brandId = brand.id;
+                brandId = brand.brand_id;
                 break;
             }
-        }
+        };
 
         this.carModelList.forEach(model => {
             if(model.brand_id == brandId){
@@ -265,15 +259,25 @@ export class CreateListingComponent implements OnInit {
             }
         });
         this.modelList = this.filteredModelList;
+        this.filteredModels = this.searchedValue.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value,this.modelList))
+          );
+
     }
 
     getCarBrands() {
-        this.carService.getAllCarBrands().subscribe(data => {
-            this.carBrandsList = data;
-            this.carBrandsList.forEach(brand => {
-                this.producerList.push(brand.name);
-            })
-        });
+        let promise = new Promise((resolve, reject) => {
+            this.carService.getAllCarBrands().subscribe(data => {
+                this.carBrandsList = data;
+                this.carBrandsList.forEach(brand => {
+                    this.producerList.push(brand.name);
+                });
+            });
+            resolve(this.producerList);
+          });
+        return promise;
     }
 
     createItem(post) {
