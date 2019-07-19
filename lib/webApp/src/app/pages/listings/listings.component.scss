@@ -7,3 +7,12 @@ mat-card {
 }
 .item-wrapper:hover{
 }
+
+.no-results{
+  height: 500px;
+
+  background-image: url('/assets/illustrations/404.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 80% 50%;
+}

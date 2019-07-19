@@ -27,4 +27,13 @@ export class CarFiltersComponent implements OnInit {
         this.filtersListener.next(this.filters);
     }
 
+
+    //==============SLIDERS===============//
+    protected minValue: number = 50;
+    protected maxValue: number = 100;
+    protected options = {
+        floor: 0,
+        ceil: 200
+    };
+
 }

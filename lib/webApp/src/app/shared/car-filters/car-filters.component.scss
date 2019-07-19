@@ -5,3 +5,10 @@ mat-card {
 :host /deep/ .mat-form-field-wrapper{
   padding-bottom: 6px;
 }
+
+:host /deep/ .custom-slider .ng5-slider .ng5-slider-selection {
+  background: #5400B8;
+}
+:host /deep/ .custom-slider .ng5-slider .ng5-slider-pointer {
+  background-color: #5400B8;
+}

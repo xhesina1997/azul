@@ -1,4 +1,4 @@
-<mat-card class="mat-elevation-z0" style=" height: 100%">
+<mat-card class="mat-elevation-z0" style="">
     <div fxLayout="row">
         <div fxFlex="100">
             <h2 style="margin:0 0 13px 0">Filtra</h2>
@@ -34,6 +34,16 @@
                 (click)="clearFilter('model'); $event.stopPropagation(); model = undefined">
             <mat-icon color="primary">close</mat-icon>
         </button>
+    </mat-form-field>
+    <div class="custom-slider">
+        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+    </div>
+    <mat-form-field appearance="outline" style="width: 50%">
+        <mat-label>
+            <mat-icon>build</mat-icon> &nbsp; Cmimi nga:
+        </mat-label>
+        <input matInput placeholder="Favorite food" value="Sushi">
+
     </mat-form-field>
 
 </mat-card>
