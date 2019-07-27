@@ -8,8 +8,20 @@
     </div>
     <div fxFlex="70" fxFlex.sm="100" fxFlex.xs="100">
         <mat-card class="mat-elevation-z0" style="margin-bottom: 20px; height: 30px">
-            <div fxLayout="row" fxLayoutAlign="space-bewteen center">
-                <h2 style="margin: 0">Rezultatet</h2>
+            <div fxLayout="row" style="width: 100%;" fxLayoutAlign="space-bewteen center">
+                <div fxFlex="40">
+                    <h2 style="margin-top: 0;">Rezultatet</h2>
+                </div>
+                <div fxFlex="60" fxLayout="row" fxLayoutAlign="end">
+                    <mat-form-field style="margin-top: -10px" >
+                        <mat-label>Radhit sipas:</mat-label>
+                        <mat-select [(ngModel)]="sort" (selectionChange)="changedSort($event.value)">
+                            <mat-option [value]="'latest'">Postimet e fundit</mat-option>
+                            <mat-option [value]="'price-l'">Cmimi me i ulet</mat-option>
+                            <mat-option [value]="'price-h'">Cmimi me i larte</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
         </mat-card>
 
@@ -29,7 +41,8 @@
                                     <a [routerLink]="['/pages/listing']" [queryParams]="{id: car.uuid}">
                                         <mat-card-title style="font-size: 16px">{{car?.title}}</mat-card-title>
                                     </a>
-                                    <mat-card-subtitle>{{car?.price?.value}} {{car?.price?.currency}}
+                                    <mat-card-subtitle>{{car?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
+                                        <!--{{car?.price?.currency}}-->
                                     </mat-card-subtitle>
                                 </div>
                                 <div fxLayout="row">

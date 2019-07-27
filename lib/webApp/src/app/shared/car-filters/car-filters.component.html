@@ -5,11 +5,34 @@
         </div>
     </div>
 
+    <mat-form-field style="width: 100%" appearance="outline" style="width: 100%">
+        <mat-label>
+            <mat-icon>build</mat-icon> &nbsp; Prodhuesi:
+        </mat-label>
+        <mat-select ngDefaultControl
+                    [formControl]="selectedManufacturer"
+                    placeholder="Prodhuesi"
+                    (selectionChange)="changedFilters('manufacturer', $event.value)"
+                    (ngModelChange)="filterModelsByBrand($event)">
+            <mat-option>
+                <ngx-mat-select-search [formControl]="searchedManufacturer"
+                                       [placeholderLabel]="'Kerko'"  [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let prod of filteredManufacturer | async" [value]="prod">
+                {{prod}}
+            </mat-option>
+        </mat-select>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                (click)="clearFilter('manufacturer'); $event.stopPropagation();">
+            <mat-icon color="primary">close</mat-icon>
+        </button>
+    </mat-form-field>
+
     <mat-form-field appearance="outline" style="width: 100%">
         <mat-label>
             <mat-icon>build</mat-icon> &nbsp; Prodhuesi:
         </mat-label>
-        <mat-select [(ngModel)]="manufacturer" (selectionChange)="changedFilters('manufacturer', $event)">
+        <mat-select [(ngModel)]="manufacturer" (selectionChange)="changedFilters('manufacturer', $event.value)">
             <mat-option [value]="'Audi'">Audi</mat-option>
             <mat-option [value]="'BMW'"> BMW</mat-option>
         </mat-select>
@@ -23,7 +46,7 @@
         <mat-label>
             <mat-icon>merge_type</mat-icon> &nbsp; Modeli:
         </mat-label>
-        <mat-select [(ngModel)]="model" (selectionChange)="changedFilters('model', $event)">
+        <mat-select [(ngModel)]="model" (selectionChange)="changedFilters('model', $event.value)">
             <mat-option [value]="'3 Series'">3 Series</mat-option>
             <mat-option [value]="'5 Series'">5 Series</mat-option>
             <mat-option [value]="'A3'">A3</mat-option>
@@ -35,15 +58,24 @@
             <mat-icon color="primary">close</mat-icon>
         </button>
     </mat-form-field>
-    <div class="custom-slider">
-        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
-    </div>
-    <mat-form-field appearance="outline" style="width: 50%">
-        <mat-label>
-            <mat-icon>build</mat-icon> &nbsp; Cmimi nga:
-        </mat-label>
-        <input matInput placeholder="Favorite food" value="Sushi">
-
+    <!--<div class="custom-slider">-->
+        <!--<ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>-->
+    <!--</div>-->
+    <mat-form-field appearance="outline" style="width: 48%">
+        <mat-label>Cmimi nga(€):</mat-label>
+        <input matInput type="number" [(ngModel)]="minValue" (ngModelChange)="changedFilters('minPrice', $event)">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="margin-left: 4%; width: 48%">
+        <mat-label>Cmimi deri(€):</mat-label>
+        <input matInput type="number" [(ngModel)]="maxValue" (ngModelChange)="changedFilters('maxPrice', $event)">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 48%">
+        <mat-label>Viti nga:</mat-label>
+        <input matInput type="number" [(ngModel)]="minYear" (ngModelChange)="changedFilters('minYear', $event)">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="margin-left: 4%; width: 48%">
+        <mat-label>Viti deri:</mat-label>
+        <input matInput type="number" [(ngModel)]="maxYear" (ngModelChange)="changedFilters('maxYear', $event)">
     </mat-form-field>
 
 </mat-card>

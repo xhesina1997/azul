@@ -36,7 +36,7 @@ export class CreateListingComponent implements OnInit {
     filteredColors: Observable<string[]>;
     filteredKilometers: Observable<string[]>;
     filteredCities: Observable<string[]>;
-    public currencyList: any[] = ['Euro', 'Lek'];
+    public currencyList: any[] = ['Euro'];
     public producerList: any = [];
     public modelList: any = [];
     disableModel:any = true;
@@ -131,7 +131,7 @@ export class CreateListingComponent implements OnInit {
         },
 
     ];
-    cities = ['Tirane', 'Fier', 'Lushnje', 'Korce', 'Pogradec', 'Durres', 'Berat', 'Sarande', 'Tropoje']
+    cities = ['Tirane', 'Fier', 'Lushnje', 'Korce', 'Pogradec', 'Durres', 'Berat', 'Sarande', 'Tropoje'];
 
     constructor(
         private carService: CarService,

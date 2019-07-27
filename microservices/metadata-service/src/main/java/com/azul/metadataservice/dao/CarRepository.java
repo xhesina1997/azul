@@ -36,5 +36,13 @@ public interface CarRepository extends MongoRepository<Car, String>, QuerydslPre
             collection.forEach(o -> result.or(structure.eq(o)));
             return Optional.of(result);
         });
+        bindings.bind(QCar.car.price.value).all((value, price) -> {
+           Iterator<? extends Float> priceRange = price.iterator();
+           return Optional.of(value.between(priceRange.next(), priceRange.next()));
+        });
+        bindings.bind(QCar.car.year).all((value, year) -> {
+            Iterator<? extends Integer> yearRange = year.iterator();
+            return Optional.of(value.between(yearRange.next(), yearRange.next()));
+        });
     }
 }

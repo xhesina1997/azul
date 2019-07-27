@@ -11,8 +11,9 @@ import {
     MatIconModule, MatInputModule,
     MatSelectModule
 } from "@angular/material";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Ng5SliderModule} from "ng5-slider";
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 
 @NgModule({
     declarations: [ContainerComponent, CarFiltersComponent],
@@ -27,7 +28,9 @@ import {Ng5SliderModule} from "ng5-slider";
         MatCheckboxModule,
         MatSelectModule,
         MatButtonModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule,
+        NgxMatSelectSearchModule
     ],
     exports: [
         ContainerComponent,

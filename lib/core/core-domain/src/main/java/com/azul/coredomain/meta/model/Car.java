@@ -24,7 +24,7 @@ public class Car {
     private String manufacturer;
     private String model;
     private String structure;
-    private String year;
+    private Integer year;
     private String color;
     private List<Number> mileage;
     private String transmission;

@@ -9,6 +9,8 @@ import {MatButtonModule} from "@angular/material";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatListModule} from '@angular/material/list';
 import {SharedModule} from "../../shared/shared.module";
+import {MatSelectModule} from '@angular/material/select';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [ListingsComponent],
@@ -19,6 +21,8 @@ import {SharedModule} from "../../shared/shared.module";
         MatButtonModule,
         MatListModule,
         MatPaginatorModule,
+        MatSelectModule,
+        FormsModule,
         ListingsRoutingModule,
         SharedModule
     ]

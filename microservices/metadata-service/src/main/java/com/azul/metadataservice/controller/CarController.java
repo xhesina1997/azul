@@ -49,7 +49,7 @@ public class CarController {
     @ApiOperation(value = "Fetch a specific page from repository")
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public Page<Car> search(@QuerydslPredicate Predicate predicate,
-                               @PageableDefault(sort = {"created"}, direction = Sort.Direction.DESC) Pageable pageable) {
+                            @PageableDefault(sort = {"created"}, direction = Sort.Direction.DESC) Pageable pageable) {
         if (predicate == null) {
             return repos.findAll(pageable);
         }
