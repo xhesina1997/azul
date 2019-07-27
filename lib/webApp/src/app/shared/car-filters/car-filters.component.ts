@@ -86,6 +86,8 @@ export class CarFiltersComponent implements OnInit {
             this.filters.year[1] = event
         }else {
             this.filters[filter] = event;
+            console.log(event);
+            
         }
         this.filtersListener.next(this.filters);
     }
@@ -105,6 +107,13 @@ export class CarFiltersComponent implements OnInit {
 
     //===============LISTS================//
     selectedManufacturer: FormControl = new FormControl();
+    selectedModel: FormControl = new FormControl();
+    selectedStructure: FormControl = new FormControl();
+    selectedColor: FormControl = new FormControl();
+    selectedTransmission: FormControl = new FormControl();
+    selectedFuel: FormControl = new FormControl();
+    selectedPlateRegistration: FormControl = new FormControl();
+    selectedCity: FormControl = new FormControl();
     searchedCurrency: FormControl = new FormControl();
     searchedManufacturer: FormControl = new FormControl();
     searchedModel: FormControl = new FormControl();

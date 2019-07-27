@@ -9,57 +9,133 @@
         <mat-label>
             <mat-icon>build</mat-icon> &nbsp; Prodhuesi:
         </mat-label>
-        <mat-select ngDefaultControl
-                    [formControl]="selectedManufacturer"
-                    placeholder="Prodhuesi"
-                    (selectionChange)="changedFilters('manufacturer', $event.value)"
-                    (ngModelChange)="filterModelsByBrand($event)">
+        <mat-select ngDefaultControl [formControl]="selectedManufacturer" placeholder="Prodhuesi" (selectionChange)="changedFilters('manufacturer', $event.value)"
+            (ngModelChange)="filterModelsByBrand($event)">
             <mat-option>
-                <ngx-mat-select-search [formControl]="searchedManufacturer"
-                                       [placeholderLabel]="'Kerko'"  [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
+                <ngx-mat-select-search [formControl]="searchedManufacturer" [placeholderLabel]="'Kerko'"
+                    [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
             </mat-option>
             <mat-option *ngFor="let prod of filteredManufacturer | async" [value]="prod">
                 {{prod}}
             </mat-option>
         </mat-select>
-        <button mat-button matSuffix mat-icon-button aria-label="Clear"
-                (click)="clearFilter('manufacturer'); $event.stopPropagation();">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('manufacturer'); $event.stopPropagation();selectedManufacturer.setValue('')">
             <mat-icon color="primary">close</mat-icon>
         </button>
     </mat-form-field>
-
-    <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>
-            <mat-icon>build</mat-icon> &nbsp; Prodhuesi:
-        </mat-label>
-        <mat-select [(ngModel)]="manufacturer" (selectionChange)="changedFilters('manufacturer', $event.value)">
-            <mat-option [value]="'Audi'">Audi</mat-option>
-            <mat-option [value]="'BMW'"> BMW</mat-option>
-        </mat-select>
-        <button mat-button matSuffix mat-icon-button aria-label="Clear"
-                (click)="clearFilter('manufacturer'); $event.stopPropagation(); manufacturer = undefined">
-            <mat-icon color="primary">close</mat-icon>
-        </button>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" style="width: 100%">
+    <mat-form-field style="width: 100%" appearance="outline">
         <mat-label>
             <mat-icon>merge_type</mat-icon> &nbsp; Modeli:
         </mat-label>
-        <mat-select [(ngModel)]="model" (selectionChange)="changedFilters('model', $event.value)">
-            <mat-option [value]="'3 Series'">3 Series</mat-option>
-            <mat-option [value]="'5 Series'">5 Series</mat-option>
-            <mat-option [value]="'A3'">A3</mat-option>
-            <mat-option [value]="'A4'">A4</mat-option>
-            <mat-option [value]="'A6'">A6</mat-option>
+        <mat-select ngDefaultControl   [formControl]="selectedModel" placeholder="Modeli" (selectionChange)="changedFilters('model', $event.value)">
+            <mat-option>
+                <ngx-mat-select-search [formControl]="searchedModel" [placeholderLabel]="'Kerko'" [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let model of filteredModels| async" [value]="model">
+                {{model}}
+            </mat-option>
         </mat-select>
-        <button mat-button matSuffix mat-icon-button aria-label="Clear"
-                (click)="clearFilter('model'); $event.stopPropagation(); model = undefined">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('model'); $event.stopPropagation();selectedModel.setValue('')">
             <mat-icon color="primary">close</mat-icon>
         </button>
     </mat-form-field>
+
+    <mat-form-field style="width: 100%" appearance="outline">
+        <mat-label>
+            <mat-icon>directions_car</mat-icon> &nbsp; Struktura:
+        </mat-label>
+        <mat-select ngDefaultControl [formControl]="selectedStructure" placeholder="Struktura" (selectionChange)="changedFilters('structure', $event.value)">
+            <mat-option>
+                <ngx-mat-select-search [formControl]="searchedStructure" [placeholderLabel]="'Kerko'"
+                    [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let type of filteredCarTypes| async" [value]="type.name">
+                <img style="width: 90px; height: 40px;" src="{{type.imageURL}}" alt="{{type.title}}">
+                &nbsp;&nbsp;{{type.title}}
+            </mat-option>
+        </mat-select>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('structure'); $event.stopPropagation();selectedStructure.setValue('')">
+            <mat-icon color="primary">close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>
+            <mat-icon>invert_colors</mat-icon> &nbsp; Ngjyra:
+        </mat-label>
+        <mat-select ngDefaultControl [formControl]="selectedColor" placeholder="Ngjyra" (selectionChange)="changedFilters('color', $event.value)">
+            <mat-option>
+                <ngx-mat-select-search [formControl]="searchedColor" [placeholderLabel]="'Kerko'"
+                    [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let color of filteredColors| async" [value]="color">
+                {{color}}
+            </mat-option>
+        </mat-select>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('color'); $event.stopPropagation();selectedColor.setValue('')">
+            <mat-icon color="primary">close</mat-icon>
+        </button>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>
+            <mat-icon>commute</mat-icon> &nbsp;Kambio:
+        </mat-label>
+        <mat-select [formControl]="selectedTransmission"  (selectionChange)="changedFilters('transmission', $event.value)">
+            <mat-option [value]="'automatic'"> Automatike</mat-option>
+            <mat-option [value]="'manual'"> Manuale</mat-option>
+        </mat-select>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('transmission'); $event.stopPropagation();selectedTransmission.setValue('')">
+            <mat-icon color="primary">close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>
+            <mat-icon>category</mat-icon> &nbsp; Karburanti:
+        </mat-label>
+        <mat-select [formControl]="selectedFuel" (selectionChange)="changedFilters('fuel', $event.value)">
+            <mat-option [value]="'diesel'"> Nafte</mat-option>
+            <mat-option [value]="'gasoline'"> Benzine</mat-option>
+            <mat-option [value]="'LPG/gasoline'">Gas/Benzine</mat-option>
+        </mat-select>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('fuel'); $event.stopPropagation();selectedFuel.setValue('')">
+            <mat-icon color="primary">close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>
+            <mat-icon>style</mat-icon> &nbsp; Targat:
+        </mat-label>
+        <mat-select  [formControl]="selectedPlateRegistration" (selectionChange)="changedFilters('plateRegistation', $event.value)">
+            <mat-option [value]="'foreign'"> E huaj</mat-option>
+            <mat-option [value]="'domestic'"> Shqiptare</mat-option>
+        </mat-select>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('plateRegistation'); $event.stopPropagation();selectedPlateRegistration.setValue('')">
+            <mat-icon color="primary">close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>
+            <mat-icon>map</mat-icon> &nbsp;Qyteti:
+        </mat-label>
+        <mat-select ngDefaultControl [formControl]="selectedCity" placeholder="Qyteti" (selectionChange)="changedFilters('city', $event.value)">
+            <mat-option>
+                <ngx-mat-select-search [formControl]="searchedCity" [placeholderLabel]="'Kerko'"
+                    [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let city of  filteredCities| async" [value]="city">
+                {{city}}
+            </mat-option>
+        </mat-select>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('city'); $event.stopPropagation();selectedCity.setValue('')">
+            <mat-icon color="primary">close</mat-icon>
+        </button>
+    </mat-form-field>
+    
     <!--<div class="custom-slider">-->
-        <!--<ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>-->
+    <!--<ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>-->
     <!--</div>-->
     <mat-form-field appearance="outline" style="width: 48%">
         <mat-label>Cmimi nga(€):</mat-label>
