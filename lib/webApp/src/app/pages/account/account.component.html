@@ -1,0 +1,49 @@
+<!--<p>-->
+<!--{{user.name}}-->
+<!--</p>-->
+<div [ngStyle.lg]="{'margin-left': '-22%', 'width': '143.4%' }"
+     [ngStyle.md]="{'margin-left': '-13%', 'width': '125.5%' }"
+     [ngStyle.sm]="{'margin-left': '-2.1%', 'width': '104.2%' }"
+     [ngStyle.xs]="{'margin-left': '-2.1%', 'width': '104.2%' }">
+    <mat-toolbar
+            color="primary" style="padding-left: 0; padding-right: 0; height: 75px;"
+            fxLayout="row" fxLayoutAlign="space-between center"
+            class="mat-elevation-z0">
+        <div fxFlex.gt="70" fxFlexOffset.gt="15"
+             fxFlex.lg="70" fxFlexOffset.lg="15"
+             fxFlex.md="80" fxFlexOffset.md="10"
+             fxFlex.sm="100" fxFlex.xs="100"
+             fxLayout="row" fxFlexAlign="space-between center"
+             style="height: 75px;"
+             [ngStyle.sm]="{padding: '0 10px'}"
+             [ngStyle.xs]="{padding: '0 10px'}">
+
+            <img style="width: 100px; height: 100px; border-radius: 50px;" src="assets/illustrations/default-profile.png" alt="default-profile">
+            <div style="font-size: 15px; font-weight: 550; margin-left: 10px; width: 200px;">
+                <p style="margin: 0">{{user.name}}</p>
+                <p style="margin: 0">{{user.email}}</p>
+            </div>
+            <div style="width: calc(100% - 310px)">
+                <mat-tab-group style="margin-top: 27px;" color="accent" backgroundColor="primary"
+                (selectedIndexChange)="handleIndexChange($event)">
+                    <mat-tab label="My istings"></mat-tab>
+                    <mat-tab label="Saved listings"></mat-tab>
+                    <mat-tab label="Account Details"></mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+    </mat-toolbar>
+</div>
+
+<div style="margin-top: 30px" class="content">
+    <div *ngIf="displayed == 0">
+        <p>my listings</p>
+    </div>
+    <div *ngIf="displayed == 1">
+        <p>saved</p>
+    </div>
+    <div *ngIf="displayed == 2">
+        <p>account details</p>
+    </div>
+</div>
+

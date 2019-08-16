@@ -1,5 +1,6 @@
 package com.azul.coredomain.meta.model;
 
+import com.azul.coredomain.meta.extendable.BaseModel;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,10 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document
-public class Car {
-
-    @CreatedDate
-    private long created;
+public class Car extends BaseModel {
 
     private String title;
     private String description;

@@ -25,7 +25,8 @@
             <button *ngIf="authenticationService.user!=null" [matMenuTriggerFor]="appMenu" mat-stroked-button fxLayout="row" fxLayoutAlign="space-around center"><mat-icon>person</mat-icon>&nbsp;{{authenticationService.user.username}}</button>
         </div>
         <mat-menu #appMenu="matMenu">
-            <button mat-menu-item>Log out</button>
+            <button routerLink="/pages/account" mat-menu-item>My account</button>
+            <button mat-menu-item (click)="logOut()">Log out</button>
         </mat-menu>
     </div>
 </mat-toolbar>

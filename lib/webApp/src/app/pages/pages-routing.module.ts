@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {PagesComponent} from './pages.component';
+import {AuthGuardService} from "../auth/guards/auth-guard.service";
 
 const routes: Routes = [
     {
@@ -18,6 +19,11 @@ const routes: Routes = [
             {
                 path: 'create',
                 loadChildren: './create-listing/create-listing.module#CreateListingModule'
+            },
+            {
+                path: 'account',
+                loadChildren: './account/account.module#AccountModule',
+                canActivate: [AuthGuardService],
             }
         ]
     }

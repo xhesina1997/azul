@@ -18,7 +18,7 @@ export class PagesComponent implements OnInit {
   }
 
   logOut() {
-    this.authenticationService.user = null;
+    this.authenticationService.logOut();
     this.router.navigate(["/pages/listings"]);
   }
 

@@ -1,5 +1,6 @@
 package com.azul.coredomain.meta.extendable;
 
+import com.azul.coredomain.meta.authentication.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,4 +25,6 @@ public class BaseModel {
 
     @LastModifiedDate
     private long updated;
+
+    User user;
 }

@@ -13,7 +13,6 @@ import {MatIconModule} from '@angular/material/icon';
     declarations: [PagesComponent],
     imports: [
         CommonModule,
-
         MatToolbarModule,
         FlexLayoutModule,
         SharedModule,

@@ -1,32 +1,54 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AuthenticationApiService} from "../api/authentication-api.service";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(
-      private authenticationApiService: AuthenticationApiService
-  ) { }
+    constructor(
+        private authenticationApiService: AuthenticationApiService,
+        private cookieService: CookieService,
+    ) {
+        if(this.cookieService.check("USER")){
+            this.user = JSON.parse(this.cookieService.get("USER")).user;
+        }
+    }
 
-  public user: any;
+    public user: any;
 
-  public signIn(usernameOrEmail: string, password: string) {
-    return new Promise((resolve, reject) => {
-      let singInRequestData: any = {
-        usernameOrEmail: usernameOrEmail,
-        password: password
-      }
-      this.authenticationApiService.signIn(singInRequestData).subscribe((data:any) => {
-        console.log(data);
-        this.user = data.user;
-        resolve(data);
-      }, error => {
-        console.log(error);
-        reject(error);
-      })
-    })
+    public isAuthenticated():boolean {
+        if(this.user != null) return true;
+        else return false;
+    }
 
-  }
+    public signIn(usernameOrEmail: string, password: string) {
+        return new Promise((resolve, reject) => {
+            let singInRequestData: any = {
+                usernameOrEmail: usernameOrEmail,
+                password: password
+            }
+            this.authenticationApiService.signIn(singInRequestData).subscribe((data: any) => {
+                console.log(data);
+                this.user = data.user;
+
+                this.createCookie(data);
+
+                resolve(data);
+            }, error => {
+                console.log(error);
+                reject(error);
+            })
+        })
+    }
+
+    public logOut(){
+        this.user = null;
+        this.cookieService.delete("USER")
+    }
+
+    private createCookie(data) {
+        this.cookieService.set("USER", JSON.stringify(data));
+    }
 }

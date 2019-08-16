@@ -85,6 +85,18 @@ public class CarController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+    @ApiOperation(value = "Get car by user")
+    @RequestMapping(value = "/user/{username}",method = RequestMethod.GET)
+    public Page<Car> getAllByUserPaged(@PathVariable String username, Pageable pageable){
+        try {
+            return repos.findAllByUser_Username(username, pageable);
+        }catch (Exception e){
+            logger.error(ERR_GET + e.getMessage());
+            throw new ServiceException(e);
+        }
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Upload new Car")
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public Boolean upload(@RequestBody Car car){

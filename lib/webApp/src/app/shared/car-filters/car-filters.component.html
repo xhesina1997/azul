@@ -59,7 +59,7 @@
         </button>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 100%">
+    <mat-form-field appearance="outline" style="width: 48%">
         <mat-label>
             <mat-icon>invert_colors</mat-icon> &nbsp; Ngjyra:
         </mat-label>
@@ -76,7 +76,7 @@
             <mat-icon color="primary">close</mat-icon>
         </button>
     </mat-form-field>
-    <mat-form-field appearance="outline" style="width: 100%">
+    <mat-form-field appearance="outline" style="margin-left:4%; width: 48%">
         <mat-label>
             <mat-icon>commute</mat-icon> &nbsp;Kambio:
         </mat-label>
@@ -85,6 +85,36 @@
             <mat-option [value]="'manual'"> Manuale</mat-option>
         </mat-select>
         <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('transmission'); $event.stopPropagation();selectedTransmission.setValue('')">
+            <mat-icon color="primary">close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 48%">
+        <mat-label>
+            <mat-icon>map</mat-icon> &nbsp;Qyteti:
+        </mat-label>
+        <mat-select ngDefaultControl [formControl]="selectedCity" placeholder="Qyteti" (selectionChange)="changedFilters('city', $event.value)">
+            <mat-option>
+                <ngx-mat-select-search [formControl]="searchedCity" [placeholderLabel]="'Kerko'"
+                                       [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let city of  filteredCities| async" [value]="city">
+                {{city}}
+            </mat-option>
+        </mat-select>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('city'); $event.stopPropagation();selectedCity.setValue('')">
+            <mat-icon color="primary">close</mat-icon>
+        </button>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="margin-left:4%; width: 48%">
+        <mat-label>
+            <mat-icon>style</mat-icon> &nbsp; Targat:
+        </mat-label>
+        <mat-select  [formControl]="selectedPlateRegistration" (selectionChange)="changedFilters('plateRegistration', $event.value)">
+            <mat-option [value]="'foreign'"> E huaj</mat-option>
+            <mat-option [value]="'domestic'"> Shqiptare</mat-option>
+        </mat-select>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('plateRegistration'); $event.stopPropagation();selectedPlateRegistration.setValue('')">
             <mat-icon color="primary">close</mat-icon>
         </button>
     </mat-form-field>
@@ -103,37 +133,6 @@
         </button>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>
-            <mat-icon>style</mat-icon> &nbsp; Targat:
-        </mat-label>
-        <mat-select  [formControl]="selectedPlateRegistration" (selectionChange)="changedFilters('plateRegistation', $event.value)">
-            <mat-option [value]="'foreign'"> E huaj</mat-option>
-            <mat-option [value]="'domestic'"> Shqiptare</mat-option>
-        </mat-select>
-        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('plateRegistation'); $event.stopPropagation();selectedPlateRegistration.setValue('')">
-            <mat-icon color="primary">close</mat-icon>
-        </button>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>
-            <mat-icon>map</mat-icon> &nbsp;Qyteti:
-        </mat-label>
-        <mat-select ngDefaultControl [formControl]="selectedCity" placeholder="Qyteti" (selectionChange)="changedFilters('city', $event.value)">
-            <mat-option>
-                <ngx-mat-select-search [formControl]="searchedCity" [placeholderLabel]="'Kerko'"
-                    [noEntriesFoundLabel]="'Ska te dhena'"></ngx-mat-select-search>
-            </mat-option>
-            <mat-option *ngFor="let city of  filteredCities| async" [value]="city">
-                {{city}}
-            </mat-option>
-        </mat-select>
-        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter('city'); $event.stopPropagation();selectedCity.setValue('')">
-            <mat-icon color="primary">close</mat-icon>
-        </button>
-    </mat-form-field>
-    
     <!--<div class="custom-slider">-->
     <!--<ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>-->
     <!--</div>-->

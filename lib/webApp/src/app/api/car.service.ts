@@ -23,6 +23,12 @@ export class CarService {
         }));
     }
 
+    getCarsByUsername(username){
+        return this.http.get(environment.apiUrl + 'metadata/cars/user/'+username).pipe(map(res => {
+            return res;
+        }));
+    }
+
     getAllCarModels() {
         return this.http.get(environment.apiUrl + 'metadata/cars/models').pipe(map(res => {
             return res;

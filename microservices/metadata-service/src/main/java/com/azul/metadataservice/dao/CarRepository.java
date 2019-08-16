@@ -3,6 +3,8 @@ package com.azul.metadataservice.dao;
 import com.azul.coredomain.meta.model.Car;
 import com.azul.coredomain.meta.model.QCar;
 import com.querydsl.core.BooleanBuilder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -12,7 +14,10 @@ import java.util.Iterator;
 import java.util.Optional;
 
 public interface CarRepository extends MongoRepository<Car, String>, QuerydslPredicateExecutor<Car>, QuerydslBinderCustomizer<QCar> {
+
     Car findFirstByUuid(String uuid);
+
+    Page<Car> findAllByUser_Username(String userName, Pageable pageable);
 
     @Override
     default void customize(QuerydslBindings bindings, QCar root) {

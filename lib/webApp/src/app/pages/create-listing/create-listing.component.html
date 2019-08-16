@@ -9,7 +9,7 @@
             <br>
             <mat-divider></mat-divider>
             <br>
-            <div fxLayout="row" *ngIf="finishedUploading == false">
+            <div fxLayout="row" *ngIf="finishedUploading == false && authService.user != null">
                 <div fxFlex="80" fxFlex.xs="100" fxFlexOffset="10" fxFlexOffset.xs="0">
                     <form [formGroup]="createForm" (ngSubmit)="createItem(createForm.value)">
                         <div fxLayout="row" fxLayoutGap="15px">
@@ -244,7 +244,7 @@
                 </div>
             </div>
 
-            <div *ngIf="finishedUploading == true">
+            <div *ngIf="finishedUploading == true && authService.user != null">
 
                 <div fxLayout="row" style="margin-left:44%">
                     <span style="margin-top:3px">Postimi u krijua me sukses !</span>
@@ -262,6 +262,17 @@
                     </button>
                 </div>
 
+            </div>
+
+            <div *ngIf="authService.user == null">
+                <p style="text-align: center">
+                    You are not logged in
+                </p>
+                <p style="text-align: center">
+                    <button routerLink="/auth/login" mat-stroked-button>
+                        Login
+                    </button>
+                </p>
             </div>
         </mat-card>
     </div>

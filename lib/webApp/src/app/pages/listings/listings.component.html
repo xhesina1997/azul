@@ -36,19 +36,22 @@
                                  style=" height: 100%; width: 100%; object-fit:cover;">
                         </div>
                         <div fxFlex="70" style="" fxLayout="column">
-                            <div fxLayout="row" fxLayoutAlign="space-between start">
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
                                 <div>
                                     <a [routerLink]="['/pages/listing']" [queryParams]="{id: car.uuid}">
                                         <mat-card-title style="font-size: 16px">{{car?.title}}</mat-card-title>
                                     </a>
-                                    <mat-card-subtitle>{{car?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
-                                        <!--{{car?.price?.currency}}-->
-                                    </mat-card-subtitle>
+                                    <!--<mat-card-subtitle>-->
+                                    <!--</mat-card-subtitle>-->
                                 </div>
-                                <div fxLayout="row">
-                                    <button mat-stroked-button color="primary">Primary</button>
+                                <div fxLayout="row" fxLayoutAlign="space-around center">
+                                    <div style="font-size: 16px; font-weight: 500">
+                                        {{car?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
+                                    </div>
                                     &nbsp;
-                                    <button mat-stroked-button color="accent">Accent</button>
+                                    <button mat-icon-button color="accent">
+                                        <mat-icon>playlist_add</mat-icon>
+                                    </button>
                                 </div>
                             </div>
                             <div fxLayout="row wrap" fxLayoutAlign="space-between center"

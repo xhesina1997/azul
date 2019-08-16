@@ -6,6 +6,7 @@ import {UUID} from 'angular2-uuid';
 import {Subject} from "rxjs/internal/Subject";
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
+import {AuthenticationService} from "../../auth/authentication.service";
 
 @Component({
     selector: 'app-create-listing',
@@ -136,7 +137,8 @@ export class CreateListingComponent implements OnInit {
     constructor(
         private carService: CarService,
         private cdn: CdnService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private authService: AuthenticationService
     ) {
         this.createForm = fb.group({
             'title': [null, Validators.required],
@@ -288,6 +290,14 @@ export class CreateListingComponent implements OnInit {
         console.log(post);
 
         let car: any = CreateListingComponent.generateCarFromPost(post);
+
+        car.user = {
+            id: this.authService.user.id,
+            name: this.authService.user.name,
+            username: this.authService.user.username,
+            email: this.authService.user.email
+        };
+
         let pondFiles = this.myPond.getFiles();
         let count = 1;
 
