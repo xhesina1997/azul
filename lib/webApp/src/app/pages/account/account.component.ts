@@ -12,6 +12,7 @@ export class AccountComponent implements OnInit {
     protected user;
 
     protected displayed = 0;
+    protected listingsCreatedByUser: any[] = [];
 
     constructor(private _authService: AuthenticationService, private carService: CarService) {
         this.user = this._authService.user;
@@ -26,7 +27,11 @@ export class AccountComponent implements OnInit {
     }
 
     getUserListings(){
-        this.carService.getCarsByUsername(this.user.username).subscribe(res => console.log(res))
+        this.carService.getCarsByUsername(this.user.username).subscribe((res:any) => {
+            this.listingsCreatedByUser = res.content;
+            console.log(res);
+            
+        })
     }
 
 }

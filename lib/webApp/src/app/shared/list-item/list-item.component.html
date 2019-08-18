@@ -1,0 +1,27 @@
+<mat-card [routerLink]="['/pages/listing']" [queryParams]="{id: listing.uuid}" class="mat-elevation-z0" style="width: 100%;padding: 0; cursor: pointer;">
+  <div style="padding: 10px 10px;width: 100%">
+    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-weight: 500" title="{{listing.title}}">{{listing.title}}</div>
+  </div>
+  <img src="http://localhost:9090/cdn/{{listing.uuid}}/{{listing.images[0]}}"
+  style=" height:180px; width: 100%; object-fit:cover;overflow: hidden;">
+  <div fxLayout="row wrap" style="padding: 0 10px">
+    <p fxFlex="100">{{listing.year}} {{listing.manufacturer}} {{listing.model}}</p>
+  </div>
+  <mat-divider></mat-divider>
+  <div fxLayout="row wrap" style="padding: 0 10px; margin-top: 10px">
+    <p style="margin-top:0" fxFlex="100"><i>Kambio:</i> {{listing.transmission}}</p>
+    <p style="margin-top:0" fxFlex="100"><i>Karburanti:</i> {{listing.fuel}}</p>
+    <p style="margin-top:0" fxFlex="100"><i>Qyteti:</i> {{listing.city}}</p>
+  </div>
+  <mat-divider></mat-divider>
+  <div fxLayout="row wrap" style="padding: 0 10px 0 0;">
+    
+      <div fxFlex="60" fxLayout="row wrap">
+          <button fxFlex="50" color='primary' mat-button>Edit listing</button>
+          <button fxFlex="50" color='error' mat-button>Delete</button>
+      </div>
+      <p fxFlex="40" style="font-size: 16px; font-weight: 500; text-align: end">
+          {{listing.price.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
+      </p>
+  </div>
+</mat-card>

@@ -6,6 +6,7 @@ import {AccountComponent} from "./account.component";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatTabsModule} from "@angular/material";
+import { ListItemModule } from 'src/app/shared/list-item/list-item.module';
 
 @NgModule({
     declarations: [AccountComponent],
@@ -14,7 +15,8 @@ import {MatTabsModule} from "@angular/material";
         MatToolbarModule,
         FlexLayoutModule,
         MatTabsModule,
-        AccountRoutingModule
+        AccountRoutingModule,
+        ListItemModule
     ]
 })
 export class AccountModule {
