@@ -9,7 +9,7 @@
 
 	<modules>
 		<module>lib</module>
-		<module>microservices</module>
+		<module>zuul-service</module>
 	</modules>
 
 	<properties>

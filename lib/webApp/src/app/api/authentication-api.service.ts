@@ -13,7 +13,7 @@ export class AuthenticationApiService {
   ) { }
 
   signUp(signUpData: any) {
-    return this.httpClient.post(environment.apiUrl + "api/auth/signup", signUpData,
+    return this.httpClient.post(environment.apiUrl + "auth/signup", signUpData,
         {responseType: 'json', headers: {'Content-Type': 'application/json'}})
         .pipe(map(res  => {
           return res
@@ -21,7 +21,7 @@ export class AuthenticationApiService {
   }
 
   signIn(signInData: any) {
-    return this.httpClient.post(environment.apiUrl + "api/auth/signin", signInData,
+    return this.httpClient.post(environment.apiUrl + "auth/signin", signInData,
         {responseType: 'json', headers: {'Content-Type': 'application/json'}})
         .pipe(map(res  => {
           return res
