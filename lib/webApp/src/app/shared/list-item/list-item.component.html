@@ -18,7 +18,7 @@
     
       <div fxFlex="60" fxLayout="row wrap">
           <button fxFlex="50" color='primary' mat-button>Edit listing</button>
-          <button fxFlex="50" color='error' mat-button>Delete</button>
+          <button fxFlex="50" color='error' mat-button (click)="deletePost(listing);$event.stopPropagation()">Delete</button>
       </div>
       <p fxFlex="40" style="font-size: 16px; font-weight: 500; text-align: end">
           {{listing.price.value | currency : 'EUR' : 'symbol' : '1.0-0' }}

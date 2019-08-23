@@ -5,7 +5,7 @@ import {AccountRoutingModule} from './account-routing.module';
 import {AccountComponent} from "./account.component";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {MatTabsModule} from "@angular/material";
+import {MatTabsModule, MatIconModule, MatDividerModule, MatDialogModule, MatButtonModule} from "@angular/material";
 import { ListItemModule } from 'src/app/shared/list-item/list-item.module';
 
 @NgModule({
@@ -16,7 +16,11 @@ import { ListItemModule } from 'src/app/shared/list-item/list-item.module';
         FlexLayoutModule,
         MatTabsModule,
         AccountRoutingModule,
-        ListItemModule
+        ListItemModule,
+        MatIconModule,
+        MatDividerModule,
+        MatDialogModule,
+        MatButtonModule
     ]
 })
 export class AccountModule {

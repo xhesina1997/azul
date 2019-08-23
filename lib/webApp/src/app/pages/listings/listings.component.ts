@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CarService} from "../../api/car.service";
 import {HttpParams} from "@angular/common/http";
+import {AuthenticationService} from "../../auth/authentication.service";
 
 @Component({
     selector: 'app-listings',
@@ -9,7 +10,7 @@ import {HttpParams} from "@angular/common/http";
 })
 export class ListingsComponent implements OnInit {
 
-    constructor(private carService: CarService) {
+    constructor(private carService: CarService,private authenticationService: AuthenticationService) {
     }
 
     protected sort = 'latest';
@@ -81,5 +82,14 @@ export class ListingsComponent implements OnInit {
             this.queryOptions.direction = 'DESC';
         }
         this.getALlCars();
+    }
+    addUserWhoFavourite(car){
+        if(this.authenticationService.isAuthenticated()){
+            this.carService.addUserWhoFavourite(this.authenticationService.user.id,car.id).subscribe(res =>{
+                    console.log(res);
+
+                }
+            )
+        }
     }
 }

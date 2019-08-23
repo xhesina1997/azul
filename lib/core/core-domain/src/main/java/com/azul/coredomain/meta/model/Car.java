@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,4 +33,11 @@ public class Car extends BaseModel {
 
     private String uuid;
     private List<String> images;
+    private List<String> usersWhoFavourite = new ArrayList<>();
+
+    public void addUserToUserWhoFavourite(String userId){
+        if (!usersWhoFavourite.contains(userId)){
+            usersWhoFavourite.add(userId);
+        }
+    }
 }
