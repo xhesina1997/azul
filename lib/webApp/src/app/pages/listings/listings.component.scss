@@ -1,5 +1,7 @@
 mat-card {
-  border: 1px solid #e0e0e0;
+  margin-top: 10px;
+  border-radius: 25px 5px 5px 25px;
+  padding: 0px !important;
 }
 
 .item-wrapper{
@@ -15,4 +17,28 @@ mat-card {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: 80% 50%;
+}
+
+.skewer{
+  overflow: hidden;
+  margin-left: -45px;
+  margin-right: 0px !important;
+  width: 80px;
+  height: inherit;
+  background: #ffffff;
+  -webkit-transform-origin: 100% 0;
+  -ms-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+  -webkit-transform: skew(9deg);
+  -ms-transform: skew(9deg);
+  transform: skew(9deg);
+}
+
+.separator{
+  background: linear-gradient(white, #8484844d);
+  height: 160px;
+  width: 5px;
+  margin-left: 5px;
+  border-radius: 100px;
+  margin-top: 0px;
 }

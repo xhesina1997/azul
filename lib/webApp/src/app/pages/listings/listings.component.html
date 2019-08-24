@@ -6,14 +6,15 @@
             <car-filters (filtersListener)="filtersChanged($event)"></car-filters>
         </div>
     </div>
-    <div fxFlex="70" fxFlex.sm="100" fxFlex.xs="100">
-        <mat-card class="mat-elevation-z0" style="margin-bottom: 20px; height: 30px">
-            <div fxLayout="row" style="width: 100%;" fxLayoutAlign="space-bewteen center">
+    <div fxFlex="70" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column" fxLayoutGap="5px" style="height: auto">
+        
+        <div style="height: 60px;">
+            <div fxLayout="row" style="width: 100%;" fxLayoutAlign="space-bewteen start">
                 <div fxFlex="40">
                     <h2 style="margin-top: 0;">Rezultatet</h2>
                 </div>
                 <div fxFlex="60" fxLayout="row" fxLayoutAlign="end">
-                    <mat-form-field style="margin-top: -10px" >
+                    <mat-form-field style="margin-top: 0" appearance="outline">
                         <mat-label>Radhit sipas:</mat-label>
                         <mat-select [(ngModel)]="sort" (selectionChange)="changedSort($event.value)">
                             <mat-option [value]="'latest'">Postimet e fundit</mat-option>
@@ -23,23 +24,26 @@
                     </mat-form-field>
                 </div>
             </div>
-        </mat-card>
+        </div>
 
-        <mat-card *ngIf="cars?.length != 0; else noCars" class="mat-elevation-z0" style="height: auto; padding: 0;">
+        <div *ngIf="cars?.length != 0; else noCars" style="height: auto;">
 
-            <div *ngFor="let car of cars">
-                <div class="item-wrapper" style="padding: 16px">
+            <mat-card *ngFor="let car of cars">
+                <div class="item-wrapper">
 
                     <div class="item" fxLayout="row" fxLayoutGap="16px">
-                        <div fxFlex="30" style="height: 167px; width: 100%; overflow: hidden">
-                            <img src="http://localhost:9090/cdn/{{car.uuid}}/{{car.images[0]}}"
+                        <div fxFlex="35" style="height: 167px; width: 100%; overflow: hidden; border-radius: 25px 0px 0px 25px; margin-right: 0px !important;">
+                            <img src="../../../assets/images/s6501.jpg"
                                  style=" height: 100%; width: 100%; object-fit:cover;">
                         </div>
-                        <div fxFlex="70" style="" fxLayout="column">
+                        <div class="skewer">
+                            <div class="separator"></div>
+                        </div>
+                        <div fxFlex="65" fxLayout="column">
                             <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <div>
-                                    <a [routerLink]="['/pages/listing']" [queryParams]="{id: car.uuid}">
-                                        <mat-card-title style="font-size: 16px">{{car?.title}}</mat-card-title>
+                                <div style="z-index: 3;">
+                                    <a [routerLink]="['/pages/listing']" [queryParams]="{id: car.uuid}" style="color: black;">
+                                        <mat-card-title style="font-size: 16px;">{{car?.title}}</mat-card-title>
                                     </a>
                                     <!--<mat-card-subtitle>-->
                                     <!--</mat-card-subtitle>-->
@@ -55,7 +59,7 @@
                                 </div>
                             </div>
                             <div fxLayout="row wrap" fxLayoutAlign="space-between center"
-                                 style="width: 100%; margin-top: 10px">
+                                 style="width: 100%; margin-top: 10px; z-index: 2;">
                                 <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
                                     <i style="color: #a8a8a8;">prodhuesi:</i>&nbsp;{{car.manufacturer}}
                                 </div>
@@ -77,20 +81,18 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <mat-divider></mat-divider>
-            </div>
+            </mat-card>
 
-        </mat-card>
+        </div>
 
-        <mat-card *ngIf="cars?.length != 0;" class="mat-elevation-z0" style="margin: 20px 0 20px 0; height: auto; padding: 0px;">
+        <div fxFlex="10" *ngIf="cars?.length != 0;" style="margin: 20px 0 20px 0; height: auto; padding: 0px;">
             <mat-paginator  (page)="changedQueryOptions($event)"
                             style="width: 100%" [length]="queryOptions.total"
                             [pageSize]="queryOptions.size"
                             [pageSizeOptions]="[1, 2, 5, 10, 25]">
             </mat-paginator>
-        </mat-card>
+        </div>
 
         <ng-template #noCars>
             <mat-card class="mat-elevation-z0 no-results">
