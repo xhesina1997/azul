@@ -31,7 +31,7 @@
         <div fxLayout="row wrap">
             <div *ngFor="let listItem of listingsCreatedByUser" fxFlex.lg="25" fxFlex.md="33.33" fxFlex.sm="50" fxFlex.xs="100"
                 style="padding-right: 10px; padding-bottom: 20px;">
-                <app-list-item [listing]="listItem"></app-list-item>
+                <app-list-item [listing]="listItem" (outputEvent)="handleRequest($event)"></app-list-item>
             </div>
         </div>
     </div>
@@ -42,3 +42,17 @@
         <p>account details</p>
     </div>
 </div>
+
+<ng-template #deleteCarModal>
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="modalHeater"
+         style="font-size: 20px; font-weight: 600; font-family: Proxima Nova; margin: 10px;">
+        <div fxFlex="60">Confirm Delete</div>
+    </div>
+    <mat-divider></mat-divider>
+    <br>
+    <p>Are you sure you want to delete post ?</p>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <button mat-flat-button color="primary" type="button" (click)="deleteCarPost()" >Confirm</button>
+        <button mat-flat-button color="error" type="button" (click)="closeDialog()" >Cancel</button>
+    </div>
+</ng-template>

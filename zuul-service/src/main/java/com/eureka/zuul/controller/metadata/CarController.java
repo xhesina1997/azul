@@ -112,6 +112,40 @@ public class CarController {
 
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @ApiOperation(value = "Delete Car")
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    public Boolean delete(@RequestBody Car car){
+        try {
+            if(!this.validateCar(car)){
+                throw new ServiceException("Information not valid");
+            }else{
+                repos.delete(car);
+                return true;
+            }
+        }catch (Exception e){
+            throw new ServiceException(e);
+        }
+
+    }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @ApiOperation(value = "Add user who favourite post")
+    @RequestMapping(value = "/userId/{userId}/postId/{postId}",method = RequestMethod.GET)
+    public void addUserWhoFavourite(@PathVariable String userId, @PathVariable String postId){
+        try {
+            if(repos.findById(postId).isPresent()){
+                Car car  = repos.findById(postId).get();
+                car.addUserToUserWhoFavourite(userId);
+                repos.save(car);
+
+            }
+
+        }catch (Exception e){
+            throw new ServiceException(e);
+        }
+
+    }
+
     /*================== BRANDS & MODELS ==================*/
 
     @Autowired

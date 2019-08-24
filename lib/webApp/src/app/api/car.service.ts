@@ -55,4 +55,16 @@ export class CarService {
             }));
     }
 
+    deleteCar(car){
+        return this.http.post(environment.apiUrl + "metadata/cars/delete", car)
+            .pipe(map(res  => {
+                return res
+            }));
+    }
+
+    addUserWhoFavourite(userId,postId){
+        return this.http.get(environment.apiUrl + 'metadata/cars/userId/'+userId+"/postId/"+postId).pipe(map(res => {
+            return res;
+        }));
+    }
 }

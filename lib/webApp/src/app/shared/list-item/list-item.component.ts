@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output} from '@angular/core';
+import {Subject} from "rxjs/Subject";
+import {CarService} from "../../api/car.service";
 
 @Component({
   selector: 'app-list-item',
@@ -9,10 +11,19 @@ export class ListItemComponent implements OnInit {
 
 
   @Input() listing: any = {};
+  @Output() outputEvent = new Subject();
+    constructor(private carService: CarService) { }
 
-  constructor() { }
+    ngOnInit() {
+    }
 
-  ngOnInit() {
-  }
+    deletePost(post) {
+        let output = {
+            type: "delete",
+            target: post
+        };
+        this.outputEvent.next(output);
+    }
+
 
 }
