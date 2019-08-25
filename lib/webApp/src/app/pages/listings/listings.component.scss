@@ -35,10 +35,16 @@ mat-card {
 }
 
 .separator{
-  background: linear-gradient(white, #8484844d);
+  background: linear-gradient(white, #3c909978);
   height: 160px;
   width: 5px;
   margin-left: 5px;
   border-radius: 100px;
   margin-top: 0px;
 }
+
+:host /deep/ .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #3c9099;
+}
+
+.btn-favorite-color {color: rgb(255, 80, 100);}

@@ -1,5 +1,5 @@
 mat-card {
-  border: 1px solid #e0e0e0;
+  border: 1px solid #ff875480;
 }
 
 :host /deep/ .mat-form-field-wrapper{
@@ -11,4 +11,12 @@ mat-card {
 }
 :host /deep/ .custom-slider .ng5-slider .ng5-slider-pointer {
   background-color: #5400B8;
+}
+
+:host /deep/ .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #ff8854;
+}
+
+:host /deep/ .mat-icon.mat-primary {
+  color: #ff8854;
 }
