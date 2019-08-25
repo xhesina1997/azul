@@ -27,7 +27,7 @@
         </div>
 
         <div *ngIf="cars?.length != 0; else noCars" 
-        style="height: auto; border-left: 1px solid rgba(60, 144, 153, 0.27); padding: 0px 0px 0px 20px;">
+        style="height: auto; padding: 0px 0px 0px 0px;">
 
             <mat-card *ngFor="let car of cars" style="background: white;">
                 <div class="item-wrapper">
@@ -91,7 +91,7 @@
 
         <div fxFlex="10" *ngIf="cars?.length != 0;" style="margin: 20px 0 20px 0; height: auto; padding: 0px;">
             <mat-paginator  (page)="changedQueryOptions($event)"
-                            style="width: 100%" [length]="queryOptions.total"
+                            style="width: 100%; background: rgb(248, 248, 248);" [length]="queryOptions.total"
                             [pageSize]="queryOptions.size"
                             [pageSizeOptions]="[1, 2, 5, 10, 25]">
             </mat-paginator>
