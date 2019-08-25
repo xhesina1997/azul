@@ -26,9 +26,10 @@
             </div>
         </div>
 
-        <div *ngIf="cars?.length != 0; else noCars" style="height: auto;">
+        <div *ngIf="cars?.length != 0; else noCars" 
+        style="height: auto; border-left: 1px solid rgba(60, 144, 153, 0.27); padding: 0px 0px 0px 20px;">
 
-            <mat-card *ngFor="let car of cars">
+            <mat-card *ngFor="let car of cars" style="background: white;">
                 <div class="item-wrapper">
 
                     <div class="item" fxLayout="row" fxLayoutGap="16px">
@@ -55,8 +56,8 @@
                                         {{car?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
                                     </div>
                                     &nbsp;
-                                    <button mat-icon-button color="accent" (click)="addUserWhoFavourite(car)">
-                                        <mat-icon>playlist_add</mat-icon>
+                                    <button mat-icon-button class="btn-favorite-color" (click)="addUserWhoFavourite(car)">
+                                        <mat-icon>favorite_border</mat-icon>
                                     </button>
                                 </div>
                             </div>
