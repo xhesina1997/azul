@@ -73,7 +73,7 @@ export class ListingsComponent implements OnInit {
     changedSort(event){
         if(event == 'latest') {
             this.queryOptions.sort = 'created';
-            this.queryOptions.direction = 'DESC';
+            this.queryOptions.direction = 'ASC';
         } else if(event == 'price-l') {
             this.queryOptions.sort = 'price.value';
             this.queryOptions.direction = 'ASC';
