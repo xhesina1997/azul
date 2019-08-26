@@ -27,7 +27,7 @@
             <button *ngIf="authenticationService.user==null" mat-stroked-button routerLink="/auth/login" fxLayout="row" fxLayoutAlign="space-around center"
             class="buttonFont" style="width: 140px;"><mat-icon>person</mat-icon>&nbsp;Login/Register</button>
             <button *ngIf="authenticationService.user!=null" [matMenuTriggerFor]="appMenu" mat-stroked-button fxLayout="row" fxLayoutAlign="space-around center"
-            class="buttonFont" style="width: 140px;"><mat-icon>person</mat-icon>&nbsp;{{authenticationService.user.username}}</button>
+            class="buttonFont" style="width: 140px;"><mat-icon>person</mat-icon>&nbsp;{{authenticationService.user.name}}</button>
         </div>
         <mat-menu #appMenu="matMenu">
             <button routerLink="/pages/account" mat-menu-item>My account</button>

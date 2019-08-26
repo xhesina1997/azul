@@ -28,11 +28,11 @@ export class RegisterComponent implements OnInit {
     let singUpRequestData: any = {
       name: this.name,
       username: this.username,
-      email: this.email,
+      // email: this.email,
       password: this.password
     }
     this.authenticationApiService.signUp(singUpRequestData).subscribe(data => {
-      this.authenticationService.signIn(this.email, this.password).then(() => {
+      this.authenticationService.signIn(this.username, this.password).then(() => {
         this.router.navigate(['/pages/listings']);
       });
     }, error => {

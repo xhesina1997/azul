@@ -26,9 +26,9 @@ public class User implements UserDetails {
     @Size(max = 15)
     private String username;
 
-    @NotBlank
-    @Size(max = 40)
-    @Email
+//    @NotBlank
+//    @Size(max = 40)
+//    @Email
     private String email;
 
     @NotBlank
@@ -47,10 +47,9 @@ public class User implements UserDetails {
 
     }
 
-    public User(String name, String username, String email, String password) {
+    public User(String name, String username, String password) {
         this.name = name;
         this.username = username;
-        this.email = email;
         this.password = password;
     }
 

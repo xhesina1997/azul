@@ -49,7 +49,7 @@ public class AuthController {
 
     @PostConstruct
     private void addAdminUser() {
-        User user = new User("admin", "admin", "admin@admin.com", "admin");
+        User user = new User("admin", "77777", "admin");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role userRole = new Role();
         userRole.setName(RoleName.ROLE_ADMIN);
@@ -58,7 +58,7 @@ public class AuthController {
             initAttempts++;
             logger.info("Attempting to add Admin User! Attempt number: " + initAttempts);
             if (userRepository.findByUsernameOrEmail(user.getUsername(), user.getUsername()).isPresent()) {
-                if (!userRepository.existsByUsername(user.getUsername()) && !userRepository.existsByEmail(user.getEmail())) {
+                if (!userRepository.existsByUsername(user.getUsername())) {
                     userRepository.save(user);
                 }
             }
@@ -92,14 +92,14 @@ public class AuthController {
 
         String jwt = tokenProvider.generateToken(authentication);
         User userPrincipal = (User) authentication.getPrincipal();
+        userPrincipal.setPassword(null);
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, userPrincipal));
     }
 
     @PostMapping("/signup")
     public ResponseEntity<User> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
 
-        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(), signUpRequest.getPassword());
+        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getPassword());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
@@ -115,20 +115,12 @@ public class AuthController {
             return new ResponseEntity(apiResponse, HttpStatus.BAD_REQUEST);
         }
 
-//        URI location = ServletUriComponentsBuilder
-//                .fromCurrentContextPath().path("/users/{username}")
-//                .buildAndExpand(user.getUsername()).toUri();
         return ResponseEntity.ok(user);
-//        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }
 
     public ApiResponse addUser(User user) {
         if(userRepository.existsByUsername(user.getUsername())) {
-            return new ApiResponse(false, "Username is already taken!");
-        }
-
-        if(userRepository.existsByEmail(user.getEmail())) {
-            return new ApiResponse(false, "Email Address already in use!");
+            return new ApiResponse(false, "Phone number is already taken!");
         }
 
         userRepository.save(user);

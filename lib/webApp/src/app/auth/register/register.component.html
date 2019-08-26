@@ -8,24 +8,25 @@
       <mat-card-content>
         <form class="example-form">
           <table class="example-full-width" cellspacing="2">
+
+            <tr>
+              <td>
+                <mat-form-field appearance="outline"class="example-full-width">
+                  <input matInput placeholder="Phone Number"[(ngModel)]="username"name="username"required>
+                </mat-form-field>
+              </td>
+            </tr>
+            <!--<tr>-->
+              <!--<td>-->
+                <!--<mat-form-field appearance="outline"class="example-full-width">-->
+                  <!--<input matInput placeholder="Email"[(ngModel)]="email"name="email"required>-->
+                <!--</mat-form-field>-->
+              <!--</td>-->
+            <!--</tr>-->
             <tr>
               <td>
                 <mat-form-field appearance="outline"class="example-full-width">
                   <input matInput placeholder="Name"[(ngModel)]="name"name="name"required>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field appearance="outline"class="example-full-width">
-                  <input matInput placeholder="Username"[(ngModel)]="username"name="username"required>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field appearance="outline"class="example-full-width">
-                  <input matInput placeholder="Email"[(ngModel)]="email"name="email"required>
                 </mat-form-field>
               </td>
             </tr>
