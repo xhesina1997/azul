@@ -30,7 +30,6 @@ export class AuthenticationService {
                 password: password
             }
             this.authenticationApiService.signIn(singInRequestData).subscribe((data: any) => {
-                console.log(data);
                 this.user = data.user;
 
                 this.createCookie(data);
