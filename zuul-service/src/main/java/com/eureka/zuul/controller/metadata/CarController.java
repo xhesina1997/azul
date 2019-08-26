@@ -143,7 +143,17 @@ public class CarController {
         }catch (Exception e){
             throw new ServiceException(e);
         }
+    }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @ApiOperation(value = "Add user who favourite post")
+    @RequestMapping(value = "favourite-cars/userId/{userId}",method = RequestMethod.GET)
+    public Page<Car> getUsersFavouriteCars(@PathVariable String userId, Pageable pageable){
+        try {
+            return repos.findAllByUsersWhoFavouriteContains(userId, pageable);
+        }catch (Exception e){
+            throw new ServiceException(e);
+        }
     }
 
     /*================== BRANDS & MODELS ==================*/

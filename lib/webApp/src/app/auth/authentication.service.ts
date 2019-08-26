@@ -25,10 +25,11 @@ export class AuthenticationService {
 
     public signIn(usernameOrEmail: string, password: string) {
         return new Promise((resolve, reject) => {
+            this.cookieService.check("USER") ? this.cookieService.delete("USER") : {};
             let singInRequestData: any = {
                 usernameOrEmail: usernameOrEmail,
                 password: password
-            }
+            };
             this.authenticationApiService.signIn(singInRequestData).subscribe((data: any) => {
                 console.log(data);
                 this.user = data.user;

@@ -67,4 +67,10 @@ export class CarService {
             return res;
         }));
     }
+
+    getUsersFAvouriteCars(userId){
+        return this.http.get(environment.apiUrl + 'metadata/cars/favourite-cars/userId/'+userId).pipe(map(res => {
+            return res;
+        }));
+    }
 }

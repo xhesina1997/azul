@@ -19,6 +19,8 @@ public interface CarRepository extends MongoRepository<Car, String>, QuerydslPre
 
     Page<Car> findAllByUser_Username(String userName, Pageable pageable);
 
+    Page<Car> findAllByUsersWhoFavouriteContains(String userId, Pageable pageable);
+
     @Override
     default void customize(QuerydslBindings bindings, QCar root) {
         bindings.bind(QCar.car.title).all((title, collection) -> {

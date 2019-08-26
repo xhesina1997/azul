@@ -36,7 +36,12 @@
         </div>
     </div>
     <div *ngIf="displayed == 1">
-        <p>saved</p>
+        <div fxLayout="row wrap">
+            <div *ngFor="let listItem of favouriteListings" fxFlex.lg="25" fxFlex.md="33.33" fxFlex.sm="50" fxFlex.xs="100"
+                 style="padding-right: 10px; padding-bottom: 20px;">
+                <app-list-item [listing]="listItem"></app-list-item>
+            </div>
+        </div>
     </div>
     <div *ngIf="displayed == 2">
         <p>account details</p>

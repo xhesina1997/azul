@@ -14,6 +14,7 @@ export class AccountComponent implements OnInit {
     public dialogRef: any;
     protected displayed = 0;
     protected listingsCreatedByUser: any[] = [];
+    protected favouriteListings: any[] = [];
 
     protected carToBeDeleted: any;
     constructor(private _authService: AuthenticationService, private carService: CarService, public dialog: MatDialog) {
@@ -22,6 +23,7 @@ export class AccountComponent implements OnInit {
 
     ngOnInit() {
         this.getUserListings();
+        this.getUserFavourites();
     }
 
     handleIndexChange(index) {
@@ -31,8 +33,12 @@ export class AccountComponent implements OnInit {
     getUserListings(){
         this.carService.getCarsByUsername(this.user.username).subscribe((res:any) => {
             this.listingsCreatedByUser = res.content;
-            console.log(res);
-            
+        })
+    }
+
+    getUserFavourites(){
+        this.carService.getUsersFAvouriteCars(this.user.id).subscribe((res:any) => {
+            this.favouriteListings = res.content;
         })
     }
 
@@ -49,6 +55,7 @@ export class AccountComponent implements OnInit {
             this.closeDialog();
         })
     }
+
     handleRequest(event) {
         switch (event.type) {
             case "delete": {
