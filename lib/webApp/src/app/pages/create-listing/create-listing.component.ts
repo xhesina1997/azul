@@ -354,5 +354,4 @@ export class CreateListingComponent implements OnInit {
     resetView() {
         this.finishedUploading = false;
     }
-
 }

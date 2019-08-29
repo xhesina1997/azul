@@ -14,7 +14,7 @@
                     <h2 style="margin-top: 0;">Rezultatet</h2>
                 </div>
                 <div fxFlex="60" fxLayout="row" fxLayoutAlign="end">
-                    <mat-form-field style="margin-top: 0" appearance="outline">
+                    <mat-form-field style="margin-top: 0">
                         <mat-label>Radhit sipas:</mat-label>
                         <mat-select [(ngModel)]="sort" (selectionChange)="changedSort($event.value)">
                             <mat-option [value]="'latest'">Postimet e fundit</mat-option>

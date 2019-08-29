@@ -50,14 +50,14 @@
 
 <ng-template #deleteCarModal>
     <div fxLayout="row" fxLayoutAlign="space-between center" class="modalHeater"
-         style="font-size: 20px; font-weight: 600; font-family: Proxima Nova; margin: 10px;">
-        <div fxFlex="60">Confirm Delete</div>
+         style="font-size: 20px; font-weight: 600; font-family: 'Montserrat'; margin: 10px;">
+        <div fxFlex="60" >Confirm Delete</div>
     </div>
     <mat-divider></mat-divider>
     <br>
     <p>Are you sure you want to delete post ?</p>
     <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-        <button mat-flat-button color="primary" type="button" (click)="deleteCarPost()" >Confirm</button>
-        <button mat-flat-button color="error" type="button" (click)="closeDialog()" >Cancel</button>
+        <button  mat-raised-button color="primary" (click)="deleteCarPost()" >Confirm</button>
+        <button  mat-raised-button color="error"  (click)="closeDialog()" >Cancel</button>
     </div>
 </ng-template>

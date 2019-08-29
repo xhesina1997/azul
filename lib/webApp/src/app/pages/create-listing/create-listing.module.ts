@@ -12,11 +12,9 @@ import {
     MatIconModule
 } from "@angular/material";
 import {MatInputModule} from '@angular/material/input';
-
 import { FormsModule, ReactiveFormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
-
-
+import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 // import filepond module
 import { FilePondModule, registerPlugin } from 'ngx-filepond';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
@@ -41,7 +39,9 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
         MatButtonModule,
         MatDividerModule,
         MatIconModule,
-        NgxMatSelectSearchModule
+        NgxMatSelectSearchModule,
+        RichTextEditorAllModule,
+        
     ],
     providers: [
         {

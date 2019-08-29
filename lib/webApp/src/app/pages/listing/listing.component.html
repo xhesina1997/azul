@@ -28,7 +28,7 @@
         </mat-card>
         <div style="margin-top: 20px">
             <mat-card class="mat-elevation-z0" style="height: 150px;">
-                {{selectedCar?.description}}
+                <div [innerHTML]="selectedCar?.description"></div>
             </mat-card>
         </div>
     </div>
