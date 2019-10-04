@@ -1,29 +1,35 @@
 import {Component, OnInit, Input, Output} from '@angular/core';
 import {Subject} from "rxjs/Subject";
 import {CarService} from "../../api/car.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
-  selector: 'app-list-item',
-  templateUrl: './list-item.component.html',
-  styleUrls: ['./list-item.component.scss']
+    selector: 'app-list-item',
+    templateUrl: './list-item.component.html',
+    styleUrls: ['./list-item.component.scss']
 })
 export class ListItemComponent implements OnInit {
 
+    @Input() listing: any = {};
+    @Input() view: any = {};
+    @Output() outputEvent = new Subject();
 
-  @Input() listing: any = {};
-  @Output() outputEvent = new Subject();
-    constructor(private carService: CarService) { }
+    protected env = environment;
+
+    constructor(private carService: CarService) {
+
+    }
 
     ngOnInit() {
     }
 
-    deletePost(post) {
-        let output = {
-            type: "delete",
-            target: post
-        };
+    deletePost() {
+        let output = {type: "delete", target: this.listing};
         this.outputEvent.next(output);
     }
 
-
+    favourite(){
+        let output = {type: "favourite", target: this.listing};
+        this.outputEvent.next(output);
+    }
 }

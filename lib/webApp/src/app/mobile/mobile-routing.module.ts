@@ -4,7 +4,31 @@ import {MobileComponent} from "./mobile.component";
 
 const routes: Routes = [{
     path: '',
-    component: MobileComponent
+    component: MobileComponent,
+    children: [
+        {
+            path: 'search',
+            loadChildren: '../pages/listings/listings.module#ListingsModule'
+        },
+        {
+            path: 'account',
+            loadChildren: '../pages/account/account.module#AccountModule'
+        },
+        {
+            path: 'listing',
+            loadChildren: '../pages/listing/listing.module#ListingModule'
+        },
+        {
+            path: 'add-listing',
+            loadChildren: '../pages/create-listing/create-listing.module#CreateListingModule'
+        },
+        {
+            path: '', redirectTo: 'search', pathMatch: 'full'
+        },
+        {
+            path: '**', redirectTo: 'search'
+        }
+    ]
 }];
 
 @NgModule({

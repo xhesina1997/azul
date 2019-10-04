@@ -1,129 +1,285 @@
-<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between" style="padding-top: 20px">
-    <div fxFlex="100">
-        <mat-card class="mat-elevation-z0" style="margin-bottom: 20px;">
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-                <div>
-                    <h2 style="margin: 0">{{selectedCar.title}}</h2>
-                </div>
-                <div fxLayout="row">
-                    <mat-icon style="margin-top:1.6%">attach_money</mat-icon> <span style="margin-top: 7px;margin-right:55px;font-size: 21px">
-                        {{selectedCar?.price?.value}}
-                        {{selectedCar?.price?.currency}}</span>&nbsp;&nbsp;
-                    <button mat-stroked-button color="primary">Primary</button>
-                    &nbsp;
-                    <button mat-stroked-button color="accent">Accent</button>
+<!--<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between" style="padding-top: 20px">-->
+<!--<div fxFlex="100">-->
+<!--<mat-card class="mat-elevation-z0" style="margin-bottom: 20px;">-->
+<!--<div fxLayout="row" fxLayoutAlign="space-between center">-->
+<!--<div>-->
+<!--<h2 style="margin: 0">{{selectedCar.title}}</h2>-->
+<!--</div>-->
+<!--<div fxLayout="row">-->
+<!--<mat-icon style="margin-top:1.6%">attach_money</mat-icon> <span style="margin-top: 7px;margin-right:55px;font-size: 21px">-->
+<!--{{selectedCar?.price?.value}}-->
+<!--{{selectedCar?.price?.currency}}</span>&nbsp;&nbsp;-->
+<!--<button mat-stroked-button color="primary">Primary</button>-->
+<!--&nbsp;-->
+<!--<button mat-stroked-button color="accent">Accent</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</mat-card>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between" style="padding-bottom: 20px">-->
+<!--<div fxFlex="70">-->
+<!--<mat-card class="mat-elevation-z0" style="height: 500px;">-->
+<!--<owl-carousel-o [options]="customOptions">-->
+<!--<ng-template carouselSlide *ngFor="let image of selectedCar?.images">-->
+<!--<img style=" height: 480px; width: 100%; object-fit:cover;" src="http://localhost:8762/images/cdn/{{selectedCar.uuid}}/{{image}}">-->
+<!--</ng-template>-->
+<!--</owl-carousel-o>-->
+<!--</mat-card>-->
+<!--<div style="margin-top: 20px">-->
+<!--<mat-card class="mat-elevation-z0" style="height: 150px;">-->
+<!--<div [innerHTML]="selectedCar?.description"></div>-->
+<!--</mat-card>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<div fxFlex="30">-->
+<!--<mat-card class="mat-elevation-z0" style=" height: 704px">-->
+<!--<div fxLayout="column">-->
+<!--<div style="padding-bottom: 20px" fxLayout="row">-->
+<!--<div fxFlexFill fxFlex="10">-->
+<!--<mat-icon style="font-size: 18px">build</mat-icon>-->
+<!--</div>-->
+<!--<div fxFlexFill fxFlex="90">-->
+<!--<span style="font-weight: 580;">Prodhuesi:</span> &nbsp;{{selectedCar?.manufacturer}}-->
+<!--</div>-->
+<!--</div>-->
+<!--<div style="padding-bottom: 20px" fxLayout="row">-->
+<!--<div fxFlexFill fxFlex="10">-->
+<!--<mat-icon style="font-size: 18px">merge_type</mat-icon>-->
+<!--</div>-->
+<!--<div fxFlexFill fxFlex="90">-->
+<!--<span style="font-weight: 580;">Modeli:</span> &nbsp;{{selectedCar?.model}}-->
+<!--</div>-->
+<!--</div>-->
+<!--<div style="padding-bottom: 20px" fxLayout="row">-->
+<!--<div fxFlexFill fxFlex="10">-->
+<!--<mat-icon style="font-size: 18px">directions_car</mat-icon>-->
+<!--</div>-->
+<!--<div fxFlexFill fxFlex="90">-->
+<!--<span style="font-weight: 580;">Struktura:</span> &nbsp;{{selectedCar?.structure}}-->
+<!--</div>-->
+<!--</div>-->
+<!--<div style="padding-bottom: 20px" fxLayout="row">-->
+<!--<div fxFlexFill fxFlex="10">-->
+<!--<mat-icon style="font-size: 18px">calendar_today</mat-icon>-->
+<!--</div>-->
+<!--<div fxFlexFill fxFlex="90">-->
+<!--<span style="font-weight: 580;">Viti:</span> &nbsp;{{selectedCar?.year}}-->
+<!--</div>-->
+<!--</div>-->
+<!--<div style="padding-bottom: 20px" fxLayout="row">-->
+<!--<div fxFlexFill fxFlex="10">-->
+<!--<mat-icon style="font-size: 18px">invert_colors</mat-icon>-->
+<!--</div>-->
+<!--<div fxFlexFill fxFlex="90">-->
+<!--<span style="font-weight: 580;">Ngjyra:</span> &nbsp;{{selectedCar?.color}}-->
+<!--</div>-->
+
+<!--</div>-->
+<!--<div style="padding-bottom: 20px" fxLayout="row">-->
+<!--<div fxFlexFill fxFlex="10">-->
+<!--<mat-icon style="font-size: 18px">commute</mat-icon>-->
+<!--</div>-->
+<!--<div fxFlexFill fxFlex="90">-->
+<!--<span style="font-weight: 580;">Kambio:</span> &nbsp;{{selectedCar?.transmission}}-->
+<!--</div>-->
+<!--</div>-->
+<!--<div style="padding-bottom: 20px" fxLayout="row">-->
+<!--<div fxFlexFill fxFlex="10">-->
+<!--<mat-icon style="font-size: 18px">category</mat-icon>-->
+<!--</div>-->
+<!--<div fxFlexFill fxFlex="90">-->
+<!--<span style="font-weight: 580;">Karburanti:</span> &nbsp;{{selectedCar?.fuel}}-->
+<!--</div>-->
+<!--</div>-->
+<!--<div style="padding-bottom: 20px" fxLayout="row">-->
+<!--<div fxFlexFill fxFlex="10">-->
+<!--<mat-icon style="font-size: 18px">style</mat-icon>-->
+<!--</div>-->
+<!--<div fxFlexFill fxFlex="90">-->
+<!--<span style="font-weight: 580;">Targa:</span> &nbsp;{{selectedCar?.plateRegistration}}-->
+<!--</div>-->
+<!--</div>-->
+<!--<div style="padding-bottom: 20px" fxLayout="row">-->
+<!--<div fxFlexFill fxFlex="10">-->
+<!--<mat-icon style="font-size: 18px">map</mat-icon>-->
+<!--</div>-->
+<!--<div fxFlexFill fxFlex="90">-->
+<!--<span style="font-weight: 580;">Qyteti:</span> &nbsp;{{selectedCar?.city}}-->
+<!--</div>-->
+<!--</div>-->
+<!--<div style="padding-bottom: 20px" fxLayout="row">-->
+<!--<div fxFlexFill fxFlex="10">-->
+<!--<mat-icon style="font-size: 18px">timeline</mat-icon>-->
+<!--</div>-->
+<!--<div fxFlexFill fxFlex="90">-->
+<!--<span style="font-weight: 580;">Kilometrat:</span> &nbsp;{{selectedCar?.mileage}}-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</mat-card>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div fxLayout="row" style="padding-bottom: 20px">-->
+<!--<mat-card style="width: 100%;height:350px">-->
+<!--Postime te ngjashme-->
+<!--</mat-card>-->
+<!--</div>-->
+
+<div [routerLink]="['/mobile/search']" #back matRipple style="width: 32px;
+    margin: 6px;
+    height: 32px;
+    background-color: white;
+    position: absolute;
+    border-radius: 18px;
+    border: 2px solid #5a5ab8;
+    z-index: 10;">
+    <mat-icon style="margin: 4px 3px;" color="primary">arrow_back</mat-icon>
+</div>
+
+<button style="position: absolute;
+    bottom: 16px;
+    right: 16px;
+    padding: 4px 30px;
+    font-size: 18px;
+    border-radius: 25px;" mat-raised-button color="primary">
+    <mat-icon style="margin-right: 10px">call</mat-icon>
+    Call
+</button>
+
+<div #images>
+    <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let image of selectedCar?.images">
+            <img style=" height: 240px; width: 100%; object-fit:cover;"
+                 src="{{env.apiUrl}}images/cdn/{{selectedCar.uuid}}/{{image}}">
+        </ng-template>
+    </owl-carousel-o>
+</div>
+<div style="padding: 16px; overflow-y: auto">
+    <div style="margin-bottom: 5px;">{{selectedCar.title}}</div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <div fxLayout="column" fxFlex="33.33" fxLayoutAlign="center center">
+            <div matRipple style="width: 55px; height: 51px; margin-bottom: 7px;">
+                <button [disableRipple]="true" style="width: 55px; height: 35px;" mat-icon-button>
+                    <mat-icon style="color: #8c8c8c; font-size: 32px; padding: 0; margin-left: -4px;">playlist_add
+                    </mat-icon>
+                </button>
+                <div style="width: 55px; text-align: center; color: #8c8c8c; font-size: 13px; margin-top: 0px; margin-bottom: 10px;">
+                    save
                 </div>
             </div>
-        </mat-card>
+        </div>
+        <div fxLayout="column" fxFlex="33.33" fxLayoutAlign="center center">
+            <div matRipple style="width: 55px; height: 51px; margin-bottom: 7px;">
+                <button [disableRipple]="true" style="width: 55px; height: 35px;" mat-icon-button>
+                    <mat-icon style="color: #8c8c8c; font-size: 26px; padding: 0; margin-left: -3px;">share
+                    </mat-icon>
+                </button>
+                <div style="width: 55px; text-align: center; color: #8c8c8c; font-size: 13px; margin-top: 0px; margin-bottom: 10px;">
+                    share
+                </div>
+            </div>
+        </div>
+        <div fxLayout="column" fxFlex="33.33" fxLayoutAlign="center center">
+            <div matRipple style="width: 55px; height: 51px; margin-bottom: 7px;">
+                <button [disableRipple]="true" style="width: 55px; height: 35px;" mat-icon-button>
+                    <mat-icon style="color: #8c8c8c; font-size: 25px; padding: 0; margin-left: 0;">call</mat-icon>
+                </button>
+                <div style="width: 55px; text-align: center; color: #8c8c8c; font-size: 13px; margin-top: 0px; margin-bottom: 10px;">call</div>
+            </div>
+        </div>
     </div>
-</div>
-<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between" style="padding-bottom: 20px">
-    <div fxFlex="70">
-        <mat-card class="mat-elevation-z0" style="height: 500px;">
-            <owl-carousel-o [options]="customOptions">
-                <ng-template carouselSlide *ngFor="let image of selectedCar?.images">
-                    <img style=" height: 480px; width: 100%; object-fit:cover;" src="http://localhost:8762/images/cdn/{{selectedCar.uuid}}/{{image}}">
-                </ng-template>
-            </owl-carousel-o>
-        </mat-card>
-        <div style="margin-top: 20px">
-            <mat-card class="mat-elevation-z0" style="height: 150px;">
-                <div [innerHTML]="selectedCar?.description"></div>
-            </mat-card>
+    <mat-divider style="margin-bottom: 10px"></mat-divider>
+
+    <!--TODO: we need to validate description and not let user insert tags or scripts-->
+    <!--TODO: we need a show-more-show-less component for text-->
+    <div style="color: #8c8c8c; font-size: 15px; overflow: hidden; text-overflow: ellipsis; height: 53px;"
+         [innerHTML]="selectedCar?.description"></div>
+    <mat-divider style="margin-top: 20px"></mat-divider>
+    <div style="margin-top: 20px" fxLayout="row wrap">
+        <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+            <div fxFlexFill fxFlex="10">
+                <mat-icon style="font-size: 18px; color: #8c8c8c">build</mat-icon>
+            </div>
+            <div fxFlexFill fxFlex="90">
+                <span style="font-weight: 580; color: #8c8c8c">Prodhuesi:</span> &nbsp;{{selectedCar?.manufacturer}}
+            </div>
+        </div>
+        <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+            <div fxFlexFill fxFlex="10">
+                <mat-icon style="font-size: 18px; color: #8c8c8c">merge_type</mat-icon>
+            </div>
+            <div fxFlexFill fxFlex="90">
+                <span style="font-weight: 580; color: #8c8c8c">Modeli:</span> &nbsp;{{selectedCar?.model}}
+            </div>
+        </div>
+        <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+            <div fxFlexFill fxFlex="10">
+                <mat-icon style="font-size: 18px; color: #8c8c8c">directions_car</mat-icon>
+            </div>
+            <div fxFlexFill fxFlex="90">
+                <span style="font-weight: 580; color: #8c8c8c">Struktura:</span> &nbsp;{{selectedCar?.structure}}
+            </div>
+        </div>
+        <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+            <div fxFlexFill fxFlex="10">
+                <mat-icon style="font-size: 18px; color: #8c8c8c">calendar_today</mat-icon>
+            </div>
+            <div fxFlexFill fxFlex="90">
+                <span style="font-weight: 580; color: #8c8c8c">Viti:</span> &nbsp;{{selectedCar?.year}}
+            </div>
+        </div>
+        <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+            <div fxFlexFill fxFlex="10">
+                <mat-icon style="font-size: 18px; color: #8c8c8c">invert_colors</mat-icon>
+            </div>
+            <div fxFlexFill fxFlex="90">
+                <span style="font-weight: 580; color: #8c8c8c">Ngjyra:</span> &nbsp;{{selectedCar?.color}}
+            </div>
+
+        </div>
+        <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+            <div fxFlexFill fxFlex="10">
+                <mat-icon style="font-size: 18px; color: #8c8c8c">commute</mat-icon>
+            </div>
+            <div fxFlexFill fxFlex="90">
+                <span style="font-weight: 580; color: #8c8c8c">Kambio:</span> &nbsp;{{selectedCar?.transmission}}
+            </div>
+        </div>
+        <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+            <div fxFlexFill fxFlex="10">
+                <mat-icon style="font-size: 18px; color: #8c8c8c">category</mat-icon>
+            </div>
+            <div fxFlexFill fxFlex="90">
+                <span style="font-weight: 580; color: #8c8c8c">Karburanti:</span> &nbsp;{{selectedCar?.fuel}}
+            </div>
+        </div>
+        <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+            <div fxFlexFill fxFlex="10">
+                <mat-icon style="font-size: 18px; color: #8c8c8c">style</mat-icon>
+            </div>
+            <div fxFlexFill fxFlex="90">
+                <span style="font-weight: 580; color: #8c8c8c">Targa:</span> &nbsp;{{selectedCar?.plateRegistration}}
+            </div>
+        </div>
+        <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+            <div fxFlexFill fxFlex="10">
+                <mat-icon style="font-size: 18px; color: #8c8c8c">map</mat-icon>
+            </div>
+            <div fxFlexFill fxFlex="90">
+                <span style="font-weight: 580; color: #8c8c8c">Qyteti:</span> &nbsp;{{selectedCar?.city}}
+            </div>
+        </div>
+        <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+            <div fxFlexFill fxFlex="10">
+                <mat-icon style="font-size: 18px; color: #8c8c8c">timeline</mat-icon>
+            </div>
+            <div fxFlexFill fxFlex="90">
+                <span style="font-weight: 580; color: #8c8c8c">Kilometrat:</span> &nbsp;{{selectedCar?.mileage}}
+            </div>
         </div>
     </div>
 
-
-    <div fxFlex="30">
-        <mat-card class="mat-elevation-z0" style=" height: 704px">
-            <div fxLayout="column">
-                <div style="padding-bottom: 20px" fxLayout="row">
-                    <div fxFlexFill fxFlex="10">
-                        <mat-icon style="font-size: 18px">build</mat-icon>
-                    </div>
-                    <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580;">Prodhuesi:</span> &nbsp;{{selectedCar?.manufacturer}}
-                    </div>
-                </div>
-                <div style="padding-bottom: 20px" fxLayout="row">
-                    <div fxFlexFill fxFlex="10">
-                        <mat-icon style="font-size: 18px">merge_type</mat-icon>
-                    </div>
-                    <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580;">Modeli:</span> &nbsp;{{selectedCar?.model}}
-                    </div>
-                </div>
-                <div style="padding-bottom: 20px" fxLayout="row">
-                    <div fxFlexFill fxFlex="10">
-                        <mat-icon style="font-size: 18px">directions_car</mat-icon>
-                    </div>
-                    <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580;">Struktura:</span> &nbsp;{{selectedCar?.structure}}
-                    </div>
-                </div>
-                <div style="padding-bottom: 20px" fxLayout="row">
-                    <div fxFlexFill fxFlex="10">
-                        <mat-icon style="font-size: 18px">calendar_today</mat-icon>
-                    </div>
-                    <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580;">Viti:</span> &nbsp;{{selectedCar?.year}}
-                    </div>
-                </div>
-                <div style="padding-bottom: 20px" fxLayout="row">
-                    <div fxFlexFill fxFlex="10">
-                        <mat-icon style="font-size: 18px">invert_colors</mat-icon>
-                    </div>
-                    <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580;">Ngjyra:</span> &nbsp;{{selectedCar?.color}}
-                    </div>
-
-                </div>
-                <div style="padding-bottom: 20px" fxLayout="row">
-                    <div fxFlexFill fxFlex="10">
-                        <mat-icon style="font-size: 18px">commute</mat-icon>
-                    </div>
-                    <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580;">Kambio:</span> &nbsp;{{selectedCar?.transmission}}
-                    </div>
-                </div>
-                <div style="padding-bottom: 20px" fxLayout="row">
-                    <div fxFlexFill fxFlex="10">
-                        <mat-icon style="font-size: 18px">category</mat-icon>
-                    </div>
-                    <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580;">Karburanti:</span> &nbsp;{{selectedCar?.fuel}}
-                    </div>
-                </div>
-                <div style="padding-bottom: 20px" fxLayout="row">
-                    <div fxFlexFill fxFlex="10">
-                        <mat-icon style="font-size: 18px">style</mat-icon>
-                    </div>
-                    <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580;">Targa:</span> &nbsp;{{selectedCar?.plateRegistration}}
-                    </div>
-                </div>
-                <div style="padding-bottom: 20px" fxLayout="row">
-                    <div fxFlexFill fxFlex="10">
-                        <mat-icon style="font-size: 18px">map</mat-icon>
-                    </div>
-                    <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580;">Qyteti:</span> &nbsp;{{selectedCar?.city}}
-                    </div>
-                </div>
-                <div style="padding-bottom: 20px" fxLayout="row">
-                    <div fxFlexFill fxFlex="10">
-                        <mat-icon style="font-size: 18px">timeline</mat-icon>
-                    </div>
-                    <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580;">Kilometrat:</span> &nbsp;{{selectedCar?.mileage}}
-                    </div>
-                </div>
-            </div>
-        </mat-card>
-    </div>
-</div>
-<div fxLayout="row" style="padding-bottom: 20px">
-    <mat-card style="width: 100%;height:350px">
-        Postime te ngjashme
-    </mat-card>
 </div>

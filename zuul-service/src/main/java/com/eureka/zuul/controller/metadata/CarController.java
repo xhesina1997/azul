@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.naming.LimitExceededException;
+import java.time.Instant;
 import java.util.List;
 
 @RestController
@@ -44,7 +45,6 @@ public class CarController {
     @Autowired
     private CarModelRepository modelRepository;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Fetch a specific page from repository")
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public Page<Car> search(@QuerydslPredicate Predicate predicate,
@@ -55,7 +55,6 @@ public class CarController {
         return repos.findAll(predicate, pageable);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Get all cars")
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public List<Car> getAll(){
@@ -71,7 +70,6 @@ public class CarController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Get car by uuid")
     @RequestMapping(value = "/uuid/{uuid}",method = RequestMethod.GET)
     public Car getByUUID(@PathVariable String uuid){
@@ -83,7 +81,6 @@ public class CarController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Get car by user")
     @RequestMapping(value = "/user/{username}",method = RequestMethod.GET)
     public Page<Car> getAllByUserPaged(@PathVariable String username, Pageable pageable){
@@ -95,7 +92,6 @@ public class CarController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Upload new Car")
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public Boolean upload(@RequestBody Car car){
@@ -103,6 +99,7 @@ public class CarController {
             if(!this.validateCar(car)){
                 throw new ServiceException("Information not valid");
             }else{
+                car.setCreated(Instant.now().getEpochSecond());
                 repos.save(car);
                 return true;
             }
@@ -112,7 +109,6 @@ public class CarController {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Delete Car")
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public Boolean delete(@RequestBody Car car){
@@ -128,7 +124,6 @@ public class CarController {
         }
 
     }
-    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Add user who favourite post")
     @RequestMapping(value = "/userId/{userId}/postId/{postId}",method = RequestMethod.GET)
     public void addUserWhoFavourite(@PathVariable String userId, @PathVariable String postId){
@@ -145,7 +140,6 @@ public class CarController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Add user who favourite post")
     @RequestMapping(value = "favourite-cars/userId/{userId}",method = RequestMethod.GET)
     public Page<Car> getUsersFavouriteCars(@PathVariable String userId, Pageable pageable){
@@ -182,7 +176,6 @@ public class CarController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Get all brands")
     @RequestMapping(value = "/brands",method = RequestMethod.GET)
     public List<CarBrand> getAllBrands(){
@@ -194,7 +187,6 @@ public class CarController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @ApiOperation(value = "Get all models")
     @RequestMapping(value = "/models",method = RequestMethod.GET)
     public List<CarModel> getAllModels(){

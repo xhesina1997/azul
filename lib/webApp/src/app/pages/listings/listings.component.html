@@ -1,105 +1,167 @@
-<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between" style="height: 100%; padding: 20px 0">
-    <div fxFlex="30" style="height: 100%;"
-         [ngStyle.sm]="{display: 'none'}"
-         [ngStyle.xs]="{display: 'none'}">
-        <div style=" height: calc(100% - 34px)">
-            <car-filters (filtersListener)="filtersChanged($event)"></car-filters>
+<!--<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between" style="height: 100%; padding: 20px 0">-->
+<!--<div fxFlex="30" style="height: 100%;"-->
+<!--[ngStyle.sm]="{display: 'none'}"-->
+<!--[ngStyle.xs]="{display: 'none'}">-->
+<!--<div style=" height: calc(100% - 34px)">-->
+<!--</div>-->
+<!--</div>-->
+<!--<div fxFlex="70" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column" fxLayoutGap="5px" style="height: auto">-->
+<!---->
+<!--<div style="height: 60px;">-->
+<!--<div fxLayout="row" style="width: 100%;" fxLayoutAlign="space-bewteen start">-->
+<!--<div fxFlex="40">-->
+<!--<h2 style="margin-top: 0;">Rezultatet</h2>-->
+<!--</div>-->
+<!--<div fxFlex="60" fxLayout="row" fxLayoutAlign="end">-->
+<!--<mat-form-field style="margin-top: 0">-->
+<!--<mat-label>Radhit sipas:</mat-label>-->
+<!--<mat-select [(ngModel)]="sort" (selectionChange)="changedSort($event.value)">-->
+<!--<mat-option [value]="'latest'">Postimet e fundit</mat-option>-->
+<!--<mat-option [value]="'price-l'">Cmimi me i ulet</mat-option>-->
+<!--<mat-option [value]="'price-h'">Cmimi me i larte</mat-option>-->
+<!--</mat-select>-->
+<!--</mat-form-field>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div *ngIf="cars?.length != 0; else noCars" -->
+<!--style="height: auto; padding: 0px 0px 0px 0px;">-->
+
+<!--<mat-card *ngFor="let car of cars" style="background: white;">-->
+<!--<div class="item-wrapper">-->
+
+<!--<div class="item" fxLayout="row" fxLayoutGap="16px">-->
+<!--<div fxFlex="35" style="height: 167px; width: 100%; overflow: hidden; border-radius: 25px 0px 0px 25px; margin-right: 0px !important;">-->
+<!--&lt;!&ndash;<img src="../../../assets/images/s6501.jpg"&ndash;&gt;-->
+<!--&lt;!&ndash;style=" height: 100%; width: 100%; object-fit:cover;">&ndash;&gt;-->
+<!--<img src="http://localhost:8762/images/cdn/{{car.uuid}}/{{car.images[0]}}"-->
+<!--style=" height: 100%; width: 100%; object-fit:cover;">-->
+<!--</div>-->
+<!--<div class="skewer">-->
+<!--<div class="separator"></div>-->
+<!--</div>-->
+<!--<div fxFlex="65" fxLayout="column">-->
+<!--<div fxLayout="row" fxLayoutAlign="space-between center">-->
+<!--<div style="z-index: 3;">-->
+<!--<a [routerLink]="['/pages/listing']" [queryParams]="{id: car.uuid}" style="color: black;">-->
+<!--<mat-card-title style="font-size: 16px;">{{car?.title}}</mat-card-title>-->
+<!--</a>-->
+<!--&lt;!&ndash;<mat-card-subtitle>&ndash;&gt;-->
+<!--&lt;!&ndash;</mat-card-subtitle>&ndash;&gt;-->
+<!--</div>-->
+<!--<div fxLayout="row" fxLayoutAlign="space-around center">-->
+<!--<div style="font-size: 16px; font-weight: 500">-->
+<!--{{car?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}-->
+<!--</div>-->
+<!--&nbsp;-->
+<!--<button mat-icon-button class="btn-favorite-color" (click)="addUserWhoFavourite(car)">-->
+<!--<mat-icon>favorite_border</mat-icon>-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div fxLayout="row wrap" fxLayoutAlign="space-between center"-->
+<!--style="width: 100%; margin-top: 10px; z-index: 2;">-->
+<!--<div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">-->
+<!--<i style="color: #a8a8a8;">prodhuesi:</i>&nbsp;{{car.manufacturer}}-->
+<!--</div>-->
+<!--<div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">-->
+<!--<i style="color: #a8a8a8;">modeli:</i>&nbsp;{{car.model}}-->
+<!--</div>-->
+<!--<div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">-->
+<!--<i style="color: #a8a8a8;">viti:</i>&nbsp;{{car.year}}-->
+<!--</div>-->
+<!--<div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">-->
+<!--<i style="color: #a8a8a8;">kambio:</i>&nbsp;{{car.transmission}}-->
+<!--</div>-->
+<!--<div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">-->
+<!--<i style="color: #a8a8a8;">Karburanti:</i>&nbsp;{{car.fuel}}-->
+<!--</div>-->
+<!--<div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">-->
+<!--<i style="color: #a8a8a8;">qyteti:</i>&nbsp;{{car.city}}-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</mat-card>-->
+
+<!--</div>-->
+
+<!--<div fxFlex="10" *ngIf="cars?.length != 0;" style="margin: 20px 0 20px 0; height: auto; padding: 0px;">-->
+<!--<mat-paginator  (page)="changedQueryOptions($event)"-->
+<!--style="width: 100%; background: rgb(248, 248, 248);" [length]="queryOptions.total"-->
+<!--[pageSize]="queryOptions.size"-->
+<!--[pageSizeOptions]="[1, 2, 5, 10, 25]">-->
+<!--</mat-paginator>-->
+<!--</div>-->
+
+<!--<ng-template #noCars>-->
+<!--<mat-card class="mat-elevation-z0 no-results">-->
+<!--</mat-card>-->
+<!--</ng-template>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<div style="padding: 8px 16px 16px 16px; overflow-y: auto">
+    <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c;">
+        <div style="width: calc(100% - 40px)" *ngIf="queryOptions.filters == null">
+            Search results
         </div>
-    </div>
-    <div fxFlex="70" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column" fxLayoutGap="5px" style="height: auto">
-        
-        <div style="height: 60px;">
-            <div fxLayout="row" style="width: 100%;" fxLayoutAlign="space-bewteen start">
-                <div fxFlex="40">
-                    <h2 style="margin-top: 0;">Rezultatet</h2>
-                </div>
-                <div fxFlex="60" fxLayout="row" fxLayoutAlign="end">
-                    <mat-form-field style="margin-top: 0">
-                        <mat-label>Radhit sipas:</mat-label>
-                        <mat-select [(ngModel)]="sort" (selectionChange)="changedSort($event.value)">
-                            <mat-option [value]="'latest'">Postimet e fundit</mat-option>
-                            <mat-option [value]="'price-l'">Cmimi me i ulet</mat-option>
-                            <mat-option [value]="'price-h'">Cmimi me i larte</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="cars?.length != 0; else noCars" 
-        style="height: auto; padding: 0px 0px 0px 0px;">
-
-            <mat-card *ngFor="let car of cars" style="background: white;">
-                <div class="item-wrapper">
-
-                    <div class="item" fxLayout="row" fxLayoutGap="16px">
-                        <div fxFlex="35" style="height: 167px; width: 100%; overflow: hidden; border-radius: 25px 0px 0px 25px; margin-right: 0px !important;">
-                            <!--<img src="../../../assets/images/s6501.jpg"-->
-                            <!--style=" height: 100%; width: 100%; object-fit:cover;">-->
-                            <img src="http://localhost:8762/images/cdn/{{car.uuid}}/{{car.images[0]}}"
-                            style=" height: 100%; width: 100%; object-fit:cover;">
-                        </div>
-                        <div class="skewer">
-                            <div class="separator"></div>
-                        </div>
-                        <div fxFlex="65" fxLayout="column">
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <div style="z-index: 3;">
-                                    <a [routerLink]="['/pages/listing']" [queryParams]="{id: car.uuid}" style="color: black;">
-                                        <mat-card-title style="font-size: 16px;">{{car?.title}}</mat-card-title>
-                                    </a>
-                                    <!--<mat-card-subtitle>-->
-                                    <!--</mat-card-subtitle>-->
-                                </div>
-                                <div fxLayout="row" fxLayoutAlign="space-around center">
-                                    <div style="font-size: 16px; font-weight: 500">
-                                        {{car?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
-                                    </div>
-                                    &nbsp;
-                                    <button mat-icon-button class="btn-favorite-color" (click)="addUserWhoFavourite(car)">
-                                        <mat-icon>favorite_border</mat-icon>
-                                    </button>
-                                </div>
-                            </div>
-                            <div fxLayout="row wrap" fxLayoutAlign="space-between center"
-                                 style="width: 100%; margin-top: 10px; z-index: 2;">
-                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                    <i style="color: #a8a8a8;">prodhuesi:</i>&nbsp;{{car.manufacturer}}
-                                </div>
-                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                    <i style="color: #a8a8a8;">modeli:</i>&nbsp;{{car.model}}
-                                </div>
-                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                    <i style="color: #a8a8a8;">viti:</i>&nbsp;{{car.year}}
-                                </div>
-                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                    <i style="color: #a8a8a8;">kambio:</i>&nbsp;{{car.transmission}}
-                                </div>
-                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                    <i style="color: #a8a8a8;">Karburanti:</i>&nbsp;{{car.fuel}}
-                                </div>
-                                <div fxFlex="50" fxLayout="row" style="margin-bottom: 15px">
-                                    <i style="color: #a8a8a8;">qyteti:</i>&nbsp;{{car.city}}
-                                </div>
-                            </div>
-                        </div>
+        <div style="width: calc(100% - 40px)" *ngIf="queryOptions.filters != null">
+            <mat-chip-list #chipList>
+                <mat-chip *ngFor="let filter of queryOptions.filters | keyvalue"
+                          [selectable]="false" [removable]="true" (removed)="removeFilter(filter.key)">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <mat-icon style="padding-top: 4px; font-size: 18px;">
+                            {{filterIcons[filter.key]}}
+                        </mat-icon>
+                        {{filter.value | displayFilter}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
                     </div>
-                </div>
-            </mat-card>
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+        <button style="width: 40px" (click)="toggleFilters()" mat-icon-button>
+            <mat-icon style="color: #8c8c8c">tune</mat-icon>
+        </button>
+    </div>
+    <mat-divider style="margin-bottom: 10px"></mat-divider>
 
+    <div *ngIf="cars?.length !=  0; else noCars">
+
+
+        <div *ngFor="let car of cars" style="margin-bottom: 10px">
+            <app-list-item [listing]="car" [view]="'default'" (outputEvent)="handileItemEvent($event)"></app-list-item>
         </div>
 
-        <div fxFlex="10" *ngIf="cars?.length != 0;" style="margin: 20px 0 20px 0; height: auto; padding: 0px;">
-            <mat-paginator  (page)="changedQueryOptions($event)"
-                            style="width: 100%; background: rgb(248, 248, 248);" [length]="queryOptions.total"
-                            [pageSize]="queryOptions.size"
-                            [pageSizeOptions]="[1, 2, 5, 10, 25]">
+        <div style="margin: 20px 0 20px 0; height: auto; padding: 0px;">
+            <mat-paginator (page)="changedQueryOptions($event)"
+                           style="width: 100%; border: 1px solid #e0e0e0; border-radius: 8px;"
+                           [length]="queryOptions.total"
+                           [pageSize]="queryOptions.size"
+                           [pageSizeOptions]="[1, 2, 5, 10, 25]">
             </mat-paginator>
         </div>
 
-        <ng-template #noCars>
-            <mat-card class="mat-elevation-z0 no-results">
-            </mat-card>
-        </ng-template>
     </div>
+
 </div>
+
+<ng-template #noCars>
+    <div class="no-results"></div>
+</ng-template>
+
+<ng-template #filters>
+    <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c;">
+        <div>
+            Refine search
+        </div>
+        <button (click)="getALlCars()" color="primary" mat-stroked-button>
+            search
+        </button>
+    </div>
+    <mat-divider style="margin: 10px 0"></mat-divider>
+    <car-filters (filtersListener)="filtersChanged($event)" [existingFilters]="queryOptions.filters"></car-filters>
+</ng-template>

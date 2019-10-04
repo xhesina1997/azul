@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {CarService} from "../../api/car.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
     selector: 'app-listing',
@@ -14,12 +15,14 @@ export class ListingComponent implements OnInit {
                 private carService: CarService) {
     }
 
+    protected env = environment;
+
     customOptions: any = {
         loop: true,
         mouseDrag: true,
         touchDrag: true,
         pullDrag: true,
-        dots: true,
+        dots: false,
         center: true,
         navSpeed: 700,
         nav: false,

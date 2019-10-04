@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {ListingRoutingModule} from './listing-routing.module';
 import {ListingComponent} from './listing.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {MatButtonModule, MatIconModule} from "@angular/material";
+import {MatButtonModule, MatDividerModule, MatIconModule, MatRippleModule} from "@angular/material";
 import {MatCardModule} from "@angular/material/card";
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
@@ -17,6 +17,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
         MatButtonModule,
         ListingRoutingModule,
         CarouselModule,
+        MatDividerModule,
+        MatRippleModule,
         MatIconModule
     ]
 })

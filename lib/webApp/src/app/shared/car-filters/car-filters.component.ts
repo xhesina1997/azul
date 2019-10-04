@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {Subject} from "rxjs/internal/Subject";
 import {map, startWith} from "rxjs/operators";
 import {CarService} from "../../api/car.service";
@@ -16,9 +16,54 @@ export class CarFiltersComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getCarBrands();
-        this.getCarModels();
+        this.getCarBrands().then(brands => {
+            this.getCarModels().then(models =>{
+                this.patchExistingFilters();
+                this.subscribeToValueChanges();
+            });
+        });
+    }
 
+    @Output() filtersListener = new Subject();
+
+    @Input() existingFilters: any;
+
+
+    protected filters: any = {};
+    protected manufacturer: any;
+    protected model: any;
+    protected minValue: number;
+    protected maxValue: number;
+    protected minYear: number;
+    protected maxYear: number;
+
+    patchExistingFilters(){
+        if(this.existingFilters != null){
+            if(this.existingFilters.manufacturer != null) {
+                this.selectedManufacturer.setValue(this.existingFilters.manufacturer);
+                this.filterModelsByBrand(this.existingFilters.manufacturer);
+            };
+            this.existingFilters.model != null ? this.selectedModel.setValue(this.existingFilters.model) : {};
+            this.existingFilters.structure != null ? this.selectedStructure.setValue(this.existingFilters.structure) : {};
+            this.existingFilters.color != null ? this.selectedColor.setValue(this.existingFilters.color) : {};
+            this.existingFilters.transmission != null ? this.selectedTransmission.setValue(this.existingFilters.transmission) : {};
+            this.existingFilters.city != null ? this.selectedCity.setValue(this.existingFilters.city) : {};
+            this.existingFilters.plateRegistration != null ? this.selectedPlateRegistration.setValue(this.existingFilters.plateRegistration) : {};
+            this.existingFilters.fuel != null ? this.selectedFuel.setValue(this.existingFilters.fuel) : {};
+            if(this.existingFilters.value != null){
+                this.minValue = this.existingFilters.value[0];
+                this.maxValue = this.existingFilters.value[1];
+            }
+            if(this.existingFilters.year != null){
+                this.minYear = this.existingFilters.year[0];
+                this.maxYear = this.existingFilters.year[1];
+            }
+
+            this.filters = this.existingFilters;
+        }
+    }
+
+    subscribeToValueChanges(){
         this.filteredCurrency = this.searchedCurrency.valueChanges
             .pipe(
                 startWith(''),
@@ -60,16 +105,6 @@ export class CarFiltersComponent implements OnInit {
                 map(value => this._filter(value, this.cities))
             )
     }
-
-    @Output() filtersListener = new Subject();
-
-    protected filters: any = {};
-    protected manufacturer: any;
-    protected model: any;
-    protected minValue: number;
-    protected maxValue: number;
-    protected minYear: number;
-    protected maxYear: number;
 
     changedFilters(filter, event) {
         if(filter =="minPrice"){
@@ -226,39 +261,55 @@ export class CarFiltersComponent implements OnInit {
 
     ];
     cities = ['Tirane', 'Fier', 'Lushnje', 'Korce', 'Pogradec', 'Durres', 'Berat', 'Sarande', 'Tropoje'];
+    public carModelList: any;
+    public carBrandsList: any;
 
     private _filter(value: string, list): string[] {
         const filterValue = value.toLowerCase();
         return list.filter(option => option.toLowerCase().includes(filterValue));
     }
-
     private _filterCar(value: string, list): string[] {
         const filterValue = value.toLowerCase();
         return list.filter(option => option.name.toLowerCase().includes(filterValue));
     }
-
     private _filterKm(value: string, list): string[] {
         const filterValue = value.toLowerCase();
         return list.filter(option => option.title.toLowerCase().includes(filterValue));
     }
 
 
-    public carModelList: any;
-    public carBrandsList: any;
-
     getCarBrands() {
-        this.carService.getAllCarBrands().subscribe(data => {
-            this.carBrandsList = data;
-            this.carBrandsList.forEach(brand => {
-                this.producerList.push(brand.name);
-            });
-            this.searchedManufacturer.setValue("");
+        return new Promise(resolve => {
+            if(this.carService.carBrands != null){
+                this.carBrandsList = this.carService.carBrands;
+                this.carBrandsList.forEach(brand => {
+                    this.producerList.push(brand.name);
+                });
+                this.searchedManufacturer.setValue("");
+                resolve(this.carService.carBrands)
+            }else{
+                this.carService.getAllCarBrands().subscribe(data => {
+                    this.carBrandsList = data;
+                    this.carBrandsList.forEach(brand => {
+                        this.producerList.push(brand.name);
+                    });
+                    resolve(data);
+                });
+            }
         });
     }
 
     getCarModels() {
-        this.carService.getAllCarModels().subscribe(data => {
-            this.carModelList = data;
+        return new Promise(resolve => {
+            if(this.carService.carModels != null){
+                this.carModelList = this.carService.carModels;
+                resolve(this.carService.carModels)
+            }else{
+                this.carService.getAllCarModels().subscribe(data => {
+                    this.carModelList = data;
+                    resolve(data);
+                });
+            }
         });
     }
 

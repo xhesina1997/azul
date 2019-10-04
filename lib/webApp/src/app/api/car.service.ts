@@ -11,6 +11,9 @@ export class CarService {
     constructor(private http: HttpClient) {
     }
 
+    carBrands: any = null;
+    carModels: any = null;
+
     getAllCars() {
         return this.http.get(environment.apiUrl + 'metadata/cars/all').pipe(map(res => {
             return res;
@@ -31,12 +34,14 @@ export class CarService {
 
     getAllCarModels() {
         return this.http.get(environment.apiUrl + 'metadata/cars/models').pipe(map(res => {
+            this.carModels = res;
             return res;
         }));
     }
 
     getAllCarBrands() {
         return this.http.get(environment.apiUrl + 'metadata/cars/brands').pipe(map(res => {
+            this.carBrands = res;
             return res;
         }));
     }

@@ -26,7 +26,6 @@ public class FileUploadController {
         return "IMAGES WORKING";
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/cdn/{directory}/{filename}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename, @PathVariable String directory) {
@@ -36,7 +35,6 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/directory/{directory}/name/{name}")
     public boolean handleFileUpload(@RequestParam("file") MultipartFile file, @PathVariable String directory, @PathVariable String name) {
         storageService.storeInDirectory(file, name, directory);

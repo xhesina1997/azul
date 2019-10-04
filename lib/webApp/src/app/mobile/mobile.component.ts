@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {AuthenticationService} from "../auth/authentication.service";
 
 @Component({
     selector: 'app-mobile',
@@ -22,7 +23,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
             })),
             state('opened-half', style({
                 height: '{{bodyHeight}}'
-            }), {params: {bodyHeight: 'calc(100% - 230px)'}}),
+            }), {params: {bodyHeight: '200px'}}),
             transition('closed=>opened-half', animate('300ms')),
             transition('opened-half=>closed', animate('300ms'))
         ]),
@@ -30,7 +31,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 })
 export class MobileComponent implements OnInit {
 
-    constructor() {
+    constructor(protected authenticationService: AuthenticationService) {
     }
 
     ngOnInit() {
@@ -41,33 +42,17 @@ export class MobileComponent implements OnInit {
     headerHeight = '50px';
     bodyHeight = 'calc(100% - 50px)';
 
-    changeStateMed() {
+    changeStateMed(type) {
         if (this.headerState === 'closed') {
-            this.headerHeight = '230px';
-            this.bodyHeight = 'calc(100% - 230px)';
+            this.headerHeight = '170px';
+            this.bodyHeight = 'calc(100% - 170px)';
             this.headerState = 'opened-half';
-            this.overallState = 'half'
+            setTimeout(()=> {this.overallState = type;}, 400);
         } else {
             this.headerHeight = '50px';
             this.bodyHeight = 'calc(100% - 50px)';
             this.headerState = 'closed';
             this.overallState = 'closed'
-        }
-    }
-
-    changeStateFull() {
-
-        if (this.headerState === 'closed') {
-            this.headerHeight = 'calc(100% - 50px)';
-            this.bodyHeight = '50px';
-            this.headerState = 'opened-half';
-            this.overallState = 'full'
-
-        } else {
-            this.headerHeight = '50px';
-            this.bodyHeight = 'calc(100% - 50px)';
-            this.headerState = 'closed';
-            this.overallState = 'closed';
         }
     }
 

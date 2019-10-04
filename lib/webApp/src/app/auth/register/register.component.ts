@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     }
     this.authenticationApiService.signUp(singUpRequestData).subscribe(data => {
       this.authenticationService.signIn(this.username, this.password).then(() => {
-        this.router.navigate(['/pages/listings']);
+        this.router.navigate(['/mobile/search']);
       });
     }, error => {
       console.log(error);

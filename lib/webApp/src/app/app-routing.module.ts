@@ -5,8 +5,8 @@ const routes: Routes = [
     {path: 'pages', loadChildren: './pages/pages.module#PagesModule'},
     {path: 'mobile', loadChildren: './mobile/mobile.module#MobileModule'},
     {path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
-    {path: '', redirectTo: 'pages', pathMatch: 'full'},
-    {path: '**', redirectTo: 'pages'},
+    {path: '', redirectTo: 'mobile', pathMatch: 'full'},
+    {path: '**', redirectTo: 'mobile'},
 ];
 
 @NgModule({

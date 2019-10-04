@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   protected submit() : void {
     this.authenticationService.signIn(this.userNameOrEmail, this.password).then(() => {
-        this.router.navigate(['/pages/listings'])
+        this.router.navigate(['/mobile/search'])
     });
   }
 

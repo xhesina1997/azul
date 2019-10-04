@@ -3,7 +3,7 @@
     <div [@changeHeaderState]="{value: headerState,  params: { newHeight: headerHeight}}" #header style=" width: 100%;">
         <div fxLayout="row" fxLayoutAlign="space-between center" style="width:100%; height: 50px; padding: 5px 16px;">
 
-            <button (click)="changeStateMed()" mat-icon-button color="accent">
+            <button (click)="changeStateMed('menu')" mat-icon-button color="accent">
                 <mat-icon>menu</mat-icon>
             </button>
 
@@ -11,42 +11,62 @@
                 AZUL
             </div>
 
-            <button (click)="changeStateFull()" mat-icon-button color="accent">
-                <mat-icon>tune</mat-icon>
+            <button (click)="changeStateMed('account')" mat-icon-button color="accent">
+                <mat-icon>account_circle</mat-icon>
             </button>
 
         </div>
 
-        <div *ngIf="this.overallState == 'half'" style="width: 100%; z-index: 1; height: 180px;">
+        <div [ngStyle]="{'display': overallState != 'menu' ? 'none' : ''}" style="width: 100%; z-index: 1; height: 120px;">
 
             <mat-nav-list style="margin: 0 16px;">
-                <mat-list-item style="font-size: 16px; color: white">
+                <mat-list-item [routerLink]="['/mobile/search']" style="font-size: 16px; color: white">
                     <a matLine>SEARCH</a>
                 </mat-list-item>
-                <mat-list-item style="font-size: 16px; color: white">
+                <mat-list-item [routerLink]="['/mobile/add-listing']" style="font-size: 16px; color: white">
                     <a matLine>ADD LISTING</a>
-                </mat-list-item>
-                <mat-list-item style="font-size: 16px; color: white">
-                    <a matLine>ACCOUNT</a>
                 </mat-list-item>
             </mat-nav-list>
         </div>
 
-    </div>
+        <div [ngStyle]="{'display': overallState != 'account' ? 'none' : ''}" style="width: 100%; height: 120px; z-index: 1;">
+
+            <mat-nav-list style="margin: 0 16px;">
+                <mat-list-item *ngIf="authenticationService.user!=null" [routerLink]="['/mobile/account']" style="font-size: 16px; color: white">
+                    <a matLine>ACCOUNT</a>
+                </mat-list-item>
+                <mat-list-item *ngIf="authenticationService.user!=null" style="font-size: 16px; color: white">
+                    <a matLine>LOGOUT</a>
+                </mat-list-item>
+                <mat-list-item *ngIf="authenticationService.user==null" [routerLink]="['/auth/login']" style="font-size: 16px; color: white">
+                    <a matLine>LOGIN/REGISTER</a>
+                </mat-list-item>
+            </mat-nav-list>
+            <!--<div style="padding: 0 16px; height: calc(100% - 60px); overflow-y: auto; -webkit-overflow-scrolling: touch;" class="filtersContainer">-->
+                <!--<car-filters (filtersListener)="filtersChanged($event)"></car-filters>-->
+            <!--</div>-->
+        </div>
+
+        </div>
     <div #body
          [@changeBodyState]="{value: headerState, params: { bodyHeight: bodyHeight }}"
          class="mat-elevation-z10"
          style="width: 100%; background-color: white;
               border-top-right-radius: 16px;
               border-top-left-radius: 16px;
+              overflow-y: hidden; overflow-x: hidden;
               z-index: 10;">
-
-        <div style="margin: 0 16px">
-            <div #subHeader style="padding: 12px 0; color: #666666">
-                Search results
-            </div>
-            <mat-divider></mat-divider>
+        <div style="width: 100%; height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch;">
+            <router-outlet></router-outlet>
         </div>
+        <!--<div style="margin: 0 16px">-->
+            <!--<div #subHeader style="padding: 12px 0; color: #666666">-->
+                <!--Search results-->
+            <!--</div>-->
+            <!--<mat-divider></mat-divider>-->
+        <!--</div>-->
+
+
 
     </div>
 </div>

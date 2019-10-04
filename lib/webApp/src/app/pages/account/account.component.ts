@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from "../../auth/authentication.service";
 import { CarService } from "../../api/car.service";
-import { MatDialog } from "@angular/material";
+import {MatBottomSheet, MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-account',
@@ -10,6 +10,7 @@ import { MatDialog } from "@angular/material";
 })
 export class AccountComponent implements OnInit {
     @ViewChild('deleteCarModal') deleteCarModal: any;
+    @ViewChild('bottomSheet') bottomSheetContent: any;
     protected user;
     public dialogRef: any;
     protected displayed = 0;
@@ -17,7 +18,10 @@ export class AccountComponent implements OnInit {
     protected favouriteListings: any[] = [];
 
     protected carToBeDeleted: any;
-    constructor(private _authService: AuthenticationService, private carService: CarService, public dialog: MatDialog) {
+    constructor(private _authService: AuthenticationService,
+                private carService: CarService,
+                private bottomSheet: MatBottomSheet,
+                public dialog: MatDialog,) {
         this.user = this._authService.user;
     }
 
@@ -56,19 +60,18 @@ export class AccountComponent implements OnInit {
         })
     }
 
-    handleRequest(event) {
+    handleItemEvent(event) {
         switch (event.type) {
             case "delete": {
-                this.carToBeDeleted = event.target
-                this.openDeleteModal(event.target);
+                this.bottomSheet.open(this.bottomSheetContent)
+                // this.carToBeDeleted = event.target;
+                // this.openDeleteModal(event.target);
             }
         }
     }
 
     closeDialog() {
-        if (this.dialogRef != null) {
-            this.dialogRef.close();
-        }
+        this.bottomSheet.dismiss();
     }
 
 

@@ -27,15 +27,11 @@
                 </form>
                 <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
             </mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="start center" style="margin-left: 3px">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="margin-left: 3px">
 
-                <div fxFlexFill fxFlex="19">
-                    <button (click)="submit()" mat-stroked-button color="primary" type="submit">Log in</button>
-                </div>
+                <button (click)="submit()" mat-stroked-button color="primary" type="submit">Log in</button>
 
-                <div fxFlexFill fxFlex="30">
-                    <a routerLink="/auth/register" mat-stroked-button>Register</a>
-                </div>
+                <a routerLink="/auth/register" mat-stroked-button>Register</a>
 
             </div>
 
