@@ -66,5 +66,4 @@ mvnw.cmd
 logs/
 /bin/
 
-lib/webApp/node_modules
-images
+webApp/node_modules

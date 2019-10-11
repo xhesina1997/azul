@@ -1,0 +1,182 @@
+<div fxLayout="row">
+    <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
+
+    <div [ngStyle.xs]="{'width': '100%'}"
+         [ngStyle.sm]="{'width': '100%'}"
+         [ngStyle.md]="{'width': '100%'}"
+         [ngStyle.lg]="{'width':'1250px'}"
+         fxLayout="row wrap">
+
+        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="70" fxFlex.lg="70">
+            <div #images
+                 [ngStyle.md]="{'margin': '16px', 'border-radius':'16px'}"
+                 [ngStyle.lg]="{'margin': '16px', 'border-radius':'16px'}">
+                <owl-carousel-o [options]="customOptions">
+                    <ng-template carouselSlide *ngFor="let image of selectedCar?.images">
+                        <img [ngStyle.md]="{'height': '400px'}" [ngStyle.lg]="{'height': '400px'}" style=" height: 240px; width: 100%; object-fit:cover; z-index: 1"
+                             src="{{image}}">
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+
+            <div style="padding: 16px; overflow-y: auto">
+                <div style="margin-bottom: 5px;">{{selectedCar.title}}</div>
+                <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+                    <div fxLayout="column" fxFlex="33.33" fxLayoutAlign="center center">
+                        <div matRipple style="width: 55px; height: 51px; margin-bottom: 7px;">
+                            <button [disableRipple]="true" style="width: 55px; height: 35px;" mat-icon-button>
+                                <mat-icon style="color: #8c8c8c; font-size: 32px; padding: 0; margin-left: -4px;">
+                                    playlist_add
+                                </mat-icon>
+                            </button>
+                            <div style="width: 55px; text-align: center; color: #8c8c8c; font-size: 13px; margin-top: 0px; margin-bottom: 10px;">
+                                save
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxFlex="33.33" fxLayoutAlign="center center">
+                        <div matRipple style="width: 55px; height: 51px; margin-bottom: 7px;">
+                            <button [disableRipple]="true" style="width: 55px; height: 35px;" mat-icon-button>
+                                <mat-icon style="color: #8c8c8c; font-size: 26px; padding: 0; margin-left: -3px;">share
+                                </mat-icon>
+                            </button>
+                            <div style="width: 55px; text-align: center; color: #8c8c8c; font-size: 13px; margin-top: 0px; margin-bottom: 10px;">
+                                share
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxFlex="33.33" fxLayoutAlign="center center">
+                        <div matRipple style="width: 55px; height: 51px; margin-bottom: 7px;">
+                            <button [disableRipple]="true" style="width: 55px; height: 35px;" mat-icon-button>
+                                <mat-icon style="color: #8c8c8c; font-size: 25px; padding: 0; margin-left: 0;">call
+                                </mat-icon>
+                            </button>
+                            <div style="width: 55px; text-align: center; color: #8c8c8c; font-size: 13px; margin-top: 0px; margin-bottom: 10px;">
+                                call
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider style="margin-bottom: 10px"></mat-divider>
+
+                <!--TODO: we need to validate description and not let user insert tags or scripts-->
+                <!--TODO: we need a show-more-show-less component for text-->
+                <div [ngStyle.md]="{'height':'158px'}"
+                     [ngStyle.lg]="{'height':'158px'}"
+                     style="color: #8c8c8c; font-size: 15px; overflow: hidden; text-overflow: ellipsis; height: 53px;"
+                     [innerHTML]="selectedCar?.description"></div>
+                <mat-divider style="margin-top: 20px"></mat-divider>
+            </div>
+        </div>
+
+
+
+        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="30" fxFlex.lg="30" style="padding: 16px; overflow-y: auto">
+            <div fxLayout="row wrap">
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">build</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">Prodhuesi:</span> &nbsp;{{selectedCar?.manufacturer}}
+                    </div>
+                </div>
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">merge_type</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">Modeli:</span> &nbsp;{{selectedCar?.model}}
+                    </div>
+                </div>
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">directions_car</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">Struktura:</span> &nbsp;{{selectedCar?.structure}}
+                    </div>
+                </div>
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">calendar_today</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">Viti:</span> &nbsp;{{selectedCar?.year}}
+                    </div>
+                </div>
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">invert_colors</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">Ngjyra:</span> &nbsp;{{selectedCar?.color}}
+                    </div>
+
+                </div>
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">commute</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">Kambio:</span> &nbsp;{{selectedCar?.transmission}}
+                    </div>
+                </div>
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">category</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">Karburanti:</span> &nbsp;{{selectedCar?.fuel}}
+                    </div>
+                </div>
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">style</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">Targa:</span> &nbsp;{{selectedCar?.plateRegistration}}
+                    </div>
+                </div>
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">map</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">Qyteti:</span> &nbsp;{{selectedCar?.city}}
+                    </div>
+                </div>
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">timeline</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">Kilometrat:</span> &nbsp;{{selectedCar?.mileage}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div [routerLink]="['/mobile/search']" #back matRipple style="width: 32px;
+            margin: 6px; height: 32px;
+            background-color: white;
+            position: absolute; border-radius: 18px;
+            border: 2px solid #5a5ab8; z-index: 10;">
+            <mat-icon style="margin: 4px 3px;" color="primary">arrow_back</mat-icon>
+        </div>
+
+        <button style="position: absolute;
+            bottom: 16px;
+            right: 16px;
+            padding: 4px 30px;
+            font-size: 18px;
+            border-radius: 25px;" mat-raised-button color="primary">
+            <mat-icon style="margin-right: 10px">call</mat-icon>
+            Call
+        </button>
+
+    </div>
+
+    <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
+</div>
+
