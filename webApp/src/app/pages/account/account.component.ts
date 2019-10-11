@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from "../../auth/authentication.service";
 import {MatBottomSheet, MatDialog} from "@angular/material";
+import {AngularFirestore} from "@angular/fire/firestore";
 
 @Component({
     selector: 'app-account',
@@ -18,6 +19,7 @@ export class AccountComponent implements OnInit {
 
     protected carToBeDeleted: any;
     constructor(private _authService: AuthenticationService,
+                private _fireStore: AngularFirestore,
                 private bottomSheet: MatBottomSheet,
                 public dialog: MatDialog,) {
         this.user = this._authService.user;
@@ -33,15 +35,19 @@ export class AccountComponent implements OnInit {
     }
 
     getUserListings(){
-        // this.carService.getCarsByUsername(this.user.username).subscribe((res:any) => {
-        //     this.listingsCreatedByUser = res.content;
-        // })
+        this._fireStore.collection('cars', ref => ref.where('user.email', '==', this.user.email))
+            .valueChanges()
+            .subscribe(res => {
+                this.listingsCreatedByUser = res;
+            })
     }
 
     getUserFavourites(){
-        // this.carService.getUsersFAvouriteCars(this.user.id).subscribe((res:any) => {
-        //     this.favouriteListings = res.content;
-        // })
+        this._fireStore.collection('cars', ref => ref.where('userEmailsWhoFavourite', 'array-contains', this.user.email))
+            .valueChanges()
+            .subscribe(res => {
+                this.favouriteListings = res;
+            })
     }
 
     openDeleteModal(post) {

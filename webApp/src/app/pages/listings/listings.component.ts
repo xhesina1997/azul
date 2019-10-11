@@ -3,7 +3,7 @@ import {AuthenticationService} from "../../auth/authentication.service";
 import {MatBottomSheet, MatSnackBar} from "@angular/material";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {Subject} from "rxjs/Subject";
-import {takeUntil} from "rxjs/operators";
+import {map, take, takeUntil} from "rxjs/operators";
 
 @Component({
     selector: 'app-listings',
@@ -30,7 +30,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
     @ViewChild('filters') filters: any;
 
     protected view;
-
+    protected user = this.authenticationService.user;
     protected stopSubscriptions = new Subject();
 
     @HostListener('window:resize', ['$event'])
@@ -63,7 +63,17 @@ export class ListingsComponent implements OnInit, OnDestroy {
 
     private getAllCars() {
         this._firestore.collection("cars", ref => ref.limit(10))
-            .valueChanges().pipe(takeUntil(this.stopSubscriptions)).subscribe(res => this.cars = res)
+            .snapshotChanges().pipe(map(carDocument => {
+                return carDocument.map(cd => {
+                    const data = cd.payload.doc.data();
+                    const id = cd.payload.doc.id;
+                    return { id, ...data };
+                })
+        })).pipe(take(1)).subscribe(res => {
+            console.log(res);
+            this.cars = res
+        })
+
     }
 
     filtersChanged(filters) {
@@ -100,8 +110,22 @@ export class ListingsComponent implements OnInit, OnDestroy {
 
     addUserWhoFavourite(car) {
         if (this.authenticationService.isLoggedIn) {
-            car.favouritedByUser = true;
-            this.snackBar.open('Listing added to favourites.', null, {duration: 1500})
+            const previousEntry = car.userEmailsWhoFavourite.find(email => {
+                return email == this.authenticationService.user.email
+            });
+            console.log(previousEntry);
+            if(previousEntry != this.authenticationService.user.email || previousEntry == null){
+                car.userEmailsWhoFavourite.push(this.authenticationService.user.email);
+                this._firestore.collection('cars').doc(car.id).set(car)
+                    .then(res => {
+                        this.snackBar.open('Listing added to favourites.', null, {duration: 1500})
+                    }, error => {
+                        this.snackBar.open('There was an error', null, {duration: 1500})
+                    });
+            }else{
+                this.snackBar.open('Listing already added to favourites', null, {duration: 1500})
+            }
+
         } else {
             this.snackBar.open('You need te be logged in to add to favourites', 'log in', {duration: 2000})
         }

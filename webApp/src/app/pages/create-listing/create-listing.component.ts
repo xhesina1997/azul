@@ -334,6 +334,7 @@ export class CreateListingComponent implements OnInit {
             plateRegistration: post.plateRegistration,
             city: post.city,
             images: [],
+            userEmailsWhoFavourite: [],
             uuid: UUID.UUID()
         }
     }
