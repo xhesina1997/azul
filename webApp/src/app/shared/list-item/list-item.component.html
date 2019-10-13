@@ -1,4 +1,4 @@
-<div *ngIf="view == 'default'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden">
+<div *ngIf="view == 'default'" style="border-radius: 8px; overflow: hidden; box-shadow: 0px 2px 8px 1px #88888847;">
     <div style="margin: 8px" fxLayout="row" fxLayoutAlign="space-between start">
         <div>
             <div>
@@ -39,7 +39,7 @@
 </div>
 
 
-<div *ngIf="view == 'userSubmission'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden">
+<div *ngIf="view == 'userSubmission'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; ">
     <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="25" style="height: 60px">
             <img src="{{listing?.images[0]}}"
