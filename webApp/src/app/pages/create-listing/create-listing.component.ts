@@ -335,6 +335,7 @@ export class CreateListingComponent implements OnInit {
             city: post.city,
             images: [],
             userEmailsWhoFavourite: [],
+            created: new Date().getTime(),
             uuid: UUID.UUID()
         }
     }

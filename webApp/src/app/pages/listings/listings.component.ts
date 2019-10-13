@@ -28,7 +28,6 @@ export class ListingsComponent implements OnInit, OnDestroy {
     }
 
     @ViewChild('filters') filters: any;
-
     protected view;
     protected user = this.authenticationService.user;
     protected stopSubscriptions = new Subject();
@@ -45,9 +44,10 @@ export class ListingsComponent implements OnInit, OnDestroy {
         size: 6,
         total: 0,
         sort: 'created',
-        direction: 'DESC',
+        direction: 'desc',
         filters: null
     };
+
     protected filterIcons = {
         manufacturer: 'build',
         model: 'merge_type',
@@ -62,14 +62,14 @@ export class ListingsComponent implements OnInit, OnDestroy {
     };
 
     private getAllCars() {
-        this._firestore.collection("cars", ref => ref.limit(10))
+        this._firestore.collection("cars", ref => ref.limit(this.queryOptions.size).orderBy(this.queryOptions.sort, this.queryOptions.direction))
             .snapshotChanges().pipe(map(carDocument => {
                 return carDocument.map(cd => {
                     const data = cd.payload.doc.data();
                     const id = cd.payload.doc.id;
                     return { id, ...data };
                 })
-        })).pipe(take(1)).subscribe(res => {
+        })).subscribe(res => {
             console.log(res);
             this.cars = res
         })
