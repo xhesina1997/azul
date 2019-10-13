@@ -5,13 +5,14 @@ import { auth } from  'firebase/app';
 import { AngularFireAuth } from  "@angular/fire/auth";
 import { User } from  'firebase';
 import {Router} from "@angular/router";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthenticationService {
 
-
+    public static loginSubject: BehaviorSubject<any> = new BehaviorSubject(null);
 
     constructor(
         public  afAuth:  AngularFireAuth,
@@ -22,6 +23,7 @@ export class AuthenticationService {
             if (user) {
                 console.log("FIREBASE USER: ", user);
                 this.user = user;
+                AuthenticationService.loginSubject.next(this.user);
                 localStorage.setItem('user', JSON.stringify(this.user));
             } else {
                 localStorage.setItem('user', null);
@@ -29,6 +31,7 @@ export class AuthenticationService {
         });
 
         if(this.cookieService.check("USER")){
+            console.log("aaa")
             this.user = JSON.parse(this.cookieService.get("USER")).user;
         }
     }

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from "../../auth/authentication.service";
 import {MatBottomSheet, MatDialog} from "@angular/material";
 import {AngularFirestore} from "@angular/fire/firestore";
+import {takeUntil} from "rxjs/operators";
+import {Subject} from "rxjs";
 
 @Component({
     selector: 'app-account',
@@ -16,22 +18,33 @@ export class AccountComponent implements OnInit {
     protected displayed = 0;
     protected listingsCreatedByUser: any[] = [];
     protected favouriteListings: any[] = [];
+    private unSubscribeSubject: Subject<any> = new Subject();
 
     protected carToBeDeleted: any;
-    constructor(private _authService: AuthenticationService,
-                private _fireStore: AngularFirestore,
+    constructor(private _fireStore: AngularFirestore,
                 private bottomSheet: MatBottomSheet,
-                public dialog: MatDialog,) {
-        this.user = this._authService.user;
+                public dialog: MatDialog) {
     }
 
     ngOnInit() {
-        this.getUserListings();
-        this.getUserFavourites();
+        AuthenticationService.loginSubject
+            .pipe(takeUntil(this.unSubscribeSubject))
+            .subscribe(user => {
+                if (user) {
+                    this.user = user;
+                    this.getUserListings();
+                    this.getUserFavourites();
+                }
+            })
     }
 
     handleIndexChange(index) {
         this.displayed = index;
+    }
+
+    ngOnDestroy() {
+        this.unSubscribeSubject.next();
+        this.unSubscribeSubject.complete();
     }
 
     getUserListings(){
