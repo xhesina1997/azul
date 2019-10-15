@@ -1,9 +1,11 @@
-import {Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit, ViewChild, HostBinding} from '@angular/core';
 import {AuthenticationService} from "../../auth/authentication.service";
 import {MatBottomSheet, MatSnackBar} from "@angular/material";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {Subject} from "rxjs/Subject";
 import {map, take, takeUntil} from "rxjs/operators";
+import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
+import {PaginationService} from "../../services/pagination.service";
 
 @Component({
     selector: 'app-listings',
@@ -15,12 +17,30 @@ export class ListingsComponent implements OnInit, OnDestroy {
     constructor(private authenticationService: AuthenticationService,
                 private snackBar: MatSnackBar,
                 private bottomSheet: MatBottomSheet,
-                private _firestore: AngularFirestore) {
+                public paginationService: PaginationService,
+                private _fireStore: AngularFirestore) {
     }
 
     ngOnInit() {
+        this.paginationService.init('cars', 'created');
+        // this.paginationService.data.subscribe(res => {
+        //     console.log(res);
+        //     if(res.length > 0){
+        //         if(this.cars == null){
+        //             this.cars = res;
+        //         }else{
+        //             res.forEach(item => {
+        //                 this.cars.push(item);
+        //             })
+        //         }
+        //     }
+        //     console.log(this.cars);
+        // });
         window.dispatchEvent(new Event('resize'));
-        this.getAllCars();
+
+        this.vsViewport.elementScrolled().subscribe(res => {
+            this.vsViewport.measureScrollOffset('bottom') == 0 ? this.handleScroll() : {};
+        });
     }
 
     ngOnDestroy() {
@@ -28,6 +48,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
     }
 
     @ViewChild('filters') filters: any;
+    @ViewChild('vsViewport') vsViewport: CdkVirtualScrollViewport;
     protected view;
     protected user = this.authenticationService.user;
     protected stopSubscriptions = new Subject();
@@ -41,7 +62,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
     protected cars: any;
     protected queryOptions = {
         page: 0,
-        size: 6,
+        size: 5,
         total: 0,
         sort: 'created',
         direction: 'desc',
@@ -61,20 +82,33 @@ export class ListingsComponent implements OnInit, OnDestroy {
         year: 'calendar_today'
     };
 
-    private getAllCars() {
-        this._firestore.collection("cars", ref => ref.limit(this.queryOptions.size).orderBy(this.queryOptions.sort, this.queryOptions.direction))
-            .snapshotChanges().pipe(map(carDocument => {
-                return carDocument.map(cd => {
-                    const data = cd.payload.doc.data();
-                    const id = cd.payload.doc.id;
-                    return { id, ...data };
-                })
-        })).subscribe(res => {
-            console.log(res);
-            this.cars = res
-        })
-
-    }
+    // private getAllCars() {
+    //     this._fireStore
+    //         .collection("cars", ref => ref.limit(this.queryOptions.size + 1)
+    //         .orderBy(this.queryOptions.sort, 'desc'))
+    //         .snapshotChanges()
+    //         .pipe(map(carDocument => {
+    //             if(!this.reachedTheEnd){
+    //                 this.nextRef = carDocument[carDocument.length - 1].payload.doc.ref;
+    //                 return carDocument.slice(0, this.queryOptions.size);
+    //             }else{
+    //                 this.reachedTheEnd = true;
+    //                 return carDocument;
+    //             }
+    //         }))
+    //         .pipe(map(carDocument => {
+    //             return carDocument.map(cd => {
+    //                 const data = cd.payload.doc.data();
+    //                 const id = cd.payload.doc.id;
+    //                 return {id, ...data};
+    //             })
+    //         }))
+    //         .pipe(take(1))
+    //         .subscribe(res => {
+    //             this.cars = res
+    //         })
+    //
+    // }
 
     filtersChanged(filters) {
         Object.entries(filters).length == 0 ? this.queryOptions.filters = null : this.queryOptions.filters = filters;
@@ -84,14 +118,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
     removeFilter(filterKey) {
         delete this.queryOptions.filters[filterKey];
         Object.entries(this.queryOptions.filters).length == 0 ? this.queryOptions.filters = null : {};
-        this.getAllCars();
-    }
-
-    changedQueryOptions(event) {
-        console.log(event);
-        this.queryOptions.page = event.pageIndex;
-        this.queryOptions.size = event.pageSize;
-        this.getAllCars();
+        // this.getAllCars();
     }
 
     changedSort(event) {
@@ -105,7 +132,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
             this.queryOptions.sort = 'price.value';
             this.queryOptions.direction = 'DESC';
         }
-        this.getAllCars();
+        // this.getAllCars();
     }
 
     addUserWhoFavourite(car) {
@@ -114,15 +141,15 @@ export class ListingsComponent implements OnInit, OnDestroy {
                 return email == this.authenticationService.user.email
             });
             console.log(previousEntry);
-            if(previousEntry != this.authenticationService.user.email || previousEntry == null){
+            if (previousEntry != this.authenticationService.user.email || previousEntry == null) {
                 car.userEmailsWhoFavourite.push(this.authenticationService.user.email);
-                this._firestore.collection('cars').doc(car.id).set(car)
+                this._fireStore.collection('cars').doc(car.id).set(car)
                     .then(res => {
                         this.snackBar.open('Listing added to favourites.', null, {duration: 1500})
                     }, error => {
                         this.snackBar.open('There was an error', null, {duration: 1500})
                     });
-            }else{
+            } else {
                 this.snackBar.open('Listing already added to favourites', null, {duration: 1500})
             }
 
@@ -131,7 +158,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
         }
     }
 
-    handileItemEvent(event) {
+    handleItemEvent(event) {
         switch (event.type) {
             case "favourite": {
                 this.addUserWhoFavourite(event.target);
@@ -139,12 +166,16 @@ export class ListingsComponent implements OnInit, OnDestroy {
         }
     }
 
+    handleScroll(){
+        this.paginationService.more();
+    }
+
     toggleFilters() {
         this.bottomSheet.open(this.filters);
     }
 
     fireSearch() {
-        this.getAllCars();
+        // this.getAllCars();
         this.bottomSheet.dismiss();
     }
 }

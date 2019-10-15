@@ -1,6 +1,5 @@
 import {Component, OnInit, Input, Output} from '@angular/core';
 import {Subject} from "rxjs/Subject";
-import {environment} from "../../../environments/environment";
 
 @Component({
     selector: 'app-list-item',

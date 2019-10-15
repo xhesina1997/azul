@@ -13,6 +13,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireStorage, AngularFireStorageModule} from "@angular/fire/storage";
+import { ScrollableDirective } from './directives/scrollable.directive';
 
 var config = {
     apiKey: "AIzaSyCwPRzecRZQMzJe9-V0HLhvuJc5wQFOM2c",
@@ -27,7 +28,8 @@ var config = {
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        ScrollableDirective
     ],
     imports: [
         BrowserModule,

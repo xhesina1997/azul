@@ -5,7 +5,7 @@ import {ListingsRoutingModule} from './listings-routing.module';
 import {ListingsComponent} from './listings.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule, MatRippleModule, MatSnackBarModule} from "@angular/material";
+import {MatButtonModule, MatProgressBarModule, MatRippleModule, MatSnackBarModule} from "@angular/material";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatListModule} from '@angular/material/list';
 import {SharedModule} from "../../shared/shared.module";
@@ -17,6 +17,8 @@ import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {MatChipsModule} from '@angular/material/chips';
 import {DisplayFilterPipe} from "../../pipes/display-filter.pipe";
 
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {PaginationService} from "../../services/pagination.service";
 
 @NgModule({
     declarations: [
@@ -39,8 +41,11 @@ import {DisplayFilterPipe} from "../../pipes/display-filter.pipe";
         ListItemModule,
         MatBottomSheetModule,
         MatSnackBarModule,
+        ScrollingModule,
+        MatProgressBarModule,
         SharedModule
-    ]
+    ],
+    providers: [PaginationService]
 })
 export class ListingsModule {
 }

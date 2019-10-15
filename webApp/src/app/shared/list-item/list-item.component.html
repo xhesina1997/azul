@@ -1,4 +1,4 @@
-<div *ngIf="view == 'default'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden">
+<div *ngIf="view == 'default'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white; min-height: 338px">
     <div style="margin: 8px" fxLayout="row" fxLayoutAlign="space-between start">
         <div>
             <div>
@@ -39,7 +39,7 @@
 </div>
 
 
-<div *ngIf="view == 'userSubmission'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden">
+<div *ngIf="view == 'userSubmission'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white">
     <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="25" style="height: 60px">
             <img src="{{listing?.images[0]}}"
@@ -70,7 +70,7 @@
     </div>
 </div>
 
-<div *ngIf="view == 'desktop'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden">
+<div *ngIf="view == 'desktop'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white;">
     <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="35" style="height: 130px">
             <img src="{{listing?.images[0]}}"
