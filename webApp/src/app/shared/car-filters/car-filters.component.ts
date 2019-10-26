@@ -120,8 +120,6 @@ export class CarFiltersComponent implements OnInit {
             this.filters.year[1] = event
         } else {
             this.filters[filter] = event;
-            console.log(event);
-
         }
         this.filtersListener.next(this.filters);
     }

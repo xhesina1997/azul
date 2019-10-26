@@ -1,6 +1,5 @@
-<cdk-virtual-scroll-viewport #vsViewport itemSize="100" style="height: 100%">
-    <div style="padding: 8px 16px 16px 16px; height: 100%">
-
+<cdk-virtual-scroll-viewport #vsViewport itemSize="338" style="height: 100%; max-width: 100%">
+    <div style="padding: 0 16px 16px 16px; height: 100%;">
         <div fxLayout="row">
             <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
 
@@ -8,32 +7,45 @@
                  [ngStyle.md]="{'width':'100%'}"
                  [ngStyle.sm]="{'width':'100%'}"
                  [ngStyle.xs]="{'width':'100%'}">
-                <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c">
-                    <div style="width: calc(100% - 40px)" *ngIf="queryOptions.filters == null">
-                        Search results
+                <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c; width: 100%; margin-bottom: 10px">
+                    <div fxLayout="row" fxLayoutAlign="space-between center"
+                         style="border: 1px solid #e0e0e0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; overflow: hidden; background-color: white; width: 100%;">
+                        <div style="width: calc(100% - 40px); padding-left: 8px;">
+                            <ng-container *ngIf="queryOptions.filters == null">
+                                Search results
+                            </ng-container>
+                            <ng-container *ngIf="queryOptions.filters != null">
+                                <mat-chip-list #chipList>
+                                    <mat-chip *ngFor="let filter of queryOptions.filters | keyvalue"
+                                              [selectable]="false" [removable]="true"
+                                              (removed)="removeFilter(filter.key)">
+                                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                                            <mat-icon style="padding-top: 4px; font-size: 18px;">
+                                                {{filterIcons[filter.key]}}
+                                            </mat-icon>
+                                            {{filter.value | displayFilter}}
+                                            <mat-icon matChipRemove>cancel</mat-icon>
+                                        </div>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </ng-container>
+                        </div>
+                        <button style="width: 40px" (click)="toggleFilters()" mat-icon-button>
+                            <mat-icon style="color: #8c8c8c">tune</mat-icon>
+                        </button>
                     </div>
-                    <div style="width: calc(100% - 40px)" *ngIf="queryOptions.filters != null">
-                        <mat-chip-list #chipList>
-                            <mat-chip *ngFor="let filter of queryOptions.filters | keyvalue"
-                                      [selectable]="false" [removable]="true" (removed)="removeFilter(filter.key)">
-                                <div fxLayout="row" fxLayoutAlign="space-between center">
-                                    <mat-icon style="padding-top: 4px; font-size: 18px;">
-                                        {{filterIcons[filter.key]}}
-                                    </mat-icon>
-                                    {{filter.value | displayFilter}}
-                                    <mat-icon matChipRemove>cancel</mat-icon>
-                                </div>
-                            </mat-chip>
-                        </mat-chip-list>
-                    </div>
-                    <button style="width: 40px" (click)="toggleFilters()" mat-icon-button>
-                        <mat-icon style="color: #8c8c8c">tune</mat-icon>
-                    </button>
+                    <!--<div style="width: calc(100% - 40px)">-->
+
+                    <!--</div>-->
+
                 </div>
 
-                <mat-divider style="margin-bottom: 10px"></mat-divider>
+                <!--<mat-divider style="margin-bottom: 10px"></mat-divider>-->
 
                 <div fxLayout="row">
+
+
+
                     <div [ngStyle.md]="{'padding-right':'10px'}"
                          [ngStyle.lg]="{'padding-right':'10px'}"
                          *ngIf="view == 'desktop'" fxFlex.md="40" fxFlex.lg="35" fxFlex.gt="10">
@@ -52,31 +64,46 @@
 
                     <div fxFlex.xs="100" fxFlex.sm="100"
                          fxFlex.md="60" fxFlex.lg="75" fxFlex.gt="90"
-                         *ngIf="cars?.length !=  0; else noCars">
+                         *ngIf="true; else noCars">
 
 
                         <div fxLayout="row wrap">
-                            <div *cdkVirtualFor="let car of paginationService.data | async"
+                            <div *cdkVirtualFor="let car of listings"
                                  style="margin-bottom: 10px"
                                  fxFlex.xs="100" fxFlex.sm="50"
                                  fxFlex.md="100" fxFlex.lg="100"
                                  [ngStyle.sm]="{'padding':'0 5px'}">
                                 <app-list-item [listing]="car" [view]=" view == 'desktop' ? 'desktop' : 'default'"
-                                               (outputEvent)="handleItemEvent($event)"></app-list-item>
+                                               (outputEvent)="handleItemEvent($event)">
+                                </app-list-item>
                             </div>
                         </div>
 
 
-                        <div style="height: auto; padding: 0;">
+                        <div fxLayout="row wrap" *ngIf="loading | async">
+                            <div style="margin-bottom: 10px"
+                                 fxFlex.xs="100" fxFlex.sm="50"
+                                 fxFlex.md="100" fxFlex.lg="100"
+                                 [ngStyle.sm]="{'padding':'0 5px'}">
+                                <app-list-item [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"
+                                               (outputEvent)="handleItemEvent($event)">
+                                </app-list-item>
+                            </div>
+                            <div style="margin-bottom: 10px"
+                                 fxFlex.xs="100" fxFlex.sm="50"
+                                 fxFlex.md="100" fxFlex.lg="100"
+                                 [ngStyle.sm]="{'padding':'0 5px'}">
+                                <app-list-item [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"
+                                               (outputEvent)="handleItemEvent($event)">
+                                </app-list-item>
+                            </div>
+                        </div>
 
-                            <mat-progress-bar *ngIf="paginationService.loading | async" mode="indeterminate"></mat-progress-bar>
-
-                            <!--<mat-paginator (page)="changedQueryOptions($event)"-->
-                        <!--style="width: 100%; border: 1px solid #e0e0e0; border-radius: 8px;"-->
-                        <!--[length]="queryOptions.total"-->
-                        <!--[pageSize]="queryOptions.size"-->
-                        <!--[pageSizeOptions]="[1, 2, 6, 12, 24]">-->
-                        <!--</mat-paginator>-->
+                        <div fxLayout="column" fxLayoutAlign="center center">
+                            <div style="margin: 10px 0; text-align: center">
+                                Didn't find what you were looking for?
+                            </div>
+                            <button mat-stroked-button color="primary">create an alert</button>
                         </div>
 
                     </div>
@@ -89,9 +116,9 @@
 
             <div fxHide fxShow.lgstyle="width: calc((100% - 1250px)/2)"></div>
         </div>
+
     </div>
 </cdk-virtual-scroll-viewport>
-
 
 <ng-template #filters>
     <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c;">

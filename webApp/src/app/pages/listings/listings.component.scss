@@ -43,6 +43,10 @@
   display: none;
 }
 
+:host /deep/ .cdk-virtual-scroll-content-wrapper {
+  width: 100vw;
+}
+
 /deep/ .mat-bottom-sheet-container{
   -webkit-overflow-scrolling: touch;
   padding: 16px !important;

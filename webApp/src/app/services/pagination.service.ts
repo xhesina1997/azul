@@ -5,7 +5,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/scan';
 import 'rxjs/add/operator/take';
 import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/firestore";
-import {scan, take, tap} from "rxjs/operators";
+import {scan, take, takeUntil, tap} from "rxjs/operators";
+import {Subject} from "rxjs/Subject";
 
 interface QueryConfig {
     path: string, //  path to collection
@@ -13,6 +14,13 @@ interface QueryConfig {
     limit: number, // limit per query
     reverse: boolean, // reverse order?
     prepend: boolean // prepend to source?
+}
+
+interface Configs {
+    path: string, //  path to collection
+    field: string, // field to orderBy
+    limit: number, // limit per query
+    reverse: boolean
 }
 
 @Injectable()
@@ -30,18 +38,23 @@ export class PaginationService {
     done: Observable<boolean> = this._done.asObservable();
     loading: Observable<boolean> = this._loading.asObservable();
 
-
     constructor(private afs: AngularFirestore) {
+        this._data.subscribe(res => console.log(res))
     }
 
     // Initial query sets options and defines the Observable
     // passing opts will override the defaults
     init(path: string, field: string, opts?: any) {
+
+        this._done.next(false);
+        this._loading.next(false);
+        // this._data.next([]);
+
         this.query = {
             path,
             field,
-            limit: 3,
-            reverse: false,
+            limit: 4,
+            reverse: true,
             prepend: false,
             ...opts
         };
@@ -56,7 +69,6 @@ export class PaginationService {
 
         // Create the observable array for consumption in components
         this.data = this._data.asObservable().pipe(scan((acc, val) => {
-            // return val;
             return this.query.prepend ? val.concat(acc) : acc.concat(val)
         }))
     }
@@ -64,7 +76,7 @@ export class PaginationService {
 
     // Retrieves additional data from firestore
     more() {
-        const cursor = this.getCursor()
+        const cursor = this.getCursor();
 
         const more = this.afs.collection(this.query.path, ref => {
             return ref
@@ -78,7 +90,7 @@ export class PaginationService {
 
     // Determines the doc snapshot to paginate query
     private getCursor() {
-        const current = this._data.value
+        const current = this._data.value;
         if (current.length) {
             return this.query.prepend ? current[0].doc : current[current.length - 1].doc
         }
@@ -92,7 +104,6 @@ export class PaginationService {
         if (this._done.value || this._loading.value) {
             return
         }
-        ;
 
         // loading
         this._loading.next(true);
@@ -107,10 +118,10 @@ export class PaginationService {
                 });
 
                 // If prepending, reverse the batch order
-                values = this.query.prepend ? values.reverse() : values
+                values = this.query.prepend ? values.reverse() : values;
 
                 // update source with new values, done loading
-                this._data.next(values)
+                this._data.next(values);
                 this._loading.next(false)
 
                 // no more values, mark done
@@ -120,6 +131,11 @@ export class PaginationService {
             }))
             .pipe(take(1))
             .subscribe()
+    }
+
+    reset() {
+        this._data.next([]);
+        this._done.next(false);
     }
 
 }

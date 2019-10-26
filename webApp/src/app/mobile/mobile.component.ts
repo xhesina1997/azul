@@ -1,7 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {AuthenticationService} from "../auth/authentication.service";
-import {Router} from "@angular/router";
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from "@angular/router";
 
 @Component({
     selector: 'app-mobile',
@@ -10,7 +10,29 @@ import {Router} from "@angular/router";
 })
 export class MobileComponent implements OnInit {
 
-    constructor(private router: Router, protected authenticationService: AuthenticationService) {}
+    constructor(private router: Router, protected authenticationService: AuthenticationService) {
+        this.router.events.subscribe((event: any) => {
+            switch (true) {
+                case event instanceof NavigationStart: {
+                    this.loading = true;
+                    break;
+                }
+
+                case event instanceof NavigationEnd:
+                case event instanceof NavigationCancel:
+                case event instanceof NavigationError: {
+                    this.loading = false;
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        });
+    }
+
+    protected loading = false;
+
 
     ngOnInit() {
     }

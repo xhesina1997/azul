@@ -5,7 +5,7 @@ import {ListingsRoutingModule} from './listings-routing.module';
 import {ListingsComponent} from './listings.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule, MatProgressBarModule, MatRippleModule, MatSnackBarModule} from "@angular/material";
+import {MatButtonModule, MatRippleModule, MatSnackBarModule} from "@angular/material";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatListModule} from '@angular/material/list';
 import {SharedModule} from "../../shared/shared.module";
@@ -42,7 +42,6 @@ import {PaginationService} from "../../services/pagination.service";
         MatBottomSheetModule,
         MatSnackBarModule,
         ScrollingModule,
-        MatProgressBarModule,
         SharedModule
     ],
     providers: [PaginationService]

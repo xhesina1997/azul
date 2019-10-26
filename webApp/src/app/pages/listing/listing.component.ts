@@ -1,15 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {environment} from "../../../environments/environment";
 import {AngularFirestore} from "@angular/fire/firestore";
+import {takeUntil} from "rxjs/operators";
+import {Subject} from "rxjs/Subject";
 
 @Component({
     selector: 'app-listing',
     templateUrl: './listing.component.html',
     styleUrls: ['./listing.component.scss']
 })
-export class ListingComponent implements OnInit {
+export class ListingComponent implements OnInit, OnDestroy {
 
     constructor(private activatedRoute: ActivatedRoute,
                 private _firestore: AngularFirestore) {
@@ -44,13 +46,21 @@ export class ListingComponent implements OnInit {
     }
 
     protected selectedCar : any = {};
+    protected stopSubscriptions = new Subject();
 
     ngOnInit() {
         this.activatedRoute.queryParams.subscribe(params => {
             this._firestore.collection('cars', ref => ref.where('uuid', '==', params.id).limit(1))
                 .valueChanges()
-                .subscribe(res => this.selectedCar = res[0])
+                .pipe(takeUntil(this.stopSubscriptions)).subscribe(res => {
+                    this.selectedCar = res[0];
+                    this.stopSubscriptions.next();
+            })
         })
+    }
+
+    ngOnDestroy(){
+        this.stopSubscriptions.complete();
     }
 
 }

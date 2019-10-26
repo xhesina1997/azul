@@ -1,11 +1,12 @@
 import {Component, HostListener, OnDestroy, OnInit, ViewChild, HostBinding} from '@angular/core';
 import {AuthenticationService} from "../../auth/authentication.service";
 import {MatBottomSheet, MatSnackBar} from "@angular/material";
-import {AngularFirestore} from "@angular/fire/firestore";
+import {AngularFirestore, AngularFirestoreCollection, CollectionReference, Query} from "@angular/fire/firestore";
 import {Subject} from "rxjs/Subject";
 import {map, take, takeUntil} from "rxjs/operators";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {PaginationService} from "../../services/pagination.service";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Component({
     selector: 'app-listings',
@@ -17,27 +18,16 @@ export class ListingsComponent implements OnInit, OnDestroy {
     constructor(private authenticationService: AuthenticationService,
                 private snackBar: MatSnackBar,
                 private bottomSheet: MatBottomSheet,
-                public paginationService: PaginationService,
                 private _fireStore: AngularFirestore) {
     }
 
     ngOnInit() {
-        this.paginationService.init('cars', 'created');
-        // this.paginationService.data.subscribe(res => {
-        //     console.log(res);
-        //     if(res.length > 0){
-        //         if(this.cars == null){
-        //             this.cars = res;
-        //         }else{
-        //             res.forEach(item => {
-        //                 this.cars.push(item);
-        //             })
-        //         }
-        //     }
-        //     console.log(this.cars);
-        // });
-        window.dispatchEvent(new Event('resize'));
+        this.done.next(false);
+        this.loading.next(false);
 
+        this.getInitialData();
+
+        window.dispatchEvent(new Event('resize'));
         this.vsViewport.elementScrolled().subscribe(res => {
             this.vsViewport.measureScrollOffset('bottom') == 0 ? this.handleScroll() : {};
         });
@@ -45,29 +35,93 @@ export class ListingsComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.stopSubscriptions.next();
+        this.stopSubscriptions.complete();
+        this.done.complete();
+        this.loading.complete();
     }
 
     @ViewChild('filters') filters: any;
     @ViewChild('vsViewport') vsViewport: CdkVirtualScrollViewport;
     protected view;
+    protected listings = [];
     protected user = this.authenticationService.user;
     protected stopSubscriptions = new Subject();
+    protected done = new BehaviorSubject(false);
+    protected loading = new BehaviorSubject(false);
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
         event.target.innerWidth > 960 ? this.view = 'desktop' : this.view = 'mobile';
     }
 
-    protected sort = 'latest';
-    protected cars: any;
     protected queryOptions = {
         page: 0,
-        size: 5,
+        size: 4,
         total: 0,
         sort: 'created',
-        direction: 'desc',
+        reverse: false,
         filters: null
     };
+
+    addFilters(query: Query){
+        console.log(this.queryOptions.filters);
+        if (this.queryOptions.filters != null) {
+            for(let filter in this.queryOptions.filters){
+                console.log(filter);
+                console.log(this.queryOptions.filters[filter]);
+                query = query.where(filter, '==', this.queryOptions.filters[filter]);
+            }
+        }
+        return query;
+    }
+
+    getInitialData() {
+        let col = this._fireStore.collection('cars', ref => {
+            let query: Query = ref;
+            query = query.orderBy(this.queryOptions.sort, this.queryOptions.reverse ? 'asc' : 'desc');
+            query = query.limit(this.queryOptions.size);
+            query = this.addFilters(query);
+            return query;
+        });
+        this.mapResponse(col);
+    }
+
+    handleScroll() {
+        let col = this._fireStore.collection('cars', ref => {
+            let query: Query = ref;
+            query = query.orderBy(this.queryOptions.sort, this.queryOptions.reverse ? 'asc' : 'desc');
+            query = query.limit(this.queryOptions.size);
+            query = query.startAfter(this.listings[this.listings.length - 1].doc);
+            query = this.addFilters(query);
+            return query;
+        });
+        this.mapResponse(col);
+    }
+
+    mapResponse(collection: AngularFirestoreCollection) {
+        if (this.done.value || this.loading.value) {
+            return
+        } else {
+            this.loading.next(true);
+            collection.snapshotChanges().pipe(map((arr: any) => {
+                return arr.map(snap => {
+                    const data = snap.payload.doc.data();
+                    const doc = snap.payload.doc;
+                    return {...data, doc}
+                });
+            })).pipe(takeUntil(this.stopSubscriptions)).subscribe(response => {
+                if (response.length == 0) {
+                    this.done.next(true);
+                } else {
+                    this.listings = this.listings.concat(response);
+                    if(response.length < this.queryOptions.size) this.done.next(true);
+                    console.log(this.listings);
+                }
+                this.loading.next(false);
+                this.stopSubscriptions.next();
+            });
+        }
+    }
 
     protected filterIcons = {
         manufacturer: 'build',
@@ -82,35 +136,8 @@ export class ListingsComponent implements OnInit, OnDestroy {
         year: 'calendar_today'
     };
 
-    // private getAllCars() {
-    //     this._fireStore
-    //         .collection("cars", ref => ref.limit(this.queryOptions.size + 1)
-    //         .orderBy(this.queryOptions.sort, 'desc'))
-    //         .snapshotChanges()
-    //         .pipe(map(carDocument => {
-    //             if(!this.reachedTheEnd){
-    //                 this.nextRef = carDocument[carDocument.length - 1].payload.doc.ref;
-    //                 return carDocument.slice(0, this.queryOptions.size);
-    //             }else{
-    //                 this.reachedTheEnd = true;
-    //                 return carDocument;
-    //             }
-    //         }))
-    //         .pipe(map(carDocument => {
-    //             return carDocument.map(cd => {
-    //                 const data = cd.payload.doc.data();
-    //                 const id = cd.payload.doc.id;
-    //                 return {id, ...data};
-    //             })
-    //         }))
-    //         .pipe(take(1))
-    //         .subscribe(res => {
-    //             this.cars = res
-    //         })
-    //
-    // }
-
     filtersChanged(filters) {
+        console.log(filters);
         Object.entries(filters).length == 0 ? this.queryOptions.filters = null : this.queryOptions.filters = filters;
         // this.getALlCars();
     }
@@ -122,16 +149,16 @@ export class ListingsComponent implements OnInit, OnDestroy {
     }
 
     changedSort(event) {
-        if (event == 'latest') {
-            this.queryOptions.sort = 'created';
-            this.queryOptions.direction = 'ASC';
-        } else if (event == 'price-l') {
-            this.queryOptions.sort = 'price.value';
-            this.queryOptions.direction = 'ASC';
-        } else if (event == 'price-h') {
-            this.queryOptions.sort = 'price.value';
-            this.queryOptions.direction = 'DESC';
-        }
+        // if (event == 'latest') {
+        //     this.queryOptions.sort = 'created';
+        //     this.queryOptions.direction = 'ASC';
+        // } else if (event == 'price-l') {
+        //     this.queryOptions.sort = 'price.value';
+        //     this.queryOptions.direction = 'ASC';
+        // } else if (event == 'price-h') {
+        //     this.queryOptions.sort = 'price.value';
+        //     this.queryOptions.direction = 'DESC';
+        // }
         // this.getAllCars();
     }
 
@@ -140,7 +167,6 @@ export class ListingsComponent implements OnInit, OnDestroy {
             const previousEntry = car.userEmailsWhoFavourite.find(email => {
                 return email == this.authenticationService.user.email
             });
-            console.log(previousEntry);
             if (previousEntry != this.authenticationService.user.email || previousEntry == null) {
                 car.userEmailsWhoFavourite.push(this.authenticationService.user.email);
                 this._fireStore.collection('cars').doc(car.id).set(car)
@@ -166,16 +192,16 @@ export class ListingsComponent implements OnInit, OnDestroy {
         }
     }
 
-    handleScroll(){
-        this.paginationService.more();
-    }
-
     toggleFilters() {
         this.bottomSheet.open(this.filters);
     }
 
     fireSearch() {
         // this.getAllCars();
+        this.done.next(false);
+        this.listings = [];
+        this.getInitialData();
+
         this.bottomSheet.dismiss();
     }
 }

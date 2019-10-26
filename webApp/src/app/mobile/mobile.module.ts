@@ -8,7 +8,7 @@ import {
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
-    MatListModule,
+    MatListModule, MatProgressBarModule,
     MatSidenavModule,
     MatToolbarModule
 } from "@angular/material";
@@ -26,6 +26,7 @@ import {SharedModule} from "../shared/shared.module";
       MatToolbarModule,
       MatSidenavModule,
       MatListModule,
+      MatProgressBarModule,
       MobileRoutingModule
   ]
 })

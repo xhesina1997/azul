@@ -1,3 +1,7 @@
-.filtersContainer{
+:host /deep/ .mat-toolbar-row, .mat-toolbar-single-row {
+  height: 45px !important;
+}
 
+:host /deep/ .mat-drawer-container{
+  background-color: #fbfbfb;
 }
