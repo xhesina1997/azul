@@ -16,9 +16,16 @@ import { FormsModule, ReactiveFormsModule, NG_VALUE_ACCESSOR } from "@angular/fo
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 // import filepond module
+import * as FilePond from 'filepond';
 import { FilePondModule, registerPlugin } from 'ngx-filepond';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
-registerPlugin(FilePondPluginFileValidateType);
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+// Import the plugin styles
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import FilePondPluginImageTransform from 'filepond-plugin-image-transform';
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+import FilePondPluginImageResize from 'filepond-plugin-image-resize';
+FilePond.registerPlugin(FilePondPluginFileValidateType,  FilePondPluginImagePreview,FilePondPluginImageExifOrientation,FilePondPluginImageResize,FilePondPluginImageTransform );
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 

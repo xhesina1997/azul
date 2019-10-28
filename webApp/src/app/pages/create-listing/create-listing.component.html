@@ -224,9 +224,10 @@
                 </div>
             </div>
 
-
             <file-pond #myPond [options]="pondOptions" [files]="uploadedFiles" (oninit)="pondHandleInit()"
-                       (onaddfile)="pondHandleAddFile($event)">
+                       (onaddfile)="pondHandleAddFile($event)" allowImageResize={true} allowImagePreview={true}
+                       allowImageResize={true} imageResizeUpscale={true} allowMultiple={true}
+                       imagePreviewMaxHeight={500} imagePreviewMaxWidth={500}  allowReplace={false}>
             </file-pond>
 
             <div fxLayout="row">
