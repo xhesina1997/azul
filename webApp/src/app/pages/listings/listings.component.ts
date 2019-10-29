@@ -1,4 +1,4 @@
-import {Component, HostListener, OnDestroy, OnInit, ViewChild, HostBinding} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit, ViewChild, HostBinding, ChangeDetectorRef} from '@angular/core';
 import {AuthenticationService} from "../../auth/authentication.service";
 import {MatBottomSheet, MatSnackBar} from "@angular/material";
 import {AngularFirestore, AngularFirestoreCollection, CollectionReference, Query} from "@angular/fire/firestore";
@@ -7,6 +7,7 @@ import {map, take, takeUntil} from "rxjs/operators";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {PaginationService} from "../../services/pagination.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-listings',
@@ -18,21 +19,40 @@ export class ListingsComponent implements OnInit, OnDestroy {
     constructor(private authenticationService: AuthenticationService,
                 private snackBar: MatSnackBar,
                 private bottomSheet: MatBottomSheet,
-                private _fireStore: AngularFirestore) {
+                private _fireStore: AngularFirestore,
+                private router: Router,
+                private route: ActivatedRoute,
+                private changeDetector : ChangeDetectorRef) {
     }
 
     ngOnInit() {
         this.done.next(false);
         this.loading.next(false);
 
-        this.getInitialData();
+
 
         window.dispatchEvent(new Event('resize'));
         this.vsViewport.elementScrolled().subscribe(res => {
             this.vsViewport.measureScrollOffset('bottom') == 0 ? this.handleScroll() : {};
         });
     }
+    ngAfterViewInit() {
+        this.route.queryParams.pipe(takeUntil(this.stopQuerySubscription)).subscribe(params => {
+            if(Object.entries(params).length != 0){
+                console.log(params)
+                this.queryOptions.filters = {...params};
+                this.getInitialData();
+            }else{
+                this.getInitialData();
+            }
 
+            this.stopQuerySubscription.next();
+
+        });
+    }
+    ngAfterViewChecked(){
+        this.changeDetector.detectChanges();
+    }
     ngOnDestroy() {
         this.stopSubscriptions.next();
         this.stopSubscriptions.complete();
@@ -46,6 +66,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
     protected listings = [];
     protected user = this.authenticationService.user;
     protected stopSubscriptions = new Subject();
+    protected stopQuerySubscription = new Subject();
     protected done = new BehaviorSubject(false);
     protected loading = new BehaviorSubject(false);
 
@@ -139,7 +160,9 @@ export class ListingsComponent implements OnInit, OnDestroy {
     filtersChanged(filters) {
         console.log(filters);
         Object.entries(filters).length == 0 ? this.queryOptions.filters = null : this.queryOptions.filters = filters;
-        // this.getALlCars();
+        this.router.navigate(['/mobile/search'], { queryParams: filters })
+
+
     }
 
     removeFilter(filterKey) {
