@@ -51,12 +51,12 @@ export class ListingsComponent implements OnInit, OnDestroy {
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
-        event.target.innerWidth > 960 ? this.view = 'desktop' : this.view = 'mobile';
+        event.target.innerWidth > 960 ? this.view = 'desktop' : event.target.innerWidth > 600 ? this.view = 'tablet' : this.view = 'mobile';
     }
 
     protected queryOptions = {
         page: 0,
-        size: 4,
+        size: 10,
         total: 0,
         sort: 'created',
         reverse: false,
