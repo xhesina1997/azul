@@ -7,9 +7,10 @@
                  [ngStyle.md]="{'width':'100%'}"
                  [ngStyle.sm]="{'width':'100%'}"
                  [ngStyle.xs]="{'width':'100%'}">
-                <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c; width: 100%; margin-bottom: 10px">
+
+                <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c; width: 100%;">
                     <div fxLayout="row" fxLayoutAlign="space-between center"
-                         style="border: 1px solid #e0e0e0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; overflow: hidden; background-color: white; width: 100%;">
+                         style="width: 100%;">
                         <div style="width: calc(100% - 48px); padding-left: 8px;">
                             <ng-container *ngIf="queryOptions.filters == null">
                                 Search results
@@ -34,13 +35,10 @@
                             <mat-icon style="color: #8c8c8c">tune</mat-icon>
                         </button>
                     </div>
-                    <!--<div style="width: calc(100% - 40px)">-->
-
-                    <!--</div>-->
-
                 </div>
 
-                <!--<mat-divider style="margin-bottom: 10px"></mat-divider>-->
+
+                <mat-divider style="margin-bottom: 10px"></mat-divider>
 
                 <div fxLayout="row">
 

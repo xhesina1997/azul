@@ -192,7 +192,8 @@ export class ListingsComponent implements OnInit, OnDestroy {
             });
             if (previousEntry != this.authenticationService.user.email || previousEntry == null) {
                 car.userEmailsWhoFavourite.push(this.authenticationService.user.email);
-                this._fireStore.collection('cars').doc(car.id).set(car)
+                let carWithoutDoc = {...car}; delete carWithoutDoc.doc;
+                this._fireStore.collection('cars').doc(car.doc.id).set(carWithoutDoc)
                     .then(res => {
                         this.snackBar.open('Listing added to favourites.', null, {duration: 1500})
                     }, error => {
