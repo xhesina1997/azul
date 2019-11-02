@@ -1,4 +1,5 @@
-<cdk-virtual-scroll-viewport #vsViewport [itemSize]="view == 'desktop' ? '140' : view == 'tablet' ? '140' : '338'" style="height: 100%; max-width: 100%">
+<cdk-virtual-scroll-viewport #vsViewport [itemSize]="view == 'desktop' ? '140' : view == 'tablet' ? '140' : '338'"
+                             style="height: 100%; max-width: 100%">
     <div style="padding: 0 16px 16px 16px; height: 100%;">
         <div fxLayout="row">
             <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
@@ -42,27 +43,31 @@
 
                 <div fxLayout="row">
 
-
-
                     <div [ngStyle.md]="{'padding-right':'10px'}"
                          [ngStyle.lg]="{'padding-right':'10px'}"
                          *ngIf="view == 'desktop'" fxFlex.md="40" fxFlex.lg="35" fxFlex.gt="10">
-                        <div fxLayout="row" fxLayoutAlign="space-between center"
-                             style="color: #8c8c8c; margin-bottom: 5px;">
-                            <div>
-                                Refine search
+
+
+                        <div style="position: sticky; top: 10px;">
+                            <!--<div>-->
+                            <div fxLayout="row" fxLayoutAlign="space-between center"
+                                 style="color: #8c8c8c; margin-bottom: 5px;">
+                                <div>
+                                    Refine search
+                                </div>
+                                <button (click)="getAllCars()" color="primary" mat-stroked-button>
+                                    search
+                                </button>
                             </div>
-                            <button (click)="getAllCars()" color="primary" mat-stroked-button>
-                                search
-                            </button>
+                            <car-filters (filtersListener)="filtersChanged($event)"
+                                         [existingFilters]="queryOptions?.filters"></car-filters>
                         </div>
-                        <car-filters (filtersListener)="filtersChanged($event)"
-                                     [existingFilters]="queryOptions?.filters"></car-filters>
+
                     </div>
 
                     <div fxFlex.xs="100" fxFlex.sm="100"
                          fxFlex.md="60" fxFlex.lg="75" fxFlex.gt="90"
-                         *ngIf="true; else noCars">
+                         *ngIf="!noListings; else noCars">
 
 
                         <div fxLayout="row wrap">
@@ -97,17 +102,19 @@
                             </div>
                         </div>
 
-                        <div fxLayout="column" fxLayoutAlign="center center">
-                            <div style="margin: 10px 0; text-align: center">
-                                Didn't find what you were looking for?
-                            </div>
-                            <button mat-stroked-button color="primary">create an alert</button>
-                        </div>
 
                     </div>
                     <ng-template #noCars>
-                        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="60" fxFlex.lg="75" fxFlex.gt="90"
-                             class="no-results"></div>
+                        <div fxLayout="column" fxLayoutAlign="space-between center" style="width: 100%">
+
+                            <p>Sorry, no results</p>
+                            <!--<p>Didn't find what you were looking for?</p>-->
+                            <!--<button mat-stroked-button color="primary">create an alert</button>-->
+                            <div style="height: 300px;" class="no-results"></div>
+
+
+                        </div>
+
                     </ng-template>
                 </div>
             </div>

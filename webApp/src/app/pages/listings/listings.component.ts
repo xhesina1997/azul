@@ -8,6 +8,7 @@ import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {PaginationService} from "../../services/pagination.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {ActivatedRoute, Router} from "@angular/router";
+import * as firebase from 'firebase/app'
 
 @Component({
     selector: 'app-listings',
@@ -28,8 +29,6 @@ export class ListingsComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.done.next(false);
         this.loading.next(false);
-
-
 
         window.dispatchEvent(new Event('resize'));
         this.vsViewport.elementScrolled().subscribe(res => {
@@ -64,6 +63,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
     @ViewChild('vsViewport') vsViewport: CdkVirtualScrollViewport;
     protected view;
     protected listings = [];
+    protected noListings :boolean = false;
     protected user = this.authenticationService.user;
     protected stopSubscriptions = new Subject();
     protected stopQuerySubscription = new Subject();
@@ -133,7 +133,9 @@ export class ListingsComponent implements OnInit, OnDestroy {
             })).pipe(takeUntil(this.stopSubscriptions)).subscribe(response => {
                 if (response.length == 0) {
                     this.done.next(true);
+                    if(this.listings.length == 0) this.noListings = true
                 } else {
+                    this.noListings? this.noListings = false : {};
                     this.listings = this.listings.concat(response);
                     if(response.length < this.queryOptions.size) this.done.next(true);
                     console.log(this.listings);
@@ -168,7 +170,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
     removeFilter(filterKey) {
         delete this.queryOptions.filters[filterKey];
         Object.entries(this.queryOptions.filters).length == 0 ? this.queryOptions.filters = null : {};
-        // this.getAllCars();
+        this.fireSearch()
     }
 
     changedSort(event) {

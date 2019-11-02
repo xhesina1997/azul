@@ -1,7 +1,9 @@
-<div fxLayout="row" style="padding: 5px 5px 0 5px">
-    <img style=" border: 1px solid grey; width: 35px; height: 35px; border-radius: 38px; margin-right: 10px" src="assets/illustrations/default-profile.png" alt="default-profile">
+<div fxLayout="row" style="padding: 5px 16px 0 16px">
+    <img style=" border: 1px solid grey; width: 35px; height: 35px; border-radius: 38px; margin-right: 10px"
+         [attr.src]="user?.photoURL != null ? user.photoURL : 'assets/illustrations/default-profile.png'"
+         [attr.alt]="user?.displayName">
     <div>
-        <p style="margin: 0; color: #8c8c8c">{{user?.name}}</p>
+        <p style="margin: 0; color: #8c8c8c">{{user?.displayName}}</p>
         <p style="margin: 0; color: #8c8c8c">{{user?.email}}</p>
     </div>
 </div>
@@ -28,7 +30,7 @@
             </div>
         </div>
     </mat-tab>
-    <mat-tab style="width: 33%;" label="Account">
+    <mat-tab style="width: 33%;" label="Settings">
         <div style="padding: 16px">
             <button mat-stroked-button (click)="logout()">Logout</button>
         </div>

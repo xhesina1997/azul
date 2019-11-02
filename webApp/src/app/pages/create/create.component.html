@@ -281,7 +281,7 @@
             Postimi u krijua me sukses!
         </div>
         <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center">
-            <button mat-stroked-button color="primary" routerLink="/pages/listings">
+            <button mat-stroked-button color="primary" routerLink="/mobile/search">
                 Home
             </button> &nbsp;
             <button mat-stroked-button (click)="resetView()">
@@ -294,6 +294,7 @@
     </div>
 
     <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!finishedUploading && uploading && authService.isLoggedIn" style="height: calc(100% - 62px)">
+        <p>Uploading, please wait...</p>
         <mat-spinner></mat-spinner>
     </div>
 
