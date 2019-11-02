@@ -94,7 +94,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
             }
         }
         return query;
-    }
+    }constructor
 
     getInitialData() {
         let col = this._fireStore.collection('cars', ref => {

@@ -27,4 +27,7 @@ export class ListItemComponent implements OnInit {
         let output = {type: "favourite", target: this.listing};
         this.outputEvent.next(output);
     }
+    editPost(){
+        
+    }
 }
