@@ -1,5 +1,7 @@
 import {Component, OnInit, Input, Output} from '@angular/core';
 import {Subject} from "rxjs/Subject";
+import { Router } from '@angular/router';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
     selector: 'app-list-item',
@@ -11,8 +13,9 @@ export class ListItemComponent implements OnInit {
     @Input() listing: any = {};
     @Input() view: any = {};
     @Output() outputEvent = new Subject();
+    
 
-    constructor() {
+    constructor(private router: Router) {
     }
 
     ngOnInit() {
@@ -27,7 +30,12 @@ export class ListItemComponent implements OnInit {
         let output = {type: "favourite", target: this.listing};
         this.outputEvent.next(output);
     }
-    editPost(){
+    editPost(listing){
+        this.router.navigate(['/mobile/add-listing'],{
+            queryParams: {postUuid:listing.uuid}
+        }
+        );
         
+       
     }
 }
