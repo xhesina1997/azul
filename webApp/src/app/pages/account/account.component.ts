@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from "../../auth/authentication.service";
 import {MatBottomSheet, MatDialog} from "@angular/material";
 import {AngularFirestore} from "@angular/fire/firestore";
-import {takeUntil} from "rxjs/operators";
+import {takeUntil, map} from "rxjs/operators";
 import {Subject} from "rxjs";
 
 @Component({
@@ -19,6 +19,7 @@ export class AccountComponent implements OnInit {
     protected listingsCreatedByUser: any[] = [];
     protected favouriteListings: any[] = [];
     private unSubscribeSubject: Subject<any> = new Subject();
+
 
     protected carToBeDeleted: any;
     constructor(private _fireStore: AngularFirestore,
@@ -49,10 +50,17 @@ export class AccountComponent implements OnInit {
 
     getUserListings(){
         this._fireStore.collection('cars', ref => ref.where('user.email', '==', this.user.email))
-            .valueChanges()
-            .subscribe(res => {
-                this.listingsCreatedByUser = res;
-            })
+        .snapshotChanges().pipe(map((arr: any) => {
+            return arr.map(snap => {
+                const data = snap.payload.doc.data();
+                const doc = snap.payload.doc;
+                return {...data, doc}
+            });
+        })).pipe(takeUntil(this.unSubscribeSubject))    
+        // .valueChanges()
+        //     .subscribe(res => {
+        //         this.listingsCreatedByUser = res;
+        //     })
     }
 
     getUserFavourites(){
@@ -71,17 +79,15 @@ export class AccountComponent implements OnInit {
     }
 
     deleteCarPost() {
-        // this.carService.deleteCar(this.carToBeDeleted).subscribe(res => {
-        //     this.getUserListings();
-        //     this.closeDialog();
-        // })
+        console.log(this.carToBeDeleted);
+        this._fireStore.collection('cars').doc(this.carToBeDeleted.uuid).delete()
     }
 
     handleItemEvent(event) {
         switch (event.type) {
             case "delete": {
                 this.bottomSheet.open(this.bottomSheetContent)
-                // this.carToBeDeleted = event.target;
+                this.carToBeDeleted = event.target;
                 // this.openDeleteModal(event.target);
             }
         }
