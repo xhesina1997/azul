@@ -14,7 +14,6 @@ import {
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 // import filepond module
 import * as FilePond from 'filepond';
 import { FilePondModule, registerPlugin } from 'ngx-filepond';
@@ -47,13 +46,12 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
         MatDividerModule,
         MatIconModule,
         NgxMatSelectSearchModule,
-        RichTextEditorAllModule,
-        
+
     ],
     providers: [
         {
           provide: NG_VALUE_ACCESSOR,
-          useExisting: forwardRef(() => CreateListingComponent),  
+          useExisting: forwardRef(() => CreateListingComponent),
           multi: true
         }
       ]

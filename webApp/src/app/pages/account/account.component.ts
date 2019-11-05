@@ -18,18 +18,21 @@ export class AccountComponent implements OnInit {
     protected displayed = 0;
     protected listingsCreatedByUser: any[] = [];
     protected favouriteListings: any[] = [];
-    private unSubscribeSubject: Subject<any> = new Subject();
+    private unSubscribeAuthSubject: Subject<any> = new Subject();
+    private unSubscribeUserListingsSubject: Subject<any> = new Subject();
+    private unSubscribeFavouritesSubject: Subject<any> = new Subject();
 
 
     protected carToBeDeleted: any;
     constructor(private _fireStore: AngularFirestore,
                 private bottomSheet: MatBottomSheet,
+                private authenticationService: AuthenticationService,
                 public dialog: MatDialog) {
     }
 
     ngOnInit() {
         AuthenticationService.loginSubject
-            .pipe(takeUntil(this.unSubscribeSubject))
+            .pipe(takeUntil(this.unSubscribeAuthSubject))
             .subscribe(user => {
                 if (user) {
                     this.user = user;
@@ -44,30 +47,26 @@ export class AccountComponent implements OnInit {
     }
 
     ngOnDestroy() {
-        this.unSubscribeSubject.next();
-        this.unSubscribeSubject.complete();
+        this.unSubscribeFavouritesSubject.complete();
+        this.unSubscribeUserListingsSubject.complete();
+        this.unSubscribeAuthSubject.complete();
     }
 
     getUserListings(){
         this._fireStore.collection('cars', ref => ref.where('user.email', '==', this.user.email))
-        .snapshotChanges().pipe(map((arr: any) => {
-            return arr.map(snap => {
-                const data = snap.payload.doc.data();
-                const doc = snap.payload.doc;
-                return {...data, doc}
-            });
-        })).pipe(takeUntil(this.unSubscribeSubject))    
-        // .valueChanges()
-        //     .subscribe(res => {
-        //         this.listingsCreatedByUser = res;
-        //     })
+            .valueChanges().pipe(takeUntil(this.unSubscribeUserListingsSubject))
+            .subscribe(res => {
+                this.listingsCreatedByUser = res;
+                this.unSubscribeUserListingsSubject.next();
+            })
     }
 
     getUserFavourites(){
         this._fireStore.collection('cars', ref => ref.where('userEmailsWhoFavourite', 'array-contains', this.user.email))
-            .valueChanges()
+            .valueChanges().pipe(takeUntil(this.unSubscribeFavouritesSubject))
             .subscribe(res => {
                 this.favouriteListings = res;
+                this.unSubscribeFavouritesSubject.next();
             })
     }
 
@@ -97,5 +96,8 @@ export class AccountComponent implements OnInit {
         this.bottomSheet.dismiss();
     }
 
+    logout(){
+        this.authenticationService.logout();
+    }
 
 }

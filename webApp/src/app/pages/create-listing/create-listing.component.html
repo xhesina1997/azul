@@ -11,7 +11,7 @@
     </div>
   </div>
   <mat-divider style="margin-bottom: 10px"></mat-divider>
-  <div *ngIf="finishedUploading == false && authService.user != null">
+  <div *ngIf="finishedUploading == false && uploading == false && authService.user != null">
     <form [formGroup]="createForm" (ngSubmit)="createItem(createForm.value)">
       <div fxLayout="row wrap">
         <div fxFlex="100">
@@ -355,9 +355,12 @@
     </form>
   </div>
   <div
-    *ngIf="finishedUploading == true && authService.user != null"
+    *ngIf="finishedUploading == false && uploading == true && authService.user != null" fxLayout="column" style="height: calc(100% - 62px)">
+
+    </div>
+    <div *ngIf="finishedUploading == true && authService.user != null"
     fxLayout="column"
-    style="height: calc(100% - 52px)"
+    style="height: calc(100% - 62px)"
   >
     <div
       fxFlex="5"

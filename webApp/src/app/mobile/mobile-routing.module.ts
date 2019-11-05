@@ -20,7 +20,7 @@ const routes: Routes = [{
         },
         {
             path: 'add-listing',
-            loadChildren: '../pages/create-listing/create-listing.module#CreateListingModule'
+            loadChildren: '../pages/create/create.module#CreateModule'
         },
         {
             path: '', redirectTo: 'search', pathMatch: 'full'
