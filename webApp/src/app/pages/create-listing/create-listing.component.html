@@ -12,12 +12,12 @@
   </div>
   <mat-divider style="margin-bottom: 10px"></mat-divider>
   <div *ngIf="finishedUploading == false && uploading == false && authService.user != null">
-    <form [formGroup]="createForm" (ngSubmit)="createItem(createForm.value)">
+    <form [formGroup]="createForm" ngNativeValidate (ngSubmit)="createItem(createForm.value)">
       <div fxLayout="row wrap">
         <div fxFlex="100">
           <mat-form-field appearance="outline" style="width: 100%">
             <mat-label> <mat-icon>title</mat-icon> &nbsp; Titulli: </mat-label>
-            <input formControlName="title" matInput placeholder="..." />
+            <input formControlName="title" matInput placeholder="..."  required />
           </mat-form-field>
         </div>
 
@@ -25,7 +25,7 @@
           <div fxFlex="50" style="padding-right: 5px">
             <mat-form-field appearance="outline" style="width: 100%">
               <mat-label> <mat-icon>money</mat-icon> &nbsp; Cmimi: </mat-label>
-              <input formControlName="price" matInput type="number" />
+              <input formControlName="price" matInput type="number" required />
             </mat-form-field>
           </div>
           <div fxFlex="50" style="padding-left: 5px">
@@ -37,12 +37,14 @@
                 ngDefaultControl
                 formControlName="currency"
                 placeholder="Valuta"
+                required
               >
                 <mat-option>
                   <ngx-mat-select-search
                     [formControl]="searchedCurrency"
                     [placeholderLabel]="'Kerko'"
                     [noEntriesFoundLabel]="'Ska te dhena'"
+                   
                   ></ngx-mat-select-search>
                 </mat-option>
                 <mat-option
@@ -68,6 +70,7 @@
               placeholder="..."
               rows="7"
               formControlName="description"
+              required
             ></textarea>
           </mat-form-field>
         </div>
@@ -85,6 +88,7 @@
               formControlName="manufacturer"
               placeholder="Prodhuesi"
               (ngModelChange)="filterModelsByBrand($event)"
+              required
             >
               <mat-option>
                 <ngx-mat-select-search
@@ -112,6 +116,7 @@
               formControlName="model"
               placeholder="Modeli"
               [disabled]="disableModel"
+              required
             >
               <mat-option>
                 <ngx-mat-select-search
@@ -141,6 +146,7 @@
               ngDefaultControl
               formControlName="structure"
               placeholder="Struktura"
+              required
             >
               <mat-option>
                 <ngx-mat-select-search
@@ -172,6 +178,7 @@
               ngDefaultControl
               formControlName="year"
               placeholder="viti"
+              required
             >
               <mat-option>
                 <ngx-mat-select-search
@@ -200,6 +207,7 @@
               ngDefaultControl
               formControlName="color"
               placeholder="viti"
+              required
             >
               <mat-option>
                 <ngx-mat-select-search
@@ -226,6 +234,7 @@
               ngDefaultControl
               formControlName="mileage"
               placeholder="Kilometrat"
+              required
             >
               <mat-option>
                 <ngx-mat-select-search
@@ -249,7 +258,7 @@
         <div fxFlex="100">
           <mat-form-field appearance="outline" style="width: 100%">
             <mat-label> <mat-icon>commute</mat-icon> &nbsp;Kambio: </mat-label>
-            <mat-select formControlName="transmission">
+            <mat-select formControlName="transmission" required>
               <mat-option [value]="'automatic'"> Automatike</mat-option>
               <mat-option [value]="'manual'"> Manuale</mat-option>
             </mat-select>
@@ -260,7 +269,7 @@
             <mat-label>
               <mat-icon>category</mat-icon> &nbsp; Karburanti:
             </mat-label>
-            <mat-select formControlName="fuel">
+            <mat-select formControlName="fuel" required>
               <mat-option [value]="'diesel'"> Nafte</mat-option>
               <mat-option [value]="'gasoline'"> Benzine</mat-option>
               <mat-option [value]="'LPG/gasoline'">Gas/Benzine</mat-option>
@@ -273,7 +282,7 @@
         <div fxFlex="100">
           <mat-form-field appearance="outline" style="width: 100%">
             <mat-label> <mat-icon>style</mat-icon> &nbsp; Targat: </mat-label>
-            <mat-select formControlName="plateRegistration">
+            <mat-select formControlName="plateRegistration" required>
               <mat-option [value]="'foreign'"> E huaj</mat-option>
               <mat-option [value]="'domestic'"> Shqiptare</mat-option>
             </mat-select>
@@ -286,6 +295,7 @@
               ngDefaultControl
               formControlName="city"
               placeholder="Qyteti"
+              required
             >
               <mat-option>
                 <ngx-mat-select-search
