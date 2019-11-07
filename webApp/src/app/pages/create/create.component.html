@@ -1,8 +1,11 @@
 <div style=" height: calc(100% - 24px); overflow-y: auto">
     <div style="padding: 0 16px 0 16px;">
         <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c; height: 40px;">
-            <div style="width: 100%">
-                Create a new listing
+            <div style="width: 100%" *ngIf="postToBeEditedUuid == '' ">
+                Krijo postim
+            </div>
+            <div style="width: 100%" *ngIf="postToBeEditedUuid != '' ">
+                Edito postim
             </div>
         </div>
         <mat-divider style="margin-bottom: 10px"></mat-divider>
@@ -264,7 +267,10 @@
 
                 <div fxLayout="row">
                     <div fxFlexFill fxFlex="100">
-                        <button mat-raised-button color="primary" type="submit" style="float:right">Krijo
+                        <button mat-raised-button color="primary" type="submit" style="float:right" *ngIf="postToBeEditedUuid == '' ">Krijo
+                            postimin
+                        </button>
+                        <button mat-raised-button color="primary" type="submit" style="float:right" *ngIf="postToBeEditedUuid != '' ">Edito
                             postimin
                         </button>
                     </div>

@@ -31,7 +31,7 @@ export class ListItemComponent implements OnInit {
         this.outputEvent.next(output);
     }
     editPost(listing){
-        this.router.navigate(['/mobile/add-listing'],{
+        this.router.navigate(['/mobile/edit-listing'],{
             queryParams: {postUuid:listing.uuid}
         }
         );

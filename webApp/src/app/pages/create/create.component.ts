@@ -202,7 +202,7 @@ export class CreateComponent implements OnInit, OnDestroy {
         "Sarande",
         "Tropoje"
     ];
-
+    protected  postToBeEdited :any;
     ngOnInit() {
         this.getCarBrands();
         this.getCarModels();
@@ -238,10 +238,20 @@ export class CreateComponent implements OnInit, OnDestroy {
                         .where("user.email", "==", user.email)
                         .where("uuid", "==", params.params.postUuid)
                 )
-                .valueChanges()
+                .snapshotChanges()
+                .pipe(
+                    map((arr: any) => {
+                        return arr.map(snap => {
+                            const data = snap.payload.doc.data();
+                            const doc = snap.payload.doc;
+                            return { ...data, doc };
+                        });
+                    })
+                )
                 .pipe(takeUntil(this.unSubscribePatchSubject))
                 .subscribe((res: any) => {
                     this.unSubscribePatchSubject.next();
+                    this.postToBeEdited = res;
                     this.createForm.patchValue({
                         title: res[0].title,
                         description: res[0].description,
@@ -384,41 +394,53 @@ export class CreateComponent implements OnInit, OnDestroy {
 
     async createItem(post) {
         if (!this.checkForEmptyFields(post)) {
-            this.uploading = true;
-            let car: any = this.generateCarFromPost(post);
-            car.user = {
-                id: this.authService.user.uid,
-                email: this.authService.user.email
-            };
+            if(this.postToBeEditedUuid == ""){
+                this.uploading = true;
+                let car: any = this.generateCarFromPost(post);
+                car.user = {
+                    id: this.authService.user.uid,
+                    email: this.authService.user.email
+                };
 
-            let pondFiles = this.myPond.getFiles();
+                let pondFiles = this.myPond.getFiles();
 
-            for (let pf of pondFiles) {
-                await this._storage
-                    .upload(car.uuid + "/" + pf.file.name, pf.file)
-                    .then(async a => {
-                        await this._storage
-                            .ref(car.uuid + "/" + pf.file.name)
-                            .getDownloadURL()
-                            .toPromise()
-                            .then(res => {
-                                car.images.push(res);
-                            });
+                for (let pf of pondFiles) {
+                    await this._storage
+                        .upload(car.uuid + "/" + pf.file.name, pf.file)
+                        .then(async a => {
+                            await this._storage
+                                .ref(car.uuid + "/" + pf.file.name)
+                                .getDownloadURL()
+                                .toPromise()
+                                .then(res => {
+                                    car.images.push(res);
+                                });
+                        });
+                }
+
+                this._firestore
+                    .collection("cars")
+                    .add(car)
+                    .then(
+                        res => {
+                            this.uploading = false;
+                            this.finishedUploading = true;
+                        },
+                        err => {
+                            console.log(err);
+                        }
+                    );
+            }
+            else {
+                this._fireStore.collection('cars').doc(this.postToBeEdited.doc.id).set(post)
+                    .then(res => {
+                        this.snackBar.open('Listing added to favourites.', null, {duration: 1500})
+                    }, error => {
+                        this.snackBar.open('There was an error', null, {duration: 1500})
                     });
             }
 
-            this._firestore
-                .collection("cars")
-                .add(car)
-                .then(
-                    res => {
-                        this.uploading = false;
-                        this.finishedUploading = true;
-                    },
-                    err => {
-                        console.log(err);
-                    }
-                );
+
         }
     }
 
