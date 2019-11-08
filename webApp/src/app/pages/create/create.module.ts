@@ -9,7 +9,8 @@ import {
     MatDividerModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
 } from "@angular/material";
 import {MatInputModule} from "@angular/material/input";
 import {FlexLayoutModule} from "@angular/flex-layout";
@@ -46,6 +47,7 @@ FilePond.registerPlugin(FilePondPluginFileValidateType,  FilePondPluginImagePrev
         ReactiveFormsModule,
         NgxMatSelectSearchModule,
         MatInputModule,
+        MatSnackBarModule
     ]
 })
 export class CreateModule {

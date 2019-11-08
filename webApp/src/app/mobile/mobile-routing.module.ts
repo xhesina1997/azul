@@ -23,6 +23,10 @@ const routes: Routes = [{
             loadChildren: '../pages/create/create.module#CreateModule'
         },
         {
+            path: 'edit-listing',
+            loadChildren: '../pages/create/create.module#CreateModule'
+        },
+        {
             path: '', redirectTo: 'search', pathMatch: 'full'
         },
         {
