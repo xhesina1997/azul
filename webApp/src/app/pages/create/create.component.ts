@@ -156,7 +156,7 @@ export class CreateComponent implements OnInit {
             imageURL: 'assets/car-types/bigtruck.png'
         }
     ];
-    colors = ['E bardhe', 'E zeze', 'E hirit/gri', 'Kafe/bezhe', ' E kuqe', 'E verdhe', 'E gjelber', ' E kalter'];
+    colors = ['white', 'black', 'grey', 'beige', 'red', 'yellow', 'green', 'blue'];
     kilometers = [
         {
             title: '0 - 4,999 km',
@@ -279,6 +279,9 @@ export class CreateComponent implements OnInit {
             id: this.authService.user.uid,
             email: this.authService.user.email,
         };
+
+        car.created = new Date().getTime();
+        car.organic = true;
 
         let pondFiles = this.myPond.getFiles();
 
