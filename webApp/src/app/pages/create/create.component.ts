@@ -401,6 +401,8 @@ export class CreateComponent implements OnInit, OnDestroy {
                     id: this.authService.user.uid,
                     email: this.authService.user.email
                 };
+                car.images =  [];
+                car.uuid = UUID.UUID()
 
                 let pondFiles = this.myPond.getFiles();
 
@@ -432,11 +434,12 @@ export class CreateComponent implements OnInit, OnDestroy {
                     );
             }
             else {
-                this._fireStore.collection('cars').doc(this.postToBeEdited.doc.id).set(post)
+                    let newPost = this.generateCarFromPost(post);
+                this._firestore.collection('cars').doc(this.postToBeEdited.doc.id).set(newPost)
                     .then(res => {
-                        this.snackBar.open('Listing added to favourites.', null, {duration: 1500})
+                        this._snackBar.open('Post updated.', null, {duration: 1500})
                     }, error => {
-                        this.snackBar.open('There was an error', null, {duration: 1500})
+                        this._snackBar.open('There was an error', null, {duration: 1500})
                     });
             }
 
@@ -481,12 +484,11 @@ export class CreateComponent implements OnInit, OnDestroy {
             fuel: post.fuel,
             plateRegistration: post.plateRegistration,
             city: post.city,
-            images: [],
             userEmailsWhoFavourite: [],
             created: new Date().getTime(),
-            uuid: UUID.UUID()
         };
     }
+
 
     resetView() {
         this.finishedUploading = false;
