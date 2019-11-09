@@ -193,7 +193,8 @@ export class CreateComponent implements OnInit, OnDestroy {
         "Sarande",
         "Tropoje"
     ];
-    protected  postToBeEdited :any;
+    protected postToBeEdited: any;
+
     ngOnInit() {
         this.getCarBrands();
         this.getCarModels();
@@ -235,7 +236,7 @@ export class CreateComponent implements OnInit, OnDestroy {
                         return arr.map(snap => {
                             const data = snap.payload.doc.data();
                             const doc = snap.payload.doc;
-                            return { ...data, doc };
+                            return {...data, doc};
                         });
                     })
                 )
@@ -385,17 +386,21 @@ export class CreateComponent implements OnInit, OnDestroy {
 
     async createItem(post) {
         if (!this.checkForEmptyFields(post)) {
-            if(this.postToBeEditedUuid == ""){
+            if (this.postToBeEditedUuid == "") {
                 this.uploading = true;
-                let car: any = this.generateCarFromPost(post);
+                let car: any = {};
+                this.generateCarFromPost(car, post);
                 car.user = {
                     id: this.authService.user.uid,
                     email: this.authService.user.email
                 };
+                car.images = [];
+                car.uuid = UUID.UUID()
 
-        car.created = new Date().getTime();
-        car.organic = true;
-        let pondFiles = this.myPond.getFiles();
+                car.created = new Date().getTime();
+                car.userEmailsWhoFavourite = [];
+                car.organic = true;
+                let pondFiles = this.myPond.getFiles();
 
                 for (let pf of pondFiles) {
                     await this._storage
@@ -425,9 +430,14 @@ export class CreateComponent implements OnInit, OnDestroy {
                     );
             }
             else {
-                this._firestore.collection('cars').doc(this.postToBeEdited.doc.id).set(post)
+                this.generateCarFromPost(this.postToBeEdited, post);
+
+                let toBeEditedWithoutDoc = {...this.postToBeEdited};
+                delete toBeEditedWithoutDoc.doc;
+
+                this._firestore.collection('cars').doc(this.postToBeEdited.doc.id).set(toBeEditedWithoutDoc)
                     .then(res => {
-                        this._snackBar.open('Listing added to favourites.', null, {duration: 1500})
+                        this._snackBar.open('Post updated.', null, {duration: 1500})
                     }, error => {
                         this._snackBar.open('There was an error', null, {duration: 1500})
                     });
@@ -456,30 +466,25 @@ export class CreateComponent implements OnInit, OnDestroy {
         return this.found;
     }
 
-    generateCarFromPost(post) {
-        return {
-            title: post.title,
-            description: post.description,
-            price: {
-                value: post.price,
-                currency: post.currency
-            },
-            manufacturer: post.manufacturer,
-            model: post.model,
-            structure: post.structure,
-            year: post.year,
-            color: post.color,
-            mileage: post.mileage,
-            transmission: post.transmission,
-            fuel: post.fuel,
-            plateRegistration: post.plateRegistration,
-            city: post.city,
-            images: [],
-            userEmailsWhoFavourite: [],
-            created: new Date().getTime(),
-            uuid: UUID.UUID()
+    generateCarFromPost(car, post) {
+        car.title = post.title;
+        car.description = post.description;
+        car.price = {
+            value: post.price,
+            currency: post.currency
         };
+        car.manufacturer = post.manufacturer;
+        car.model = post.model;
+        car.structure = post.structure;
+        car.year = post.year;
+        car.color = post.color;
+        car.mileage = post.mileage;
+        car.transmission = post.transmission;
+        car.fuel = post.fuel;
+        car.plateRegistration = post.plateRegistration;
+        car.city = post.city;
     }
+
 
     resetView() {
         this.finishedUploading = false;
