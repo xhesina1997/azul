@@ -243,7 +243,8 @@ export class CreateComponent implements OnInit, OnDestroy {
                 .pipe(takeUntil(this.unSubscribePatchSubject))
                 .subscribe((res: any) => {
                     this.unSubscribePatchSubject.next();
-                    this.postToBeEdited = res;
+                    this.postToBeEdited = res[0];
+
                     this.createForm.patchValue({
                         title: res[0].title,
                         description: res[0].description,
