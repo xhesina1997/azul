@@ -23,8 +23,7 @@
         <img src="{{listing?.images[0]}}"
              style=" height: 100%; width: 100%; object-fit:cover;">
     </div>
-    <div [routerLink]="['/mobile/listing']" [queryParams]="{id: listing?.uuid}" style="margin: 8px" fxLayout="row"
-         fxLayoutAlign="space-between start">
+    <div [routerLink]="['/mobile/listing']" [queryParams]="{id: listing?.uuid}" style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" >
         {{listing?.title}}
     </div>
     <div style="margin: 8px">

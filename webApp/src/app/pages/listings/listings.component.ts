@@ -189,6 +189,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
 
     addUserWhoFavourite(car) {
         if (this.authenticationService.isLoggedIn) {
+            car.userEmailsWhoFavourite == null ? car.userEmailsWhoFavourite = [] : {};
             const previousEntry = car.userEmailsWhoFavourite.find(email => {
                 return email == this.authenticationService.user.email
             });

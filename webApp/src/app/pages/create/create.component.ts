@@ -425,11 +425,11 @@ export class CreateComponent implements OnInit, OnDestroy {
                     );
             }
             else {
-                this._fireStore.collection('cars').doc(this.postToBeEdited.doc.id).set(post)
+                this._firestore.collection('cars').doc(this.postToBeEdited.doc.id).set(post)
                     .then(res => {
-                        this.snackBar.open('Listing added to favourites.', null, {duration: 1500})
+                        this._snackBar.open('Listing added to favourites.', null, {duration: 1500})
                     }, error => {
-                        this.snackBar.open('There was an error', null, {duration: 1500})
+                        this._snackBar.open('There was an error', null, {duration: 1500})
                     });
             }
 
