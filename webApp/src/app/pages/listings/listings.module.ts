@@ -44,7 +44,6 @@ import {PaginationService} from "../../services/pagination.service";
         ScrollingModule,
         SharedModule
     ],
-    providers: [PaginationService]
 })
 export class ListingsModule {
 }

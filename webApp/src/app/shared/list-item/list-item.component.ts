@@ -30,12 +30,13 @@ export class ListItemComponent implements OnInit {
         let output = {type: "favourite", target: this.listing};
         this.outputEvent.next(output);
     }
+
+    open(){
+        let output = {type: "open", target: this.listing};
+        this.outputEvent.next(output)
+    }
+
     editPost(listing){
-        this.router.navigate(['/mobile/edit-listing'],{
-            queryParams: {postUuid:listing.uuid}
-        }
-        );
-        
-       
+        this.router.navigate(['/mobile/edit-listing'],{queryParams: {postUuid:listing.uuid}});
     }
 }
