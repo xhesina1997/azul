@@ -23,8 +23,10 @@ export class CarFiltersComponent implements OnInit {
     }
 
     @Output() filtersListener = new Subject();
+    @Output() sortListener = new Subject();
 
     @Input() existingFilters: any;
+    @Input() existingSort: any;
 
 
     protected filters: any = {};
@@ -36,6 +38,19 @@ export class CarFiltersComponent implements OnInit {
     protected maxYear: number;
 
     patchExistingFilters() {
+
+        if(this.existingSort != null){
+            if(this.existingSort.sort == 'created' && this.existingSort.reverse == false){
+                this.selectedSort.setValue("dateASC")
+            }else if(this.existingSort.sort == 'created' && this.existingSort.reverse == true){
+                this.selectedSort.setValue("dateDESC")
+            }else if(this.existingSort.sort == 'price.value' && this.existingSort.reverse == false){
+                this.selectedSort.setValue("priceASC")
+            }else if(this.existingSort.sort == 'price.value' && this.existingSort.reverse == true){
+                this.selectedSort.setValue("priceDESC")
+            }
+        }
+
         if (this.existingFilters != null) {
             if (this.existingFilters.manufacturer != null) {
                 this.selectedManufacturer.setValue(this.existingFilters.manufacturer);
@@ -105,6 +120,18 @@ export class CarFiltersComponent implements OnInit {
             )
     }
 
+    changedSort(event) {
+        if (event == 'dateASC') {
+            this.sortListener.next({sort: 'created', reverse: false})
+        } else if (event == 'dateDESC') {
+            this.sortListener.next({sort: 'created', reverse: true})
+        } else if (event == 'priceASC') {
+            this.sortListener.next({sort: 'price.value', reverse: false})
+        } else if (event == 'priceDESC') {
+            this.sortListener.next({sort: 'price.value', reverse: true})
+        }
+    }
+
     changedFilters(filter, event) {
         if (filter == "minPrice") {
             !this.filters.value ? this.filters.value = [] : {};
@@ -112,7 +139,7 @@ export class CarFiltersComponent implements OnInit {
         } else if (filter == "maxPrice") {
             !this.filters.value ? this.filters.value = [] : {};
             this.filters.value[1] = event
-        } else if (filter == "minYear") {
+        }else if (filter == "minYear") {
             !this.filters.year ? this.filters.year = [] : {};
             this.filters.year[0] = event
         } else if (filter == "maxYear") {
@@ -138,6 +165,7 @@ export class CarFiltersComponent implements OnInit {
 
 
     //===============LISTS================//
+    selectedSort: FormControl = new FormControl();
     selectedManufacturer: FormControl = new FormControl();
     selectedModel: FormControl = new FormControl();
     selectedStructure: FormControl = new FormControl();

@@ -50,7 +50,9 @@ export class PaginationService {
             for(let filter in this.queryOptions.filters){
                 console.log(filter);
                 console.log(this.queryOptions.filters[filter]);
-                query = query.where(filter, '==', this.queryOptions.filters[filter]);
+                if(filter != 'sort' && filter != 'direction'){
+                    query = query.where(filter, '==', this.queryOptions.filters[filter]);
+                }
             }
         }
         return query;

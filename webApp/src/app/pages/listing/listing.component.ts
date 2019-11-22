@@ -1,9 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
 import {AngularFirestore} from "@angular/fire/firestore";
-import {filter, takeUntil} from "rxjs/operators";
+import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs/Subject";
 import {Location} from "@angular/common";
 import {PaginationService} from "../../services/pagination.service";
@@ -23,9 +22,7 @@ export class ListingComponent implements OnInit, OnDestroy {
     }
 
     protected env = environment;
-
     protected descriptionToggle = true;
-
     customOptions: any = {
         loop: false,
         mouseDrag: true,
@@ -51,7 +48,6 @@ export class ListingComponent implements OnInit, OnDestroy {
             }
         },
     }
-
     protected selectedCar: any = {};
     protected stopSubscriptions = new Subject();
 
@@ -81,4 +77,5 @@ export class ListingComponent implements OnInit, OnDestroy {
     goBack() {
         this.location.back();
     }
+
 }

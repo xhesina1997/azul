@@ -4,6 +4,32 @@
     <!--</div>-->
 <!--</div>-->
 
+
+<mat-form-field style="width: 100%;" appearance="outline">
+    <mat-label>
+        <mat-icon>sort</mat-icon> &nbsp; Sort by:
+    </mat-label>
+    <mat-select [formControl]="selectedSort" (selectionChange)="changedSort($event)">
+        <mat-option [value]="'dateASC'">
+            Newest first
+        </mat-option>
+        <mat-option [value]="'dateDESC'">
+            Oldest first
+        </mat-option>
+        <mat-option [value]="'priceASC'">
+            Most expensive
+        </mat-option>
+        <mat-option [value]="'priceDESC'">
+            Cheapest
+        </mat-option>
+    </mat-select>
+    <button mat-button matSuffix mat-icon-button aria-label="Clear"
+            (click)="clearFilter('structure'); $event.stopPropagation();selectedStructure.setValue('')">
+        <mat-icon style="color: #dadada">close</mat-icon>
+    </button>
+</mat-form-field>
+
+
 <mat-form-field style="width: 100%" appearance="outline" style="width: 100%">
     <mat-label>
         <mat-icon>build</mat-icon> &nbsp; Prodhuesi:

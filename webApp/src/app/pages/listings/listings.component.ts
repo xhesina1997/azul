@@ -92,10 +92,15 @@ export class ListingsComponent implements OnInit, OnDestroy {
         year: 'calendar_today'
     };
 
-    filtersChanged(filters) {
+    filtersChanged(filters){
         Object.entries(filters).length == 0 ? this.paginationService.queryOptions.filters = null : this.paginationService.queryOptions.filters = filters;
         console.log(this.paginationService.queryOptions.filters);
         this.router.navigate(['/mobile/search'], {queryParams: filters})
+    }
+
+    sortChanged(event){
+        this.paginationService.queryOptions.sort = event.sort;
+        this.paginationService.queryOptions.reverse = event.reverse;
     }
 
     removeFilter(filterKey) {
@@ -103,20 +108,6 @@ export class ListingsComponent implements OnInit, OnDestroy {
         Object.entries(this.paginationService.queryOptions.filters).length == 0 ? this.paginationService.queryOptions.filters = null : {};
         this.router.navigate(['/mobile/search'], {queryParams: this.paginationService.queryOptions.filters});
         this.fireSearch()
-    }
-
-    changedSort(event) {
-        // if (event == 'latest') {
-        //     this.queryOptions.sort = 'created';
-        //     this.queryOptions.direction = 'ASC';
-        // } else if (event == 'price-l') {
-        //     this.queryOptions.sort = 'price.value';
-        //     this.queryOptions.direction = 'ASC';
-        // } else if (event == 'price-h') {
-        //     this.queryOptions.sort = 'price.value';
-        //     this.queryOptions.direction = 'DESC';
-        // }
-        // this.getAllCars();
     }
 
     addUserWhoFavourite(car) {

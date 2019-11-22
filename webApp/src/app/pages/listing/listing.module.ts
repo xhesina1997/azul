@@ -7,7 +7,6 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatButtonModule, MatDividerModule, MatIconModule, MatRippleModule} from "@angular/material";
 import {MatCardModule} from "@angular/material/card";
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import {PaginationService} from "../../services/pagination.service";
 
 @NgModule({
     declarations: [ListingComponent],
