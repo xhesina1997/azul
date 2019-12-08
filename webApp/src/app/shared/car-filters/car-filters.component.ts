@@ -121,13 +121,13 @@ export class CarFiltersComponent implements OnInit {
     }
 
     changedSort(event) {
-        if (event == 'dateASC') {
+        if (event.value == 'dateASC') {
             this.sortListener.next({sort: 'created', reverse: false})
-        } else if (event == 'dateDESC') {
+        } else if (event.value == 'dateDESC') {
             this.sortListener.next({sort: 'created', reverse: true})
-        } else if (event == 'priceASC') {
+        } else if (event.value == 'priceASC') {
             this.sortListener.next({sort: 'price.value', reverse: false})
-        } else if (event == 'priceDESC') {
+        } else if (event.value == 'priceDESC') {
             this.sortListener.next({sort: 'price.value', reverse: true})
         }
     }

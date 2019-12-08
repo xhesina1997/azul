@@ -8,20 +8,24 @@
          fxLayout="row wrap">
 
         <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="70" fxFlex.lg="70">
+
             <div style="height: 240px; background-color: rgb(230, 230, 230);" #images
                  [ngStyle.md]="{'margin': '16px', 'border-radius':'16px'}"
                  [ngStyle.lg]="{'margin': '16px', 'border-radius':'16px'}">
                 <owl-carousel-o [options]="customOptions">
                     <ng-template carouselSlide *ngFor="let image of selectedCar?.images">
-                        <img [ngStyle.md]="{'height': '400px'}" [ngStyle.lg]="{'height': '400px'}" style=" height: 240px; background-color: #e6e6e6; width: 100%; object-fit:contain; z-index: 1"
+                        <img [ngStyle.md]="{'height': '400px'}"
+                             [ngStyle.lg]="{'height': '400px'}"
+                             style=" height: 240px; background-color: #e6e6e6; width: 100%; object-fit:contain; z-index: 1"
                              src="{{image}}">
                     </ng-template>
                 </owl-carousel-o>
             </div>
-
             <div style="padding: 16px; overflow-y: auto">
                 <div style="margin-bottom: 5px;">{{selectedCar?.title}}</div>
-                <div style="font-size: 14px; color: #8c8c8c">Price: {{selectedCar?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}</div>
+                <div style="font-size: 14px; color: #8c8c8c">Price: {{selectedCar?.price?.value | currency : 'EUR' :
+                    'symbol' : '1.0-0' }}
+                </div>
                 <div fxLayout="row wrap" fxLayoutAlign="space-around center">
                     <div fxLayout="column" fxFlex="33.33" fxLayoutAlign="center center">
                         <div matRipple style="width: 55px; height: 51px; margin-bottom: 7px;">
@@ -65,9 +69,15 @@
                 <div [ngStyle.md]="{'height':'158px'}"
                      [ngStyle.lg]="{'height':'158px'}"
                      style="color: #8c8c8c; font-size: 15px;">
-                    <div [ngStyle]="{'height': descriptionToggle ? '55px' : '', 'overflow': 'hidden'}">{{selectedCar?.description}}</div>
-                    <div style="color: #5400B8" *ngIf="descriptionToggle" (click)="descriptionToggle = !descriptionToggle">...show more</div>
-                    <div style="color: #5400B8" *ngIf="!descriptionToggle" (click)="descriptionToggle = !descriptionToggle">...show less</div>
+                    <div [ngStyle]="{'height': descriptionToggle ? '55px' : '', 'overflow': 'hidden'}">
+                        {{selectedCar?.description}}
+                    </div>
+                    <div style="color: #5400B8" *ngIf="descriptionToggle"
+                         (click)="descriptionToggle = !descriptionToggle">...show more
+                    </div>
+                    <div style="color: #5400B8" *ngIf="!descriptionToggle"
+                         (click)="descriptionToggle = !descriptionToggle">...show less
+                    </div>
                 </div>
                 <mat-divider style="margin-top: 20px"></mat-divider>
             </div>
@@ -182,4 +192,3 @@
 
     <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
 </div>
-

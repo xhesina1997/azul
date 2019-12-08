@@ -77,5 +77,4 @@ export class ListingComponent implements OnInit, OnDestroy {
     goBack() {
         this.location.back();
     }
-
 }

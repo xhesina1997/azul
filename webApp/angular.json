@@ -31,7 +31,9 @@
               "src/styles.scss",
               "./node_modules/filepond/dist/filepond.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "./src/assets/js/lightgallery.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

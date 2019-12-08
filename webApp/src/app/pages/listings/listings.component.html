@@ -133,5 +133,7 @@
         </button>
     </div>
     <mat-divider style="margin: 10px 0"></mat-divider>
-    <car-filters (filtersListener)="filtersChanged($event)" (sortListener)="sortChanged($event)" [existingSort]="{sort: paginationService.queryOptions.sort, reverse: paginationService.queryOptions.reverse}" [existingFilters]="paginationService.queryOptions.filters"></car-filters>
+    <car-filters (filtersListener)="filtersChanged($event)"
+                 (sortListener)="sortChanged($event)"
+                 [existingSort]="{sort: paginationService.queryOptions.sort, reverse: paginationService.queryOptions.reverse}" [existingFilters]="paginationService.queryOptions.filters"></car-filters>
 </ng-template>

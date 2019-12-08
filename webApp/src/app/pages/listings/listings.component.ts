@@ -99,6 +99,7 @@ export class ListingsComponent implements OnInit, OnDestroy {
     }
 
     sortChanged(event){
+        console.log(event);
         this.paginationService.queryOptions.sort = event.sort;
         this.paginationService.queryOptions.reverse = event.reverse;
     }
