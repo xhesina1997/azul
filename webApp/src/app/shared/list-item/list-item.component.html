@@ -35,7 +35,6 @@
         <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">Regjistrimi:</i>{{listing?.plateRegistration}}</p>
     </div>
 </div>
-
 <div *ngIf="view == 'defaultLOADING'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; min-height: 338px">
     <div style="margin: 8px" fxLayout="row" fxLayoutAlign="space-between start">
         <div>
@@ -71,6 +70,35 @@
             <div style="width: 95%; height: 17px; margin: 1px 0; background-color: #e2e2e2"></div>
         </div>
 
+    </div>
+</div>
+
+<div *ngIf="view == 'defaultCONDENSED'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; ">
+    <div style="margin: 8px" fxLayout="row" fxLayoutAlign="space-between start">
+        <div>
+            <div style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 125px">
+                {{listing?.manufacturer}} {{listing?.model}}
+            </div>
+            <div style="color: #8c8c8c">
+                {{listing?.year}}
+            </div>
+        </div>
+        <div style="font-weight: 500; color: #8c8c8c">
+            {{listing?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
+        </div>
+    </div>
+    <div (click)="open()" style="height: 180px; width: 100%; overflow: hidden; position: relative;">
+        <button (click)="$event.stopPropagation(); favourite()" mat-icon-button style="position: absolute; bottom: 0; right: 0">
+            <mat-icon *ngIf="listing.favouritedByUser == null; else faved" [color]="'accent'">favorite_border</mat-icon>
+            <ng-template #faved>
+                <mat-icon *ngIf="listing.favouritedByUser == true" [color]="'accent'">favorite</mat-icon>
+            </ng-template>
+        </button>
+        <img src="{{listing?.images[0]}}"
+             style=" height: 100%; width: 100%; object-fit:cover;">
+    </div>
+    <div (click)="open()"  style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" >
+        {{listing?.title}}
     </div>
 </div>
 

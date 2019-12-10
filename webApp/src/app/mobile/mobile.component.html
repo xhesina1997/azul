@@ -70,6 +70,9 @@
     <mat-drawer-container [hasBackdrop]="false" style="height: calc(100% - 45px); width: 100%;">
         <mat-drawer #drawer mode="over" style="background-color: #fafafa; width: 100%;">
             <mat-nav-list style="margin: 8px 16px;">
+                <mat-list-item (click)="drawer.close()" [routerLink]="['/mobile/home']" style="font-size: 16px;">
+                    <a matLine>HOME</a>
+                </mat-list-item>
                 <mat-list-item (click)="drawer.close()" [routerLink]="['/mobile/search']" style="font-size: 16px;">
                     <a matLine>SEARCH</a>
                 </mat-list-item>

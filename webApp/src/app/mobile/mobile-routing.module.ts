@@ -7,6 +7,10 @@ const routes: Routes = [{
     component: MobileComponent,
     children: [
         {
+            path: 'home',
+            loadChildren: '../pages/home/home.module#HomeModule'
+        },
+        {
             path: 'search',
             loadChildren: '../pages/listings/listings.module#ListingsModule'
         },

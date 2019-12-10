@@ -1,0 +1,23 @@
+
+//:host /deep/ .mat-form-field-appearance-outline .mat-form-field-outline {
+//  color: #e0e0e0;
+//}
+:host /deep/ .mat-select-value-text {
+  color: white;
+}
+
+:host /deep/ .mat-form-field-label {
+  color: #dadada;
+}
+
+:host /deep/ .mat-form-field.mat-focused .mat-form-field-label {
+  color: #dadada;
+}
+
+:host /deep/ .mat-select-arrow {
+  color: #dadada;
+}
+
+:host /deep/ .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: #dadada;
+}

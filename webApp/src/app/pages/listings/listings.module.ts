@@ -18,7 +18,6 @@ import {MatChipsModule} from '@angular/material/chips';
 import {DisplayFilterPipe} from "../../pipes/display-filter.pipe";
 
 import {ScrollingModule} from '@angular/cdk/scrolling';
-import {PaginationService} from "../../services/pagination.service";
 
 @NgModule({
     declarations: [
