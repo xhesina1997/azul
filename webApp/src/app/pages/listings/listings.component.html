@@ -1,5 +1,6 @@
 <cdk-virtual-scroll-viewport #vsViewport [itemSize]="view == 'desktop' ? '140' : view == 'tablet' ? '140' : '340rei'"
                              style="height: 100%; max-width: 100%">
+    <!--<button (click)="scrollToItem()">test</button>-->
     <div style="padding: 0 16px 16px 16px; height: 100%;">
         <div fxLayout="row">
             <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
@@ -13,12 +14,12 @@
                     <div fxLayout="row" fxLayoutAlign="space-between center"
                          style="width: 100%;">
                         <div style="width: calc(100% - 48px); padding-left: 8px;">
-                            <ng-container *ngIf="queryOptions.filters == null">
+                            <ng-container *ngIf="paginationService.queryOptions.filters == null">
                                 Search results
                             </ng-container>
-                            <ng-container *ngIf="queryOptions.filters != null">
+                            <ng-container *ngIf="paginationService.queryOptions.filters != null">
                                 <mat-chip-list #chipList>
-                                    <mat-chip *ngFor="let filter of queryOptions.filters | keyvalue"
+                                    <mat-chip *ngFor="let filter of paginationService.queryOptions.filters | keyvalue"
                                               [selectable]="false" [removable]="true"
                                               (removed)="removeFilter(filter.key)">
                                         <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -60,6 +61,7 @@
                                 </button>
                             </div>
                             <car-filters (filtersListener)="filtersChanged($event)"
+                                         (sortListener)="sortChanged($event)"
                                          [existingFilters]="queryOptions?.filters"></car-filters>
                         </div>
 
@@ -67,11 +69,11 @@
 
                     <div fxFlex.xs="100" fxFlex.sm="100"
                          fxFlex.md="60" fxFlex.lg="75" fxFlex.gt="90"
-                         *ngIf="!noListings; else noCars">
+                         *ngIf="!paginationService.noListings; else noCars">
 
 
                         <div fxLayout="row wrap">
-                            <div *cdkVirtualFor="let car of listings"
+                            <div *cdkVirtualFor="let car of paginationService.listings"
                                  style="margin-bottom: 10px"
                                  fxFlex.xs="100" fxFlex.sm="100"
                                  fxFlex.md="100" fxFlex.lg="100"
@@ -83,22 +85,18 @@
                         </div>
 
 
-                        <div fxLayout="row wrap" *ngIf="loading | async">
+                        <div fxLayout="row wrap" *ngIf="paginationService.loading | async">
                             <div style="margin-bottom: 10px"
                                  fxFlex.xs="100" fxFlex.sm="50"
                                  fxFlex.md="100" fxFlex.lg="100"
                                  [ngStyle.sm]="{'padding':'0 5px'}">
-                                <app-list-item [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"
-                                               (outputEvent)="handleItemEvent($event)">
-                                </app-list-item>
+                                <app-list-item [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
                             </div>
                             <div style="margin-bottom: 10px"
                                  fxFlex.xs="100" fxFlex.sm="50"
                                  fxFlex.md="100" fxFlex.lg="100"
                                  [ngStyle.sm]="{'padding':'0 5px'}">
-                                <app-list-item [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"
-                                               (outputEvent)="handleItemEvent($event)">
-                                </app-list-item>
+                                <app-list-item [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
                             </div>
                         </div>
 
@@ -135,5 +133,5 @@
         </button>
     </div>
     <mat-divider style="margin: 10px 0"></mat-divider>
-    <car-filters (filtersListener)="filtersChanged($event)" [existingFilters]="queryOptions.filters"></car-filters>
+    <car-filters (filtersListener)="filtersChanged($event)" (sortListener)="sortChanged($event)" [existingSort]="{sort: paginationService.queryOptions.sort, reverse: paginationService.queryOptions.reverse}" [existingFilters]="paginationService.queryOptions.filters"></car-filters>
 </ng-template>

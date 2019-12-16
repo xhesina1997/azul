@@ -1,141 +1,117 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/scan';
 import 'rxjs/add/operator/take';
-import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/firestore";
-import {scan, take, takeUntil, tap} from "rxjs/operators";
+import {AngularFirestore, AngularFirestoreCollection, Query} from "@angular/fire/firestore";
+import {filter, map, pairwise, take, takeUntil} from "rxjs/operators";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Subject} from "rxjs/Subject";
+import {Router, RoutesRecognized} from "@angular/router";
 
-interface QueryConfig {
-    path: string, //  path to collection
-    field: string, // field to orderBy
-    limit: number, // limit per query
-    reverse: boolean, // reverse order?
-    prepend: boolean // prepend to source?
-}
-
-interface Configs {
-    path: string, //  path to collection
-    field: string, // field to orderBy
-    limit: number, // limit per query
-    reverse: boolean
-}
 
 @Injectable()
 export class PaginationService {
 
-    // Source data
-    private _done = new BehaviorSubject(false);
-    private _loading = new BehaviorSubject(false);
-    private _data = new BehaviorSubject([]);
-
-    private query: QueryConfig;
-
-    // Observable data
-    data: Observable<any>;
-    done: Observable<boolean> = this._done.asObservable();
-    loading: Observable<boolean> = this._loading.asObservable();
-
-    constructor(private afs: AngularFirestore) {
-        this._data.subscribe(res => console.log(res))
+    constructor(private _fireStore: AngularFirestore,
+                private router: Router) {
+        this.router.events
+            .pipe(filter(e => e instanceof RoutesRecognized), pairwise(), map((e: [RoutesRecognized, RoutesRecognized]) => e[0].url))
+            .subscribe((prev: string) => {
+                prev.includes('/mobile/listing') ? this.needsScroll = true : this.needsScroll = false;
+            });
     }
 
-    // Initial query sets options and defines the Observable
-    // passing opts will override the defaults
-    init(path: string, field: string, opts?: any) {
+    public done = new BehaviorSubject(false);
+    public loading = new BehaviorSubject(false);
+    public stopSubscriptions = new Subject();
+    public listings = [];
+    public noListings :boolean = false;
+    public scrollHeight : number;
+    public needsScroll: boolean = false;
+    public selectedListing: any;
 
-        this._done.next(false);
-        this._loading.next(false);
-        // this._data.next([]);
+    public queryOptions = {
+        page: 0,
+        size: 10,
+        total: 0,
+        sort: 'created',
+        reverse: false,
+        filters: null
+    };
 
-        this.query = {
-            path,
-            field,
-            limit: 4,
-            reverse: true,
-            prepend: false,
-            ...opts
-        };
-
-        const first = this.afs.collection(this.query.path, ref => {
-            return ref
-                .orderBy(this.query.field, this.query.reverse ? 'desc' : 'asc')
-                .limit(this.query.limit)
-        });
-
-        this.mapAndUpdate(first);
-
-        // Create the observable array for consumption in components
-        this.data = this._data.asObservable().pipe(scan((acc, val) => {
-            return this.query.prepend ? val.concat(acc) : acc.concat(val)
-        }))
+    init(){
+        this.done.next(false);
+        this.loading.next(false);
     }
 
-
-    // Retrieves additional data from firestore
-    more() {
-        const cursor = this.getCursor();
-
-        const more = this.afs.collection(this.query.path, ref => {
-            return ref
-                .orderBy(this.query.field, this.query.reverse ? 'desc' : 'asc')
-                .limit(this.query.limit)
-                .startAfter(cursor)
-        });
-        this.mapAndUpdate(more)
-    }
-
-
-    // Determines the doc snapshot to paginate query
-    private getCursor() {
-        const current = this._data.value;
-        if (current.length) {
-            return this.query.prepend ? current[0].doc : current[current.length - 1].doc
+    addFilters(query: Query){
+        console.log(this.queryOptions.filters);
+        if (this.queryOptions.filters != null) {
+            for(let filter in this.queryOptions.filters){
+                console.log(filter);
+                console.log(this.queryOptions.filters[filter]);
+                if(filter != 'sort' && filter != 'direction'){
+                    query = query.where(filter, '==', this.queryOptions.filters[filter]);
+                }
+            }
         }
-        return null
+        return query;
     }
 
+    getInitialData() {
+        let col = this._fireStore.collection('cars', ref => {
+            let query: Query = ref;
+            query = query.orderBy(this.queryOptions.sort, this.queryOptions.reverse ? 'asc' : 'desc');
+            query = query.limit(this.queryOptions.size);
+            query = this.addFilters(query);
+            return query;
+        });
+        this.mapResponse(col);
+    }
 
-    // Maps the snapshot to usable format the updates source
-    private mapAndUpdate(col: AngularFirestoreCollection<any>) {
+    handleScroll() {
+        let col = this._fireStore.collection('cars', ref => {
+            let query: Query = ref;
+            query = query.orderBy(this.queryOptions.sort, this.queryOptions.reverse ? 'asc' : 'desc');
+            query = query.limit(this.queryOptions.size);
+            query = query.startAfter(this.listings[this.listings.length - 1].doc);
+            query = this.addFilters(query);
+            return query;
+        });
+        this.mapResponse(col);
+    }
 
-        if (this._done.value || this._loading.value) {
+    mapResponse(collection: AngularFirestoreCollection) {
+        if (this.done.value || this.loading.value) {
             return
-        }
-
-        // loading
-        this._loading.next(true);
-
-        // Map snapshot with doc ref (needed for cursor)
-        return col.snapshotChanges()
-            .pipe(tap(arr => {
-                let values = arr.map(snap => {
+        } else {
+            this.loading.next(true);
+            collection.snapshotChanges().pipe(map((arr: any) => {
+                return arr.map(snap => {
                     const data = snap.payload.doc.data();
                     const doc = snap.payload.doc;
                     return {...data, doc}
                 });
-
-                // If prepending, reverse the batch order
-                values = this.query.prepend ? values.reverse() : values;
-
-                // update source with new values, done loading
-                this._data.next(values);
-                this._loading.next(false)
-
-                // no more values, mark done
-                if (!values.length) {
-                    this._done.next(true)
+            })).pipe(takeUntil(this.stopSubscriptions)).subscribe(response => {
+                if (response.length == 0) {
+                    this.done.next(true);
+                    if(this.listings.length == 0) this.noListings = true
+                } else {
+                    this.noListings? this.noListings = false : {};
+                    this.listings = this.listings.concat(response);
+                    if(response.length < this.queryOptions.size) this.done.next(true);
+                    console.log(this.listings);
                 }
-            }))
-            .pipe(take(1))
-            .subscribe()
+                this.loading.next(false);
+                this.stopSubscriptions.next();
+            });
+        }
     }
 
-    reset() {
-        this._data.next([]);
-        this._done.next(false);
+    closeSubscriptions(){
+        this.stopSubscriptions.next();
+        this.stopSubscriptions.complete();
+        this.done.complete();
+        this.loading.complete();
     }
-
 }

@@ -20,7 +20,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
         MatDividerModule,
         MatRippleModule,
         MatIconModule
-    ]
+    ],
 })
 export class ListingModule {
 }

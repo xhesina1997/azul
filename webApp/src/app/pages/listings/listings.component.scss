@@ -4,6 +4,10 @@
 .item-wrapper:hover{
 }
 
+:host /deep/ .mat-form-field-wrapper{
+  padding-bottom: 6px;
+}
+
 .no-results{
   width: 100%;
   background-image: url('/assets/illustrations/404.png');

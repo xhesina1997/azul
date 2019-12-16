@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
 import {AngularFirestore} from "@angular/fire/firestore";
-import {filter, takeUntil} from "rxjs/operators";
+import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs/Subject";
 import {Location} from "@angular/common";
+import {PaginationService} from "../../services/pagination.service";
 
 @Component({
     selector: 'app-listing',
@@ -16,14 +16,13 @@ export class ListingComponent implements OnInit, OnDestroy {
 
     constructor(private activatedRoute: ActivatedRoute,
                 private location: Location,
+                private paginationService: PaginationService,
                 private _fireStore: AngularFirestore) {
 
     }
 
     protected env = environment;
-
     protected descriptionToggle = true;
-
     customOptions: any = {
         loop: false,
         mouseDrag: true,
@@ -49,18 +48,25 @@ export class ListingComponent implements OnInit, OnDestroy {
             }
         },
     }
-
-    protected selectedCar : any = {};
+    protected selectedCar: any = {};
     protected stopSubscriptions = new Subject();
 
     ngOnInit() {
         this.activatedRoute.queryParams.subscribe(params => {
-            this._fireStore.collection('cars', ref => ref.where('uuid', '==', params.id).limit(1))
-                .valueChanges()
-                .pipe(takeUntil(this.stopSubscriptions)).subscribe(res => {
-                    this.selectedCar = res[0];
-                    this.stopSubscriptions.next();
-            })
+            if (params.id != null) {
+                if (this.paginationService.selectedListing != null && this.paginationService.selectedListing.uuid == params.id) {
+                    console.log("got listing from service");
+                    this.selectedCar = this.paginationService.selectedListing;
+                } else {
+                    console.log("got listing from backend");
+                    this._fireStore.collection('cars', ref => ref.where('uuid', '==', params.id).limit(1))
+                        .valueChanges()
+                        .pipe(takeUntil(this.stopSubscriptions)).subscribe(res => {
+                        this.selectedCar = res[0];
+                        this.stopSubscriptions.next();
+                    })
+                }
+            }
         })
     }
 
@@ -71,4 +77,5 @@ export class ListingComponent implements OnInit, OnDestroy {
     goBack() {
         this.location.back();
     }
+
 }

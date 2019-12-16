@@ -3,12 +3,13 @@ import {AuthenticationService} from "../../auth/authentication.service";
 import {MatBottomSheet, MatSnackBar} from "@angular/material";
 import {AngularFirestore, AngularFirestoreCollection, CollectionReference, Query} from "@angular/fire/firestore";
 import {Subject} from "rxjs/Subject";
-import {map, take, takeUntil} from "rxjs/operators";
+import {filter, map, pairwise, take, takeUntil} from "rxjs/operators";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {PaginationService} from "../../services/pagination.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router, RoutesRecognized} from "@angular/router";
 import * as firebase from 'firebase/app'
+import {Location} from "@angular/common";
 
 @Component({
     selector: 'app-listings',
@@ -23,128 +24,60 @@ export class ListingsComponent implements OnInit, OnDestroy {
                 private _fireStore: AngularFirestore,
                 private router: Router,
                 private route: ActivatedRoute,
-                private changeDetector : ChangeDetectorRef) {
+                private location: Location,
+                private changeDetector: ChangeDetectorRef,
+                private paginationService: PaginationService) {
+
     }
 
     ngOnInit() {
-        this.done.next(false);
-        this.loading.next(false);
-
         window.dispatchEvent(new Event('resize'));
         this.vsViewport.elementScrolled().subscribe(res => {
-            this.vsViewport.measureScrollOffset('bottom') == 0 ? this.handleScroll() : {};
+            this.vsViewport.measureScrollOffset('bottom') == 0 ? this.paginationService.handleScroll() : {};
         });
     }
+
     ngAfterViewInit() {
+
+        if(this.paginationService.needsScroll){
+            setTimeout(() => {
+            this.vsViewport.scrollToOffset(this.paginationService.scrollHeight);
+            }, 1);
+        }
+
         this.route.queryParams.pipe(takeUntil(this.stopQuerySubscription)).subscribe(params => {
-            if(Object.entries(params).length != 0){
-                console.log(params)
-                this.queryOptions.filters = {...params};
-                this.getInitialData();
-            }else{
-                this.getInitialData();
+
+            if (this.paginationService.listings.length == 0) {
+                if (Object.entries(params).length != 0) {
+                    this.paginationService.queryOptions.filters = {...params};
+                    this.paginationService.getInitialData();
+                } else {
+                    this.paginationService.getInitialData();
+                }
             }
-
             this.stopQuerySubscription.next();
-
         });
     }
-    ngAfterViewChecked(){
+
+    ngAfterViewChecked() {
         this.changeDetector.detectChanges();
     }
+
     ngOnDestroy() {
-        this.stopSubscriptions.next();
-        this.stopSubscriptions.complete();
-        this.done.complete();
-        this.loading.complete();
+        // this.paginationService.closeSubscriptions();
     }
 
     @ViewChild('filters') filters: any;
     @ViewChild('vsViewport') vsViewport: CdkVirtualScrollViewport;
     protected view;
-    protected listings = [];
-    protected noListings :boolean = false;
     protected user = this.authenticationService.user;
-    protected stopSubscriptions = new Subject();
     protected stopQuerySubscription = new Subject();
-    protected done = new BehaviorSubject(false);
-    protected loading = new BehaviorSubject(false);
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
         event.target.innerWidth > 960 ? this.view = 'desktop' : event.target.innerWidth > 600 ? this.view = 'tablet' : this.view = 'mobile';
     }
 
-    protected queryOptions = {
-        page: 0,
-        size: 10,
-        total: 0,
-        sort: 'created',
-        reverse: false,
-        filters: null
-    };
-
-    addFilters(query: Query){
-        console.log(this.queryOptions.filters);
-        if (this.queryOptions.filters != null) {
-            for(let filter in this.queryOptions.filters){
-                console.log(filter);
-                console.log(this.queryOptions.filters[filter]);
-                query = query.where(filter, '==', this.queryOptions.filters[filter]);
-            }
-        }
-        return query;
-    }
-
-    getInitialData() {
-        let col = this._fireStore.collection('cars', ref => {
-            let query: Query = ref;
-            query = query.orderBy(this.queryOptions.sort, this.queryOptions.reverse ? 'asc' : 'desc');
-            query = query.limit(this.queryOptions.size);
-            query = this.addFilters(query);
-            return query;
-        });
-        this.mapResponse(col);
-    }
-
-    handleScroll() {
-        let col = this._fireStore.collection('cars', ref => {
-            let query: Query = ref;
-            query = query.orderBy(this.queryOptions.sort, this.queryOptions.reverse ? 'asc' : 'desc');
-            query = query.limit(this.queryOptions.size);
-            query = query.startAfter(this.listings[this.listings.length - 1].doc);
-            query = this.addFilters(query);
-            return query;
-        });
-        this.mapResponse(col);
-    }
-
-    mapResponse(collection: AngularFirestoreCollection) {
-        if (this.done.value || this.loading.value) {
-            return
-        } else {
-            this.loading.next(true);
-            collection.snapshotChanges().pipe(map((arr: any) => {
-                return arr.map(snap => {
-                    const data = snap.payload.doc.data();
-                    const doc = snap.payload.doc;
-                    return {...data, doc}
-                });
-            })).pipe(takeUntil(this.stopSubscriptions)).subscribe(response => {
-                if (response.length == 0) {
-                    this.done.next(true);
-                    if(this.listings.length == 0) this.noListings = true
-                } else {
-                    this.noListings? this.noListings = false : {};
-                    this.listings = this.listings.concat(response);
-                    if(response.length < this.queryOptions.size) this.done.next(true);
-                    console.log(this.listings);
-                }
-                this.loading.next(false);
-                this.stopSubscriptions.next();
-            });
-        }
-    }
 
     protected filterIcons = {
         manufacturer: 'build',
@@ -159,12 +92,15 @@ export class ListingsComponent implements OnInit, OnDestroy {
         year: 'calendar_today'
     };
 
-    filtersChanged(filters) {
-        console.log(filters);
-        Object.entries(filters).length == 0 ? this.queryOptions.filters = null : this.queryOptions.filters = filters;
-        this.router.navigate(['/mobile/search'], { queryParams: filters })
+    filtersChanged(filters){
+        Object.entries(filters).length == 0 ? this.paginationService.queryOptions.filters = null : this.paginationService.queryOptions.filters = filters;
+        console.log(this.paginationService.queryOptions.filters);
+        this.router.navigate(['/mobile/search'], {queryParams: filters})
+    }
 
-
+    sortChanged(event){
+        this.paginationService.queryOptions.sort = event.sort;
+        this.paginationService.queryOptions.reverse = event.reverse;
     }
 
     removeFilter(filterKey) {
@@ -173,24 +109,10 @@ export class ListingsComponent implements OnInit, OnDestroy {
                 if(filter == 'model')  delete this.queryOptions.filters[filter];
             }
         }
-        delete this.queryOptions.filters[filterKey];
-        Object.entries(this.queryOptions.filters).length == 0 ? this.queryOptions.filters = null : {};
-        this.router.navigate(['/mobile/search'],{queryParams:this.queryOptions.filters})
+        delete this.paginationService.queryOptions.filters[filterKey];
+        Object.entries(this.paginationService.queryOptions.filters).length == 0 ? this.paginationService.queryOptions.filters = null : {};
+        this.router.navigate(['/mobile/search'], {queryParams: this.paginationService.queryOptions.filters});
         this.fireSearch()
-    }
-
-    changedSort(event) {
-        // if (event == 'latest') {
-        //     this.queryOptions.sort = 'created';
-        //     this.queryOptions.direction = 'ASC';
-        // } else if (event == 'price-l') {
-        //     this.queryOptions.sort = 'price.value';
-        //     this.queryOptions.direction = 'ASC';
-        // } else if (event == 'price-h') {
-        //     this.queryOptions.sort = 'price.value';
-        //     this.queryOptions.direction = 'DESC';
-        // }
-        // this.getAllCars();
     }
 
     addUserWhoFavourite(car) {
@@ -201,7 +123,8 @@ export class ListingsComponent implements OnInit, OnDestroy {
             });
             if (previousEntry != this.authenticationService.user.email || previousEntry == null) {
                 car.userEmailsWhoFavourite.push(this.authenticationService.user.email);
-                let carWithoutDoc = {...car}; delete carWithoutDoc.doc;
+                let carWithoutDoc = {...car};
+                delete carWithoutDoc.doc;
                 this._fireStore.collection('cars').doc(car.doc.id).set(carWithoutDoc)
                     .then(res => {
                         this.snackBar.open('Listing added to favourites.', null, {duration: 1500})
@@ -219,10 +142,19 @@ export class ListingsComponent implements OnInit, OnDestroy {
 
     handleItemEvent(event) {
         switch (event.type) {
-            case "favourite": {
+            case "favourite":
                 this.addUserWhoFavourite(event.target);
-            }
+                break;
+            case "open":
+                this.openListing(event.target);
+                break;
         }
+    }
+
+    openListing(target) {
+        this.paginationService.scrollHeight = this.vsViewport.measureScrollOffset("top");
+        this.paginationService.selectedListing = target;
+        this.router.navigate(['/mobile/listing'], {queryParams: {id: target.uuid}})
     }
 
     toggleFilters() {
@@ -230,10 +162,9 @@ export class ListingsComponent implements OnInit, OnDestroy {
     }
 
     fireSearch() {
-        // this.getAllCars();
-        this.done.next(false);
-        this.listings = [];
-        this.getInitialData();
+        this.paginationService.done.next(false);
+        this.paginationService.listings = [];
+        this.paginationService.getInitialData();
 
         this.bottomSheet.dismiss();
     }

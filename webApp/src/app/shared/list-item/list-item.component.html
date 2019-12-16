@@ -12,8 +12,7 @@
             {{listing?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
         </div>
     </div>
-    <div [routerLink]="['/mobile/listing']" [queryParams]="{id: listing?.uuid}"
-         style="height: 180px; width: 100%; overflow: hidden; position: relative;">
+    <div (click)="open()" style="height: 180px; width: 100%; overflow: hidden; position: relative;">
         <button (click)="$event.stopPropagation(); favourite()" mat-icon-button style="position: absolute; bottom: 0; right: 0">
             <mat-icon *ngIf="listing.favouritedByUser == null; else faved" [color]="'accent'">favorite_border</mat-icon>
             <ng-template #faved>
@@ -23,7 +22,7 @@
         <img src="{{listing?.images[0]}}"
              style=" height: 100%; width: 100%; object-fit:cover;">
     </div>
-    <div [routerLink]="['/mobile/listing']" [queryParams]="{id: listing?.uuid}" style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" >
+    <div (click)="open()"  style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" >
         {{listing?.title}}
     </div>
     <div style="margin: 8px">
@@ -80,10 +79,9 @@
     <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="25" style="height: 60px">
             <img src="{{listing?.images[0]}}"
-                 style=" height: 60px; width: 100%; object-fit:cover;" [routerLink]="['/mobile/listing']"
-                 [queryParams]="{id: listing?.uuid}">
+                 style=" height: 60px; width: 100%; object-fit:cover;" (click)="open()" >
         </div>
-        <div fxFlex="50" style="margin: 8px" [routerLink]="['/mobile/listing']" [queryParams]="{id: listing?.uuid}">
+        <div fxFlex="50" style="margin: 8px" (click)="open()">
             <div style="margin-bottom: 4px;">
                 {{listing?.manufacturer}} {{listing?.model}}
             </div>
@@ -111,10 +109,9 @@
     <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="35" style="height: 130px">
             <img src="{{listing?.images[0]}}"
-                 style=" height: 130px; width: 100%; object-fit:cover;" [routerLink]="['/mobile/listing']"
-                 [queryParams]="{id: listing?.uuid}">
+                 style=" height: 130px; width: 100%; object-fit:cover;" (click)="open()">
         </div>
-        <div fxFlex="65" style="margin: 8px" [routerLink]="['/mobile/listing']" [queryParams]="{id: listing?.uuid}">
+        <div fxFlex="65" style="margin: 8px" (click)="open()">
             <div fxLayout="row" fxLayoutAlign="space-between start">
                 <div>
                     <div>
