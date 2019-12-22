@@ -1,4 +1,4 @@
-<cdk-virtual-scroll-viewport #vsViewport [itemSize]="view == 'desktop' ? '140' : view == 'tablet' ? '140' : '340rei'"
+<cdk-virtual-scroll-viewport #vsViewport [itemSize]="view == 'desktop' ? '140' : view == 'tablet' ? '140' : '340'"
                              style="height: 100%; max-width: 100%">
     <!--<button (click)="scrollToItem()">test</button>-->
     <div style="padding: 0 16px 16px 16px; height: 100%;">
@@ -90,13 +90,15 @@
                                  fxFlex.xs="100" fxFlex.sm="50"
                                  fxFlex.md="100" fxFlex.lg="100"
                                  [ngStyle.sm]="{'padding':'0 5px'}">
-                                <app-list-item [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
+                                <app-list-item
+                                        [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
                             </div>
                             <div style="margin-bottom: 10px"
                                  fxFlex.xs="100" fxFlex.sm="50"
                                  fxFlex.md="100" fxFlex.lg="100"
                                  [ngStyle.sm]="{'padding':'0 5px'}">
-                                <app-list-item [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
+                                <app-list-item
+                                        [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
                             </div>
                         </div>
 
@@ -135,5 +137,6 @@
     <mat-divider style="margin: 10px 0"></mat-divider>
     <car-filters (filtersListener)="filtersChanged($event)"
                  (sortListener)="sortChanged($event)"
-                 [existingSort]="{sort: paginationService.queryOptions.sort, reverse: paginationService.queryOptions.reverse}" [existingFilters]="paginationService.queryOptions.filters"></car-filters>
+                 [existingSort]="{sort: paginationService.queryOptions.sort, reverse: paginationService.queryOptions.reverse}"
+                 [existingFilters]="paginationService.queryOptions.filters"></car-filters>
 </ng-template>

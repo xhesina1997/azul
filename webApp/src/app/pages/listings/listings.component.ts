@@ -39,22 +39,19 @@ export class ListingsComponent implements OnInit, OnDestroy {
 
     ngAfterViewInit() {
 
-        if(this.paginationService.needsScroll){
+        if (this.paginationService.needsScroll) {
             setTimeout(() => {
-            this.vsViewport.scrollToOffset(this.paginationService.scrollHeight);
+                this.vsViewport.scrollToOffset(this.paginationService.scrollHeight);
             }, 1);
         }
 
         this.route.queryParams.pipe(takeUntil(this.stopQuerySubscription)).subscribe(params => {
 
-            if (this.paginationService.listings.length == 0) {
-                if (Object.entries(params).length != 0) {
-                    this.paginationService.queryOptions.filters = {...params};
-                    this.paginationService.getInitialData();
-                } else {
-                    this.paginationService.getInitialData();
-                }
-            }
+            if (Object.entries(params).length != 0) this.paginationService.queryOptions.filters = {...params};
+            else this.paginationService.queryOptions.filters = null;
+            this.paginationService.done.next(false);
+            this.paginationService.listings = [];
+            this.paginationService.getInitialData();
             this.stopQuerySubscription.next();
         });
     }
@@ -92,13 +89,13 @@ export class ListingsComponent implements OnInit, OnDestroy {
         year: 'calendar_today'
     };
 
-    filtersChanged(filters){
+    filtersChanged(filters) {
         Object.entries(filters).length == 0 ? this.paginationService.queryOptions.filters = null : this.paginationService.queryOptions.filters = filters;
         console.log(this.paginationService.queryOptions.filters);
         this.router.navigate(['/mobile/search'], {queryParams: filters})
     }
 
-    sortChanged(event){
+    sortChanged(event) {
         console.log(event);
         this.paginationService.queryOptions.sort = event.sort;
         this.paginationService.queryOptions.reverse = event.reverse;

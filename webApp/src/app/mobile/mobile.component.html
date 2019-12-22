@@ -1,7 +1,7 @@
 <div #container style="width: 100%; height: 100%;">
 
     <div style="position: relative">
-        <mat-toolbar style="background-color: #5400B8; color: white" class="">
+        <mat-toolbar color="primary" class="">
             <div style="width: 100%" fxLayout="row" fxLayoutAlign="space-between center">
                 <button (click)="drawer.toggle()" mat-icon-button color="accent">
                     <mat-icon>menu</mat-icon>
@@ -23,50 +23,10 @@
             </div>
 
         </mat-toolbar>
-        <mat-progress-bar *ngIf="loading == true" mode="indeterminate" style="position: absolute; bottom: -4px; z-index: 10; width: 100%"></mat-progress-bar>
+        <mat-progress-bar *ngIf="loading == true" mode="indeterminate" style="position: absolute; top: 0px; z-index: 10; width: 100%"></mat-progress-bar>
     </div>
 
-    <!--<div #header style=" width: 60px">-->
-    <!--<div fxLayout="row" fxLayoutAlign="space-between center" style="width:100%; height: 50px; padding: 5px 16px;">-->
 
-    <!--<button (click)="changeStateMed('menu')" mat-icon-button color="accent">-->
-    <!--<mat-icon>menu</mat-icon>-->
-    <!--</button>-->
-
-    <!--<div style="color:white; font-size: 20px;">-->
-    <!--AZUL-->
-    <!--</div>-->
-
-    <!--<button (click)="changeStateMed('account')" mat-icon-button color="accent">-->
-    <!--<mat-icon>account_circle</mat-icon>-->
-    <!--</button>-->
-
-    <!--</div>-->
-
-    <!--<div [ngStyle]="{'display': overallState != 'menu' ? 'none' : ''}" style="width: 100%; z-index: 1; height: 120px;">-->
-
-
-    <!--</div>-->
-
-    <!--<div [ngStyle]="{'display': overallState != 'account' ? 'none' : ''}" style="width: 100%; height: 120px; z-index: 1;">-->
-
-    <!--<mat-nav-list style="margin: 0 16px;">-->
-    <!--<mat-list-item *ngIf="authenticationService.user!=null" [routerLink]="['/mobile/account']" style="font-size: 16px; color: white">-->
-    <!--<a matLine>ACCOUNT</a>-->
-    <!--</mat-list-item>-->
-    <!--<mat-list-item (click)="logOut()" *ngIf="authenticationService.user!=null" style="font-size: 16px; color: white">-->
-    <!--<a matLine>LOGOUT</a>-->
-    <!--</mat-list-item>-->
-    <!--<mat-list-item *ngIf="authenticationService.user==null" [routerLink]="['/auth/login']" style="font-size: 16px; color: white">-->
-    <!--<a matLine>LOGIN/REGISTER</a>-->
-    <!--</mat-list-item>-->
-    <!--</mat-nav-list>-->
-    <!--&lt;!&ndash;<div style="padding: 0 16px; height: calc(100% - 60px); overflow-y: auto; -webkit-overflow-scrolling: touch;" class="filtersContainer">&ndash;&gt;-->
-    <!--&lt;!&ndash;<car-filters (filtersListener)="filtersChanged($event)"></car-filters>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--</div>-->
-
-    <!--</div>-->
     <mat-drawer-container [hasBackdrop]="false" style="height: calc(100% - 45px); width: 100%;">
         <mat-drawer #drawer mode="over" style="background-color: #fafafa; width: 100%;">
             <mat-nav-list style="margin: 8px 16px;">
@@ -85,6 +45,7 @@
             <div style="width: 100%; -webkit-overflow-scrolling: touch; height: 100%; overflow-y: auto">
                 <router-outlet></router-outlet>
             </div>
+
         </mat-drawer-content>
     </mat-drawer-container>
 

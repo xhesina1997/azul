@@ -31,10 +31,10 @@ const routes: Routes = [{
             loadChildren: '../pages/create/create.module#CreateModule'
         },
         {
-            path: '', redirectTo: 'search', pathMatch: 'full'
+            path: '', redirectTo: 'home', pathMatch: 'full'
         },
         {
-            path: '**', redirectTo: 'search'
+            path: '**', redirectTo: 'home'
         }
     ]
 }];
