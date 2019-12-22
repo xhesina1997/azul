@@ -102,11 +102,6 @@ export class ListingsComponent implements OnInit, OnDestroy {
     }
 
     removeFilter(filterKey) {
-        if(filterKey == 'manufacturer'){
-            for(let filter in this.queryOptions.filters){
-                if(filter == 'model')  delete this.queryOptions.filters[filter];
-            }
-        }
         delete this.paginationService.queryOptions.filters[filterKey];
         Object.entries(this.paginationService.queryOptions.filters).length == 0 ? this.paginationService.queryOptions.filters = null : {};
         this.router.navigate(['/mobile/search'], {queryParams: this.paginationService.queryOptions.filters});
