@@ -15,7 +15,7 @@
                          style="width: 100%;">
                         <div style="width: calc(100% - 48px); padding-left: 8px;">
                             <ng-container *ngIf="paginationService.queryOptions.filters == null">
-                                Search results
+                                {{'Search results' | translate}}
                             </ng-container>
                             <ng-container *ngIf="paginationService.queryOptions.filters != null">
                                 <mat-chip-list #chipList>
@@ -54,10 +54,10 @@
                             <div fxLayout="row" fxLayoutAlign="space-between center"
                                  style="color: #8c8c8c; margin-bottom: 5px;">
                                 <div>
-                                    Refine search
+                                    {{'Refine search' | translate}}
                                 </div>
                                 <button (click)="getAllCars()" color="primary" mat-stroked-button>
-                                    search
+                                    {{'Search' | translate}}
                                 </button>
                             </div>
                             <car-filters (filtersListener)="filtersChanged($event)"
@@ -107,7 +107,7 @@
                     <ng-template #noCars>
                         <div fxLayout="column" fxLayoutAlign="space-between center" style="width: 100%">
 
-                            <p>Sorry, no results</p>
+                            <p>{{'Sorry, no results' | translate}}</p>
                             <!--<p>Didn't find what you were looking for?</p>-->
                             <!--<button mat-stroked-button color="primary">create an alert</button>-->
                             <div style="height: 300px;" class="no-results"></div>
@@ -128,10 +128,10 @@
 <ng-template #filters>
     <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c;">
         <div>
-            Refine search
+           {{'Refine search' | translate}}
         </div>
         <button (click)="fireSearch()" color="primary" mat-stroked-button>
-            search
+            {{'Search' | translate}}
         </button>
     </div>
     <mat-divider style="margin: 10px 0"></mat-divider>

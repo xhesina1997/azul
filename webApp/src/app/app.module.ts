@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
 import {MatInputModule} from '@angular/material/input';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule,HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 
 import { AngularFireModule } from "@angular/fire";
@@ -14,6 +14,8 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireStorage, AngularFireStorageModule} from "@angular/fire/storage";
 import { ScrollableDirective } from './directives/scrollable.directive';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 var config = {
     apiKey: "AIzaSyCwPRzecRZQMzJe9-V0HLhvuJc5wQFOM2c",
@@ -41,10 +43,20 @@ var config = {
         AngularFireModule.initializeApp(config),
         AngularFirestoreModule,
         AngularFireStorageModule,
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
     ],
     providers: [CookieService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
 }

@@ -26,7 +26,7 @@ import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orien
 import FilePondPluginImageResize from 'filepond-plugin-image-resize';
 FilePond.registerPlugin(FilePondPluginFileValidateType,  FilePondPluginImagePreview,FilePondPluginImageExifOrientation,FilePondPluginImageResize,FilePondPluginImageTransform );
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-
+import { TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
     declarations: [CreateListingComponent],
@@ -46,6 +46,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
         MatDividerModule,
         MatIconModule,
         NgxMatSelectSearchModule,
+        TranslateModule
 
     ],
     providers: [

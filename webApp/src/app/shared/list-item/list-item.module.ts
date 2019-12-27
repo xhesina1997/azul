@@ -5,6 +5,8 @@ import {MatCardModule, MatButtonModule, MatIconModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatDividerModule} from '@angular/material/divider';
 import {RouterModule} from '@angular/router';
+import { TranslateModule} from '@ngx-translate/core';
+
 
 @NgModule({
     declarations: [ListItemComponent],
@@ -15,7 +17,8 @@ import {RouterModule} from '@angular/router';
         RouterModule,
         MatButtonModule,
         MatCardModule,
-        MatIconModule
+        MatIconModule,
+        TranslateModule
     ],
     exports: [ListItemComponent]
 })

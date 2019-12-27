@@ -19,7 +19,7 @@
                 <mat-icon *ngIf="listing.favouritedByUser == true" [color]="'accent'">favorite</mat-icon>
             </ng-template>
         </button>
-        <img src="{{listing?.images[0]}}"
+        <img src="{{listing?.images[0].url}}"
              style=" height: 100%; width: 100%; object-fit:cover;">
     </div>
     <div (click)="open()"  style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" >
@@ -29,10 +29,10 @@
         <mat-divider></mat-divider>
     </div>
     <div fxLayout="row wrap" style="padding: 0 10px; margin-top: 10px; overflow: hidden">
-        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">Kambio:</i>{{listing?.transmission}}</p>
-        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">Karburanti:</i>{{listing?.fuel}}</p>
-        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">Qyteti:</i>{{listing?.city}}</p>
-        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">Regjistrimi:</i>{{listing?.plateRegistration}}</p>
+        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Transmission' | translate}}:</i>{{listing?.transmission}}</p>
+        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Fuel' | translate}}:</i>{{listing?.fuel}}</p>
+        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'City' | translate}}:</i>{{listing?.city}}</p>
+        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Plate Registration' | translate}}:</i>{{listing?.plateRegistration}}</p>
     </div>
 </div>
 <div *ngIf="view == 'defaultLOADING'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; min-height: 338px">
@@ -94,7 +94,7 @@
                 <mat-icon *ngIf="listing.favouritedByUser == true" [color]="'accent'">favorite</mat-icon>
             </ng-template>
         </button>
-        <img src="{{listing?.images[0]}}"
+        <img src="{{listing?.images[0].url}}"
              style=" height: 100%; width: 100%; object-fit:cover;">
     </div>
     <div (click)="open()"  style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" >
@@ -106,7 +106,7 @@
 <div *ngIf="view == 'userSubmission'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white">
     <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="25" style="height: 60px">
-            <img src="{{listing?.images[0]}}"
+            <img src="{{listing?.images[0].url}}"
                  style=" height: 60px; width: 100%; object-fit:cover;" (click)="open()" >
         </div>
         <div fxFlex="50" style="margin: 8px" (click)="open()">
@@ -136,7 +136,7 @@
 <div *ngIf="view == 'desktop'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white;">
     <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="35" style="height: 130px">
-            <img src="{{listing?.images[0]}}"
+            <img src="{{listing?.images[0].url}}"
                  style=" height: 130px; width: 100%; object-fit:cover;" (click)="open()">
         </div>
         <div fxFlex="65" style="margin: 8px" (click)="open()">
@@ -155,10 +155,10 @@
                 </div>
             </div>
             <div fxLayout="row wrap" style="padding: 0; margin-top: 6px">
-                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">Kambio:</i>{{listing?.transmission}}</p>
-                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">Karburanti:</i>{{listing?.fuel}}</p>
-                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">Qyteti:</i>{{listing?.city}}</p>
-                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">Regjistrimi:</i>{{listing?.plateRegistration}}</p>
+                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Transmission' | translate}}:</i>{{listing?.transmission}}</p>
+                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Fuel' | translate}}:</i>{{listing?.fuel}}</p>
+                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'City' | translate}}:</i>{{listing?.city}}</p>
+                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Plate Registration' | translate}}:</i>{{listing?.plateRegistration}}</p>
             </div>
         </div>
     </div>

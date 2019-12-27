@@ -7,6 +7,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatButtonModule, MatDividerModule, MatIconModule, MatRippleModule} from "@angular/material";
 import {MatCardModule} from "@angular/material/card";
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
     declarations: [ListingComponent],
@@ -19,7 +20,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
         CarouselModule,
         MatDividerModule,
         MatRippleModule,
-        MatIconModule
+        MatIconModule,
+        TranslateModule
     ],
 })
 export class ListingModule {

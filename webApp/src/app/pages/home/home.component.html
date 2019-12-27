@@ -5,54 +5,54 @@
     background-size: cover;
     overflow: hidden;
     height: auto;">
-    <div style="color: white; font-size: 55px; width: 80%">Welcome to Azul</div>
+    <div style="color: white; font-size: 55px; width: 80%">{{'title' | translate}}</div>
     <br>
     <div style="color: white;">Biggest car market maybe</div>
     <br>
-    <button [routerLink]="['/mobile/search']" mat-flat-button color="accent" style="width: 100%; height: 52px;">Fire your first search!</button>
+    <button [routerLink]="['/mobile/search']" mat-flat-button color="accent" style="width: 100%; height: 52px;">{{'Fire your first search!' | translate}}</button>
     <br>
     <div style="height: 203px">
         <img style="width: 374px; margin-left: 85px;" src="/assets/illustrations/car.png" alt="car">
     </div>
 </div>
 <div style="padding: 0 16px 0 16px; margin-top: -30px;">
-    <div style="margin-top: 40px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">Shop by type</div>
+    <div style="margin-top: 40px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Shop by type' | translate}}</div>
     <mat-divider></mat-divider>
     <div style="color: rgb(140, 140, 140); margin: 16px -16px 0 -16px; padding-left: 16px; display: flex; overflow-x: auto;">
         <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
              style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px; min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
             <img src="/assets/car-types/sedan.png" alt="sedan" style="width: 100%;">
-            <span>Sedan</span>
+            <span>{{'Sedan' | translate }}</span>
         </div>
         <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
              style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px; min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
             <img src="/assets/car-types/hatchback.png" alt="hatchback" style="width: 100%;">
-            <span>Hatchback</span>
+            <span>{{'Hatchback' | translate }}</span>
         </div>
         <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
              style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
             <img src="/assets/car-types/suv.png" alt="suv" style="width: 100%;">
-            <span>SUV</span>
+            <span>{{'SUV' | translate }}</span>
         </div>
         <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
              style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
             <img src="/assets/car-types/coupe.png" alt="coupe" style="width: 100%;">
-            <span>Coupe</span>
+            <span>{{'Coupe' | translate }}</span>
         </div>
         <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
              style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
             <img src="/assets/car-types/van.png" alt="van" style="width: 100%;">
-            <span>Van</span>
+            <span>{{'Van' | translate }}</span>
         </div>
         <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
              style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
             <img src="/assets/car-types/truck.png" alt="truck" style="width: 100%;">
-            <span>Truck</span>
+            <span>{{'Truck' | translate}}</span>
         </div>
         <div style="width: 16px; color: #fbfbfb;">a</div>
     </div>
 
-    <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">Shop by brand</div>
+    <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Shop by brand' | translate}}</div>
     <mat-divider></mat-divider>
     <div style="color: rgb(140, 140, 140); margin: 16px -16px 0 -16px; padding-left: 16px; display: flex; overflow-x: auto;">
         <div [routerLink]="['/mobile/search']"
@@ -131,7 +131,7 @@
 
     </div>
 
-    <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">Shop by price</div>
+    <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Shop by price' | translate }}</div>
     <mat-divider></mat-divider>
 
     <div style="margin-top: 24px;
@@ -149,14 +149,14 @@
     background-color: #ffffffe3; ">
         <div matRipple fxLayout="row" fxLayoutAlign="space-between center"
              style="padding-left: 10px; border-bottom: 1px solid #e0e0e0; height: 42px">
-            Under $2000
+            {{'Under' | translate }} $2000
             <button mat-icon-button>
                 <mat-icon>chevron_right</mat-icon>
             </button>
         </div>
         <div matRipple fxLayout="row" fxLayoutAlign="space-between center"
              style="padding-left: 10px; border-bottom: 1px solid #e0e0e0; height: 42px">
-            Under 5000
+            {{'Under' | translate }} 5000
             <button mat-icon-button>
                 <mat-icon>che[routerLink]="['/mobile/search']"vron_right</mat-icon>
             </button>
@@ -175,14 +175,14 @@
             </button>
         </div>
         <div matRipple fxLayout="row" fxLayoutAlign="space-between center" style="padding-left: 10px; height: 42px">
-            Over $20000
+            {{'Over' | translate }} $20000
             <button mat-icon-button>
                 <mat-icon>chevron_right</mat-icon>
             </button>
         </div>
     </div>
 
-    <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">Latest listings</div>
+    <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Latest listings' | translate }}</div>
     <mat-divider></mat-divider>
     <div style="margin: 16px -16px 60px -16px; padding-left: 16px; display: flex; overflow-x: auto;">
         <div *ngFor="let listing of latestListings" style="min-width: 210px; margin-right: 10px;">

@@ -14,7 +14,7 @@
 <!--</div>-->
 
 <mat-tab-group style="" (selectedIndexChange)="handleIndexChange($event)">
-    <mat-tab style="width: 33%;" label="My listings">
+    <mat-tab style="width: 33%;" label="{{'My listings' | translate}}">
         <div style="padding: 16px">
             <div *ngFor="let listItem of listingsCreatedByUser"
                  style="margin-bottom: 10px;">
@@ -22,7 +22,7 @@
             </div>
         </div>
     </mat-tab>
-    <mat-tab style="width: 34%;" label="Saved listings">
+    <mat-tab style="width: 34%;" label="{{'Saved listings' | translate}}">
         <div style="padding: 16px">
             <div *ngFor="let listItem of favouriteListings"
                  style="margin-bottom: 10px;">
@@ -30,7 +30,7 @@
             </div>
         </div>
     </mat-tab>
-    <mat-tab style="width: 33%;" label="Settings">
+    <mat-tab style="width: 33%;" label="{{'Settings' | translate}}">
         <div style="padding: 16px">
             <button mat-stroked-button (click)="logout()">Logout</button>
         </div>
@@ -43,23 +43,23 @@
 <ng-template #deleteCarModal>
     <div fxLayout="row" fxLayoutAlign="space-between center" class="modalHeater"
          style="font-size: 20px; font-weight: 600; font-family: 'Montserrat'; margin: 10px;">
-        <div fxFlex="60" >Confirm Delete</div>
+        <div fxFlex="60" >{{'Confirm Delete' | translate}}</div>
     </div>
     <mat-divider></mat-divider>
     <br>
-    <p>Are you sure you want to delete post ?</p>
+    <p>{{'Are you sure you want to delete post ' | translate}}</p>
     <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-        <button  mat-raised-button color="primary" (click)="deleteCarPost()" >Confirm</button>
-        <button  mat-raised-button color="error"  (click)="closeDialog()" >Cancel</button>
+        <button  mat-raised-button color="primary" (click)="deleteCarPost()" >{{'Confirm' | translate}}</button>
+        <button  mat-raised-button color="error"  (click)="closeDialog()" >{{'Cancel' | translate}}</button>
     </div>
 </ng-template>
 
 <ng-template #bottomSheet>
     <div fxLayout="row">
-        <p fxFlex="65">Are you sure you want to delete this listing?</p>
+        <p fxFlex="65">{{'Are you sure you want to delete this listing' | translate}}</p>
         <div fxFlex="45" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-            <button  mat-stroked-button color="warn" (click)="deleteCarPost()" >Confirm</button>
-            <button  mat-stroked-button color="primary"  (click)="closeDialog()" >Cancel</button>
+            <button  mat-stroked-button color="warn" (click)="deleteCarPost()" >{{'Confirm' | translate}}</button>
+            <button  mat-stroked-button color="primary"  (click)="closeDialog()" >{{'Cancel' | translate}}</button>
         </div>
     </div>
 </ng-template>

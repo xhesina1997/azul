@@ -16,9 +16,8 @@ import {ListItemModule} from "../../shared/list-item/list-item.module";
 import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {MatChipsModule} from '@angular/material/chips';
 import {DisplayFilterPipe} from "../../pipes/display-filter.pipe";
-
 import {ScrollingModule} from '@angular/cdk/scrolling';
-
+import { TranslateModule} from '@ngx-translate/core';
 @NgModule({
     declarations: [
         ListingsComponent,
@@ -41,7 +40,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
         MatBottomSheetModule,
         MatSnackBarModule,
         ScrollingModule,
-        SharedModule
+        SharedModule,
+        TranslateModule
     ],
 })
 export class ListingsModule {

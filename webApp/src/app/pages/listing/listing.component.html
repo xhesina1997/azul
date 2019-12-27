@@ -17,7 +17,7 @@
                         <img [ngStyle.md]="{'height': '400px'}"
                              [ngStyle.lg]="{'height': '400px'}"
                              style=" height: 240px; background-color: #e6e6e6; width: 100%; object-fit:contain; z-index: 1"
-                             src="{{image}}">
+                             src="{{image.url}}">
                     </ng-template>
                 </owl-carousel-o>
             </div>
@@ -35,7 +35,7 @@
                                 </mat-icon>
                             </button>
                             <div style="width: 55px; text-align: center; color: #8c8c8c; font-size: 13px; margin-top: 0px; margin-bottom: 10px;">
-                                save
+                                {{'save' | translate}}
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                                 </mat-icon>
                             </button>
                             <div style="width: 55px; text-align: center; color: #8c8c8c; font-size: 13px; margin-top: 0px; margin-bottom: 10px;">
-                                share
+                                {{'share' | translate}}
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                                 </mat-icon>
                             </button>
                             <div style="width: 55px; text-align: center; color: #8c8c8c; font-size: 13px; margin-top: 0px; margin-bottom: 10px;">
-                                call
+                                {{'call' | translate}}
                             </div>
                         </div>
                     </div>
@@ -73,10 +73,10 @@
                         {{selectedCar?.description}}
                     </div>
                     <div style="color: #5400B8" *ngIf="descriptionToggle"
-                         (click)="descriptionToggle = !descriptionToggle">...show more
+                         (click)="descriptionToggle = !descriptionToggle">...{{'show more' | translate}}
                     </div>
                     <div style="color: #5400B8" *ngIf="!descriptionToggle"
-                         (click)="descriptionToggle = !descriptionToggle">...show less
+                         (click)="descriptionToggle = !descriptionToggle">...{{'show less' | translate}}
                     </div>
                 </div>
                 <mat-divider style="margin-top: 20px"></mat-divider>
@@ -91,7 +91,7 @@
                         <mat-icon style="font-size: 18px; color: #8c8c8c">build</mat-icon>
                     </div>
                     <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580; color: #8c8c8c">Prodhuesi:</span> &nbsp;{{selectedCar?.manufacturer}}
+                        <span style="font-weight: 580; color: #8c8c8c">{{'Manufacturer' | translate}}:</span> &nbsp;{{selectedCar?.manufacturer}}
                     </div>
                 </div>
                 <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
@@ -99,7 +99,7 @@
                         <mat-icon style="font-size: 18px; color: #8c8c8c">merge_type</mat-icon>
                     </div>
                     <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580; color: #8c8c8c">Modeli:</span> &nbsp;{{selectedCar?.model}}
+                        <span style="font-weight: 580; color: #8c8c8c">{{'Model' | translate}}:</span> &nbsp;{{selectedCar?.model}}
                     </div>
                 </div>
                 <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
@@ -107,7 +107,7 @@
                         <mat-icon style="font-size: 18px; color: #8c8c8c">directions_car</mat-icon>
                     </div>
                     <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580; color: #8c8c8c">Struktura:</span> &nbsp;{{selectedCar?.structure}}
+                        <span style="font-weight: 580; color: #8c8c8c">{{'Structure' | translate}}:</span> &nbsp;{{selectedCar?.structure}}
                     </div>
                 </div>
                 <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
@@ -115,7 +115,7 @@
                         <mat-icon style="font-size: 18px; color: #8c8c8c">calendar_today</mat-icon>
                     </div>
                     <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580; color: #8c8c8c">Viti:</span> &nbsp;{{selectedCar?.year}}
+                        <span style="font-weight: 580; color: #8c8c8c">{{'Year' | translate}}:</span> &nbsp;{{selectedCar?.year}}
                     </div>
                 </div>
                 <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
@@ -123,7 +123,7 @@
                         <mat-icon style="font-size: 18px; color: #8c8c8c">invert_colors</mat-icon>
                     </div>
                     <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580; color: #8c8c8c">Ngjyra:</span> &nbsp;{{selectedCar?.color}}
+                        <span style="font-weight: 580; color: #8c8c8c">{{'Color' | translate}}:</span> &nbsp;{{selectedCar?.color}}
                     </div>
 
                 </div>
@@ -132,7 +132,7 @@
                         <mat-icon style="font-size: 18px; color: #8c8c8c">commute</mat-icon>
                     </div>
                     <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580; color: #8c8c8c">Kambio:</span> &nbsp;{{selectedCar?.transmission}}
+                        <span style="font-weight: 580; color: #8c8c8c">{{'Transmission' | translate}}:</span> &nbsp;{{selectedCar?.transmission}}
                     </div>
                 </div>
                 <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
@@ -140,7 +140,7 @@
                         <mat-icon style="font-size: 18px; color: #8c8c8c">category</mat-icon>
                     </div>
                     <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580; color: #8c8c8c">Karburanti:</span> &nbsp;{{selectedCar?.fuel}}
+                        <span style="font-weight: 580; color: #8c8c8c">{{'Fuel' | translate}}:</span> &nbsp;{{selectedCar?.fuel}}
                     </div>
                 </div>
                 <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
@@ -148,7 +148,7 @@
                         <mat-icon style="font-size: 18px; color: #8c8c8c">style</mat-icon>
                     </div>
                     <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580; color: #8c8c8c">Targa:</span> &nbsp;{{selectedCar?.plateRegistration}}
+                        <span style="font-weight: 580; color: #8c8c8c">{{'Plate Registration' | translate}}:</span> &nbsp;{{selectedCar?.plateRegistration}}
                     </div>
                 </div>
                 <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
@@ -156,7 +156,7 @@
                         <mat-icon style="font-size: 18px; color: #8c8c8c">map</mat-icon>
                     </div>
                     <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580; color: #8c8c8c">Qyteti:</span> &nbsp;{{selectedCar?.city}}
+                        <span style="font-weight: 580; color: #8c8c8c">{{'City' | translate}}:</span> &nbsp;{{selectedCar?.city}}
                     </div>
                 </div>
                 <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
@@ -164,7 +164,7 @@
                         <mat-icon style="font-size: 18px; color: #8c8c8c">timeline</mat-icon>
                     </div>
                     <div fxFlexFill fxFlex="90">
-                        <span style="font-weight: 580; color: #8c8c8c">Kilometrat:</span> &nbsp;{{selectedCar?.mileage}}
+                        <span style="font-weight: 580; color: #8c8c8c">{{'Mileage' | translate}}:</span> &nbsp;{{selectedCar?.mileage}}
                     </div>
                 </div>
             </div>
@@ -185,7 +185,7 @@
             font-size: 18px;
             border-radius: 25px;" mat-raised-button color="primary">
             <mat-icon style="margin-right: 10px">call</mat-icon>
-            Call
+            {{'call' | translate}}
         </button>
 
     </div>

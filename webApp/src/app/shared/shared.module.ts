@@ -14,6 +14,8 @@ import {
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Ng5SliderModule} from "ng5-slider";
 import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
+import { TranslateModule} from '@ngx-translate/core';
+
 
 @NgModule({
     declarations: [ContainerComponent, CarFiltersComponent],
@@ -30,7 +32,8 @@ import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
         MatButtonModule,
         FormsModule,
         ReactiveFormsModule,
-        NgxMatSelectSearchModule
+        NgxMatSelectSearchModule,
+        TranslateModule
     ],
     exports: [
         ContainerComponent,

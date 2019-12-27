@@ -16,7 +16,8 @@ import {ActivatedRoute} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {reject} from "q";
 import {HttpClient} from "@angular/common/http";
-
+import { generate } from 'shortid';
+import {TranslateService} from "@ngx-translate/core";
 @Component({
     selector: "app-create",
     templateUrl: "./create.component.html",
@@ -31,7 +32,8 @@ export class CreateComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private httpClient: HttpClient,
         private _snackBar: MatSnackBar,
-        private ngZone: NgZone
+        private ngZone: NgZone,
+        private translate: TranslateService
     ) {
         this.createForm = fb.group({
             title: [null, Validators.required],
@@ -60,8 +62,11 @@ export class CreateComponent implements OnInit, OnDestroy {
     protected pondOptions = {
         class: "my-filepond",
         multiple: true,
-        labelIdle: '<div style="cursor: pointer">Ngarkoni imazhe ketu</div>',
-        acceptedFileTypes: "image/jpeg, image/png"
+        labelIdle: '<div style="cursor: pointer">Upload images</div>',
+        acceptedFileTypes: "image/jpeg, image/png",
+        fileRenameFunction: (file) => {
+            return generate();
+        }
     };
     protected carModelList: any;
     protected carBrandsList: any;
@@ -196,6 +201,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     protected postToBeEdited: any;
 
     ngOnInit() {
+
         this.getCarBrands();
         this.getCarModels();
         this.subscribeToValueChanges();
@@ -262,8 +268,8 @@ export class CreateComponent implements OnInit, OnDestroy {
                         city: res[0].city
                     });
 
-                    for (let image in res[0].images) {
-                        this.getImageBlobs(res[0].images[image]);
+                    for (let image of res[0].images) {
+                        this.getImageBlobs(image.url);
                     }
 
 
@@ -272,7 +278,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     }
 
     getImageBlobs(image) {
-        console.log("getting images")
+        console.log(image)
 
         var request = new XMLHttpRequest();
         request.open('GET', image, true);
@@ -283,7 +289,6 @@ export class CreateComponent implements OnInit, OnDestroy {
                 var reader = new FileReader();
                 reader.readAsDataURL(request.response);
                 reader.onload = ((e: any) => {
-                    console.log(e.target.result)
                     this.myPond.addFile(e.target.result).then(file => file.name = '');
                     this.uploadedFiles = [...this.myPond.getFiles()];
                 });
@@ -412,7 +417,10 @@ export class CreateComponent implements OnInit, OnDestroy {
                                 .getDownloadURL()
                                 .toPromise()
                                 .then(res => {
-                                    car.images.push(res);
+                                    car.images.push({
+                                        name : pf.file.name,
+                                        url : res
+                                    });
                                 });
                         });
                 }
@@ -436,6 +444,31 @@ export class CreateComponent implements OnInit, OnDestroy {
                 let toBeEditedWithoutDoc = {...this.postToBeEdited};
                 delete toBeEditedWithoutDoc.doc;
 
+                // await this._storage.ref(toBeEditedWithoutDoc.uuid).delete()
+
+                let oldImages = [...toBeEditedWithoutDoc.images];
+                oldImages.forEach(image => {
+                    this._storage.ref(toBeEditedWithoutDoc.uuid + '/' + image.name).delete()
+                })
+                toBeEditedWithoutDoc.images = [];
+
+                let pondFiles = this.myPond.getFiles();
+                for (let pf of pondFiles) {
+                    await this._storage
+                        .upload(toBeEditedWithoutDoc.uuid + "/" + pf.file.name, pf.file)
+                        .then(async a => {
+                            await this._storage
+                                .ref(toBeEditedWithoutDoc.uuid + "/" + pf.file.name)
+                                .getDownloadURL()
+                                .toPromise()
+                                .then(res => {
+                                    toBeEditedWithoutDoc.images.push({
+                                        name : pf.file.name,
+                                        url : res
+                                    });
+                                });
+                        });
+                }
                 this._firestore.collection('cars').doc(this.postToBeEdited.doc.id).set(toBeEditedWithoutDoc)
                     .then(res => {
                         this._snackBar.open('Post updated.', null, {duration: 1500})

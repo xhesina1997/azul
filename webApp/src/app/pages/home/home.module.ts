@@ -7,7 +7,7 @@ import {MatButtonModule, MatDividerModule, MatIconModule, MatRippleModule} from 
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {SharedModule} from "../../shared/shared.module";
 import {ListItemModule} from "../../shared/list-item/list-item.module";
-
+import { TranslateModule} from '@ngx-translate/core';
 @NgModule({
     declarations: [HomeComponent],
     imports: [
@@ -19,7 +19,8 @@ import {ListItemModule} from "../../shared/list-item/list-item.module";
         MatIconModule,
         MatRippleModule,
         FlexLayoutModule,
-        HomeRoutingModule
+        HomeRoutingModule,
+        TranslateModule
     ]
 })
 export class HomeModule {

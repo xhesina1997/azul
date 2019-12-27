@@ -14,6 +14,7 @@ import {
 } from "@angular/material";
 import {SharedModule} from "../shared/shared.module";
 import {PaginationService} from "../services/pagination.service";
+import { TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
     declarations: [MobileComponent],
@@ -28,7 +29,8 @@ import {PaginationService} from "../services/pagination.service";
         MatSidenavModule,
         MatListModule,
         MatProgressBarModule,
-        MobileRoutingModule
+        MobileRoutingModule,
+        TranslateModule
     ],
     providers: [PaginationService]
 })

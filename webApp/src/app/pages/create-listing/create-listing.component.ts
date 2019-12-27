@@ -257,6 +257,7 @@ export class CreateListingComponent implements OnInit {
       });
   }
   dataURItoBlob(dataURI) {
+    console.log(dataURI)
     fetch(dataURI)
       .then(res => res.blob()) // Gets the response and returns it as a blob
       .then(blob => {
