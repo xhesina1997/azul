@@ -10,11 +10,12 @@ import {
     MatIconModule,
     MatListModule, MatProgressBarModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSelectModule
 } from "@angular/material";
 import {SharedModule} from "../shared/shared.module";
 import {PaginationService} from "../services/pagination.service";
-import { TranslateModule} from '@ngx-translate/core';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
     declarations: [MobileComponent],
@@ -30,7 +31,8 @@ import { TranslateModule} from '@ngx-translate/core';
         MatListModule,
         MatProgressBarModule,
         MobileRoutingModule,
-        TranslateModule
+        TranslateModule,
+        MatSelectModule
     ],
     providers: [PaginationService]
 })

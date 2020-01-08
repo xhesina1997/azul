@@ -23,7 +23,8 @@
             </div>
 
         </mat-toolbar>
-        <mat-progress-bar *ngIf="loading == true" mode="indeterminate" style="position: absolute; top: 0px; z-index: 10; width: 100%"></mat-progress-bar>
+        <mat-progress-bar *ngIf="loading == true" mode="indeterminate"
+                          style="position: absolute; top: 0px; z-index: 10; width: 100%"></mat-progress-bar>
     </div>
 
 
@@ -40,12 +41,26 @@
                     <a matLine>{{"Add listing" | translate}}</a>
                 </mat-list-item>
             </mat-nav-list>
+            <div fxLayout="row" fxLayoutAlign="space-between center" style="position: absolute;bottom: 0;left: 0;">
+                <span style="margin-left:20px;">Select language: </span>
+                <mat-form-field appearance="outline" style="margin-left: 10px">
+                    <mat-select [(value)]="selected" (selectionChange)="onChange($event)">
+                        <mat-option value="en">
+                            <img src="../../assets/brand-logos/america.jpg" alt="English" width="30" height="30">
+                            English
+                        </mat-option>
+                        <mat-option value="sq">
+                            <img src="../../assets/brand-logos/albania.png" alt="Albanian" width="30" height="30">
+                            Albanian
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
         </mat-drawer>
         <mat-drawer-content style="height: 100%; width: 100%;">
             <div style="width: 100%; -webkit-overflow-scrolling: touch; height: 100%; overflow-y: auto">
                 <router-outlet></router-outlet>
             </div>
-
         </mat-drawer-content>
     </mat-drawer-container>
 

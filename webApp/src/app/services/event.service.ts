@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class EventService {
     static postToBeEdited = new Subject()
+    static language = new Subject();
 }
 
 

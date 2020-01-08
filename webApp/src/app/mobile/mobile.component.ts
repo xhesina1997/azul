@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {AuthenticationService} from "../auth/authentication.service";
 import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from "@angular/router";
+import {EventService} from "../services/event.service";
 
 @Component({
     selector: 'app-mobile',
@@ -10,7 +11,7 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
 })
 export class MobileComponent implements OnInit {
 
-    constructor(private router: Router, protected authenticationService: AuthenticationService) {
+    constructor(private router: Router, protected authenticationService: AuthenticationService,) {
         this.router.events.subscribe((event: any) => {
             switch (true) {
                 case event instanceof NavigationStart: {
@@ -32,11 +33,17 @@ export class MobileComponent implements OnInit {
     }
 
     protected loading = false;
-
+    public selected: any;
 
     ngOnInit() {
+        this.selected = JSON.parse(localStorage.getItem('applicationSettings')).language;
+
     }
 
+    onChange(event){
+        EventService.language.next(event.value);
+
+    }
     logOut() {
         this.authenticationService.logout();
         this.router.navigate(["/pages/listings"]);
