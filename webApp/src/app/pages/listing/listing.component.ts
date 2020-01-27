@@ -57,12 +57,14 @@ export class ListingComponent implements OnInit, OnDestroy {
                 if (this.paginationService.selectedListing != null && this.paginationService.selectedListing.uuid == params.id) {
                     console.log("got listing from service");
                     this.selectedCar = this.paginationService.selectedListing;
+                    this.selectedCar.images == null ? this.selectedCar.images = [{url: '/assets/illustrations/placeholder.jpg'}] : {};
                 } else {
                     console.log("got listing from backend");
                     this._fireStore.collection('cars', ref => ref.where('uuid', '==', params.id).limit(1))
                         .valueChanges()
                         .pipe(takeUntil(this.stopSubscriptions)).subscribe(res => {
                         this.selectedCar = res[0];
+                        this.selectedCar.images == null ? this.selectedCar.images = [{url: '/assets/illustrations/placeholder.jpg'}] : {};
                         this.stopSubscriptions.next();
                     })
                 }
