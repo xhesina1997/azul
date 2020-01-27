@@ -619,7 +619,7 @@ export class CreateComponent implements OnInit, OnDestroy {
                                 .toPromise()
                                 .then(res => {
                                     car.images.push({
-                                        name: pf.file.name,
+                                        name: pf.file.name+'_900x900',
                                         url: res
                                     });
                                 });
@@ -659,12 +659,12 @@ export class CreateComponent implements OnInit, OnDestroy {
                         .upload(toBeEditedWithoutDoc.uuid + "/" + pf.file.name, pf.file)
                         .then(async a => {
                             await this._storage
-                                .ref(toBeEditedWithoutDoc.uuid + "/" + pf.file.name)
+                                .ref(toBeEditedWithoutDoc.uuid + "/" + pf.file.name+'_900x900')
                                 .getDownloadURL()
                                 .toPromise()
                                 .then(res => {
                                     toBeEditedWithoutDoc.images.push({
-                                        name: pf.file.name,
+                                        name: pf.file.name+'_900x900',
                                         url: res
                                     });
                                 });
