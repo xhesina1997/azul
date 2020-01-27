@@ -1,4 +1,13 @@
-import {Component, HostListener, OnDestroy, OnInit, ViewChild, HostBinding, ChangeDetectorRef} from '@angular/core';
+import {
+    Component,
+    HostListener,
+    OnDestroy,
+    OnInit,
+    ViewChild,
+    HostBinding,
+    ChangeDetectorRef,
+    AfterViewInit
+} from '@angular/core';
 import {AuthenticationService} from "../../auth/authentication.service";
 import {MatBottomSheet, MatSnackBar} from "@angular/material";
 import {AngularFirestore, AngularFirestoreCollection, CollectionReference, Query} from "@angular/fire/firestore";
@@ -16,7 +25,7 @@ import {Location} from "@angular/common";
     templateUrl: './listings.component.html',
     styleUrls: ['./listings.component.scss']
 })
-export class ListingsComponent implements OnInit, OnDestroy {
+export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     constructor(private authenticationService: AuthenticationService,
                 private snackBar: MatSnackBar,
@@ -47,11 +56,13 @@ export class ListingsComponent implements OnInit, OnDestroy {
 
         this.route.queryParams.pipe(takeUntil(this.stopQuerySubscription)).subscribe(params => {
 
-            if (Object.entries(params).length != 0) this.paginationService.queryOptions.filters = {...params};
-            else this.paginationService.queryOptions.filters = null;
-            this.paginationService.done.next(false);
-            this.paginationService.listings = [];
-            this.paginationService.getInitialData();
+            if (this.paginationService.listings.length == 0) {
+                if (Object.entries(params).length != 0) this.paginationService.queryOptions.filters = {...params};
+                else this.paginationService.queryOptions.filters = null;
+                this.paginationService.done.next(false);
+                this.paginationService.listings = [];
+                this.paginationService.getInitialData();
+            }
             this.stopQuerySubscription.next();
         });
     }
