@@ -39,14 +39,14 @@ export class CarFiltersComponent implements OnInit {
 
     patchExistingFilters() {
 
-        if(this.existingSort != null){
-            if(this.existingSort.sort == 'created' && this.existingSort.reverse == false){
+        if (this.existingSort != null) {
+            if (this.existingSort.sort == 'created' && this.existingSort.reverse == false) {
                 this.selectedSort.setValue("dateASC")
-            }else if(this.existingSort.sort == 'created' && this.existingSort.reverse == true){
+            } else if (this.existingSort.sort == 'created' && this.existingSort.reverse == true) {
                 this.selectedSort.setValue("dateDESC")
-            }else if(this.existingSort.sort == 'price.value' && this.existingSort.reverse == false){
+            } else if (this.existingSort.sort == 'price.value' && this.existingSort.reverse == false) {
                 this.selectedSort.setValue("priceASC")
-            }else if(this.existingSort.sort == 'price.value' && this.existingSort.reverse == true){
+            } else if (this.existingSort.sort == 'price.value' && this.existingSort.reverse == true) {
                 this.selectedSort.setValue("priceDESC")
             }
         }
@@ -132,14 +132,33 @@ export class CarFiltersComponent implements OnInit {
         }
     }
 
+    protected limitOrderBy = false;
+
+    checkValueForOrderBy(value) {
+        console.log(value);
+        if (value[0] == null && value[1] == null) {
+            delete this.filters.value;
+            this.limitOrderBy = false;
+            this.selectedSort.setValue('dateASC');
+            this.changedSort({value: 'dateASC'});
+        } else {
+            this.limitOrderBy = true;
+            this.selectedSort.setValue('priceASC');
+            this.changedSort({value: 'priceASC'});
+        }
+    }
+
+
     changedFilters(filter, event) {
         if (filter == "minPrice") {
             !this.filters.value ? this.filters.value = [] : {};
-            this.filters.value[0] = event
+            this.filters.value[0] = event;
+            this.checkValueForOrderBy(this.filters.value)
         } else if (filter == "maxPrice") {
             !this.filters.value ? this.filters.value = [] : {};
-            this.filters.value[1] = event
-        }else if (filter == "minYear") {
+            this.filters.value[1] = event;
+            this.checkValueForOrderBy(this.filters.value)
+        } else if (filter == "minYear") {
             !this.filters.year ? this.filters.year = [] : {};
             this.filters.year[0] = event
         } else if (filter == "maxYear") {
@@ -285,7 +304,44 @@ export class CarFiltersComponent implements OnInit {
         },
 
     ];
-    cities = ['Tirane', 'Fier', 'Lushnje', 'Korce', 'Pogradec', 'Durres', 'Berat', 'Sarande', 'Tropoje'];
+    cities = [
+        'Berat',
+        'Bulqizë',
+        'Delvinë',
+        'Devoll',
+        'Dibër',
+        'Durrës',
+        'Elbasan',
+        'Fier',
+        'Gramsh',
+        'Gjirokastër',
+        'Has',
+        'Kavajë',
+        'Kolonjë',
+        'Korçë',
+        'Krujë',
+        'Kucovë',
+        'Kukës',
+        'Kurbin',
+        'Lezhë',
+        'Librazhd',
+        'Lushnjë',
+        'Malësi e Madhe',
+        'Mallakastër',
+        'Mat',
+        'Mirditë',
+        'Peqin',
+        'Përmet',
+        'Pogradec',
+        'Pukë',
+        'Sarandë',
+        'Skrapar',
+        'Shkodër',
+        'Tepelenë',
+        'Tiranë',
+        'Tropojë',
+        'Vlorë'
+    ];
     public carModelList: any;
     public carBrandsList: any;
 
@@ -306,38 +362,24 @@ export class CarFiltersComponent implements OnInit {
 
 
     getCarBrands() {
-        this.carBrandsList = environment.carManufacturers;
-        this.carBrandsList.forEach(brand => {
-            this.producerList.push(brand.name);
-        });
+        this.carBrandsList = environment.manufacturers;
+        this.producerList = environment.manufacturers;
         this.searchedManufacturer.setValue("");
     }
 
     getCarModels() {
-        this.carModelList = environment.carModels;
+        this.carModelList = environment.models;
     }
 
     public filteredModelList: any;
 
     filterModelsByBrand(event) {
         this.filteredModelList = [];
-        let brandId: any;
         if (event != null) {
             this.disableModel = false
         }
 
-        for (let brand of this.carBrandsList) {
-            if (brand.name == event) {
-                brandId = brand.brand_id;
-                break;
-            }
-        }
-
-        this.carModelList.forEach(model => {
-            if (model.brand_id == brandId) {
-                this.filteredModelList.push(model.name);
-            }
-        });
+        this.filteredModelList = this.carModelList[event];
         this.modelList = this.filteredModelList;
         this.filteredModels = this.searchedModel.valueChanges
             .pipe(

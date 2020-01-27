@@ -10,10 +10,10 @@
         <mat-icon>sort</mat-icon> &nbsp; Sort by:
     </mat-label>
     <mat-select [formControl]="selectedSort" (selectionChange)="changedSort($event)">
-        <mat-option [value]="'dateASC'">
+        <mat-option *ngIf="!limitOrderBy" [value]="'dateASC'">
             {{'Newest first' | translate}}
         </mat-option>
-        <mat-option [value]="'dateDESC'">
+        <mat-option *ngIf="!limitOrderBy" [value]="'dateDESC'">
             {{'Oldest first' | translate}}
         </mat-option>
         <mat-option [value]="'priceASC'">
@@ -177,20 +177,20 @@
 <!--<ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>-->
 <!--</div>-->
 
-<mat-form-field appearance="outline" style="width: 48%">
-    <mat-label>{{'Price from' | translate}}(€):</mat-label>
-    <input matInput type="number" [(ngModel)]="minValue" (ngModelChange)="changedFilters('minPrice', $event)">
-</mat-form-field>
-<mat-form-field appearance="outline" style="margin-left: 4%; width: 48%">
-    <mat-label>{{'Price to' | translate}}(€):</mat-label>
-    <input matInput type="number" [(ngModel)]="maxValue" (ngModelChange)="changedFilters('maxPrice', $event)">
-</mat-form-field>
-<mat-form-field appearance="outline" style="width: 48%">
-    <mat-label>{{'Year from' | translate}}:</mat-label>
-    <input matInput type="number" [(ngModel)]="minYear" (ngModelChange)="changedFilters('minYear', $event)">
-</mat-form-field>
-<mat-form-field appearance="outline" style="margin-left: 4%; width: 48%">
-    <mat-label>{{'Year to' | translate}}:</mat-label>
-    <input matInput type="number" [(ngModel)]="maxYear" (ngModelChange)="changedFilters('maxYear', $event)">
-</mat-form-field>
+<!--<mat-form-field appearance="outline" style="width: 48%">-->
+    <!--<mat-label>{{'Price from' | translate}}(€):</mat-label>-->
+    <!--<input matInput type="number" [(ngModel)]="minValue" (ngModelChange)="changedFilters('minPrice', $event)">-->
+<!--</mat-form-field>-->
+<!--<mat-form-field appearance="outline" style="margin-left: 4%; width: 48%">-->
+    <!--<mat-label>{{'Price to' | translate}}(€):</mat-label>-->
+    <!--<input matInput type="number" [(ngModel)]="maxValue" (ngModelChange)="changedFilters('maxPrice', $event)">-->
+<!--</mat-form-field>-->
+<!--<mat-form-field appearance="outline" style="width: 48%">-->
+    <!--<mat-label>{{'Year from' | translate}}:</mat-label>-->
+    <!--<input matInput type="number" [(ngModel)]="minYear" (ngModelChange)="changedFilters('minYear', $event)">-->
+<!--</mat-form-field>-->
+<!--<mat-form-field appearance="outline" style="margin-left: 4%; width: 48%">-->
+    <!--<mat-label>{{'Year to' | translate}}:</mat-label>-->
+    <!--<input matInput type="number" [(ngModel)]="maxYear" (ngModelChange)="changedFilters('maxYear', $event)">-->
+<!--</mat-form-field>-->
 

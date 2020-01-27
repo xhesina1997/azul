@@ -354,15 +354,42 @@ export class CreateComponent implements OnInit, OnDestroy {
 
     ];
     cities = [
-        "Tirane",
-        "Fier",
-        "Lushnje",
-        "Korce",
-        "Pogradec",
-        "Durres",
-        "Berat",
-        "Sarande",
-        "Tropoje"
+        'Berat',
+        'Bulqizë',
+        'Delvinë',
+        'Devoll',
+        'Dibër',
+        'Durrës',
+        'Elbasan',
+        'Fier',
+        'Gramsh',
+        'Gjirokastër',
+        'Has',
+        'Kavajë',
+        'Kolonjë',
+        'Korçë',
+        'Krujë',
+        'Kucovë',
+        'Kukës',
+        'Kurbin',
+        'Lezhë',
+        'Librazhd',
+        'Lushnjë',
+        'Malësi e Madhe',
+        'Mallakastër',
+        'Mat',
+        'Mirditë',
+        'Peqin',
+        'Përmet',
+        'Pogradec',
+        'Pukë',
+        'Sarandë',
+        'Skrapar',
+        'Shkodër',
+        'Tepelenë',
+        'Tiranë',
+        'Tropojë',
+        'Vlorë'
     ];
     protected postToBeEdited: any;
 
@@ -554,36 +581,24 @@ export class CreateComponent implements OnInit, OnDestroy {
     }
 
     getCarBrands() {
-        this.carBrandsList = environment.carManufacturers;
-        this.carBrandsList.forEach(brand => {
-            this.producerList.push(brand.name);
-        });
+        this.carBrandsList = environment.manufacturers;
+        this.producerList = environment.manufacturers;
         this.searchedManufacturer.setValue("");
     }
 
     getCarModels() {
-        this.carModelList = environment.carModels;
+        this.carModelList = environment.models;
     }
 
     filterModelsByBrand(event) {
         this.filteredModelList = [];
-        let brandId: any;
+
         if (event != null) {
             this.disableModel = false;
         }
 
-        for (let brand of this.carBrandsList) {
-            if (brand.name == event) {
-                brandId = brand.brand_id;
-                break;
-            }
-        }
+        this.filteredModelList = this.carModelList[event];
 
-        this.carModelList.forEach(model => {
-            if (model.brand_id == brandId) {
-                this.filteredModelList.push(model.name);
-            }
-        });
         this.modelList = this.filteredModelList;
         this.filteredModels = this.searchedModel.valueChanges.pipe(
             startWith(""),
@@ -610,19 +625,24 @@ export class CreateComponent implements OnInit, OnDestroy {
                 let pondFiles = this.myPond.getFiles();
 
                 for (let pf of pondFiles) {
+                    // this._storage.ref(car.uuid).
                     await this._storage
                         .upload(car.uuid + "/" + pf.file.name, pf.file)
                         .then(async a => {
-                            await this._storage
-                                .ref(car.uuid + "/" + pf.file.name)
-                                .getDownloadURL()
-                                .toPromise()
-                                .then(res => {
-                                    car.images.push({
-                                        name: pf.file.name,
-                                        url: res
-                                    });
-                                });
+
+                            let fullImageurl =
+                                'https://firebasestorage.googleapis.com/v0/b/azul-50203.appspot.com/o/'
+                                + car.uuid + '%2F' + pf.file.name + '?alt=media';
+
+                            let resizedUrl =
+                                'https://firebasestorage.googleapis.com/v0/b/azul-50203.appspot.com/o/'
+                                + car.uuid + '%2F' + pf.file.name + '_900x900?alt=media';
+
+                            car.images.push({
+                                name: pf.file.name + '_900x900',
+                                url: resizedUrl
+                            });
+4
                         });
                 }
 
@@ -658,16 +678,18 @@ export class CreateComponent implements OnInit, OnDestroy {
                     await this._storage
                         .upload(toBeEditedWithoutDoc.uuid + "/" + pf.file.name, pf.file)
                         .then(async a => {
-                            await this._storage
-                                .ref(toBeEditedWithoutDoc.uuid + "/" + pf.file.name)
-                                .getDownloadURL()
-                                .toPromise()
-                                .then(res => {
-                                    toBeEditedWithoutDoc.images.push({
-                                        name: pf.file.name,
-                                        url: res
-                                    });
-                                });
+                            let fullImageurl =
+                                'https://firebasestorage.googleapis.com/v0/b/azul-50203.appspot.com/o/'
+                                + toBeEditedWithoutDoc.uuid + '%2F' + pf.file.name + '?alt=media';
+
+                            let resizedUrl =
+                                'https://firebasestorage.googleapis.com/v0/b/azul-50203.appspot.com/o/'
+                                + toBeEditedWithoutDoc.uuid + '%2F' + pf.file.name + '_900x900?alt=media';
+
+                            toBeEditedWithoutDoc.images.push({
+                                name: pf.file.name + '_900x900',
+                                url: resizedUrl
+                            });
                         });
                 }
                 this._firestore.collection('cars').doc(this.postToBeEdited.doc.id).set(toBeEditedWithoutDoc)
