@@ -10,12 +10,16 @@ export class DisplayFilterPipe implements PipeTransform {
         if (typeof value === 'string') {
             return value;
         } else {
-            if(value[0] != null && value[1] == null){
-                return "> " + value;
-            }else if(value[0] == null && value[1] != null){
-                return "< " + value;
-            }else {
-                return value[0] + " - " + value[1];
+            if(value[0] == null && value[1] == null){
+
+            }else{
+                if(value[0] != null && value[1] == null){
+                    return "> " + value[0];
+                }else if(value[0] == null && value[1] != null){
+                    return "< " + value[1];
+                }else {
+                    return value[0] + " - " + value[1];
+                }
             }
         }
     }

@@ -43,15 +43,20 @@
             </mat-nav-list>
             <div fxLayout="row" fxLayoutAlign="space-between center" style="position: absolute;bottom: 0;left: 0;">
                 <span style="margin-left:20px;">Select language: </span>
-                <mat-form-field appearance="outline" style="margin-left: 10px">
+                <mat-form-field style="margin-left: 10px">
                     <mat-select [(value)]="selected" (selectionChange)="onChange($event)">
                         <mat-option value="en">
-                            <img src="../../assets/brand-logos/america.jpg" alt="English" width="30" height="30">
-                            English
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <img src="../../assets/brand-logos/america.jpg" alt="English" width="30" height="20" style="margin-right: 10px;">
+                                English
+                            </div>
+
                         </mat-option>
                         <mat-option value="sq">
-                            <img src="../../assets/brand-logos/albania.png" alt="Albanian" width="30" height="30">
-                            Albanian
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <img src="../../assets/brand-logos/albania.png" alt="Albanian" width="30" height="20" style="margin-right: 10px;">
+                                Albanian
+                            </div>
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

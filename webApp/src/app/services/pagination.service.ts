@@ -51,7 +51,16 @@ export class PaginationService {
                 console.log(filter);
                 console.log(this.queryOptions.filters[filter]);
                 if(filter != 'sort' && filter != 'direction'){
-                    query = query.where(filter, '==', this.queryOptions.filters[filter]);
+                    if(filter == 'value'){
+                        if(this.queryOptions.filters[filter][0] != null){
+                            query = query.where('price.value', '>=', this.queryOptions.filters[filter][0]);
+                        }
+                        if(this.queryOptions.filters[filter][1] != null){
+                            query = query.where('price.value', '<=', this.queryOptions.filters[filter][1]);
+                        }
+                    }else{
+                        query = query.where(filter, '==', this.queryOptions.filters[filter]);
+                    }
                 }
             }
         }
@@ -61,9 +70,11 @@ export class PaginationService {
     getInitialData() {
         let col = this._fireStore.collection('cars', ref => {
             let query: Query = ref;
-            query = query.orderBy(this.queryOptions.sort, this.queryOptions.reverse ? 'asc' : 'desc');
-            query = query.limit(this.queryOptions.size);
             query = this.addFilters(query);
+
+            query = query.orderBy(this.queryOptions.sort, this.queryOptions.reverse ? 'asc' : 'desc');
+
+            query = query.limit(this.queryOptions.size);
             return query;
         });
         this.mapResponse(col);
@@ -72,10 +83,10 @@ export class PaginationService {
     handleScroll() {
         let col = this._fireStore.collection('cars', ref => {
             let query: Query = ref;
+            query = this.addFilters(query);
             query = query.orderBy(this.queryOptions.sort, this.queryOptions.reverse ? 'asc' : 'desc');
             query = query.limit(this.queryOptions.size);
             query = query.startAfter(this.listings[this.listings.length - 1].doc);
-            query = this.addFilters(query);
             return query;
         });
         this.mapResponse(col);
