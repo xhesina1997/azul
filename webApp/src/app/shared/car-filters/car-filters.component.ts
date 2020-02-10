@@ -36,7 +36,6 @@ export class CarFiltersComponent implements OnInit {
     protected maxValue: number;
     protected minYear: number;
     protected maxYear: number;
-
     patchExistingFilters() {
 
         if (this.existingSort != null) {

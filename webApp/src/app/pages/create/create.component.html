@@ -1,346 +1,373 @@
-<div style=" height: calc(100% - 24px); overflow-y: auto">
-    <div style="padding: 0 16px 0 16px;">
-        <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c; height: 40px;">
-            <div style="width: 100%" *ngIf="postToBeEditedUuid == '' ">
-                {{'Create post' | translate}}
+<div fxLayout="row" style="height: 100%">
+    <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
+
+    <div [ngStyle.lg]="{'width':'1250px'}"
+         [ngStyle.md]="{'width':'100%'}"
+         [ngStyle.sm]="{'width':'100%'}"
+         [ngStyle.xs]="{'width':'100%'}"
+         style="height: 100%">
+
+        <div style=" height: calc(100% - 24px); overflow-y: auto">
+            <div  [ngStyle.md]="{'padding': '0 16px 0 16px'}"
+                  [ngStyle.sm]="{'padding': '0 16px 0 16px'}"
+                  [ngStyle.xs]="{'padding': '0 16px 0 16px'}">
+                <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c; height: 40px;">
+                    <div style="width: 100%" *ngIf="postToBeEditedUuid == '' ">
+                        {{'Create post' | translate}}
+                    </div>
+                    <div style="width: 100%" *ngIf="postToBeEditedUuid != '' ">
+                        {{'Edit post' | translate}}
+                    </div>
+                </div>
+                <mat-divider style="margin-bottom: 10px"></mat-divider>
             </div>
-            <div style="width: 100%" *ngIf="postToBeEditedUuid != '' ">
-                {{'Edit post' | translate}}
-            </div>
-        </div>
-        <mat-divider style="margin-bottom: 10px"></mat-divider>
-    </div>
 
-    <form *ngIf="!limitOfPostingReached || postToBeEdited != null; else notAllowed" [formGroup]="createForm" ngNativeValidate
-          (ngSubmit)="createItem(createForm.value)">
+            <form [ngStyle.lg]="{'padding': '0 180px 0 180px'}"
+                  [ngStyle.md]="{'padding': '0 80px 0 80px'}"
+                  *ngIf="!limitOfPostingReached || postToBeEdited != null; else notAllowed" [formGroup]="createForm"
+                  ngNativeValidate
+                  (ngSubmit)="createItem(createForm.value)">
 
-        <mat-vertical-stepper *ngIf="!finishedUploading && !uploading && authService.isLoggedIn" [linear]="true"
-                              #stepper
-                              style="background-color: #0000;">
-            <mat-step>
-                <ng-template matStepLabel>{{'Title & description' | translate}}</ng-template>
-                <div fxLayout="row wrap">
-                    <div fxFlex="100">
-                        <mat-form-field appearance="outline" style="width: 100%">
-                            <mat-label>
-                                {{'Title' | translate}}:
-                            </mat-label>
-                            <input formControlName="title" matInput placeholder="...">
-                        </mat-form-field>
-                    </div>
+                <mat-vertical-stepper *ngIf="!finishedUploading && !uploading && authService.isLoggedIn" [linear]="true"
+                                      #stepper
+                                      style="background-color: #0000;">
+                    <mat-step>
+                        <ng-template matStepLabel>{{'Title & description' | translate}}</ng-template>
+                        <div fxLayout="row wrap">
+                            <div fxFlex="100">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        {{'Title' | translate}}:
+                                    </mat-label>
+                                    <input formControlName="title" matInput placeholder="...">
+                                </mat-form-field>
+                            </div>
 
-                    <div fxFlex="100" fxLayout="row">
-                        <div fxFlex="50" style="padding-right: 5px">
-                            <mat-form-field appearance="outline" style="width: 100%">
-                                <mat-label>
-                                    {{'Price' | translate }}:
-                                </mat-label>
-                                <input formControlName="price" matInput type="number">
-                            </mat-form-field>
+                            <div fxFlex="100" fxLayout="row">
+                                <div fxFlex="50" style="padding-right: 5px">
+                                    <mat-form-field appearance="outline" style="width: 100%">
+                                        <mat-label>
+                                            {{'Price' | translate }}:
+                                        </mat-label>
+                                        <input formControlName="price" matInput type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div fxFlex="50" style="padding-left: 5px">
+                                    <mat-form-field style="width: 100%" appearance="outline">
+                                        <mat-label>
+                                            {{'Currency' | translate}}
+                                        </mat-label>
+                                        <mat-select ngDefaultControl formControlName="currency">
+                                            <mat-option>
+                                                <ngx-mat-select-search [formControl]="searchedCurrency"
+                                                                       placeholderLabel="{{'Search'  | translate}}"
+                                                                       noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
+                                            </mat-option>
+                                            <mat-option *ngFor="let curr of filteredCurrency| async" [value]="curr">
+                                                {{curr}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                </div>
+                            </div>
                         </div>
-                        <div fxFlex="50" style="padding-left: 5px">
-                            <mat-form-field style="width: 100%" appearance="outline">
-                                <mat-label>
-                                    {{'Currency' | translate}}
-                                </mat-label>
-                                <mat-select ngDefaultControl formControlName="currency">
-                                    <mat-option>
-                                        <ngx-mat-select-search [formControl]="searchedCurrency"
-                                                               placeholderLabel="{{'Search'  | translate}}"
-                                                               noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
-                                    </mat-option>
-                                    <mat-option *ngFor="let curr of filteredCurrency| async" [value]="curr">
-                                        {{curr}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                        <div fxLayout="row wrap" style="margin-bottom: 8px;">
+                            <div fxFlex="100">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        {{'Description' | translate }}:
+                                    </mat-label>
+                                    <textarea matInput placeholder="..." rows="5"
+                                              formControlName="description"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxLayout="row" style="margin-bottom: 10px">
+                            <button type="button" mat-stroked-button matStepperNext>{{'Next' | translate}}</button>
+                        </div>
+
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>{{'Details' | translate}}</ng-template>
+
+                        <div fxLayout="row wrap">
+                            <div fxFlex="100">
+                                <mat-form-field style="width: 100%" appearance="outline">
+                                    <mat-label>
+                                        {{'Manufacturer' | translate }}:
+                                    </mat-label>
+                                    <mat-select ngDefaultControl [formControl]="selectedManufacturer"
+                                                formControlName="manufacturer"
+                                                placeholder="{{'Manufacturer' | translate}}"
+                                                (ngModelChange)="filterModelsByBrand($event)">
+                                        <mat-option>
+                                            <ngx-mat-select-search [formControl]="searchedManufacturer"
+                                                                   placeholderLabel="{{'Search'  | translate}}"
+                                                                   noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
+                                        </mat-option>
+                                        <mat-option *ngFor="let prod of filteredManufacturer | async" [value]="prod">
+                                            {{prod}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="100">
+                                <mat-form-field style="width: 100%" appearance="outline">
+                                    <mat-label>
+                                        {{'Model' | translate }}:
+                                    </mat-label>
+                                    <mat-select ngDefaultControl formControlName="model"
+                                                placeholder="{{'Model' | translate }}"
+                                                [disabled]="disableModel">
+                                        <mat-option>
+                                            <ngx-mat-select-search [formControl]="searchedModel"
+                                                                   placeholderLabel="{{'Search'  | translate}}"
+                                                                   noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
+                                        </mat-option>
+                                        <mat-option *ngFor="let model of filteredModels| async" [value]="model">
+                                            {{model}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row">
+
+                            <div fxFlex="50" style="padding-right: 5px">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        {{'Year' | translate}}:
+                                    </mat-label>
+                                    <mat-select ngDefaultControl formControlName="year"
+                                                placeholder="{{'Year' | translate}}">
+                                        <mat-option>
+                                            <ngx-mat-select-search [formControl]="searchedYear"
+                                                                   placeholderLabel="{{'Search'  | translate}}"
+                                                                   noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
+                                        </mat-option>
+                                        <mat-option *ngFor="let year of filteredYears| async" [value]="year">
+                                            {{year}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="50" style="padding-left: 5px">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        {{'Color' | translate}}:
+                                    </mat-label>
+                                    <mat-select ngDefaultControl formControlName="color"
+                                                placeholder="{{'Color' | translate}}">
+                                        <mat-option>
+                                            <ngx-mat-select-search [formControl]="searchedColor"
+                                                                   placeholderLabel="{{'Search'  | translate}}"
+                                                                   noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
+                                        </mat-option>
+                                        <mat-option *ngFor="let color of filteredColors| async" [value]="color">
+                                            {{color}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
 
                         </div>
-                    </div>
+
+                        <div fxLayout="row">
+
+                            <div fxFlex="100">
+                                <mat-form-field style="width: 100%" appearance="outline">
+                                    <mat-label>
+                                        {{'Structure' | translate}}:
+                                    </mat-label>
+                                    <mat-select ngDefaultControl formControlName="structure"
+                                                placeholder=" {{'Structure' | translate}}">
+                                        <mat-option>
+                                            <ngx-mat-select-search [formControl]="searchedStructure"
+                                                                   placeholderLabel="{{'Search'  | translate}}"
+                                                                   noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
+                                        </mat-option>
+                                        <mat-option *ngFor="let type of filteredCarTypes| async" [value]="type.name">
+                                            <img style="width: 90px; height: 40px;" src="{{type.imageURL}}"
+                                                 alt="{{type.title}}">
+                                            &nbsp;&nbsp;{{type.title}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                        <div fxLayout="row">
+                            <div fxFlex="50" style="padding-right: 5px">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        {{'Mileage' | translate}}:
+                                    </mat-label>
+                                    <mat-select ngDefaultControl formControlName="mileage"
+                                                placeholder=" {{'Mileage' | translate}}">
+                                        <mat-option>
+                                            <ngx-mat-select-search [formControl]="searchedMileage"
+                                                                   placeholderLabel="{{'Search'  | translate}}"
+                                                                   noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
+                                        </mat-option>
+                                        <mat-option *ngFor="let km of  filteredKilometers| async" [value]="km.value">
+                                            {{km.title}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="50" style="padding-left: 5px">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        {{'Transmission' | translate}}:
+                                    </mat-label>
+                                    <mat-select formControlName="transmission">
+                                        <mat-option [value]="'automatic'"> {{'Automatic' | translate}}</mat-option>
+                                        <mat-option [value]="'manual'"> {{'Manual' | translate}}</mat-option>
+                                        <mat-option [value]="'pedal'"> {{'Pedal shifter' | translate}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row wrap">
+                            <div fxFlex="100">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        {{'Fuel' | translate}}:
+                                    </mat-label>
+                                    <mat-select formControlName="fuel">
+                                        <mat-option [value]="'diesel'"> {{'Diesel' | translate}}</mat-option>
+                                        <mat-option [value]="'gasoline'"> {{'Gasoline' | translate}}</mat-option>
+                                        <mat-option [value]="'LPG/gasoline'">{{'LPG/gasoline' | translate}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row wrap">
+                            <div fxFlex="50" style="padding-right: 5px">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        {{'Plate Registration' | translate}}:
+                                    </mat-label>
+                                    <mat-select formControlName="plateRegistration">
+                                        <mat-option [value]="'foreign'"> {{'Foreign' | translate}}</mat-option>
+                                        <mat-option [value]="'domestic'"> {{'Domestic' | translate}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="50" style="padding-left: 5px">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        {{'City' | translate}}:
+                                    </mat-label>
+                                    <mat-select ngDefaultControl formControlName="city"
+                                                placeholder="{{'City' | translate}}">
+                                        <mat-option>
+                                            <ngx-mat-select-search [formControl]="searchedCity"
+                                                                   placeholderLabel="{{'Search'  | translate}}"
+                                                                   noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
+                                        </mat-option>
+                                        <mat-option *ngFor="let city of  filteredCities| async" [value]="city">
+                                            {{city}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row" style="margin-bottom: 10px">
+                            <button type="button" mat-stroked-button matStepperPrevious>{{'Back' | translate}}</button>
+                            <button type="button" style="margin-left: 12px;" mat-stroked-button matStepperNext>{{'Next'
+                                |
+                                translate}}
+                            </button>
+                        </div>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>{{'Upload images' | translate}}</ng-template>
+                        <div style="margin-top: 10px;"></div>
+                        <file-pond #myPond [options]="pondOptions" [files]="uploadedFiles"
+                                   (onaddfile)="showUploadedFiles($event)"
+                                   allowImagePreview={true} allowImageResize={true} imageResizeUpscale={true}
+                                   allowMultiple={true}
+                                   imagePreviewMaxHeight={500} imagePreviewMaxWidth={500} imageResizeTargetWidth={500}
+                                   imageResizeTargetHeight={500} imageResizeMode={contain} allowReplace={false}>
+                        </file-pond>
+
+                        <div fxLayout="row">
+                            <div fxFlexFill fxFlex="100">
+                                <button mat-raised-button color="primary" type="submit" style="float:right"
+                                        *ngIf="postToBeEditedUuid == '' ">
+                                    {{'Create post' | translate}}
+                                </button>
+                                <button mat-raised-button color="primary" type="submit" style="float:right"
+                                        *ngIf="postToBeEditedUuid != '' ">
+                                    {{'Edit post' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </mat-step>
+
+
+                </mat-vertical-stepper>
+            </form>
+            <ng-template #notAllowed>
+                <div fxLayout="column" fxLayoutAlign="center center" style="height: calc(100% - 62px)">
+                    <p>{{"You don't have permission" | translate}}</p>
                 </div>
-                <div fxLayout="row wrap" style="margin-bottom: 8px;">
-                    <div fxFlex="100">
-                        <mat-form-field appearance="outline" style="width: 100%">
-                            <mat-label>
-                                {{'Description' | translate }}:
-                            </mat-label>
-                            <textarea matInput placeholder="..." rows="5" formControlName="description"></textarea>
-                        </mat-form-field>
-                    </div>
+            </ng-template>
+
+            <div *ngIf="finishedUploading && !uploading && authService.isLoggedIn" fxLayout="column"
+                 style="height: calc(100% - 62px)">
+
+                <div fxFlex="5" fxLayout="row" fxLayoutAlign="center center"
+                     style="text-align: center; color: #8c8c8c;">
+                    {{'Post created successfully' | translate}}
                 </div>
-                <div fxLayout="row">
-                    <button type="button" mat-stroked-button matStepperNext>{{'Next' | translate}}</button>
-                </div>
-
-            </mat-step>
-            <mat-step>
-                <ng-template matStepLabel>{{'Details' | translate}}</ng-template>
-
-                <div fxLayout="row wrap">
-                    <div fxFlex="100">
-                        <mat-form-field style="width: 100%" appearance="outline">
-                            <mat-label>
-                                {{'Manufacturer' | translate }}:
-                            </mat-label>
-                            <mat-select ngDefaultControl [formControl]="selectedManufacturer"
-                                        formControlName="manufacturer"
-                                        placeholder="{{'Manufacturer' | translate}}"
-                                        (ngModelChange)="filterModelsByBrand($event)">
-                                <mat-option>
-                                    <ngx-mat-select-search [formControl]="searchedManufacturer"
-                                                           placeholderLabel="{{'Search'  | translate}}"
-                                                           noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
-                                </mat-option>
-                                <mat-option *ngFor="let prod of filteredManufacturer | async" [value]="prod">
-                                    {{prod}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div fxFlex="100">
-                        <mat-form-field style="width: 100%" appearance="outline">
-                            <mat-label>
-                                {{'Model' | translate }}:
-                            </mat-label>
-                            <mat-select ngDefaultControl formControlName="model" placeholder="{{'Model' | translate }}"
-                                        [disabled]="disableModel">
-                                <mat-option>
-                                    <ngx-mat-select-search [formControl]="searchedModel"
-                                                           placeholderLabel="{{'Search'  | translate}}"
-                                                           noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
-                                </mat-option>
-                                <mat-option *ngFor="let model of filteredModels| async" [value]="model">
-                                    {{model}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div fxLayout="row">
-
-                    <div fxFlex="50" style="padding-right: 5px">
-                        <mat-form-field appearance="outline" style="width: 100%">
-                            <mat-label>
-                                {{'Year' | translate}}:
-                            </mat-label>
-                            <mat-select ngDefaultControl formControlName="year" placeholder="{{'Year' | translate}}">
-                                <mat-option>
-                                    <ngx-mat-select-search [formControl]="searchedYear"
-                                                           placeholderLabel="{{'Search'  | translate}}"
-                                                           noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
-                                </mat-option>
-                                <mat-option *ngFor="let year of filteredYears| async" [value]="year">
-                                    {{year}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxFlex="50" style="padding-left: 5px">
-                        <mat-form-field appearance="outline" style="width: 100%">
-                            <mat-label>
-                                {{'Color' | translate}}:
-                            </mat-label>
-                            <mat-select ngDefaultControl formControlName="color" placeholder="{{'Color' | translate}}">
-                                <mat-option>
-                                    <ngx-mat-select-search [formControl]="searchedColor"
-                                                           placeholderLabel="{{'Search'  | translate}}"
-                                                           noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
-                                </mat-option>
-                                <mat-option *ngFor="let color of filteredColors| async" [value]="color">
-                                    {{color}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-
-                </div>
-
-                <div fxLayout="row">
-
-                    <div fxFlex="100">
-                        <mat-form-field style="width: 100%" appearance="outline">
-                            <mat-label>
-                                {{'Structure' | translate}}:
-                            </mat-label>
-                            <mat-select ngDefaultControl formControlName="structure"
-                                        placeholder=" {{'Structure' | translate}}">
-                                <mat-option>
-                                    <ngx-mat-select-search [formControl]="searchedStructure"
-                                                           placeholderLabel="{{'Search'  | translate}}"
-                                                           noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
-                                </mat-option>
-                                <mat-option *ngFor="let type of filteredCarTypes| async" [value]="type.name">
-                                    <img style="width: 90px; height: 40px;" src="{{type.imageURL}}"
-                                         alt="{{type.title}}">
-                                    &nbsp;&nbsp;{{type.title}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-
-                </div>
-
-                <div fxLayout="row">
-                    <div fxFlex="50" style="padding-right: 5px">
-                        <mat-form-field appearance="outline" style="width: 100%">
-                            <mat-label>
-                                {{'Mileage' | translate}}:
-                            </mat-label>
-                            <mat-select ngDefaultControl formControlName="mileage"
-                                        placeholder=" {{'Mileage' | translate}}">
-                                <mat-option>
-                                    <ngx-mat-select-search [formControl]="searchedMileage"
-                                                           placeholderLabel="{{'Search'  | translate}}"
-                                                           noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
-                                </mat-option>
-                                <mat-option *ngFor="let km of  filteredKilometers| async" [value]="km.value">
-                                    {{km.title}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxFlex="50" style="padding-left: 5px">
-                        <mat-form-field appearance="outline" style="width: 100%">
-                            <mat-label>
-                                {{'Transmission' | translate}}:
-                            </mat-label>
-                            <mat-select formControlName="transmission">
-                                <mat-option [value]="'automatic'"> {{'Automatic' | translate}}</mat-option>
-                                <mat-option [value]="'manual'"> {{'Manual' | translate}}</mat-option>
-                                <mat-option [value]="'pedal'"> {{'Pedal shifter' | translate}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div fxLayout="row wrap">
-                    <div fxFlex="100">
-                        <mat-form-field appearance="outline" style="width: 100%">
-                            <mat-label>
-                                {{'Fuel' | translate}}:
-                            </mat-label>
-                            <mat-select formControlName="fuel">
-                                <mat-option [value]="'diesel'"> {{'Diesel' | translate}}</mat-option>
-                                <mat-option [value]="'gasoline'"> {{'Gasoline' | translate}}</mat-option>
-                                <mat-option [value]="'LPG/gasoline'">{{'LPG/gasoline' | translate}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div fxLayout="row wrap">
-                    <div fxFlex="50" style="padding-right: 5px">
-                        <mat-form-field appearance="outline" style="width: 100%">
-                            <mat-label>
-                                {{'Plate Registration' | translate}}:
-                            </mat-label>
-                            <mat-select formControlName="plateRegistration">
-                                <mat-option [value]="'foreign'"> {{'Foreign' | translate}}</mat-option>
-                                <mat-option [value]="'domestic'"> {{'Domestic' | translate}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div fxFlex="50" style="padding-left: 5px">
-                        <mat-form-field appearance="outline" style="width: 100%">
-                            <mat-label>
-                                {{'City' | translate}}:
-                            </mat-label>
-                            <mat-select ngDefaultControl formControlName="city" placeholder="{{'City' | translate}}">
-                                <mat-option>
-                                    <ngx-mat-select-search [formControl]="searchedCity"
-                                                           placeholderLabel="{{'Search'  | translate}}"
-                                                           noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
-                                </mat-option>
-                                <mat-option *ngFor="let city of  filteredCities| async" [value]="city">
-                                    {{city}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div fxLayout="row">
-                    <button type="button" mat-stroked-button matStepperPrevious>{{'Back' | translate}}</button>
-                    <button type="button" style="margin-left: 12px;" mat-stroked-button matStepperNext>{{'Next' |
-                        translate}}
+                <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center">
+                    <button mat-stroked-button color="primary" routerLink="/mobile/search">
+                        {{'Home' | translate}}
+                    </button> &nbsp;
+                    <button mat-stroked-button (click)="resetView()">
+                        {{'Create post' | translate}}
                     </button>
                 </div>
-            </mat-step>
-            <mat-step>
-                <ng-template matStepLabel>{{'Upload images' | translate}}</ng-template>
-
-                <file-pond #myPond [options]="pondOptions" [files]="uploadedFiles"
-                           (onaddfile)="showUploadedFiles($event)"
-                           allowImagePreview={true} allowImageResize={true} imageResizeUpscale={true}
-                           allowMultiple={true}
-                           imagePreviewMaxHeight={500} imagePreviewMaxWidth={500}  imageResizeTargetWidth={500}
-                           imageResizeTargetHeight={500} imageResizeMode={contain} allowReplace={false}>
-                </file-pond>
-
-                <div fxLayout="row">
-                    <div fxFlexFill fxFlex="100">
-                        <button mat-raised-button color="primary" type="submit" style="float:right"
-                                *ngIf="postToBeEditedUuid == '' ">
-                            {{'Create post' | translate}}
-                        </button>
-                        <button mat-raised-button color="primary" type="submit" style="float:right"
-                                *ngIf="postToBeEditedUuid != '' ">
-                            {{'Edit post' | translate}}
-                        </button>
-                    </div>
+                <div fxFlex="85" style="overflow-x: hidden">
+                    <img src="/assets/illustrations/success.png" alt="success"
+                         style="height: 90%; margin: auto; display: block">
                 </div>
-            </mat-step>
+            </div>
 
+            <div fxLayout="column" fxLayoutAlign="center center"
+                 *ngIf="!finishedUploading && uploading && authService.isLoggedIn" style="height: calc(100% - 62px)">
+                <p>{{'Uploading, please wait' | translate}}</p>
+                <mat-spinner></mat-spinner>
+            </div>
 
-        </mat-vertical-stepper>
-    </form>
-    <ng-template #notAllowed>
-        <div fxLayout="column" fxLayoutAlign="center center" style="height: calc(100% - 62px)">
-            <p>{{"You don't have permission" | translate}}</p>
-        </div>
-    </ng-template>
+            <div *ngIf="!authService.isLoggedIn" fxLayout="column" style="height: calc(100% - 52px)">
+                <div fxFlex="5" fxLayout="row" fxLayoutAlign="center center"
+                     style="text-align: center; color: #8c8c8c;">
+                    {{'You are not logged in' | translate}}
+                </div>
+                <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center">
+                    <button mat-stroked-button color="primary" routerLink="/auth/login">
+                        {{'Login' | translate}}
+                    </button>
+                </div>
+                <div fxFlex="85" style="overflow-x: hidden">
+                    <img src="/assets/illustrations/login.png" alt="success"
+                         style="height: 90%; margin: auto; display: block">
+                </div>
+            </div>
 
-    <div *ngIf="finishedUploading && !uploading && authService.isLoggedIn" fxLayout="column"
-         style="height: calc(100% - 62px)">
+        </div>
 
-        <div fxFlex="5" fxLayout="row" fxLayoutAlign="center center" style="text-align: center; color: #8c8c8c;">
-            {{'Post created successfully' | translate}}
-        </div>
-        <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center">
-            <button mat-stroked-button color="primary" routerLink="/mobile/search">
-                {{'Home' | translate}}
-            </button> &nbsp;
-            <button mat-stroked-button (click)="resetView()">
-                {{'Create post' | translate}}
-            </button>
-        </div>
-        <div fxFlex="85" style="overflow-x: hidden">
-            <img src="/assets/illustrations/success.png" alt="success"
-                 style="height: 90%; margin: auto; display: block">
-        </div>
     </div>
-
-    <div fxLayout="column" fxLayoutAlign="center center"
-         *ngIf="!finishedUploading && uploading && authService.isLoggedIn" style="height: calc(100% - 62px)">
-        <p>{{'Uploading, please wait' | translate}}</p>
-        <mat-spinner></mat-spinner>
-    </div>
-
-    <div *ngIf="!authService.isLoggedIn" fxLayout="column" style="height: calc(100% - 52px)">
-        <div fxFlex="5" fxLayout="row" fxLayoutAlign="center center" style="text-align: center; color: #8c8c8c;">
-            {{'You are not logged in' | translate}}
-        </div>
-        <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center">
-            <button mat-stroked-button color="primary" routerLink="/auth/login">
-                {{'Login' | translate}}
-            </button>
-        </div>
-        <div fxFlex="85" style="overflow-x: hidden">
-            <img src="/assets/illustrations/login.png" alt="success" style="height: 90%; margin: auto; display: block">
-        </div>
-    </div>
-
+    <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
 </div>

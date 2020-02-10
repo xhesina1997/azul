@@ -36,17 +36,24 @@ export class MobileComponent implements OnInit {
     public selected: any;
 
     ngOnInit() {
+        window.dispatchEvent(new Event('resize'));
         this.selected = JSON.parse(localStorage.getItem('applicationSettings')).language;
-
     }
 
     onChange(event){
         EventService.language.next(event.value);
 
     }
+
     logOut() {
         this.authenticationService.logout();
         this.router.navigate(["/pages/listings"]);
+    }
+
+    protected view;
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        event.target.innerWidth > 960 ? this.view = 'desktop' : event.target.innerWidth > 600 ? this.view = 'tablet' : this.view = 'mobile';
     }
 
 }

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
 import {AngularFirestore} from "@angular/fire/firestore";
@@ -51,7 +51,15 @@ export class ListingComponent implements OnInit, OnDestroy {
     protected selectedCar: any = {};
     protected stopSubscriptions = new Subject();
 
+    protected view;
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        event.target.innerWidth > 960 ? this.view = 'desktop' : event.target.innerWidth > 600 ? this.view = 'tablet' : this.view = 'mobile';
+    }
+
     ngOnInit() {
+        window.dispatchEvent(new Event('resize'));
         this.activatedRoute.queryParams.subscribe(params => {
             if (params.id != null) {
                 if (this.paginationService.selectedListing != null && this.paginationService.selectedListing.uuid == params.id) {

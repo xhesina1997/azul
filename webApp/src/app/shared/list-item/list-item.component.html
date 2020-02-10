@@ -1,4 +1,4 @@
-<div *ngIf="view == 'default'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; min-height: 338px">
+<div *ngIf="view == 'default'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; min-height: 318px">
     <div style="margin: 8px" fxLayout="row" fxLayoutAlign="space-between start">
         <div>
             <div>
@@ -29,10 +29,30 @@
         <mat-divider></mat-divider>
     </div>
     <div fxLayout="row wrap" style="padding: 0 10px; margin-top: 10px; overflow: hidden">
-        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Transmission' | translate}}:</i>{{listing?.transmission}}</p>
-        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Fuel' | translate}}:</i>{{listing?.fuel}}</p>
-        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'City' | translate}}:</i>{{listing?.city}}</p>
-        <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Plate Registration' | translate}}:</i>{{listing?.plateRegistration}}</p>
+        <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+            <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/gearshift.png" alt="shift">
+            <p style="margin-top:0">{{listing?.transmission}}</p>
+        </div>
+        <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+            <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/gas-station.png" alt="gas">
+            <p style="margin-top:0">{{listing?.fuel}}</p>
+        </div>
+        <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+            <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/building.png" alt="city">
+            <p style="margin-top:0">{{listing?.city}}</p>
+        </div>
+        <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+            <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/license-plate.png" alt="plateRegistration">
+            <p style="margin-top:0">{{listing?.plateRegistration}}</p>
+        </div>
+
+        <div *ngIf="listing?.organic == true" style="color: #8c8c8c" fxFlex="100" fxLayout="row">
+            <p style="margin-top:0">from {{listing?.origin}}</p>
+        </div>
+        <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Transmission' | translate}}:</i>{{listing?.transmission}}</p>-->
+        <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Fuel' | translate}}:</i>{{listing?.fuel}}</p>-->
+        <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'City' | translate}}:</i>{{listing?.city}}</p>-->
+        <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Plate Registration' | translate}}:</i>{{listing?.plateRegistration}}</p>-->
     </div>
 </div>
 <div *ngIf="view == 'defaultLOADING'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; min-height: 338px">
@@ -133,7 +153,7 @@
     </div>
 </div>
 
-<div *ngIf="view == 'desktop'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white;">
+<div *ngIf="view == 'desktop'" style="width:100%; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white;">
     <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="35" style="height: 130px">
             <img src="{{listing?.images[0]?.url != null ? listing?.images[0]?.url : '/assets/illustrations/placeholder.jpg'}}"

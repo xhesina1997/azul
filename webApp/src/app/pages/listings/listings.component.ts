@@ -19,6 +19,7 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {ActivatedRoute, NavigationEnd, Router, RoutesRecognized} from "@angular/router";
 import * as firebase from 'firebase/app'
 import {Location} from "@angular/common";
+import {CarFiltersComponent} from "../../shared/car-filters/car-filters.component";
 
 @Component({
     selector: 'app-listings',
@@ -26,6 +27,8 @@ import {Location} from "@angular/common";
     styleUrls: ['./listings.component.scss']
 })
 export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
+
+    @ViewChild('carFilters') carFilters : CarFiltersComponent;
 
     constructor(private authenticationService: AuthenticationService,
                 private snackBar: MatSnackBar,
@@ -41,12 +44,14 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit() {
         window.dispatchEvent(new Event('resize'));
-        this.vsViewport.elementScrolled().subscribe(res => {
-            this.vsViewport.measureScrollOffset('bottom') == 0 ? this.paginationService.handleScroll() : {};
-        });
+
     }
 
     ngAfterViewInit() {
+
+        this.vsViewport.elementScrolled().subscribe(res => {
+            this.vsViewport.measureScrollOffset('bottom') == 0 ? this.paginationService.handleScroll() : {};
+        });
 
         if (this.paginationService.needsScroll) {
             setTimeout(() => {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Subject} from "rxjs/index";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {takeUntil} from "rxjs/operators";
@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
     protected latestListings: any;
 
     ngOnInit() {
-        this.getLatestListings()
+        this.getLatestListings();
+        window.dispatchEvent(new Event('resize'));
     }
 
     getLatestListings() {
@@ -29,5 +30,11 @@ export class HomeComponent implements OnInit {
                 this.latestListings = res;
                 this.unSubscribeLatestSubject.next();
             });
+    }
+
+    protected view;
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        event.target.innerWidth > 960 ? this.view = 'desktop' : event.target.innerWidth > 600 ? this.view = 'tablet' : this.view = 'mobile';
     }
 }

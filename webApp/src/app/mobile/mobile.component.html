@@ -2,7 +2,8 @@
 
     <div style="position: relative">
         <mat-toolbar color="primary" class="">
-            <div style="width: 100%" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <div *ngIf="view != 'desktop'" style="width: 100%" fxLayout="row" fxLayoutAlign="space-between center">
                 <button (click)="drawer.toggle()" mat-icon-button color="accent">
                     <mat-icon>menu</mat-icon>
                 </button>
@@ -19,6 +20,47 @@
                         color="accent">
                     <mat-icon>account_circle</mat-icon>
                 </button>
+
+            </div>
+
+            <div *ngIf="view == 'desktop'" style="width: 100%" fxLayout="row" fxLayoutAlign="space-between center">
+
+                <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)">
+
+                </div>
+
+                <div [ngStyle.lg]="{'width':'1250px'}"
+                     [ngStyle.md]="{'width':'100%'}"
+                     [ngStyle.sm]="{'width':'100%'}"
+                     [ngStyle.xs]="{'width':'100%'}"
+                     style="height: 100%" fxLayout="row" fxLayoutAlign="space-between center">
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div style="color:white; font-size: 20px; margin-right: 30px;">
+                            AZUL
+                        </div>
+                        <button mat-button [routerLink]="['/mobile/home']">Home</button>
+                        <button mat-button [routerLink]="['/mobile/search']">{{'Search' | translate}}</button>
+                        <button mat-button [routerLink]="['/mobile/add-listing']">{{"Add listing" | translate}}</button>
+                    </div>
+
+
+                    <button *ngIf="authenticationService.user!=null" [routerLink]="['/mobile/account']" mat-icon-button
+                            color="accent">
+                        <mat-icon>account_circle</mat-icon>
+                    </button>
+                    <button *ngIf="authenticationService.user==null" [routerLink]="['/auth/login']" mat-icon-button
+                            color="accent">
+                        <mat-icon>account_circle</mat-icon>
+                    </button>
+                </div>
+
+                <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)">
+
+                </div>
+
+
+
 
             </div>
 

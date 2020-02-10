@@ -1,65 +1,85 @@
-<div fxLayout="row" style="padding: 5px 16px 0 16px">
-    <img style=" border: 1px solid grey; width: 35px; height: 35px; border-radius: 38px; margin-right: 10px"
-         [attr.src]="user?.photoURL != null ? user.photoURL : 'assets/illustrations/default-profile.png'"
-         [attr.alt]="user?.displayName">
-    <div>
-        <p style="margin: 0; color: #8c8c8c">{{user?.displayName}}</p>
-        <p style="margin: 0; color: #8c8c8c">{{user?.email}}</p>
-    </div>
-</div>
+<div fxLayout="row" style="height: 100%">
+    <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
 
-<!--<div style="font-size: 15px; font-weight: 550; margin-left: 10px; width: 200px;">-->
-    <!--<p style="margin: 0">{{user.name}}</p>-->
-    <!--<p style="margin: 0">{{user.email}}</p>-->
-<!--</div>-->
+    <div [ngStyle.lg]="{'width':'1250px'}"
+         [ngStyle.md]="{'width':'100%'}"
+         [ngStyle.sm]="{'width':'100%'}"
+         [ngStyle.xs]="{'width':'100%'}"
+         style="height: 100%">
 
-<mat-tab-group style="" (selectedIndexChange)="handleIndexChange($event)">
-    <mat-tab style="width: 33%;" label="{{'My listings' | translate}}">
-        <div style="padding: 16px">
-            <div *ngFor="let listItem of listingsCreatedByUser"
-                 style="margin-bottom: 10px;">
-                <app-list-item (outputEvent)="handleItemEvent($event)" [listing]="listItem" [view]="'userSubmission'"></app-list-item>
+        <div fxLayout="row"
+             [ngStyle.lg]="{'padding-top': '5px'}"
+             [ngStyle.md]="{'padding': '5px 16px 0 16px'}"
+             [ngStyle.sm]="{'padding': '5px 16px 0 16px'}"
+             [ngStyle.xs]="{'padding': '5px 16px 0 16px'}">
+            <img style=" border: 1px solid grey; width: 35px; height: 35px; border-radius: 38px; margin-right: 10px"
+                 [attr.src]="user?.photoURL != null ? user.photoURL : 'assets/illustrations/default-profile.png'"
+                 [attr.alt]="user?.displayName">
+            <div>
+                <p style="margin: 0; color: #8c8c8c">{{user?.displayName}}</p>
+                <p style="margin: 0; color: #8c8c8c">{{user?.email}}</p>
             </div>
         </div>
-    </mat-tab>
-    <mat-tab style="width: 34%;" label="{{'Saved listings' | translate}}">
-        <div style="padding: 16px">
-            <div *ngFor="let listItem of favouriteListings"
-                 style="margin-bottom: 10px;">
-                <app-list-item [listing]="listItem" [view]="'default'"></app-list-item>
+
+        <!--<div style="font-size: 15px; font-weight: 550; margin-left: 10px; width: 200px;">-->
+        <!--<p style="margin: 0">{{user.name}}</p>-->
+        <!--<p style="margin: 0">{{user.email}}</p>-->
+        <!--</div>-->
+
+        <mat-tab-group style="" (selectedIndexChange)="handleIndexChange($event)">
+            <mat-tab style="width: 33%;" label="{{'My listings' | translate}}">
+                <div style="padding: 16px">
+                    <div *ngFor="let listItem of listingsCreatedByUser"
+                         style="margin-bottom: 10px;"
+                         [ngStyle.lg]="{'padding': '0 180px'}">
+                        <app-list-item (outputEvent)="handleItemEvent($event)" [listing]="listItem"
+                                       [view]="'userSubmission'"></app-list-item>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab style="width: 34%;" label="{{'Saved listings' | translate}}">
+                <div style="padding: 16px">
+                    <div *ngFor="let listItem of favouriteListings"
+                         style="margin-bottom: 10px;"
+                         [ngStyle.lg]="{'padding': '0 180px'}">
+                        <app-list-item [listing]="listItem" [view]="view == 'mobile' ? 'default' : 'desktop'"></app-list-item>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab style="width: 33%;" label="{{'Settings' | translate}}">
+                <div style="padding: 16px">
+                    <button mat-stroked-button (click)="logout()">Logout</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+        <div style="padding: 16px; overflow-y: auto">
+
+        </div>
+
+        <ng-template #deleteCarModal>
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="modalHeater"
+                 style="font-size: 20px; font-weight: 600; font-family: 'Montserrat'; margin: 10px;">
+                <div fxFlex="60">{{'Confirm Delete' | translate}}</div>
             </div>
-        </div>
-    </mat-tab>
-    <mat-tab style="width: 33%;" label="{{'Settings' | translate}}">
-        <div style="padding: 16px">
-            <button mat-stroked-button (click)="logout()">Logout</button>
-        </div>
-    </mat-tab>
-</mat-tab-group>
-<div style="padding: 16px; overflow-y: auto">
+            <mat-divider></mat-divider>
+            <br>
+            <p>{{'Are you sure you want to delete post ' | translate}}</p>
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+                <button mat-raised-button color="primary" (click)="deleteCarPost()">{{'Confirm' | translate}}</button>
+                <button mat-raised-button color="error" (click)="closeDialog()">{{'Cancel' | translate}}</button>
+            </div>
+        </ng-template>
 
+        <ng-template #bottomSheet>
+            <div fxLayout="row">
+                <p fxFlex="65">{{'Are you sure you want to delete this listing' | translate}}</p>
+                <div fxFlex="45" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+                    <button mat-stroked-button color="warn" (click)="deleteCarPost()">{{'Confirm' | translate}}</button>
+                    <button mat-stroked-button color="primary" (click)="closeDialog()">{{'Cancel' | translate}}</button>
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+    <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
 </div>
-
-<ng-template #deleteCarModal>
-    <div fxLayout="row" fxLayoutAlign="space-between center" class="modalHeater"
-         style="font-size: 20px; font-weight: 600; font-family: 'Montserrat'; margin: 10px;">
-        <div fxFlex="60" >{{'Confirm Delete' | translate}}</div>
-    </div>
-    <mat-divider></mat-divider>
-    <br>
-    <p>{{'Are you sure you want to delete post ' | translate}}</p>
-    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-        <button  mat-raised-button color="primary" (click)="deleteCarPost()" >{{'Confirm' | translate}}</button>
-        <button  mat-raised-button color="error"  (click)="closeDialog()" >{{'Cancel' | translate}}</button>
-    </div>
-</ng-template>
-
-<ng-template #bottomSheet>
-    <div fxLayout="row">
-        <p fxFlex="65">{{'Are you sure you want to delete this listing' | translate}}</p>
-        <div fxFlex="45" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-            <button  mat-stroked-button color="warn" (click)="deleteCarPost()" >{{'Confirm' | translate}}</button>
-            <button  mat-stroked-button color="primary"  (click)="closeDialog()" >{{'Cancel' | translate}}</button>
-        </div>
-    </div>
-</ng-template>

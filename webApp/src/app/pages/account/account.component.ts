@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, HostListener, OnInit, ViewChild} from "@angular/core";
 import {AuthenticationService} from "../../auth/authentication.service";
 import {MatBottomSheet, MatDialog} from "@angular/material";
 import {AngularFirestore} from "@angular/fire/firestore";
@@ -35,6 +35,7 @@ export class AccountComponent implements OnInit {
     }
 
     ngOnInit() {
+        window.dispatchEvent(new Event('resize'));
         AuthenticationService.loginSubject
             .pipe(takeUntil(this.unSubscribeAuthSubject))
             .subscribe(user => {
@@ -128,5 +129,11 @@ export class AccountComponent implements OnInit {
 
     logout() {
         this.authenticationService.logout();
+    }
+
+    protected view;
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        event.target.innerWidth > 960 ? this.view = 'desktop' : event.target.innerWidth > 600 ? this.view = 'tablet' : this.view = 'mobile';
     }
 }
