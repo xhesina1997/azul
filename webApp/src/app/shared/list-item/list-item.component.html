@@ -20,7 +20,7 @@
             </ng-template>
         </button>
         <img src="{{listing?.images[0]?.url != null ? listing?.images[0]?.url : '/assets/illustrations/placeholder.jpg'}}"
-             style=" height: 100%; width: 100%; object-fit:cover;">
+             style="height: 100%; width: 100%; object-fit:cover;">
     </div>
     <div (click)="open()"  style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" >
         {{listing?.title}}
@@ -46,9 +46,9 @@
             <p style="margin-top:0">{{listing?.plateRegistration}}</p>
         </div>
 
-        <div *ngIf="listing?.organic == true" style="color: #8c8c8c" fxFlex="100" fxLayout="row">
-            <p style="margin-top:0">from {{listing?.origin}}</p>
-        </div>
+        <!--<div *ngIf="listing?.organic == false" style="color: #8c8c8c" fxFlex="100" fxLayout="row">-->
+            <!--<p style="margin-top:0">from {{listing?.origin}}</p>-->
+        <!--</div>-->
         <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Transmission' | translate}}:</i>{{listing?.transmission}}</p>-->
         <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Fuel' | translate}}:</i>{{listing?.fuel}}</p>-->
         <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'City' | translate}}:</i>{{listing?.city}}</p>-->
@@ -155,16 +155,15 @@
 
 <div *ngIf="view == 'desktop'" style="width:100%; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white;">
     <div fxLayout="row" fxLayoutAlign="space-between start">
-        <div fxFlex="35" style="height: 130px">
+        <div fxFlex="30" style="height: 130px">
             <img src="{{listing?.images[0]?.url != null ? listing?.images[0]?.url : '/assets/illustrations/placeholder.jpg'}}"
                  style=" height: 130px; width: 100%; object-fit:cover;" (click)="open()">
         </div>
-        <div fxFlex="65" style="margin: 8px" (click)="open()">
-            <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxFlex="70" style="margin: 8px" (click)="open()">
+            <div fxLayout="row" fxLayoutAlign="space-between start" style="margin-bottom: 10px">
                 <div>
                     <div>
                         {{listing?.title}}
-
                     </div>
                     <div style="color: #8c8c8c; font-size: 14px; margin-top:4px;">
                         {{listing?.manufacturer}} {{listing?.model}} {{listing?.year}}
@@ -174,11 +173,28 @@
                     {{listing?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
                 </div>
             </div>
-            <div fxLayout="row wrap" style="padding: 0; margin-top: 6px">
-                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Transmission' | translate}}:</i>{{listing?.transmission}}</p>
-                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Fuel' | translate}}:</i>{{listing?.fuel}}</p>
-                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'City' | translate}}:</i>{{listing?.city}}</p>
-                <p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Plate Registration' | translate}}:</i>{{listing?.plateRegistration}}</p>
+            <mat-divider></mat-divider>
+            <div fxLayout="row wrap" style="padding: 0; margin-top: 10px">
+                <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/gearshift.png" alt="shift">
+                    <p style="margin-top:0">{{listing?.transmission}}</p>
+                </div>
+                <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/gas-station.png" alt="gas">
+                    <p style="margin-top:0">{{listing?.fuel}}</p>
+                </div>
+                <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/building.png" alt="city">
+                    <p style="margin-top:0">{{listing?.city}}</p>
+                </div>
+                <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/license-plate.png" alt="plateRegistration">
+                    <p style="margin-top:0">{{listing?.plateRegistration}}</p>
+                </div>
+
+                <!--<div *ngIf="listing?.organic == false" style="color: #8c8c8c" fxFlex="100" fxLayout="row">-->
+                    <!--<p style="margin-top:0">from {{listing?.origin}}</p>-->
+                <!--</div>-->
             </div>
         </div>
     </div>

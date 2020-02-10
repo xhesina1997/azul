@@ -159,7 +159,7 @@
                                                         {{filterIcons[filter.key]}}
                                                     </mat-icon>
                                                     {{filter.value | displayFilter}}
-                                                    <mat-icon matChipRemove>cancel</mat-icon>
+                                                    <mat-icon *ngIf="view != 'desktop'" matChipRemove>cancel</mat-icon>
                                                 </div>
                                             </mat-chip>
                                         </mat-chip-list>
