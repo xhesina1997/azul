@@ -61,7 +61,8 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.route.queryParams.pipe(takeUntil(this.stopQuerySubscription)).subscribe(params => {
 
-            if (this.paginationService.listings.length == 0) {
+            if (this.paginationService.listings.length == 0 ||
+                !this.isEquivalent(this.paginationService.queryOptions.filters == null ? {} : this.paginationService.queryOptions.filters, params == null ? {} : params)) {
                 if (Object.entries(params).length != 0) this.paginationService.queryOptions.filters = {...params};
                 else this.paginationService.queryOptions.filters = null;
                 this.paginationService.done.next(false);
@@ -176,5 +177,31 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.paginationService.getInitialData();
 
         this.bottomSheet.dismiss();
+    }
+
+    isEquivalent(a, b) {
+        // Create arrays of property names
+        let aProps = Object.getOwnPropertyNames(a);
+        let bProps = Object.getOwnPropertyNames(b);
+
+        // If number of properties is different,
+        // objects are not equivalent
+        if (aProps.length != bProps.length) {
+            return false;
+        }
+
+        for (let i = 0; i < aProps.length; i++) {
+            let propName = aProps[i];
+
+            // If values of same property are not equal,
+            // objects are not equivalent
+            if (a[propName] !== b[propName]) {
+                return false;
+            }
+        }
+
+        // If we made it this far, objects
+        // are considered equivalent
+        return true;
     }
 }

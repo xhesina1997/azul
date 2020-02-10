@@ -47,32 +47,44 @@
             <mat-divider></mat-divider>
             <div style="color: rgb(140, 140, 140); margin: 16px -16px 0 -16px; padding-left: 16px; display: flex; overflow-x: auto;">
                 <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
-                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px; min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px; min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'sedan'}">
                     <img src="/assets/car-types/sedan.png" alt="sedan" style="width: 100%;">
                     <span>{{'Sedan' | translate }}</span>
                 </div>
                 <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
-                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px; min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px; min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'hatchback'}">
                     <img src="/assets/car-types/hatchback.png" alt="hatchback" style="width: 100%;">
                     <span>{{'Hatchback' | translate }}</span>
                 </div>
                 <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
-                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'suv'}">
                     <img src="/assets/car-types/suv.png" alt="suv" style="width: 100%;">
                     <span>{{'SUV' | translate }}</span>
                 </div>
                 <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
-                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'coupe'}">
                     <img src="/assets/car-types/coupe.png" alt="coupe" style="width: 100%;">
                     <span>{{'Coupe' | translate }}</span>
                 </div>
                 <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
-                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'van'}">
                     <img src="/assets/car-types/van.png" alt="van" style="width: 100%;">
                     <span>{{'Van' | translate }}</span>
                 </div>
                 <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
-                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;">
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 100px;  min-width: 100px; width: 100px; padding: 10px; margin-right: 10px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'truck'}">
                     <img src="/assets/car-types/truck.png" alt="truck" style="width: 100%;">
                     <span>{{'Truck' | translate}}</span>
                 </div>
