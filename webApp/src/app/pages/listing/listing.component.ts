@@ -17,6 +17,7 @@ export class ListingComponent implements OnInit, OnDestroy {
     constructor(private activatedRoute: ActivatedRoute,
                 private location: Location,
                 private paginationService: PaginationService,
+                private router: Router,
                 private _fireStore: AngularFirestore) {
 
     }
@@ -51,6 +52,8 @@ export class ListingComponent implements OnInit, OnDestroy {
     protected selectedCar: any = {};
     protected stopSubscriptions = new Subject();
 
+    public similarCars: any[] = [];
+
     protected view;
 
     @HostListener('window:resize', ['$event'])
@@ -65,6 +68,7 @@ export class ListingComponent implements OnInit, OnDestroy {
                 if (this.paginationService.selectedListing != null && this.paginationService.selectedListing.uuid == params.id) {
                     console.log("got listing from service");
                     this.selectedCar = this.paginationService.selectedListing;
+                    this.getSimilarCars(this.selectedCar);
                     this.selectedCar.images == null ? this.selectedCar.images = [{url: '/assets/illustrations/placeholder.jpg'}] : {};
                 } else {
                     console.log("got listing from backend");
@@ -72,8 +76,9 @@ export class ListingComponent implements OnInit, OnDestroy {
                         .valueChanges()
                         .pipe(takeUntil(this.stopSubscriptions)).subscribe(res => {
                         this.selectedCar = res[0];
+                        this.getSimilarCars(this.selectedCar);
                         this.selectedCar.images == null ? this.selectedCar.images = [{url: '/assets/illustrations/placeholder.jpg'}] : {};
-                        this.stopSubscriptions.next();
+                        // this.stopSubscriptions.next();
                     })
                 }
             }
@@ -81,10 +86,37 @@ export class ListingComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.stopSubscriptions.next();
         this.stopSubscriptions.complete();
     }
 
     goBack() {
         this.location.back();
+    }
+
+    private getSimilarCars(selectedCar: any): void {
+        this._fireStore
+            .collection('cars', ref =>
+                ref.where('manufacturer', '==', selectedCar.manufacturer)
+                    .where('model', '==', selectedCar.model)
+                    .limit(4)
+            )
+            .valueChanges()
+            .pipe(takeUntil(this.stopSubscriptions)).subscribe(res => {
+            if (res != null) {
+                res.forEach((car: any) => {
+                    if (car.images == null) {
+                        car.images = [{url: '/assets/illustrations/placeholder.jpg'}];
+                    }
+                })
+            }
+            this.similarCars = res.filter((car: any) => (car.uuid != selectedCar.uuid));
+        })
+    }
+
+    handleItemEvent(event) {
+      if (event != null) {
+          this.router.navigate(['/mobile/listing'], {queryParams: {id: event.target.uuid}})
+      }
     }
 }

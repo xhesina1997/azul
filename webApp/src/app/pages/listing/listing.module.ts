@@ -6,8 +6,9 @@ import {ListingComponent} from './listing.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatButtonModule, MatDividerModule, MatIconModule, MatRippleModule} from "@angular/material";
 import {MatCardModule} from "@angular/material/card";
-import { CarouselModule } from 'ngx-owl-carousel-o';
-import { TranslateModule} from '@ngx-translate/core';
+import {CarouselModule} from 'ngx-owl-carousel-o';
+import {TranslateModule} from '@ngx-translate/core';
+import {ListItemModule} from "../../shared/list-item/list-item.module";
 
 @NgModule({
     declarations: [ListingComponent],
@@ -21,7 +22,8 @@ import { TranslateModule} from '@ngx-translate/core';
         MatDividerModule,
         MatRippleModule,
         MatIconModule,
-        TranslateModule
+        TranslateModule,
+        ListItemModule
     ],
 })
 export class ListingModule {
