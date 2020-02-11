@@ -1,21 +1,5 @@
-<div fxLayout="row" style="height: 100%">
-
-    <div *ngIf="view == 'desktop' || view == 'tablet'">
-
-    </div>
-
-    <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
-
-    <div *ngIf="view == 'desktop' || view == 'tablet'"
-         [ngStyle.lg]="{'width':'1250px'}"
-         [ngStyle.md]="{'width':'100%'}"
-         [ngStyle.sm]="{'width':'100%'}"
-         [ngStyle.xs]="{'width':'100%'}"
-         style="height: 100%">
-
-    </div>
-
-    <div *ngIf="view == 'mobile'"
+<div *ngIf="view == 'mobile'" fxLayout="row" style="height: 100%">
+    <div
          [ngStyle.lg]="{'width':'1250px'}"
          [ngStyle.md]="{'width':'100%'}"
          [ngStyle.sm]="{'width':'100%'}"
@@ -91,9 +75,7 @@
                 <div style="width: 16px; color: #fbfbfb;">a</div>
             </div>
 
-            <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Shop by
-                brand' | translate}}
-            </div>
+            <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Shop by brand' | translate}}</div>
             <mat-divider></mat-divider>
             <div style="color: rgb(140, 140, 140); margin: 16px -16px 0 -16px; padding-left: 16px; display: flex; overflow-x: auto;">
                 <div [routerLink]="['/mobile/search']"
@@ -235,6 +217,24 @@
             </div>
 
         </div>
+    </div>
+</div>
+
+
+<div *ngIf="view == 'desktop' || view == 'tablet'" fxLayout="row" style="height: 100%">
+
+
+    <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
+
+    <div [ngStyle.lg]="{'width':'1250px'}"
+         [ngStyle.md]="{'width':'100%'}"
+         [ngStyle.sm]="{'width':'100%'}"
+         [ngStyle.xs]="{'width':'100%'}"
+         style="height: 100%">
+
+        <!--TODO ktu do bere per desktop dhe tablet -->
+        <!--brenda kti divit del ne qender. nqs do dicka width 100% beje jasht kti-->
+
     </div>
 
     <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
