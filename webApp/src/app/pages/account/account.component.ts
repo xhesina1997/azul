@@ -103,9 +103,9 @@ export class AccountComponent implements OnInit {
             .doc(this.carToBeDeleted.doc.id)
             .delete()
             .then(() => {
-                let oldImages = [...this.carToBeDeleted.images];
-                oldImages.forEach(image => {
-                    this._storage.ref(this.carToBeDeleted.uuid + '/' + image.name).delete()
+                let imagesToDelete = [...this.carToBeDeleted.images];
+                imagesToDelete.forEach(image => {
+                    this._storage.ref(this.carToBeDeleted.uuid + '/' + image.name).delete();
                 })
                 this.getUserListings();
                 this.closeDialog();
