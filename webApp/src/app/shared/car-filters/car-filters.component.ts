@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {Subject} from "rxjs/internal/Subject";
 import {map, startWith} from "rxjs/operators";
 import {Observable} from "rxjs/index";
@@ -10,7 +10,7 @@ import {environment} from "../../../environments/environment";
     templateUrl: './car-filters.component.html',
     styleUrls: ['./car-filters.component.scss']
 })
-export class CarFiltersComponent implements OnInit {
+export class CarFiltersComponent implements OnInit, OnChanges {
 
     constructor() {
     }
@@ -20,6 +20,10 @@ export class CarFiltersComponent implements OnInit {
         this.getCarModels();
         this.patchExistingFilters();
         this.subscribeToValueChanges();
+    }
+
+    ngOnChanges(changes) {
+
     }
 
     @Output() filtersListener = new Subject();
@@ -346,18 +350,24 @@ export class CarFiltersComponent implements OnInit {
     public carBrandsList: any;
 
     private _filter(value: string, list): string[] {
-        const filterValue = value.toLowerCase();
-        return list.filter(option => option.toLowerCase().includes(filterValue));
+        if (list != null) {
+            const filterValue = value.toLowerCase();
+            return list.filter(option => option.toLowerCase().includes(filterValue));
+        } else return null
     }
 
     private _filterCar(value: string, list): string[] {
-        const filterValue = value.toLowerCase();
-        return list.filter(option => option.name.toLowerCase().includes(filterValue));
+        if (list != null) {
+            const filterValue = value.toLowerCase();
+            return list.filter(option => option.name.toLowerCase().includes(filterValue));
+        } else return null
     }
 
     private _filterKm(value: string, list): string[] {
         const filterValue = value.toLowerCase();
-        return list.filter(option => option.title.toLowerCase().includes(filterValue));
+        if (list != null) {
+            return list.filter(option => option.title.toLowerCase().includes(filterValue));
+        } else return null
     }
 
 

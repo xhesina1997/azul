@@ -9,14 +9,16 @@
 
         <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="70" fxFlex.lg="70">
 
-            <div style="height: 240px; background-color: rgb(230, 230, 230);" #images
+            <div [ngStyle]="{'height': view == 'mobile' ? '240px' : view == 'tablet' ? '400px' : ''}"
+                 style="background-color: rgb(230, 230, 230);" #images
                  [ngStyle.md]="{'margin': '16px', 'border-radius':'16px'}"
                  [ngStyle.lg]="{'margin': '16px', 'border-radius':'16px'}">
                 <owl-carousel-o [options]="customOptions">
                     <ng-template carouselSlide *ngFor="let image of selectedCar?.images">
                         <img [ngStyle.md]="{'height': '400px'}"
                              [ngStyle.lg]="{'height': '400px'}"
-                             style=" height: 240px; background-color: #e6e6e6; width: 100%; object-fit:contain; z-index: 1"
+                             [ngStyle]="{'height': view == 'mobile' ? '240px' : view == 'tablet' ? '400px' : ''}"
+                             style=" background-color: #e6e6e6; width: 100%; object-fit:contain; z-index: 1"
                              src="{{image.url}}">
                     </ng-template>
                 </owl-carousel-o>
@@ -64,18 +66,16 @@
                 </div>
                 <mat-divider style="margin-bottom: 10px"></mat-divider>
 
-                <!--TODO: we need to validate description and not let user insert tags or scripts-->
-
                 <div [ngStyle.md]="{'height':'158px'}"
                      [ngStyle.lg]="{'height':'158px'}"
                      style="color: #8c8c8c; font-size: 15px;">
-                    <div [ngStyle]="{'height': descriptionToggle ? '55px' : '', 'overflow': 'hidden'}">
+                    <div [ngStyle]="{'height': (descriptionToggle && view!='desktop') ? '55px' : '', 'overflow': 'hidden'}">
                         {{selectedCar?.description}}
                     </div>
-                    <div style="color: #5400B8" *ngIf="descriptionToggle"
+                    <div style="color: #5400B8" *ngIf="descriptionToggle && view!='desktop'"
                          (click)="descriptionToggle = !descriptionToggle">...{{'show more' | translate}}
                     </div>
-                    <div style="color: #5400B8" *ngIf="!descriptionToggle"
+                    <div style="color: #5400B8" *ngIf="!descriptionToggle && view!='desktop'"
                          (click)="descriptionToggle = !descriptionToggle">...{{'show less' | translate}}
                     </div>
                 </div>
@@ -168,6 +168,21 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div fxFlex="100" fxLayout="column" fxLayoutAlign="space-around center" >
+            <div>
+                Similar cars
+            </div>
+            <div fxFlex="100" fxFlexFill fxLayout="row" fxLayoutAlign="space-evenly center">
+                <div *ngFor="let car of similarCars" fxFlex="22">
+                    <app-list-item [listing]="car"
+                                   [view]="'default'"
+                                   (outputEvent)="handleItemEvent($event)">
+                    </app-list-item>
+                </div>
+            </div>
+
         </div>
 
         <div (click)="goBack()" #back matRipple style="width: 32px;

@@ -1,53 +1,122 @@
-<cdk-virtual-scroll-viewport #vsViewport [itemSize]="view == 'desktop' ? '140' : view == 'tablet' ? '140' : '340'"
-                             style="height: 100%; max-width: 100%">
-    <!--<button (click)="scrollToItem()">test</button>-->
-    <div style="padding: 0 16px 16px 16px; height: 100%;">
-        <div fxLayout="row">
+<ng-container style="height: 100%;" *ngIf="view == 'tablet' || view =='mobile'">
+    <cdk-virtual-scroll-viewport #vsViewport [itemSize]="view == 'tablet' ? '140' : '340'"
+                                 style="height: 100%; max-width: 100%">
+        <!--<button (click)="scrollToItem()">test</button>-->
+        <div style="padding: 0 16px 16px 16px; height: 100%;">
+            <div fxLayout="row">
+                <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
+
+                <div [ngStyle.lg]="{'width':'1250px'}"
+                     [ngStyle.md]="{'width':'100%'}"
+                     [ngStyle.sm]="{'width':'100%'}"
+                     [ngStyle.xs]="{'width':'100%'}">
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c; width: 100%;">
+                        <div fxLayout="row" fxLayoutAlign="space-between center"
+                             style="width: 100%;">
+                            <div style="width: calc(100% - 48px); padding-left: 8px;">
+                                <ng-container *ngIf="paginationService.queryOptions.filters == null">
+                                    {{'Search results' | translate}}
+                                </ng-container>
+                                <ng-container *ngIf="paginationService.queryOptions.filters != null">
+                                    <mat-chip-list #chipList>
+                                        <mat-chip
+                                                *ngFor="let filter of paginationService.queryOptions.filters | keyvalue"
+                                                [selectable]="false" [removable]="true"
+                                                (removed)="removeFilter(filter.key)">
+                                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                                <mat-icon style="padding-top: 4px; font-size: 18px;">
+                                                    {{filterIcons[filter.key]}}
+                                                </mat-icon>
+                                                {{filter.value | displayFilter}}
+                                                <mat-icon matChipRemove>cancel</mat-icon>
+                                            </div>
+                                        </mat-chip>
+                                    </mat-chip-list>
+                                </ng-container>
+                            </div>
+                            <button style="width: 40px" (click)="toggleFilters()" mat-icon-button>
+                                <mat-icon style="color: #8c8c8c">tune</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <mat-divider style="margin-bottom: 10px"></mat-divider>
+
+                    <div fxLayout="row">
+
+                        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="60" fxFlex.lg="75" fxFlex.gt="90">
+
+                            <div *ngIf="paginationService.noListings" fxLayout="column" fxLayoutAlign="space-between center" style="width: 100%">
+
+                                <p>{{'Sorry, no results' | translate}}</p>
+                                <!--<p>Didn't find what you were looking for?</p>-->
+                                <!--<button mat-stroked-button color="primary">create an alert</button>-->
+                                <div style="height: 300px;" class="no-results"></div>
+
+
+                            </div>
+
+                            <div fxLayout="row wrap">
+                                <div *cdkVirtualFor="let car of paginationService.listings"
+                                     style="margin-bottom: 10px"
+                                     fxFlex.xs="100" fxFlex.sm="100"
+                                     fxFlex.md="100" fxFlex.lg="100"
+                                     [ngStyle.sm]="{'padding':'0 5px'}">
+                                    <app-list-item [listing]="car" [view]=" view == 'mobile' ? 'default' : 'desktop'"
+                                                   (outputEvent)="handleItemEvent($event)">
+                                    </app-list-item>
+                                </div>
+                            </div>
+
+                            <div fxLayout="row wrap" *ngIf="paginationService.loading | async">
+                                <div style="margin-bottom: 10px"
+                                     fxFlex.xs="100" fxFlex.sm="50"
+                                     fxFlex.md="100" fxFlex.lg="100"
+                                     [ngStyle.sm]="{'padding':'0 5px'}">
+                                    <app-list-item
+                                            [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
+                                </div>
+                                <div style="margin-bottom: 10px"
+                                     fxFlex.xs="100" fxFlex.sm="50"
+                                     fxFlex.md="100" fxFlex.lg="100"
+                                     [ngStyle.sm]="{'padding':'0 5px'}">
+                                    <app-list-item
+                                            [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div fxHide fxShow.lgstyle="width: calc((100% - 1250px)/2)"></div>
+            </div>
+
+        </div>
+    </cdk-virtual-scroll-viewport>
+</ng-container>
+
+<ng-container style="height: 100%;" *ngIf="view == 'desktop'">
+    <div style="padding: 0 16px 0 16px; height: 100%;">
+        <div fxLayout="row" style="height: 100%">
             <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
 
             <div [ngStyle.lg]="{'width':'1250px'}"
                  [ngStyle.md]="{'width':'100%'}"
                  [ngStyle.sm]="{'width':'100%'}"
-                 [ngStyle.xs]="{'width':'100%'}">
-
-                <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c; width: 100%;">
-                    <div fxLayout="row" fxLayoutAlign="space-between center"
-                         style="width: 100%;">
-                        <div style="width: calc(100% - 48px); padding-left: 8px;">
-                            <ng-container *ngIf="paginationService.queryOptions.filters == null">
-                                {{'Search results' | translate}}
-                            </ng-container>
-                            <ng-container *ngIf="paginationService.queryOptions.filters != null">
-                                <mat-chip-list #chipList>
-                                    <mat-chip *ngFor="let filter of paginationService.queryOptions.filters | keyvalue"
-                                              [selectable]="false" [removable]="true"
-                                              (removed)="removeFilter(filter.key)">
-                                        <div fxLayout="row" fxLayoutAlign="space-between center">
-                                            <mat-icon style="padding-top: 4px; font-size: 18px;">
-                                                {{filterIcons[filter.key]}}
-                                            </mat-icon>
-                                            {{filter.value | displayFilter}}
-                                            <mat-icon matChipRemove>cancel</mat-icon>
-                                        </div>
-                                    </mat-chip>
-                                </mat-chip-list>
-                            </ng-container>
-                        </div>
-                        <button style="width: 40px" (click)="toggleFilters()" mat-icon-button>
-                            <mat-icon style="color: #8c8c8c">tune</mat-icon>
-                        </button>
-                    </div>
-                </div>
+                 [ngStyle.xs]="{'width':'100%'}"
+                 style="height: 100%">
 
 
-                <mat-divider style="margin-bottom: 10px"></mat-divider>
-
-                <div fxLayout="row">
+                <div fxLayout="row" style="height: 100%">
 
                     <div [ngStyle.md]="{'padding-right':'10px'}"
                          [ngStyle.lg]="{'padding-right':'10px'}"
-                         *ngIf="view == 'desktop'" fxFlex.md="40" fxFlex.lg="35" fxFlex.gt="10">
-
+                         fxFlex.md="40" fxFlex.lg="35" fxFlex.gt="10">
 
                         <div style="position: sticky; top: 10px;">
                             <!--<div>-->
@@ -56,79 +125,116 @@
                                 <div>
                                     {{'Refine search' | translate}}
                                 </div>
-                                <button (click)="getAllCars()" color="primary" mat-stroked-button>
+                                <button (click)="fireSearch()" color="primary" mat-stroked-button>
                                     {{'Search' | translate}}
                                 </button>
                             </div>
-                            <car-filters (filtersListener)="filtersChanged($event)"
+                            <car-filters #carFilters (filtersListener)="filtersChanged($event)"
                                          (sortListener)="sortChanged($event)"
-                                         [existingFilters]="queryOptions?.filters"></car-filters>
+                                         [existingSort]="{sort: paginationService.queryOptions.sort, reverse: paginationService.queryOptions.reverse}"
+                                         [existingFilters]="paginationService.queryOptions.filters"></car-filters>
                         </div>
 
                     </div>
 
-                    <div fxFlex.xs="100" fxFlex.sm="100"
-                         fxFlex.md="60" fxFlex.lg="75" fxFlex.gt="90"
-                         *ngIf="!paginationService.noListings; else noCars">
+                    <div fxFlex.md="60" fxFlex.lg="75" fxFlex.gt="90" fxFlexFill style="height: 100%">
 
-
-                        <div fxLayout="row wrap">
-                            <div *cdkVirtualFor="let car of paginationService.listings"
-                                 style="margin-bottom: 10px"
-                                 fxFlex.xs="100" fxFlex.sm="100"
-                                 fxFlex.md="100" fxFlex.lg="100"
-                                 [ngStyle.sm]="{'padding':'0 5px'}">
-                                <app-list-item [listing]="car" [view]=" view == 'mobile' ? 'default' : 'desktop'"
-                                               (outputEvent)="handleItemEvent($event)">
-                                </app-list-item>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c; width: 100%;">
+                            <div fxLayout="row" fxLayoutAlign="space-between center"
+                                 style="width: 100%;">
+                                <div style="width: 100%; padding-left: 8px; height: 44px; padding-top: 12px">
+                                    <ng-container *ngIf="paginationService.queryOptions.filters == null">
+                                        <div style="padding-top: 8px">
+                                            {{'Search results' | translate}}
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="paginationService.queryOptions.filters != null">
+                                        <mat-chip-list #chipList>
+                                            <mat-chip
+                                                    *ngFor="let filter of paginationService.queryOptions.filters | keyvalue"
+                                                    [selectable]="false" [removable]="true"
+                                                    (removed)="removeFilter(filter.key)">
+                                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                                    <mat-icon style="padding-top: 4px; font-size: 18px;">
+                                                        {{filterIcons[filter.key]}}
+                                                    </mat-icon>
+                                                    {{filter.value | displayFilter}}
+                                                    <mat-icon *ngIf="view != 'desktop'" matChipRemove>cancel</mat-icon>
+                                                </div>
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                    </ng-container>
+                                </div>
                             </div>
                         </div>
 
+                        <mat-divider style="margin-bottom: 10px"></mat-divider>
 
-                        <div fxLayout="row wrap" *ngIf="paginationService.loading | async">
-                            <div style="margin-bottom: 10px"
-                                 fxFlex.xs="100" fxFlex.sm="50"
-                                 fxFlex.md="100" fxFlex.lg="100"
-                                 [ngStyle.sm]="{'padding':'0 5px'}">
-                                <app-list-item
-                                        [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
-                            </div>
-                            <div style="margin-bottom: 10px"
-                                 fxFlex.xs="100" fxFlex.sm="50"
-                                 fxFlex.md="100" fxFlex.lg="100"
-                                 [ngStyle.sm]="{'padding':'0 5px'}">
-                                <app-list-item
-                                        [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
-                            </div>
+                        <div style="height: calc(100% - 68px)">
+                            <ng-container>
+                                <cdk-virtual-scroll-viewport #vsViewport [itemSize]="'130'"
+                                                             style="height: 100%; width: 100%">
+
+                                    <div fxLayout="column">
+
+                                        <div *ngIf="paginationService.noListings" fxLayout="column" fxLayoutAlign="space-between center" style="width: 100%">
+
+                                            <p>{{'Sorry, no results' | translate}}</p>
+                                            <!--<p>Didn't find what you were looking for?</p>-->
+                                            <!--<button mat-stroked-button color="primary">create an alert</button>-->
+                                            <div style="height: 300px;" class="no-results"></div>
+
+
+                                        </div>
+
+                                        <div *cdkVirtualFor="let car of paginationService.listings"
+                                             style="margin-bottom: 10px; max-width: 810px;"
+                                             [ngStyle.sm]="{'padding':'0 5px'}">
+                                            <app-list-item [listing]="car"
+                                                           [view]=" view == 'mobile' ? 'default' : 'desktop'"
+                                                           (outputEvent)="handleItemEvent($event)">
+                                            </app-list-item>
+                                        </div>
+
+                                        <div fxLayout="row wrap" *ngIf="paginationService.loading | async">
+                                            <div style="margin-bottom: 10px"
+                                                 fxFlex.xs="100" fxFlex.sm="50"
+                                                 fxFlex.md="100" fxFlex.lg="100"
+                                                 [ngStyle.sm]="{'padding':'0 5px'}">
+                                                <app-list-item
+                                                        [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
+                                            </div>
+                                            <div style="margin-bottom: 10px"
+                                                 fxFlex.xs="100" fxFlex.sm="50"
+                                                 fxFlex.md="100" fxFlex.lg="100"
+                                                 [ngStyle.sm]="{'padding':'0 5px'}">
+                                                <app-list-item
+                                                        [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </cdk-virtual-scroll-viewport>
+
+                            </ng-container>
                         </div>
 
 
                     </div>
-                    <ng-template #noCars>
-                        <div fxLayout="column" fxLayoutAlign="space-between center" style="width: 100%">
-
-                            <p>{{'Sorry, no results' | translate}}</p>
-                            <!--<p>Didn't find what you were looking for?</p>-->
-                            <!--<button mat-stroked-button color="primary">create an alert</button>-->
-                            <div style="height: 300px;" class="no-results"></div>
-
-
-                        </div>
-
-                    </ng-template>
+                    
                 </div>
             </div>
 
-            <div fxHide fxShow.lgstyle="width: calc((100% - 1250px)/2)"></div>
+            <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
         </div>
 
     </div>
-</cdk-virtual-scroll-viewport>
+</ng-container>
 
 <ng-template #filters>
     <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c;">
         <div>
-           {{'Refine search' | translate}}
+            {{'Refine search' | translate}}
         </div>
         <button (click)="fireSearch()" color="primary" mat-stroked-button>
             {{'Search' | translate}}
