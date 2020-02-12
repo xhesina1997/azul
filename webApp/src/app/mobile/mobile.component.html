@@ -39,7 +39,7 @@
                         <div style="color:white; font-size: 20px; margin-right: 30px;">
                             AZUL
                         </div>
-                        <button mat-button [routerLink]="['/mobile/home']">Home</button>
+                        <button mat-button [routerLink]="['/mobile/home']">{{'Home' | translate}}</button>
                         <button mat-button [routerLink]="['/mobile/search']">{{'Search' | translate}}</button>
                         <button mat-button [routerLink]="['/mobile/add-listing']">{{"Add listing" | translate}}</button>
                     </div>
@@ -53,9 +53,27 @@
                             color="accent">
                         <mat-icon>account_circle</mat-icon>
                     </button>
+
                 </div>
 
-                <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)">
+                <div fxHide fxShow.lg fxShow.md>
+                        <mat-form-field>
+                            <mat-select [(value)]="selected" (selectionChange)="onChange($event)">
+                                <mat-option value="en">
+                                    <div fxLayout="row" fxLayoutAlign="start center">
+                                        <img src="../../assets/brand-logos/america.jpg" alt="English" width="30" height="20" style="margin-right: 10px;">
+                                        English
+                                    </div>
+
+                                </mat-option>
+                                <mat-option value="sq">
+                                    <div fxLayout="row" fxLayoutAlign="start center">
+                                        <img src="../../assets/brand-logos/albania.png" alt="Albanian" width="30" height="20" style="margin-right: 10px;">
+                                        Albanian
+                                    </div>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
                 </div>
 

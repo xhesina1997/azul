@@ -1,10 +1,10 @@
 <div *ngIf="view == 'mobile'" fxLayout="row" style="height: 100%">
     <div
-         [ngStyle.lg]="{'width':'1250px'}"
-         [ngStyle.md]="{'width':'100%'}"
-         [ngStyle.sm]="{'width':'100%'}"
-         [ngStyle.xs]="{'width':'100%'}"
-         style="height: 100%">
+            [ngStyle.lg]="{'width':'1250px'}"
+            [ngStyle.md]="{'width':'100%'}"
+            [ngStyle.sm]="{'width':'100%'}"
+            [ngStyle.xs]="{'width':'100%'}"
+            style="height: 100%">
         <div style="padding: 130px 16px 0 16px;
     margin-top: -100px;
     background-image: url('/assets/illustrations/background.png');
@@ -12,7 +12,7 @@
     background-size: cover;
     overflow: hidden;
     height: auto;">
-            <div style="color: white; font-size: 55px; width: 80%">{{'title' | translate}}</div>
+            <div style="color: white; font-size: 55px; width: 80%">{{'Welcome to Azul!' | translate}}</div>
             <br>
             <div style="color: white;">Biggest car market maybe</div>
             <br>
@@ -75,7 +75,9 @@
                 <div style="width: 16px; color: #fbfbfb;">a</div>
             </div>
 
-            <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Shop by brand' | translate}}</div>
+            <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Shop by
+                brand' | translate}}
+            </div>
             <mat-divider></mat-divider>
             <div style="color: rgb(140, 140, 140); margin: 16px -16px 0 -16px; padding-left: 16px; display: flex; overflow-x: auto;">
                 <div [routerLink]="['/mobile/search']"
@@ -224,7 +226,7 @@
 <div *ngIf="view == 'desktop' || view == 'tablet'" fxLayout="row" style="height: 100%">
 
 
-    <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
+    <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2);"></div>
 
     <div [ngStyle.lg]="{'width':'1250px'}"
          [ngStyle.md]="{'width':'100%'}"
@@ -234,8 +236,183 @@
 
         <!--TODO ktu do bere per desktop dhe tablet -->
         <!--brenda kti divit del ne qender. nqs do dicka width 100% beje jasht kti-->
+        <div [ngStyle.md]="{'padding':'16px'}" [ngStyle.sm]="{'padding':'16px'}"
+             style="color: #050537; font-size: 55px; width: 80%;letter-spacing: 3px;margin-top: 70px">{{'Welcome to
+            Azul!' | translate}}
+        </div>
+        <br>
+        <div [ngStyle.md]="{'padding':'16px'}" [ngStyle.sm]="{'padding':'16px'}" style="color: color: #050537;">Biggest
+            car market maybe
+        </div>
+        <br>
+        <button [ngStyle.md]="{'margin':'16px'}" [ngStyle.sm]="{'margin':'16px'}" [routerLink]="['/mobile/search']"
+                mat-flat-button color="accent"
+                style="width: 50%; height: 52px;margin-top: 5%">
+            {{'Fire your first search!' | translate}}
+        </button>
+        <br>
+        <div [ngStyle.md]="{'padding':'16px'}" [ngStyle.sm]="{'padding':'16px'}" style="margin-top: 50px"  fxLayout="row"
+             fxLayoutAlign="space-between center">
+            <div fxFlex="33">
+                <img style="width: 100%;height: auto" src="/assets/illustrations/car.png" alt="car">
+            </div>
+            <div fxFlex="34">
+                <img style="width: 100%;height: auto" src="/assets/illustrations/benz.png" alt="car">
+            </div>
+            <div fxFlex="33">
+                <img style="width: 100%;height: auto" src="/assets/illustrations/hyundai.png" alt="car">
+            </div>
+
+        </div>
+        <div style="padding: 0 16px 0 16px;">
+            <div style="margin-top: 40px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Shop by
+                type' | translate}}
+            </div>
+            <mat-divider></mat-divider>
+            <div style="color: rgb(140, 140, 140); margin: 16px -16px 0 -16px; padding-left: 16px; display: flex; overflow-x: auto;">
+                <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 150px; min-width: 190px; width: 190px; padding: 10px; margin-right: 15px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'sedan'}">
+                    <img src="/assets/car-types/sedan.png" alt="sedan" style="width: 100%;">
+                    <span>{{'Sedan' | translate }}</span>
+                </div>
+                <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 150px; min-width: 190px; width: 190px; padding: 10px; margin-right: 15px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'hatchback'}">
+                    <img src="/assets/car-types/hatchback.png" alt="hatchback" style="width: 100%;">
+                    <span>{{'Hatchback' | translate }}</span>
+                </div>
+                <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 150px;  min-width: 190px; width: 190px; padding: 10px; margin-right: 15px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'suv'}">
+                    <img src="/assets/car-types/suv.png" alt="suv" style="width: 100%;">
+                    <span>{{'SUV' | translate }}</span>
+                </div>
+                <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 150px;  min-width: 190px; width: 190px; padding: 10px; margin-right: 15px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'coupe'}">
+                    <img src="/assets/car-types/coupe.png" alt="coupe" style="width: 100%;">
+                    <span>{{'Coupe' | translate }}</span>
+                </div>
+                <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 150px;  min-width: 190px; width: 190px; padding: 10px; margin-right: 15px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'van'}">
+                    <img src="/assets/car-types/van.png" alt="van" style="width: 100%;">
+                    <span>{{'Van' | translate }}</span>
+                </div>
+                <div matRipple fxLayout="column" fxLayoutAlign="space-between center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 150px;  min-width: 190px; width: 190px; padding: 10px; margin-right: 15px;"
+                     [routerLink]="['/mobile/search']"
+                     [queryParams]="{ structure: 'truck'}">
+                    <img src="/assets/car-types/truck.png" alt="truck" style="width: 100%;">
+                    <span>{{'Truck' | translate}}</span>
+                </div>
+                <div style="width: 16px; color: #fbfbfb;">a</div>
+            </div>
+
+            <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Shop by
+                brand' | translate}}
+            </div>
+            <mat-divider></mat-divider>
+            <div style="color: rgb(140, 140, 140); margin: 16px -16px 0 -16px; padding-left: 16px; display: flex; overflow-x: auto;">
+                <div [routerLink]="['/mobile/search']"
+                     [queryParams]="{ manufacturer: 'Mercedes-Benz'}"
+                     matRipple fxLayout="column" fxLayoutAlign="center center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 120px; min-width: 125px; width: 125px; padding: 10px; margin-right: 10px;">
+                    <img src="/assets/brand-logos/mercedes-benz.png" alt="Mercedes Benz"
+                         style="width: auto; height: 80px;">
+                    <span style="margin-top: 5px;">Mercedes</span>
+                </div>
+
+                <div [routerLink]="['/mobile/search']"
+                     [queryParams]="{ manufacturer: 'Volkswagen'}"
+                     matRipple fxLayout="column" fxLayoutAlign="center center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 120px; min-width: 125px; width: 125px; padding: 10px; margin-right: 10px;">
+                    <img src="/assets/brand-logos/volkswagen.png" alt="Volkswagen" style="width: auto; height: 80px;">
+                    <span style="margin-top: 5px;">Volkswagen</span>
+                </div>
+
+                <div [routerLink]="['/mobile/search']"
+                     [queryParams]="{ manufacturer: 'Audi'}"
+                     matRipple fxLayout="column" fxLayoutAlign="center center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 120px; min-width: 125px; width: 125px; padding: 10px; margin-right: 10px;">
+                    <img src="/assets/brand-logos/audi.png" alt="Audi" style="width: auto; height: 80px;">
+                    <span style="margin-top: 5px;">Audi</span>
+                </div>
+
+                <div [routerLink]="['/mobile/search']"
+                     [queryParams]="{ manufacturer: 'BMW'}"
+                     matRipple fxLayout="column" fxLayoutAlign="center center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 120px; min-width: 125px; width: 125px; padding: 10px; margin-right: 10px;">
+                    <img src="/assets/brand-logos/bmw.png" alt="BMW" style="width: auto; height: 80px;">
+                    <span style="margin-top: 5px;">BMW</span>
+                </div>
+
+                <div [routerLink]="['/mobile/search']"
+                     [queryParams]="{ manufacturer: 'Toyota'}"
+                     matRipple fxLayout="column" fxLayoutAlign="center center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 120px; min-width: 125px; width: 125px; padding: 10px; margin-right: 10px;">
+                    <img src="/assets/brand-logos/toyota.png" alt="Toyota" style="width: auto; height: 80px;">
+                    <span style="margin-top: 5px;">Toyota</span>
+                </div>
+
+                <div [routerLink]="['/mobile/search']"
+                     [queryParams]="{ manufacturer: 'Fiat'}"
+                     matRipple fxLayout="column" fxLayoutAlign="center center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 120px; min-width: 125px; width: 125px; padding: 10px; margin-right: 10px;">
+                    <img src="/assets/brand-logos/fiat.png" alt="Fiat" style="width: auto; height: 80px;">
+                    <span style="margin-top: 5px;">Fiat</span>
+                </div>
+
+                <div [routerLink]="['/mobile/search']"
+                     [queryParams]="{ manufacturer: 'Ford'}"
+                     matRipple fxLayout="column" fxLayoutAlign="center center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 120px; min-width: 125px; width: 125px; padding: 10px; margin-right: 10px;">
+                    <img src="/assets/brand-logos/ford.png" alt="Ford" style="width: auto; height: 80px;">
+                    <span style="margin-top: 5px;">Ford</span>
+                </div>
+
+                <div [routerLink]="['/mobile/search']"
+                     [queryParams]="{ manufacturer: 'Smart'}"
+                     matRipple fxLayout="column" fxLayoutAlign="center center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 120px; min-width: 125px; width: 125px; padding: 10px; margin-right: 10px;">
+                    <img src="/assets/brand-logos/smart.png" alt="Smart" style="width: auto; height: 80px;">
+                    <span style="margin-top: 5px;">Smart</span>
+                </div>
+
+                <div [routerLink]="['/mobile/search']"
+                     [queryParams]="{ manufacturer: 'Hyundai'}"
+                     matRipple fxLayout="column" fxLayoutAlign="center center"
+                     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 120px; min-width: 125px; width: 125px; padding: 10px; margin-right: 10px;">
+                    <img src="/assets/brand-logos/hyundai.png" alt="Hyundai" style="width: auto; height: 80px;">
+                    <span style="margin-top: 5px;">Hyundai</span>
+                </div>
+
+                <div style="width: 16px; color: #fbfbfb;">a</div>
+
+            </div>
+            <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Latest
+                listings' | translate }}
+            </div>
+            <mat-divider></mat-divider>
+            <div style="margin: 16px -16px 60px -16px; padding-left: 16px; display: flex; overflow-x: auto;">
+                <div *ngFor="let listing of latestListings" style="min-width: 210px; margin-right: 10px;">
+                    <app-list-item [view]="'defaultCONDENSED'" [listing]="listing" (outputEvent)="handleItemEvent($event)"></app-list-item>
+                </div>
+            </div>
+
+        </div>
 
     </div>
+
+    <!--<div style="width:100% ;height:auto;background-color: #050537">-->
+
+    <!--</div>-->
 
     <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
 

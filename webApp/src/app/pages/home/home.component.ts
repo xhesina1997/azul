@@ -2,6 +2,8 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {Subject} from "rxjs/index";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {takeUntil} from "rxjs/operators";
+import {PaginationService} from "../../services/pagination.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-home',
@@ -10,7 +12,9 @@ import {takeUntil} from "rxjs/operators";
 })
 export class HomeComponent implements OnInit {
 
-    constructor(private _fireStore: AngularFirestore) {
+    constructor(private _fireStore: AngularFirestore,
+                private paginationService: PaginationService,
+                private router: Router,) {
     }
 
     private unSubscribeLatestSubject: Subject<any> = new Subject();
@@ -30,6 +34,20 @@ export class HomeComponent implements OnInit {
                 this.latestListings = res;
                 this.unSubscribeLatestSubject.next();
             });
+    }
+
+    handleItemEvent(event) {
+        switch (event.type) {
+            case "favourite":
+                break;
+            case "open":
+                this.openListing(event.target);
+                break;
+        }
+    }
+    openListing(target) {
+        this.paginationService.selectedListing = target;
+        this.router.navigate(['/mobile/listing'], {queryParams: {id: target.uuid}})
     }
 
     protected view;
