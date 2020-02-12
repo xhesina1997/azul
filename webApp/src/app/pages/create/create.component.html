@@ -83,6 +83,24 @@
                                 </mat-form-field>
                             </div>
                         </div>
+                        <div fxFlex="100" fxLayout="row">
+                            <div fxFlex="50" style="padding-right: 5px">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        {{'Name' | translate }}:
+                                    </mat-label>
+                                    <input formControlName="publisher" matInput type="text">
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="50" style="padding-right: 5px">
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-label>
+                                        {{'Contact' | translate }}:
+                                    </mat-label>
+                                    <input formControlName="phoneNumber" matInput type="number">
+                                </mat-form-field>
+                            </div>
+                        </div>
                         <div fxLayout="row" style="margin-bottom: 10px">
                             <button type="button" mat-stroked-button matStepperNext>{{'Next' | translate}}</button>
                         </div>

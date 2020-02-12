@@ -54,10 +54,12 @@
                     </div>
                     <div fxLayout="column" fxFlex="33.33" fxLayoutAlign="center center">
                         <div matRipple style="width: 55px; height: 51px; margin-bottom: 7px;">
+                            <a [attr.href]="'tel:'+selectedCar.phoneNumber">
                             <button [disableRipple]="true" style="width: 55px; height: 35px;" mat-icon-button>
                                 <mat-icon style="color: #8c8c8c; font-size: 25px; padding: 0; margin-left: 0;">call
                                 </mat-icon>
                             </button>
+                            </a>
                             <div style="width: 55px; text-align: center; color: #8c8c8c; font-size: 13px; margin-top: 0px; margin-bottom: 10px;">
                                 {{'call' | translate}}
                             </div>
@@ -167,6 +169,22 @@
                         <span style="font-weight: 580; color: #8c8c8c">{{'Mileage' | translate}}:</span> &nbsp;{{selectedCar?.mileage}}
                     </div>
                 </div>
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">person</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">{{'Publisher' | translate}}:</span> &nbsp;{{selectedCar?.publisher}}
+                    </div>
+                </div>
+                <div fxFlex="100" style="padding-bottom: 20px" fxLayout="row">
+                    <div fxFlexFill fxFlex="10">
+                        <mat-icon style="font-size: 18px; color: #8c8c8c">phone</mat-icon>
+                    </div>
+                    <div fxFlexFill fxFlex="90">
+                        <span style="font-weight: 580; color: #8c8c8c">{{'Phone Number' | translate}}:</span> &nbsp;{{selectedCar?.phoneNumber}}
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -192,16 +210,17 @@
             border: 2px solid #081637; z-index: 10;">
             <mat-icon style="margin: 4px 3px;" color="primary">arrow_back</mat-icon>
         </div>
-
+        <a [attr.href]="'tel:'+selectedCar.phoneNumber">
         <button style="position: absolute;
             bottom: 16px;
             right: 16px;
             padding: 4px 30px;
             font-size: 18px;
-            border-radius: 25px;" mat-raised-button color="primary">
+            border-radius: 25px;" mat-raised-button color="primary" >
             <mat-icon style="margin-right: 10px">call</mat-icon>
             {{'call' | translate}}
         </button>
+        </a>
 
     </div>
 

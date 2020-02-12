@@ -39,6 +39,8 @@ export class CreateComponent implements OnInit, OnDestroy {
         this.createForm = fb.group({
             title: [null, Validators.required],
             description: [null, Validators.required],
+            publisher: [null, Validators.required],
+            phoneNumber: [null, Validators.required],
             price: [null, Validators.required],
             currency: [null, Validators.required],
             manufacturer: [null, Validators.required],
@@ -481,6 +483,8 @@ export class CreateComponent implements OnInit, OnDestroy {
 
                     this.createForm.patchValue({
                         title: res[0].title,
+                        publisher: res[0].publisher,
+                        phoneNumber: res[0].phoneNumber,
                         description: res[0].description,
                         price: res[0].price.value,
                         currency: res[0].price.currency,
@@ -730,6 +734,8 @@ export class CreateComponent implements OnInit, OnDestroy {
             value: post.price,
             currency: post.currency
         };
+        car.publisher = post.publisher;
+        car.phoneNumber = post.phoneNumber;
         car.manufacturer = post.manufacturer;
         car.model = post.model;
         car.structure = post.structure;

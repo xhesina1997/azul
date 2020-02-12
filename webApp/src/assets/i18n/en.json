@@ -28,6 +28,8 @@
   "Price": "Price",
   "Currency": "Currency",
   "Description": "Description",
+  "Publisher":"Publisher",
+  "Phone number":"Phone number",
   "Next": "Next",
   "Back":"Back",
   "Details": "Details",
