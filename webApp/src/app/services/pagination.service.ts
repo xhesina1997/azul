@@ -86,7 +86,7 @@ export class PaginationService {
             query = this.addFilters(query);
             query = query.orderBy(this.queryOptions.sort, this.queryOptions.reverse ? 'asc' : 'desc');
             query = query.limit(this.queryOptions.size);
-            query = query.startAfter(this.listings[this.listings.length - 1].doc);
+            this.listings[this.listings.length - 1] != null ? query = query.startAfter(this.listings[this.listings.length - 1].doc) : {};
             return query;
         });
         this.mapResponse(col);
