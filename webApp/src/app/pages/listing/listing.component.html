@@ -71,17 +71,18 @@
                 <div [ngStyle.md]="{'height':'158px'}"
                      [ngStyle.lg]="{'height':'158px'}"
                      style="color: #8c8c8c; font-size: 15px;">
-                    <div [ngStyle]="{'height': (descriptionToggle && view!='desktop') ? '55px' : '', 'overflow': 'hidden'}">
+                    <div [ngStyle]="{'height': (descriptionToggle && view!='desktop') ? '55px' : '', 'overflow': 'hidden'}"
+                        style="text-align: justify;">
                         {{selectedCar?.description}}
                     </div>
-                    <div style="color: #5400B8" *ngIf="descriptionToggle && view!='desktop'"
+                    <div style="color: #5400B8; text-align: justify;" *ngIf="descriptionToggle && view!='desktop'"
                          (click)="descriptionToggle = !descriptionToggle">...{{'show more' | translate}}
                     </div>
-                    <div style="color: #5400B8" *ngIf="!descriptionToggle && view!='desktop'"
+                    <div style="color: #5400B8; text-align: justify;" *ngIf="!descriptionToggle && view!='desktop'"
                          (click)="descriptionToggle = !descriptionToggle">...{{'show less' | translate}}
                     </div>
                 </div>
-                <mat-divider style="margin-top: 20px"></mat-divider>
+                <!--<mat-divider style="margin-top: 20px"></mat-divider>-->
             </div>
         </div>
 
@@ -188,11 +189,11 @@
             </div>
         </div>
 
-        <div fxFlex="100" fxLayout="column" fxLayoutAlign="space-around center" >
-            <div>
+        <div fxFlex="100" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+            <span style="font-weight: 580; color: #8c8c8c; font-size: 18px">
                 Similar cars
-            </div>
-            <div fxFlex="100" fxFlexFill fxLayout="row" fxLayoutAlign="space-evenly center">
+            </span>
+            <div *ngIf="view=='desktop'" fxFlex="100" fxFlexFill fxLayout="row" fxLayoutAlign="space-evenly center">
                 <div *ngFor="let car of similarCars" fxFlex="22">
                     <app-list-item [listing]="car"
                                    [view]="'default'"
@@ -200,7 +201,30 @@
                     </app-list-item>
                 </div>
             </div>
-
+            <div *ngIf="view=='tablet'" fxFlex="100" fxFlexFill fxLayout="row" fxLayoutAlign="space-evenly center">
+                <div *ngFor="let car of similarCars.slice(0,2)" fxFlex="48">
+                    <app-list-item [listing]="car"
+                                   [view]="'default'"
+                                   (outputEvent)="handleItemEvent($event)">
+                    </app-list-item>
+                </div>
+            </div>
+            <div *ngIf="view=='tablet'" fxFlex="100" fxFlexFill fxLayout="row" fxLayoutAlign="space-evenly center">
+                <div *ngFor="let car of similarCars.slice(2,4)" fxFlex="48">
+                    <app-list-item [listing]="car"
+                                   [view]="'default'"
+                                   (outputEvent)="handleItemEvent($event)">
+                    </app-list-item>
+                </div>
+            </div>
+            <ng-container *ngIf="view=='mobile'">
+                <div *ngFor="let car of similarCars" >
+                    <app-list-item [listing]="car"
+                                   [view]="'default'"
+                                   (outputEvent)="handleItemEvent($event)">
+                    </app-list-item>
+                </div>
+            </ng-container>
         </div>
 
         <div (click)="goBack()" #back matRipple style="width: 32px;
