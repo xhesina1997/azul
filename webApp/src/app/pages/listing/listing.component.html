@@ -71,13 +71,14 @@
                 <div [ngStyle.md]="{'height':'158px'}"
                      [ngStyle.lg]="{'height':'158px'}"
                      style="color: #8c8c8c; font-size: 15px;">
-                    <div [ngStyle]="{'height': (descriptionToggle && view!='desktop') ? '55px' : '', 'overflow': 'hidden'}">
+                    <div [ngStyle]="{'height': (descriptionToggle && view!='desktop') ? '55px' : '', 'overflow': 'hidden'}"
+                        style="text-align: justify;">
                         {{selectedCar?.description}}
                     </div>
-                    <div style="color: #5400B8" *ngIf="descriptionToggle && view!='desktop'"
+                    <div style="color: #5400B8; text-align: justify;" *ngIf="descriptionToggle && view!='desktop'"
                          (click)="descriptionToggle = !descriptionToggle">...{{'show more' | translate}}
                     </div>
-                    <div style="color: #5400B8" *ngIf="!descriptionToggle && view!='desktop'"
+                    <div style="color: #5400B8; text-align: justify;" *ngIf="!descriptionToggle && view!='desktop'"
                          (click)="descriptionToggle = !descriptionToggle">...{{'show less' | translate}}
                     </div>
                 </div>
