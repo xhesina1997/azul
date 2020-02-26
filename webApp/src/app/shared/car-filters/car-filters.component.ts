@@ -18,12 +18,14 @@ export class CarFiltersComponent implements OnInit, OnChanges {
     ngOnInit() {
         this.getCarBrands();
         this.getCarModels();
-        this.patchExistingFilters();
+
         this.subscribeToValueChanges();
     }
 
     ngOnChanges(changes) {
-
+        if(changes['existingFilters'] != null){
+            this.patchExistingFilters();
+        }
     }
 
     @Output() filtersListener = new Subject();
@@ -42,6 +44,8 @@ export class CarFiltersComponent implements OnInit, OnChanges {
     protected maxYear: number;
 
     patchExistingFilters() {
+
+        console.log(this.existingFilters);
 
         if (this.existingSort != null) {
             if (this.existingSort.sort == 'created' && this.existingSort.reverse == false) {

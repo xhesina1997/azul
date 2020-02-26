@@ -71,17 +71,17 @@
                 <div [ngStyle.md]="{'height':'158px'}"
                      [ngStyle.lg]="{'height':'158px'}"
                      style="color: #8c8c8c; font-size: 15px;">
-                    <div [ngStyle]="{'height': (descriptionToggle && view!='desktop') ? '55px' : '', 'overflow': 'hidden'}">
+                    <div [ngStyle]="{'height': (descriptionToggle && view!='desktop') ? '55px' : '', 'overflow': 'hidden'}"
+                        style="text-align: justify;">
                         {{selectedCar?.description}}
                     </div>
-                    <div style="color: #5400B8" *ngIf="descriptionToggle && view!='desktop'"
+                    <div style="color: #5400B8; text-align: justify;" *ngIf="descriptionToggle && view!='desktop'"
                          (click)="descriptionToggle = !descriptionToggle">...{{'show more' | translate}}
                     </div>
-                    <div style="color: #5400B8" *ngIf="!descriptionToggle && view!='desktop'"
+                    <div style="color: #5400B8; text-align: justify;" *ngIf="!descriptionToggle && view!='desktop'"
                          (click)="descriptionToggle = !descriptionToggle">...{{'show less' | translate}}
                     </div>
                 </div>
-                <mat-divider style="margin-top: 20px"></mat-divider>
             </div>
         </div>
 
@@ -188,20 +188,19 @@
             </div>
         </div>
 
-        <div fxFlex="100" fxLayout="column" fxLayoutAlign="space-around center" >
-            <div>
-                Similar cars
+        <div fxFlex="100" style="padding: 16px">
+            <div style="margin-top: 24px; margin-bottom: 8px; font-size: 18px; color: rgb(140, 140, 140);">{{'Similar cars' | translate }}
             </div>
-            <div fxFlex="100" fxFlexFill fxLayout="row" fxLayoutAlign="space-evenly center">
-                <div *ngFor="let car of similarCars" fxFlex="22">
-                    <app-list-item [listing]="car"
-                                   [view]="'default'"
-                                   (outputEvent)="handleItemEvent($event)">
-                    </app-list-item>
+            <mat-divider></mat-divider>
+            <div style="margin: 16px -16px 60px -16px; padding-left: 16px; display: flex; overflow-x: auto;">
+                <div *ngFor="let listing of similarCars" style="width: 270px; margin-right: 10px;">
+                    <app-list-item [view]="'defaultCONDENSED'" [listing]="listing" (outputEvent)="handleItemEvent($event)"></app-list-item>
                 </div>
             </div>
 
         </div>
+
+
 
         <div (click)="goBack()" #back matRipple style="width: 32px;
             margin: 6px; height: 32px;
