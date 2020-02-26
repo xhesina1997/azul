@@ -20,6 +20,7 @@ import {ActivatedRoute, NavigationEnd, Router, RoutesRecognized} from "@angular/
 import * as firebase from 'firebase/app'
 import {Location} from "@angular/common";
 import {CarFiltersComponent} from "../../shared/car-filters/car-filters.component";
+import {SeoService} from "../../services/seo.service";
 
 @Component({
     selector: 'app-listings',
@@ -38,8 +39,15 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
                 private route: ActivatedRoute,
                 private location: Location,
                 private changeDetector: ChangeDetectorRef,
-                private paginationService: PaginationService) {
-
+                private paginationService: PaginationService,
+                private seo: SeoService) {
+        seo.setSeoTags(
+            'Kerko Makina | Mercedes-Benz, Volkswagen, BMW, Audi | azul.com',
+            'https://azul-50203.web.app/assets/illustrations/meta-img.png',
+            'Makina ne shitje, makina te perdorura, tregu me i madh ku mund te gjej makina azul.com kambio automatike, shitblerje makinash merrjep vetura ne kosove makina ne gjermani okazion makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
+            'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+            'http://localhost:4200/mobile/search'
+        );
     }
 
     ngOnInit() {
