@@ -20,6 +20,7 @@
             </ng-template>
         </button>
         <img src="{{listing?.images[0]?.url != null ? listing?.images[0]?.url : '/assets/illustrations/placeholder.jpg'}}"
+             alt="{{listing?.manufacturer + ' ' + listing?.model + ' ' + listing?.year + ' ' + listing?.title}}"
              style="height: 100%; width: 100%; object-fit:cover;">
     </div>
     <div (click)="open()"  style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" >
@@ -115,6 +116,7 @@
             </ng-template>
         </button>
         <img src="{{listing?.images[0]?.url != null ? listing?.images[0]?.url : '/assets/illustrations/placeholder.jpg'}}"
+             alt="{{listing?.manufacturer + ' ' + listing?.model + ' ' + listing?.year + ' ' + listing?.title}}"
              style=" height: 100%; width: 100%; object-fit:cover;">
     </div>
     <div (click)="open()"  style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" >
@@ -127,6 +129,7 @@
     <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="25" style="height: 60px">
             <img src="{{listing?.images[0]?.url != null ? listing?.images[0]?.url : '/assets/illustrations/placeholder.jpg'}}"
+                 alt="{{listing?.manufacturer + ' ' + listing?.model + ' ' + listing?.year + ' ' + listing?.title}}"
                  style=" height: 60px; width: 100%; object-fit:cover;" (click)="open()" >
         </div>
         <div fxFlex="50" style="margin: 8px" (click)="open()">
@@ -157,6 +160,7 @@
     <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="30" style="height: 130px">
             <img src="{{listing?.images[0]?.url != null ? listing?.images[0]?.url : '/assets/illustrations/placeholder.jpg'}}"
+                 alt="{{listing?.manufacturer + ' ' + listing?.model + ' ' + listing?.year + ' ' + listing?.title}}"
                  style=" height: 130px; width: 100%; object-fit:cover;" (click)="open()">
         </div>
         <div fxFlex="70" style="margin: 8px" (click)="open()">

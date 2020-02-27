@@ -14,11 +14,12 @@
                  [ngStyle.md]="{'margin': '16px', 'border-radius':'16px'}"
                  [ngStyle.lg]="{'margin': '16px', 'border-radius':'16px'}">
                 <owl-carousel-o [options]="customOptions">
-                    <ng-template carouselSlide *ngFor="let image of selectedCar?.images">
+                    <ng-template carouselSlide *ngFor="let image of selectedCar?.images; let i = index">
                         <img [ngStyle.md]="{'height': '400px'}"
                              [ngStyle.lg]="{'height': '400px'}"
                              [ngStyle]="{'height': view == 'mobile' ? '240px' : view == 'tablet' ? '400px' : ''}"
                              style=" background-color: #e6e6e6; width: 100%; object-fit:contain; z-index: 1"
+                             alt="{{selectedCar?.manufacturer + ' ' + selectedCar?.model + ' ' + selectedCar?.year + ' ' + selectedCar?.title + ' image'+i}}"
                              src="{{image.url}}">
                     </ng-template>
                 </owl-carousel-o>
