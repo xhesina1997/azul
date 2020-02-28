@@ -39,7 +39,7 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
                 private route: ActivatedRoute,
                 private location: Location,
                 private changeDetector: ChangeDetectorRef,
-                private paginationService: PaginationService,
+                protected paginationService: PaginationService,
                 private seo: SeoService) {
         seo.setSeoTags(
             'Kerko Makina | Mercedes-Benz, Volkswagen, BMW, Audi | azul.com',

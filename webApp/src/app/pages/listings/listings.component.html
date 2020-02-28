@@ -205,12 +205,24 @@
                                                 <app-list-item
                                                         [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
                                             </div>
+                                        </div>
+
+                                        <div fxLayout="row wrap" *ngIf="!paginationService.done | async">
                                             <div style="margin-bottom: 10px"
                                                  fxFlex.xs="100" fxFlex.sm="50"
                                                  fxFlex.md="100" fxFlex.lg="100"
                                                  [ngStyle.sm]="{'padding':'0 5px'}">
                                                 <app-list-item
                                                         [view]=" view == 'desktop' ? 'desktopLOADING' : 'defaultLOADING'"></app-list-item>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="row wrap" *ngIf="paginationService.done | async">
+                                            <div style="margin-bottom: 10px"
+                                                 fxFlex.xs="100" fxFlex.sm="50"
+                                                 fxFlex.md="100" fxFlex.lg="100"
+                                                 [ngStyle.sm]="{'padding':'0 5px'}">
+                                            done
                                             </div>
                                         </div>
                                     </div>
