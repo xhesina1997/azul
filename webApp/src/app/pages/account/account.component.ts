@@ -5,6 +5,7 @@ import {AngularFirestore} from "@angular/fire/firestore";
 import {takeUntil, map} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/storage";
+import {SeoService} from "../../services/seo.service";
 
 @Component({
     selector: "app-account",
@@ -30,8 +31,16 @@ export class AccountComponent implements OnInit {
         private bottomSheet: MatBottomSheet,
         private authenticationService: AuthenticationService,
         public dialog: MatDialog,
-        private _storage: AngularFireStorage
-    ) {
+        private _storage: AngularFireStorage,
+        private seo : SeoService
+    ){
+        seo.setSeoTags(
+            'Profili im | azul.com',
+            'https://azul-50203.web.app/assets/illustrations/meta-img.png',
+            'Makina ne shitje, makina te perdorura, tregu me i madh ku mund te gjej makina azul.com kambio automatike, shitblerje makinash merrjep vetura ne kosove makina ne gjermani okazion makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
+            'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+            'http://localhost:4200/mobile/account'
+        );
     }
 
     ngOnInit() {

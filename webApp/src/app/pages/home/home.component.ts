@@ -4,6 +4,7 @@ import {AngularFirestore} from "@angular/fire/firestore";
 import {takeUntil} from "rxjs/operators";
 import {PaginationService} from "../../services/pagination.service";
 import {Router} from "@angular/router";
+import {SeoService} from "../../services/seo.service";
 
 @Component({
     selector: 'app-home',
@@ -14,7 +15,16 @@ export class HomeComponent implements OnInit {
 
     constructor(private _fireStore: AngularFirestore,
                 private paginationService: PaginationService,
-                private router: Router,) {
+                private router: Router,
+                private seo: SeoService) {
+        https://azul-50203.web.app/assets/illustrations/meta-img.png
+        seo.setSeoTags(
+            'Makina Ne Shitje | Mercedes-Benz, Volkswagen, BMW, Audi | azul.com',
+            'https://azul-50203.web.app/assets/illustrations/meta-img.png',
+            'Makina ne shitje, makina te perdorura, tregu me i madh ku mund te gjej makina azul.com kambio automatike, shitblerje makinash merrjep vetura ne kosove makina ne gjermani okazion makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
+            'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+            'http://localhost:4200/mobile/home'
+        );
     }
 
     private unSubscribeLatestSubject: Subject<any> = new Subject();

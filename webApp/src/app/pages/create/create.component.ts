@@ -18,6 +18,7 @@ import {reject} from "q";
 import {HttpClient} from "@angular/common/http";
 import {generate} from 'shortid';
 import {TranslateService} from "@ngx-translate/core";
+import {SeoService} from "../../services/seo.service";
 
 @Component({
     selector: "app-create",
@@ -34,8 +35,17 @@ export class CreateComponent implements OnInit, OnDestroy {
         private httpClient: HttpClient,
         private _snackBar: MatSnackBar,
         private ngZone: NgZone,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private seo: SeoService
     ) {
+        seo.setSeoTags(
+            'Shto nje makine falas | azul.com',
+            'https://azul-50203.web.app/assets/illustrations/meta-img.png',
+            'Shto nje makine ne azul.com, hidh nje makine online, listo makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
+            'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+            'http://localhost:4200/mobile/create'
+        );
+
         this.createForm = fb.group({
             title: [null, Validators.required],
             description: [null, Validators.required],

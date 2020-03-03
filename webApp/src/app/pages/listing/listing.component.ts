@@ -6,6 +6,7 @@ import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs/Subject";
 import {Location} from "@angular/common";
 import {PaginationService} from "../../services/pagination.service";
+import {SeoService} from "../../services/seo.service";
 
 @Component({
     selector: 'app-listing',
@@ -18,8 +19,8 @@ export class ListingComponent implements OnInit, OnDestroy {
                 private location: Location,
                 private paginationService: PaginationService,
                 private router: Router,
-                private _fireStore: AngularFirestore) {
-
+                private _fireStore: AngularFirestore,
+                private seo: SeoService) {
     }
 
     protected env = environment;
@@ -68,6 +69,13 @@ export class ListingComponent implements OnInit, OnDestroy {
                 if (this.paginationService.selectedListing != null && this.paginationService.selectedListing.uuid == params.id) {
                     console.log("got listing from service");
                     this.selectedCar = this.paginationService.selectedListing;
+                    this.seo.setSeoTags(
+                        this.selectedCar.title + ' | azul.com',
+                        this.selectedCar.images[0].url,
+                        this.selectedCar.description,
+                        'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+                        'http://localhost:4200/mobile/listing?id='+ this.selectedCar.id
+                    );
                     this.getSimilarCars(this.selectedCar);
                     this.selectedCar.images == null ? this.selectedCar.images = [{url: '/assets/illustrations/placeholder.jpg'}] : {};
                 } else {
@@ -76,6 +84,13 @@ export class ListingComponent implements OnInit, OnDestroy {
                         .valueChanges()
                         .pipe(takeUntil(this.stopSubscriptions)).subscribe(res => {
                         this.selectedCar = res[0];
+                        this.seo.setSeoTags(
+                            this.selectedCar.title + ' | azul.com',
+                            this.selectedCar.images[0].url,
+                            this.selectedCar.description,
+                            'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+                            'http://localhost:4200/mobile/listing?id='+ this.selectedCar.id
+                        );
                         this.getSimilarCars(this.selectedCar);
                         this.selectedCar.images == null ? this.selectedCar.images = [{url: '/assets/illustrations/placeholder.jpg'}] : {};
                         // this.stopSubscriptions.next();
