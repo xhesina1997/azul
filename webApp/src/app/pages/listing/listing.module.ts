@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {ListingRoutingModule} from './listing-routing.module';
 import {ListingComponent} from './listing.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {MatButtonModule, MatDividerModule, MatIconModule, MatRippleModule} from "@angular/material";
+import {MatButtonModule, MatDividerModule, MatIconModule, MatRippleModule, MatSnackBarModule} from "@angular/material";
 import {MatCardModule} from "@angular/material/card";
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {TranslateModule} from '@ngx-translate/core';
@@ -23,7 +23,8 @@ import {ListItemModule} from "../../shared/list-item/list-item.module";
         MatRippleModule,
         MatIconModule,
         TranslateModule,
-        ListItemModule
+        ListItemModule,
+        MatSnackBarModule,
     ],
 })
 export class ListingModule {
