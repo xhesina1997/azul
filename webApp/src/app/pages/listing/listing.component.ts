@@ -7,6 +7,8 @@ import {Subject} from "rxjs/Subject";
 import {Location} from "@angular/common";
 import {PaginationService} from "../../services/pagination.service";
 import {SeoService} from "../../services/seo.service";
+import {AuthenticationService} from "../../auth/authentication.service";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
     selector: 'app-listing',
@@ -20,7 +22,9 @@ export class ListingComponent implements OnInit, OnDestroy {
                 private paginationService: PaginationService,
                 private router: Router,
                 private _fireStore: AngularFirestore,
-                private seo: SeoService) {
+                private seo: SeoService,
+                private authenticationService: AuthenticationService,
+                private snackBar: MatSnackBar) {
     }
 
     env = environment;
@@ -133,5 +137,40 @@ export class ListingComponent implements OnInit, OnDestroy {
       if (event != null) {
           this.router.navigate(['/mobile/listing'], {queryParams: {id: event.target.uuid}})
       }
+    }
+    favourite(item){
+        console.log(item)
+        if (this.authenticationService.isLoggedIn) {
+            item.userEmailsWhoFavourite == null ? item.userEmailsWhoFavourite = [] : {};
+            const previousEntry = item.userEmailsWhoFavourite.find(email => {
+                return email == this.authenticationService.user.email
+            });
+            if (previousEntry != this.authenticationService.user.email || previousEntry == null) {
+                item.userEmailsWhoFavourite.push(this.authenticationService.user.email);
+                let carWithoutDoc = {...item};
+                delete carWithoutDoc.doc;
+                this._fireStore.collection('cars').doc(item.doc.id).set(carWithoutDoc)
+                    .then(res => {
+                        this.snackBar.open('Listing added to favourites.', null, {duration: 1500})
+                    }, error => {
+                        this.snackBar.open('There was an error', null, {duration: 1500})
+                    });
+            } else {
+                this.snackBar.open('Listing already added to favourites', null, {duration: 1500})
+            }
+
+        } else {
+            this.snackBar.open('You need te be logged in to add to favourites', 'log in', {duration: 2000})
+        }
+    }
+    copy(item){
+        document.addEventListener('copy', (e: ClipboardEvent) => {
+            e.clipboardData.setData('text/plain', (item));
+            e.preventDefault();
+            document.removeEventListener('copy', null);
+
+        });
+        document.execCommand('copy');
+        this.snackBar.open('Copied to keyboard',null,{duration:1500});
     }
 }

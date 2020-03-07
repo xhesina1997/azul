@@ -9,7 +9,7 @@
             </div>
         </div>
         <div style="font-weight: 500; color: #8c8c8c">
-            {{listing?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
+            {{listing?.price?.value | currency : listing?.price?.currency : 'symbol' : '1.0-0' }}
         </div>
     </div>
     <div (click)="open()" style="height: 180px; width: 100%; overflow: hidden; position: relative;">
@@ -115,7 +115,7 @@
             </div>
         </div>
         <div style="font-weight: 500; color: #8c8c8c">
-            {{listing?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
+            {{listing?.price?.value | currency : listing?.price?.currency : 'symbol' : '1.0-0' }}
         </div>
     </div>
     <div (click)="open()" style="height: 180px; width: 100%; overflow: hidden; position: relative;">
@@ -184,9 +184,10 @@
                     </div>
                 </div>
                 <div style="font-weight: 500; color: #8c8c8c">
-                    {{listing?.price?.value | currency : 'EUR' : 'symbol' : '1.0-0' }}
+                    {{listing?.price?.value | currency : listing?.price?.currency : 'symbol' : '1.0-0' }}
                 </div>
             </div>
+
             <mat-divider></mat-divider>
             <div fxLayout="row wrap" style="padding: 0; margin-top: 10px">
                 <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
@@ -201,7 +202,7 @@
                     <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/building.png" alt="city">
                     <p style="margin-top:0">{{listing?.city}}</p>
                 </div>
-                <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+                <div style="color: #8c8c8c" fxFlex="50" fxLayout="row" >
                     <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/license-plate.png" alt="plateRegistration">
                     <p style="margin-top:0">{{listing?.plateRegistration}}</p>
                 </div>
