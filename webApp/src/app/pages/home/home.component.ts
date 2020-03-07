@@ -17,18 +17,17 @@ export class HomeComponent implements OnInit {
                 private paginationService: PaginationService,
                 private router: Router,
                 private seo: SeoService) {
-        https://azul-50203.web.app/assets/illustrations/meta-img.png
-        seo.setSeoTags(
-            'Makina Ne Shitje | Mercedes-Benz, Volkswagen, BMW, Audi | azul.com',
-            'https://azul-50203.web.app/assets/illustrations/meta-img.png',
-            'Makina ne shitje, makina te perdorura, tregu me i madh ku mund te gjej makina azul.com kambio automatike, shitblerje makinash merrjep vetura ne kosove makina ne gjermani okazion makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
-            'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
-            'http://localhost:4200/mobile/home'
-        );
+            seo.setSeoTags(
+                'Makina Ne Shitje | YouScout | Mercedes-Benz, Volkswagen, BMW, Audi | youscout.net',
+                'https://youscout.net/assets/illustrations/meta-img.png',
+                'Makina ne shitje, makina te perdorura, tregu me i madh ku mund te gjej makina youscout.net kambio automatike, shitblerje makinash vetura ne kosove makina ne gjermani okazion makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
+                'makina ne shitje, makina te perdorura, youscout.net, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+                'https://youscout.net/mobile/home'
+            );
     }
 
     private unSubscribeLatestSubject: Subject<any> = new Subject();
-    protected latestListings: any;
+    latestListings: any;
 
     ngOnInit() {
         this.getLatestListings();
@@ -55,12 +54,14 @@ export class HomeComponent implements OnInit {
                 break;
         }
     }
+
     openListing(target) {
         this.paginationService.selectedListing = target;
         this.router.navigate(['/mobile/listing'], {queryParams: {id: target.uuid}})
     }
 
-    protected view;
+    view;
+
     @HostListener('window:resize', ['$event'])
     onResize(event) {
         event.target.innerWidth > 960 ? this.view = 'desktop' : event.target.innerWidth > 600 ? this.view = 'tablet' : this.view = 'mobile';

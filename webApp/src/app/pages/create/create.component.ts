@@ -27,7 +27,7 @@ import {SeoService} from "../../services/seo.service";
 })
 export class CreateComponent implements OnInit, OnDestroy {
     constructor(
-        private authService: AuthenticationService,
+        public authService: AuthenticationService,
         private fb: FormBuilder,
         private _firestore: AngularFirestore,
         private _storage: AngularFireStorage,
@@ -39,11 +39,11 @@ export class CreateComponent implements OnInit, OnDestroy {
         private seo: SeoService
     ) {
         seo.setSeoTags(
-            'Shto nje makine falas | azul.com',
-            'https://azul-50203.web.app/assets/illustrations/meta-img.png',
-            'Shto nje makine ne azul.com, hidh nje makine online, listo makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
-            'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
-            'http://localhost:4200/mobile/create'
+            'Shto nje makine falas | youscout.net',
+            'https://youscout.net/assets/illustrations/meta-img.png',
+            'Shto nje makine ne youscout.net, hidh nje makine online, listo makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
+            'makina ne shitje, makina te perdorura, youscout.net, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+            'http://youscout.net/mobile/create'
         );
 
         this.createForm = fb.group({
@@ -67,12 +67,12 @@ export class CreateComponent implements OnInit, OnDestroy {
         this.ngZone = ngZone;
     }
 
-    protected finishedUploading: boolean = false;
-    protected uploading: boolean = false;
-    protected createForm: FormGroup;
-    protected uploadedFiles = [];
+      finishedUploading: boolean = false;
+      uploading: boolean = false;
+      createForm: FormGroup;
+      uploadedFiles = [];
     @ViewChild("myPond") myPond: any;
-    protected pondOptions = {
+      pondOptions = {
         class: "my-filepond",
         multiple: true,
         labelIdle: '<div style="cursor: pointer">Upload images</div>',
@@ -81,9 +81,9 @@ export class CreateComponent implements OnInit, OnDestroy {
             return generate();
         }
     };
-    protected carModelList: any;
-    protected carBrandsList: any;
-    protected filteredModelList: any;
+      carModelList: any;
+      carBrandsList: any;
+      filteredModelList: any;
     postToBeEditedUuid: string = "";
 
     private unSubscribeSubject: Subject<any> = new Subject();
@@ -112,7 +112,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     disableModel: any = true;
     productionYear = [];
     limitOfPostingReached: boolean = false;
-    protected user: any;
+      user: any;
     private unSubscribeAuthSubject: Subject<any> = new Subject();
     private unSubscribeUserListingsSubject: Subject<any> = new Subject();
     carTypes = [
@@ -403,7 +403,7 @@ export class CreateComponent implements OnInit, OnDestroy {
         'Tropojë',
         'Vlorë'
     ];
-    protected postToBeEdited: any;
+      postToBeEdited: any;
 
     ngOnInit() {
 

@@ -23,8 +23,8 @@ export class ListingComponent implements OnInit, OnDestroy {
                 private seo: SeoService) {
     }
 
-    protected env = environment;
-    protected descriptionToggle = true;
+    env = environment;
+    descriptionToggle = true;
     customOptions: any = {
         loop: false,
         mouseDrag: true,
@@ -50,12 +50,12 @@ export class ListingComponent implements OnInit, OnDestroy {
             }
         },
     }
-    protected selectedCar: any = {};
-    protected stopSubscriptions = new Subject();
+    selectedCar: any = {};
+    stopSubscriptions = new Subject();
 
     public similarCars: any[] = [];
 
-    protected view;
+    view;
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
@@ -70,11 +70,11 @@ export class ListingComponent implements OnInit, OnDestroy {
                     console.log("got listing from service");
                     this.selectedCar = this.paginationService.selectedListing;
                     this.seo.setSeoTags(
-                        this.selectedCar.title + ' | azul.com',
+                        this.selectedCar.title + ' | youscout.net',
                         this.selectedCar.images[0].url,
                         this.selectedCar.description,
-                        'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
-                        'http://localhost:4200/mobile/listing?id='+ this.selectedCar.id
+                        'makina ne shitje, makina te perdorura, youscout.net, kambio automatike, shitblerje makinash, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+                        'http://youscout.net/mobile/listing?id='+ this.selectedCar.id
                     );
                     this.getSimilarCars(this.selectedCar);
                     this.selectedCar.images == null ? this.selectedCar.images = [{url: '/assets/illustrations/placeholder.jpg'}] : {};
@@ -85,11 +85,11 @@ export class ListingComponent implements OnInit, OnDestroy {
                         .pipe(takeUntil(this.stopSubscriptions)).subscribe(res => {
                         this.selectedCar = res[0];
                         this.seo.setSeoTags(
-                            this.selectedCar.title + ' | azul.com',
+                            this.selectedCar.title + ' | youscout.net',
                             this.selectedCar.images[0].url,
                             this.selectedCar.description,
-                            'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
-                            'http://localhost:4200/mobile/listing?id='+ this.selectedCar.id
+                            'makina ne shitje, makina te perdorura, youscout.net, kambio automatike, shitblerje makinash, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+                            'http://youscout.net/mobile/listing?id='+ this.selectedCar.id
                         );
                         this.getSimilarCars(this.selectedCar);
                         this.selectedCar.images == null ? this.selectedCar.images = [{url: '/assets/illustrations/placeholder.jpg'}] : {};

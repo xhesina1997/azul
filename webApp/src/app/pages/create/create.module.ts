@@ -25,7 +25,7 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFileRename from 'filepond-plugin-file-rename';
 import { TranslateModule} from '@ngx-translate/core';
 // Import the plugin styles
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+// import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 import FilePondPluginImageTransform from 'filepond-plugin-image-transform';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImageResize from 'filepond-plugin-image-resize';

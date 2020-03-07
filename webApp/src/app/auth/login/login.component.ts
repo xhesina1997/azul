@@ -14,14 +14,14 @@ export class LoginComponent implements OnInit {
       private router: Router
   ) { }
 
-  protected userNameOrEmail: string;
-  protected password: string;
+    userNameOrEmail: string;
+    password: string;
 
   ngOnInit() {
 
   }
 
-  protected submit(key) : void {
+  submit(key) : void {
     if(key == 'email') this.authenticationService.login(this.userNameOrEmail, this.password);
     else if (key == 'google') this.authenticationService.loginWithGoogle();
   }

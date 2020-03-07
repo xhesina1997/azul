@@ -15,15 +15,15 @@ export class RegisterComponent implements OnInit {
     ) {
     }
 
-    protected name: string;
-    protected username: string;
-    protected email: string;
-    protected password: string;
+      name: string;
+      username: string;
+      email: string;
+      password: string;
 
     ngOnInit() {
     }
 
-    protected submit(): void {
+    submit(): void {
         let singUpRequestData: any = {
             name: this.name,
             username: this.username,

@@ -45,11 +45,11 @@ export class PaginationService {
     }
 
     addFilters(query: Query){
-        console.log(this.queryOptions.filters);
+        // console.log(this.queryOptions.filters);
         if (this.queryOptions.filters != null) {
             for(let filter in this.queryOptions.filters){
-                console.log(filter);
-                console.log(this.queryOptions.filters[filter]);
+                // console.log(filter);
+                // console.log(this.queryOptions.filters[filter]);
                 if(filter != 'sort' && filter != 'direction'){
                     if(filter == 'value'){
                         if(this.queryOptions.filters[filter][0] != null){
@@ -111,7 +111,7 @@ export class PaginationService {
                     this.noListings? this.noListings = false : {};
                     this.listings = this.listings.concat(response);
                     if(response.length < this.queryOptions.size) this.done.next(true);
-                    console.log(this.listings);
+                    // console.log(this.listings);
                 }
                 this.loading.next(false);
                 this.stopSubscriptions.next();

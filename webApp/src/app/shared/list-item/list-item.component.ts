@@ -1,7 +1,6 @@
 import {Component, OnInit, Input, Output} from '@angular/core';
 import {Subject} from "rxjs/Subject";
 import { Router } from '@angular/router';
-import { EventService } from 'src/app/services/event.service';
 
 @Component({
     selector: 'app-list-item',

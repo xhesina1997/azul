@@ -1,4 +1,4 @@
-<div *ngIf="view == 'default'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; min-height: 318px">
+<div *ngIf="view == 'default'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; min-height: 318px" fxLayout="column">
     <div style="margin: 8px" fxLayout="row" fxLayoutAlign="space-between start">
         <div>
             <div>
@@ -54,7 +54,17 @@
         <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Fuel' | translate}}:</i>{{listing?.fuel}}</p>-->
         <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'City' | translate}}:</i>{{listing?.city}}</p>-->
         <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Plate Registration' | translate}}:</i>{{listing?.plateRegistration}}</p>-->
+
     </div>
+
+    <div style="padding: 0 8px" fxLayout="column">
+        <mat-divider></mat-divider>
+        <div *ngIf="listing?.organic == false" style="color: #8c8c8c" fxFlex="100" fxLayout="row" fxLayoutAlign="end">
+            <p style="margin-top:4px; margin-bottom: 4px; font-size: 12px;">origin: {{listing?.origin}}</p>
+        </div>
+    </div>
+
+
 </div>
 <div *ngIf="view == 'defaultLOADING'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; min-height: 338px">
     <div style="margin: 8px" fxLayout="row" fxLayoutAlign="space-between start">
@@ -195,10 +205,6 @@
                     <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/license-plate.png" alt="plateRegistration">
                     <p style="margin-top:0">{{listing?.plateRegistration}}</p>
                 </div>
-
-                <!--<div *ngIf="listing?.organic == false" style="color: #8c8c8c" fxFlex="100" fxLayout="row">-->
-                    <!--<p style="margin-top:0">from {{listing?.origin}}</p>-->
-                <!--</div>-->
             </div>
         </div>
     </div>

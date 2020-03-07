@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 
 import { auth } from  'firebase/app';
@@ -6,6 +6,7 @@ import { AngularFireAuth } from  "@angular/fire/auth";
 import { User } from  'firebase';
 import {Router} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
+import {isPlatformBrowser} from "@angular/common";
 
 @Injectable({
     providedIn: 'root'
@@ -18,15 +19,16 @@ export class AuthenticationService {
         public  afAuth:  AngularFireAuth,
         public  router:  Router,
         private cookieService: CookieService,
+        @Inject(PLATFORM_ID) private platform: Object
     ) {
         this.afAuth.authState.subscribe(user => {
             if (user) {
                 console.log("FIREBASE USER: ", user);
                 this.user = user;
                 AuthenticationService.loginSubject.next(this.user);
-                localStorage.setItem('user', JSON.stringify(this.user));
+                isPlatformBrowser(this.platform) ? localStorage.setItem('user', JSON.stringify(this.user)) : {};
             } else {
-                localStorage.setItem('user', null);
+                isPlatformBrowser(this.platform) ? localStorage.setItem('user', null) : {};
             }
         });
 
@@ -54,11 +56,11 @@ export class AuthenticationService {
 
     async logout(){
         await this.afAuth.auth.signOut();
-        localStorage.removeItem('user');
+        isPlatformBrowser(this.platform) ? localStorage.removeItem('user') : {};
         this.router.navigate(['auth/login']);
     }
     get isLoggedIn(): boolean {
-        const  user  =  JSON.parse(localStorage.getItem('user'));
+        const  user  =  isPlatformBrowser(this.platform) ? JSON.parse(localStorage.getItem('user')) : {};
         return  user  !==  null;
     }
     //====================FIREBASE SHIT======================//

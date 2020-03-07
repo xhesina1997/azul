@@ -29,7 +29,7 @@ import {SeoService} from "../../services/seo.service";
 })
 export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
 
-    @ViewChild('carFilters') carFilters : CarFiltersComponent;
+    @ViewChild('carFilters') carFilters: CarFiltersComponent;
 
     constructor(private authenticationService: AuthenticationService,
                 private snackBar: MatSnackBar,
@@ -42,11 +42,11 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
                 protected paginationService: PaginationService,
                 private seo: SeoService) {
         seo.setSeoTags(
-            'Kerko Makina | Mercedes-Benz, Volkswagen, BMW, Audi | azul.com',
-            'https://azul-50203.web.app/assets/illustrations/meta-img.png',
-            'Makina ne shitje, makina te perdorura, tregu me i madh ku mund te gjej makina azul.com kambio automatike, shitblerje makinash merrjep vetura ne kosove makina ne gjermani okazion makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
-            'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
-            'http://localhost:4200/mobile/search'
+            'Kerko Makina | YouScout | Mercedes-Benz, Volkswagen, BMW, Audi | youscout.net',
+            'https://youscout.net/assets/illustrations/meta-img.png',
+            'Makina ne shitje, makina te perdorura, tregu me i madh ku mund te gjej makina youscout.net kambio automatike, shitblerje makinash vetura ne kosove makina ne gjermani okazion makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
+            'makina ne shitje, makina te perdorura, youscout.net, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+            'http://youscout.net/mobile/search'
         );
     }
 
@@ -91,9 +91,9 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @ViewChild('filters') filters: any;
     @ViewChild('vsViewport') vsViewport: CdkVirtualScrollViewport;
-    protected view;
-    protected user = this.authenticationService.user;
-    protected stopQuerySubscription = new Subject();
+    view;
+    user = this.authenticationService.user;
+    stopQuerySubscription = new Subject();
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
@@ -101,7 +101,7 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
 
-    protected filterIcons = {
+    filterIcons = {
         manufacturer: 'build',
         model: 'merge_type',
         structure: 'directions_car',

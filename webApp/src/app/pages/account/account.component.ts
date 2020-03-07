@@ -15,16 +15,16 @@ import {SeoService} from "../../services/seo.service";
 export class AccountComponent implements OnInit {
     @ViewChild("deleteCarModal") deleteCarModal: any;
     @ViewChild("bottomSheet") bottomSheetContent: any;
-    protected user;
+      user;
     public dialogRef: any;
-    protected displayed = 0;
-    protected listingsCreatedByUser: any[] = [];
-    protected favouriteListings: any[] = [];
+      displayed = 0;
+      listingsCreatedByUser: any[] = [];
+      favouriteListings: any[] = [];
     private unSubscribeAuthSubject: Subject<any> = new Subject();
     private unSubscribeUserListingsSubject: Subject<any> = new Subject();
     private unSubscribeFavouritesSubject: Subject<any> = new Subject();
 
-    protected carToBeDeleted: any;
+      carToBeDeleted: any;
 
     constructor(
         private _fireStore: AngularFirestore,
@@ -35,11 +35,11 @@ export class AccountComponent implements OnInit {
         private seo : SeoService
     ){
         seo.setSeoTags(
-            'Profili im | azul.com',
-            'https://azul-50203.web.app/assets/illustrations/meta-img.png',
-            'Makina ne shitje, makina te perdorura, tregu me i madh ku mund te gjej makina azul.com kambio automatike, shitblerje makinash merrjep vetura ne kosove makina ne gjermani okazion makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
-            'makina ne shitje, makina te perdorura, azul.com, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
-            'http://localhost:4200/mobile/account'
+            'Profili im | youscout.net',
+            'https://youscout.net/assets/illustrations/meta-img.png',
+            'Makina ne shitje, makina te perdorura, tregu me i madh ku mund te gjej makina youscout.net kambio automatike, shitblerje makinash vetura ne kosove makina ne gjermani okazion makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
+            'makina ne shitje, makina te perdorura, youscout.net, kambio automatike, shitblerje makinash, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+            'http://youscout.net/mobile/account'
         );
     }
 
@@ -140,7 +140,7 @@ export class AccountComponent implements OnInit {
         this.authenticationService.logout();
     }
 
-    protected view;
+      view;
     @HostListener('window:resize', ['$event'])
     onResize(event) {
         event.target.innerWidth > 960 ? this.view = 'desktop' : event.target.innerWidth > 600 ? this.view = 'tablet' : this.view = 'mobile';

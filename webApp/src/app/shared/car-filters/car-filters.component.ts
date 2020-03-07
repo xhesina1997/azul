@@ -35,13 +35,13 @@ export class CarFiltersComponent implements OnInit, OnChanges {
     @Input() existingSort: any;
 
 
-    protected filters: any = {};
-    protected manufacturer: any;
-    protected model: any;
-    protected minValue: number;
-    protected maxValue: number;
-    protected minYear: number;
-    protected maxYear: number;
+      filters: any = {};
+      manufacturer: any;
+      model: any;
+      minValue: number;
+      maxValue: number;
+      minYear: number;
+      maxYear: number;
 
     patchExistingFilters() {
 
@@ -140,7 +140,7 @@ export class CarFiltersComponent implements OnInit, OnChanges {
         }
     }
 
-    protected limitOrderBy = false;
+      limitOrderBy = false;
 
     checkValueForOrderBy(value) {
         console.log(value);
@@ -185,7 +185,7 @@ export class CarFiltersComponent implements OnInit, OnChanges {
 
 
     //==============SLIDERS===============//
-    protected options = {
+      options = {
         floor: 0,
         ceil: 200000
     };
