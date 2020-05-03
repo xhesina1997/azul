@@ -1,5 +1,5 @@
-<ng-container style="height: 100%;" *ngIf="view == 'tablet' || view =='mobile'">
-    <cdk-virtual-scroll-viewport #vsViewport [itemSize]="view == 'tablet' ? '140' : '375'"
+<ng-container style="height: 100%; position: relative" *ngIf="view == 'tablet' || view =='mobile'">
+    <cdk-virtual-scroll-viewport #vsViewport [itemSize]="view == 'tablet' ? '148' : '375'"
                                  style="height: 100%; max-width: 100%">
         <!--<button (click)="scrollToItem()">test</button>-->
         <div style="padding: 0 16px 16px 16px; height: 100%;">
@@ -87,7 +87,6 @@
                                 </div>
                             </div>
 
-
                         </div>
 
                     </div>
@@ -95,9 +94,15 @@
 
                 <div fxHide fxShow.lgstyle="width: calc((100% - 1250px)/2)"></div>
             </div>
-
         </div>
     </cdk-virtual-scroll-viewport>
+    <div style="position: absolute; bottom: 8px; right: 8px; display: block;">
+        <button mat-mini-fab aria-label="Back to top"
+                (click)="scrollToTop()">
+            <mat-icon>arrow_upward</mat-icon>
+        </button>
+    </div>
+
 </ng-container>
 
 <ng-container style="height: 100%;" *ngIf="view == 'desktop'">
@@ -173,7 +178,7 @@
 
                         <div style="height: calc(100% - 68px)">
                             <ng-container>
-                                <cdk-virtual-scroll-viewport #vsViewport [itemSize]="'130'"
+                                <cdk-virtual-scroll-viewport #vsViewport [itemSize]="'148'"
                                                              style="height: 100%; width: 100%">
 
                                     <div fxLayout="column">

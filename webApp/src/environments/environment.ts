@@ -7,7 +7,7 @@ export const environment = {
     production: false,
     apiUrl: 'http://localhost:8762/',
 
-    manufacturers : [
+    manufacturers :[
         'Mercedes-Benz',
         'Volkswagen',
         'Audi',

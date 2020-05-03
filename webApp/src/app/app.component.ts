@@ -3,6 +3,9 @@ import {TranslateService} from '@ngx-translate/core';
 import {LOCALE_ID} from '@angular/core';
 import {EventService} from "./services/event.service";
 import {isPlatformBrowser} from "@angular/common";
+import {NavigationEnd, Router} from "@angular/router";
+
+declare let gtag: any;
 
 @Component({
     selector: 'app-root',
@@ -15,7 +18,19 @@ export class AppComponent {
     applicationSettings = {language: "sq"};
 
     constructor(private translate: TranslateService,
+                private router: Router,
                 @Inject(PLATFORM_ID) private platform: Object) {
+
+        this.router.events.subscribe(event => {
+            if(event instanceof NavigationEnd){
+                gtag('config', 'G-P4KW16RS51',
+                    {
+                        'page_path': event.urlAfterRedirects
+                    }
+                );
+            }
+        });
+
         if(isPlatformBrowser(this.platform)){
             if (localStorage.getItem('applicationSettings') != null) {
                 translate.setDefaultLang(JSON.parse(localStorage.getItem('applicationSettings')).language);

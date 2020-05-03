@@ -388,19 +388,20 @@ export class CarFiltersComponent implements OnInit, OnChanges {
     public filteredModelList: any;
 
     filterModelsByBrand(event) {
-        this.filteredModelList = [];
-        if (event != null) {
-            this.disableModel = false
-        }
+        setTimeout(() => {
+            this.filteredModelList = [];
+            if (event != null) {
+                this.disableModel = false
+            }
 
-        this.filteredModelList = this.carModelList[event];
-        this.modelList = this.filteredModelList;
-        this.filteredModels = this.searchedModel.valueChanges
-            .pipe(
-                startWith(''),
-                map(value => this._filter(value, this.modelList))
-            );
-
+            this.filteredModelList = this.carModelList[event];
+            this.modelList = this.filteredModelList;
+            this.filteredModels = this.searchedModel.valueChanges
+                .pipe(
+                    startWith(''),
+                    map(value => this._filter(value, this.modelList))
+                );
+        }, 300)
     }
 
 }

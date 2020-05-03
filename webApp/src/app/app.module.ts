@@ -11,11 +11,11 @@ import {CookieService} from "ngx-cookie-service";
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
-import {AngularFirestoreModule} from "@angular/fire/firestore";
-import {AngularFireStorage, AngularFireStorageModule} from "@angular/fire/storage";
+import { AngularFirestoreModule} from "@angular/fire/firestore";
+import { AngularFireStorageModule} from "@angular/fire/storage";
 import { ScrollableDirective } from './directives/scrollable.directive';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 var config = {
     apiKey: "AIzaSyCwPRzecRZQMzJe9-V0HLhvuJc5wQFOM2c",
@@ -52,7 +52,9 @@ var config = {
             }
         })
     ],
-    providers: [CookieService],
+    providers: [
+        CookieService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

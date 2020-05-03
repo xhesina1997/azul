@@ -9,6 +9,7 @@ import {PaginationService} from "../../services/pagination.service";
 import {SeoService} from "../../services/seo.service";
 import {AuthenticationService} from "../../auth/authentication.service";
 import {MatSnackBar} from "@angular/material";
+import {AnalyticsService} from "../../services/analytics.service";
 
 @Component({
     selector: 'app-listing',
@@ -24,6 +25,7 @@ export class ListingComponent implements OnInit, OnDestroy {
                 private _fireStore: AngularFirestore,
                 private seo: SeoService,
                 private authenticationService: AuthenticationService,
+                private analytics: AnalyticsService,
                 private snackBar: MatSnackBar) {
     }
 
@@ -73,31 +75,20 @@ export class ListingComponent implements OnInit, OnDestroy {
                 if (this.paginationService.selectedListing != null && this.paginationService.selectedListing.uuid == params.id) {
                     console.log("got listing from service");
                     this.selectedCar = this.paginationService.selectedListing;
-                    this.seo.setSeoTags(
-                        this.selectedCar.title + ' | youscout.net',
-                        this.selectedCar.images[0].url,
-                        this.selectedCar.description,
-                        'makina ne shitje, makina te perdorura, youscout.net, kambio automatike, shitblerje makinash, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
-                        'http://youscout.net/mobile/listing?id='+ this.selectedCar.id
-                    );
+                    this.setSeo();
                     this.getSimilarCars(this.selectedCar);
                     this.selectedCar.images == null ? this.selectedCar.images = [{url: '/assets/illustrations/placeholder.jpg'}] : {};
+                    this.sendAnalytics();
                 } else {
                     console.log("got listing from backend");
                     this._fireStore.collection('cars', ref => ref.where('uuid', '==', params.id).limit(1))
                         .valueChanges()
                         .pipe(takeUntil(this.stopSubscriptions)).subscribe(res => {
                         this.selectedCar = res[0];
-                        this.seo.setSeoTags(
-                            this.selectedCar.title + ' | youscout.net',
-                            this.selectedCar.images[0].url,
-                            this.selectedCar.description,
-                            'makina ne shitje, makina te perdorura, youscout.net, kambio automatike, shitblerje makinash, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
-                            'http://youscout.net/mobile/listing?id='+ this.selectedCar.id
-                        );
+                        this.setSeo();
                         this.getSimilarCars(this.selectedCar);
                         this.selectedCar.images == null ? this.selectedCar.images = [{url: '/assets/illustrations/placeholder.jpg'}] : {};
-                        // this.stopSubscriptions.next();
+                        this.sendAnalytics();
                     })
                 }
             }
@@ -107,6 +98,20 @@ export class ListingComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.stopSubscriptions.next();
         this.stopSubscriptions.complete();
+    }
+
+    setSeo(){
+        this.seo.setSeoTags(
+            this.selectedCar.title + ' | youscout.net',
+            this.selectedCar.images[0].url,
+            this.selectedCar.description,
+            'makina ne shitje, makina te perdorura, youscout.net, kambio automatike, shitblerje makinash, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
+            'http://youscout.net/mobile/listing?id='+ this.selectedCar.id
+        );
+    }
+
+    sendAnalytics(){
+        this.analytics.eventEmitter('item_view', 'view_tracking', 'view', null, this.selectedCar.uuid)
     }
 
     goBack() {

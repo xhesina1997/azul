@@ -7,13 +7,15 @@ import {filter, map, pairwise, take, takeUntil} from "rxjs/operators";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Subject} from "rxjs/Subject";
 import {Router, RoutesRecognized} from "@angular/router";
+import {AnalyticsService} from "./analytics.service";
 
 
 @Injectable()
 export class PaginationService {
 
     constructor(private _fireStore: AngularFirestore,
-                private router: Router) {
+                private router: Router,
+                private analytics: AnalyticsService) {
         this.router.events
             .pipe(filter(e => e instanceof RoutesRecognized), pairwise(), map((e: [RoutesRecognized, RoutesRecognized]) => e[0].url))
             .subscribe((prev: string) => {
@@ -68,6 +70,7 @@ export class PaginationService {
     }
 
     getInitialData() {
+        this.sendSearchAnalytics();
         let col = this._fireStore.collection('cars', ref => {
             let query: Query = ref;
             query = this.addFilters(query);
@@ -81,6 +84,8 @@ export class PaginationService {
     }
 
     handleScroll() {
+        console.log("getting others");
+        this.sendNextPageAnalytics();
         let col = this._fireStore.collection('cars', ref => {
             let query: Query = ref;
             query = this.addFilters(query);
@@ -124,5 +129,22 @@ export class PaginationService {
         this.stopSubscriptions.complete();
         this.done.complete();
         this.loading.complete();
+    }
+
+    sendSearchAnalytics(){
+        this.analytics.eventEmitter(
+            'search',
+            'search_tracking',
+            'search',
+            this.queryOptions.filters == null ? 'all' : 'with_filters',
+            this.queryOptions.filters);
+    }
+    sendNextPageAnalytics(){
+        this.analytics.eventEmitter(
+            'next_page',
+            'search_tracking',
+            'search',
+            this.queryOptions.filters == null ? 'all' : 'with_filters',
+            this.queryOptions.filters);
     }
 }

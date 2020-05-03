@@ -1,4 +1,6 @@
-<div *ngIf="view == 'default'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; min-height: 318px" fxLayout="column">
+<div *ngIf="view == 'default'"
+     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 375px"
+     fxLayout="column">
     <div style="margin: 8px" fxLayout="row" fxLayoutAlign="space-between start">
         <div>
             <div>
@@ -13,7 +15,8 @@
         </div>
     </div>
     <div (click)="open()" style="height: 180px; width: 100%; overflow: hidden; position: relative;">
-        <button (click)="$event.stopPropagation(); favourite()" mat-icon-button style="position: absolute; bottom: 0; right: 0">
+        <button (click)="$event.stopPropagation(); favourite()" mat-icon-button
+                style="position: absolute; bottom: 0; right: 0">
             <mat-icon *ngIf="listing.favouritedByUser == null; else faved" [color]="'accent'">favorite_border</mat-icon>
             <ng-template #faved>
                 <mat-icon *ngIf="listing.favouritedByUser == true" [color]="'accent'">favorite</mat-icon>
@@ -23,7 +26,7 @@
              alt="{{listing?.manufacturer + ' ' + listing?.model + ' ' + listing?.year + ' ' + listing?.title}}"
              style="height: 100%; width: 100%; object-fit:cover;">
     </div>
-    <div (click)="open()"  style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" >
+    <div (click)="open()" style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
         {{listing?.title}}
     </div>
     <div style="margin: 8px">
@@ -43,12 +46,13 @@
             <p style="margin-top:0">{{listing?.city}}</p>
         </div>
         <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
-            <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/license-plate.png" alt="plateRegistration">
+            <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/license-plate.png"
+                 alt="plateRegistration">
             <p style="margin-top:0">{{listing?.plateRegistration}}</p>
         </div>
 
         <!--<div *ngIf="listing?.organic == false" style="color: #8c8c8c" fxFlex="100" fxLayout="row">-->
-            <!--<p style="margin-top:0">from {{listing?.origin}}</p>-->
+        <!--<p style="margin-top:0">from {{listing?.origin}}</p>-->
         <!--</div>-->
         <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Transmission' | translate}}:</i>{{listing?.transmission}}</p>-->
         <!--<p style="margin-top:0" fxFlex="50"><i style="color: #8c8c8c">{{'Fuel' | translate}}:</i>{{listing?.fuel}}</p>-->
@@ -66,7 +70,9 @@
 
 
 </div>
-<div *ngIf="view == 'defaultLOADING'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; min-height: 338px">
+
+<div *ngIf="view == 'defaultLOADING'"
+     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; height: 375px">
     <div style="margin: 8px" fxLayout="row" fxLayoutAlign="space-between start">
         <div>
             <div style="width: 170px; height: 17px; margin: 1px 0; background-color: #e2e2e2"></div>
@@ -104,7 +110,8 @@
     </div>
 </div>
 
-<div *ngIf="view == 'defaultCONDENSED'" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; ">
+<div *ngIf="view == 'defaultCONDENSED'"
+     style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; ">
     <div style="margin: 8px" fxLayout="row" fxLayoutAlign="space-between start">
         <div>
             <div style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 125px">
@@ -119,7 +126,8 @@
         </div>
     </div>
     <div (click)="open()" style="height: 180px; width: 100%; overflow: hidden; position: relative;">
-        <button (click)="$event.stopPropagation(); favourite()" mat-icon-button style="position: absolute; bottom: 0; right: 0">
+        <button (click)="$event.stopPropagation(); favourite()" mat-icon-button
+                style="position: absolute; bottom: 0; right: 0">
             <mat-icon *ngIf="listing.favouritedByUser == null; else faved" [color]="'accent'">favorite_border</mat-icon>
             <ng-template #faved>
                 <mat-icon *ngIf="listing.favouritedByUser == true" [color]="'accent'">favorite</mat-icon>
@@ -129,18 +137,18 @@
              alt="{{listing?.manufacturer + ' ' + listing?.model + ' ' + listing?.year + ' ' + listing?.title}}"
              style=" height: 100%; width: 100%; object-fit:cover;">
     </div>
-    <div (click)="open()"  style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" >
+    <div (click)="open()" style="margin: 8px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
         {{listing?.title}}
     </div>
 </div>
 
-
-<div *ngIf="view == 'userSubmission'" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white">
+<div *ngIf="view == 'userSubmission'"
+     style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white">
     <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="25" style="height: 60px">
             <img src="{{listing?.images[0]?.url != null ? listing?.images[0]?.url : '/assets/illustrations/placeholder.jpg'}}"
                  alt="{{listing?.manufacturer + ' ' + listing?.model + ' ' + listing?.year + ' ' + listing?.title}}"
-                 style=" height: 60px; width: 100%; object-fit:cover;" (click)="open()" >
+                 style=" height: 60px; width: 100%; object-fit:cover;" (click)="open()">
         </div>
         <div fxFlex="50" style="margin: 8px" (click)="open()">
             <div style="margin-bottom: 4px;">
@@ -157,7 +165,7 @@
                 </button>
             </div>
             <div fxFlex="50">
-                <button mat-icon-button color="primary"  (click)="editPost(listing)">
+                <button mat-icon-button color="primary" (click)="editPost(listing)">
                     <mat-icon>edit</mat-icon>
                 </button>
             </div>
@@ -166,14 +174,22 @@
     </div>
 </div>
 
-<div *ngIf="view == 'desktop'" style="width:100%; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white;">
+<div *ngIf="view == 'desktop'"
+     style="width:100%; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white;">
     <div fxLayout="row" fxLayoutAlign="space-between start">
-        <div fxFlex="30" style="height: 130px">
+        <div fxFlex="30" style="height: 148px; overflow: hidden; position: relative;">
+            <button (click)="$event.stopPropagation(); favourite()" mat-icon-button
+                    style="position: absolute; bottom: 0; right: 0">
+                <mat-icon *ngIf="listing.favouritedByUser == null; else faved" [color]="'accent'">favorite_border</mat-icon>
+                <ng-template #faved>
+                    <mat-icon *ngIf="listing.favouritedByUser == true" [color]="'accent'">favorite</mat-icon>
+                </ng-template>
+            </button>
             <img src="{{listing?.images[0]?.url != null ? listing?.images[0]?.url : '/assets/illustrations/placeholder.jpg'}}"
                  alt="{{listing?.manufacturer + ' ' + listing?.model + ' ' + listing?.year + ' ' + listing?.title}}"
-                 style=" height: 130px; width: 100%; object-fit:cover;" (click)="open()">
+                 style=" height: 148px; width: 100%; object-fit:cover;" (click)="open()">
         </div>
-        <div fxFlex="70" style="margin: 8px" (click)="open()">
+        <div fxFlex="70" style="margin: 8px; margin-bottom: 2px;" (click)="open()" fxLayout="column">
             <div fxLayout="row" fxLayoutAlign="space-between start" style="margin-bottom: 10px">
                 <div>
                     <div>
@@ -191,22 +207,33 @@
             <mat-divider></mat-divider>
             <div fxLayout="row wrap" style="padding: 0; margin-top: 10px">
                 <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
-                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/gearshift.png" alt="shift">
+                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/gearshift.png"
+                         alt="shift">
                     <p style="margin-top:0">{{listing?.transmission}}</p>
                 </div>
                 <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
-                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/gas-station.png" alt="gas">
+                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/gas-station.png"
+                         alt="gas">
                     <p style="margin-top:0">{{listing?.fuel}}</p>
                 </div>
                 <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
-                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/building.png" alt="city">
+                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/building.png"
+                         alt="city">
                     <p style="margin-top:0">{{listing?.city}}</p>
                 </div>
-                <div style="color: #8c8c8c" fxFlex="50" fxLayout="row" >
-                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/license-plate.png" alt="plateRegistration">
+                <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+                    <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/license-plate.png"
+                         alt="plateRegistration">
                     <p style="margin-top:0">{{listing?.plateRegistration}}</p>
                 </div>
             </div>
+
+            <mat-divider></mat-divider>
+            <div *ngIf="listing?.organic == false" style="color: #8c8c8c" fxFlex="100" fxLayout="row wrap"
+                 fxLayoutAlign="end">
+                <p style="margin-top:4px; margin-bottom: 4px; font-size: 12px;">origin: {{listing?.origin}}</p>
+            </div>
+
         </div>
     </div>
 </div>

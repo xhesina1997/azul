@@ -1,4 +1,23 @@
-<div style="background-color: black; width: 100%; height: 100%" class="pyro">
-  <div class="before"></div>
-  <div class="after"></div>
+<div style="margin: 16px">
+    <ng-container *ngIf="verificationPassed == null">verifying user ...</ng-container>
+    <ng-container *ngIf="!verificationPassed">you are not verified</ng-container>
+    <ng-container *ngIf="verificationPassed">
+        <div fxLayout="column">
+            <div style="font-size: 22px; text-align: left; margin-bottom: 16px; width: 100%;">
+                Welcome {{user.displayName}}
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
+                <div>
+                    Users
+                </div>
+                <button (click)="generateUserReport()" mat-button>Generate new user report</button>
+            </div>
+            <mat-divider style="margin-top: 5px"></mat-divider>
+            <br>
+
+
+
+        </div>
+    </ng-container>
 </div>

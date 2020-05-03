@@ -21,15 +21,29 @@ import * as firebase from 'firebase/app'
 import {Location} from "@angular/common";
 import {CarFiltersComponent} from "../../shared/car-filters/car-filters.component";
 import {SeoService} from "../../services/seo.service";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
     selector: 'app-listings',
     templateUrl: './listings.component.html',
-    styleUrls: ['./listings.component.scss']
+    styleUrls: ['./listings.component.scss'],
+    animations: [
+        trigger('toggleBackToTop', [
+            state('initial', style({
+                bottom: '-20px'
+            })),
+            state('final', style({
+                bottom: '8px'
+            })),
+            transition('initial=>final', animate('100ms')),
+            transition('final=>initial', animate('100ms'))
+        ]),
+    ]
 })
 export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @ViewChild('carFilters') carFilters: CarFiltersComponent;
+    public currentBackToTopState = 'initial';
 
     constructor(private authenticationService: AuthenticationService,
                 private snackBar: MatSnackBar,
@@ -59,6 +73,11 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.vsViewport.elementScrolled().subscribe(res => {
             this.vsViewport.measureScrollOffset('bottom') == 0 ? this.paginationService.handleScroll() : {};
+            // if(this.vsViewport.measureScrollOffset('top') < 10) {
+            //     this.hideBackToTopButton();
+            // } else {
+            //     this.showBackToTopButton();
+            // }
         });
 
         if (this.paginationService.needsScroll) {
@@ -212,4 +231,21 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
         // are considered equivalent
         return true;
     }
+
+    scrollToTop(){
+        this.vsViewport.scrollToIndex(0);
+    }
+
+    showBackToTopButton(){
+        if(this.currentBackToTopState === 'initial'){
+            this.currentBackToTopState = 'final'
+        }
+    }
+
+    hideBackToTopButton(){
+        if(this.currentBackToTopState === 'final') {
+            this.currentBackToTopState = 'initial'
+        }
+    }
+
 }

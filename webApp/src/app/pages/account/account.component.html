@@ -47,9 +47,15 @@
                 </div>
             </mat-tab>
             <mat-tab style="width: 33%;" label="{{'Settings' | translate}}">
-                <div style="padding: 16px">
-                    <button mat-stroked-button (click)="logout()">Logout</button>
+                <div fxLayout="row">
+                    <div style="padding: 16px">
+                        <button mat-stroked-button (click)="logout()">Logout</button>
+                    </div>
+                    <div *ngIf="user?.email == 'rei23b@gmail.com'" style="padding: 16px">
+                        <button mat-stroked-button [routerLink]="['/mobile/admin']">Admin panel</button>
+                    </div>
                 </div>
+
             </mat-tab>
         </mat-tab-group>
         <div style="padding: 16px; overflow-y: auto">

@@ -31,6 +31,9 @@ const routes: Routes = [{
             loadChildren: '../pages/create/create.module#CreateModule'
         },
         {
+            path: 'admin',
+            loadChildren: '../admin/admin.module#AdminModule'},
+        {
             path: '', redirectTo: 'home', pathMatch: 'full'
         },
         {
