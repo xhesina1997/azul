@@ -12,7 +12,7 @@
                     <img style="width: 145px; margin-top: 7px;" src="/assets/illustrations/logo.png" alt="">
                 </div>
 
-                <button *ngIf="authenticationService.user!=null" [routerLink]="['/mobile/account']" mat-icon-button
+                <button *ngIf="authenticationService.user!=null" [routerLink]="['/account']" mat-icon-button
                         color="accent">
                     <mat-icon>account_circle</mat-icon>
                 </button>
@@ -39,13 +39,14 @@
                         <div style="color:white; font-size: 20px; margin-right: 30px;">
                             <img style="width: 145px; margin-top: 7px;" src="/assets/illustrations/logo.png" alt="">
                         </div>
-                        <button mat-button [routerLink]="['/mobile/home']">{{'Home' | translate}}</button>
-                        <button mat-button [routerLink]="['/mobile/search']">{{'Search' | translate}}</button>
-                        <button mat-button [routerLink]="['/mobile/add-listing']">{{"Add listing" | translate}}</button>
+                        <button mat-button [routerLink]="['/home']">{{'Home' | translate}}</button>
+                        <button mat-button [routerLink]="['/search']">{{'Search' | translate}}</button>
+                        <button mat-button [routerLink]="['/add-listing']">{{"Add listing" | translate}}</button>
+                        <button mat-button [routerLink]="['/scout']">{{"Create a Scout" | translate}}</button>
                     </div>
 
 
-                    <button *ngIf="authenticationService.user!=null" [routerLink]="['/mobile/account']" mat-icon-button
+                    <button *ngIf="authenticationService.user!=null" [routerLink]="['/account']" mat-icon-button
                             color="accent">
                         <mat-icon>account_circle</mat-icon>
                     </button>
@@ -94,14 +95,17 @@
     <mat-drawer-container [hasBackdrop]="false" style="height: calc(100% - 45px); width: 100%;">
         <mat-drawer #drawer mode="over" style="background-color: #fafafa; width: 100%;">
             <mat-nav-list style="margin: 8px 16px;">
-                <mat-list-item (click)="drawer.close()" [routerLink]="['/mobile/home']" style="font-size: 16px;">
+                <mat-list-item (click)="drawer.close()" [routerLink]="['/home']" style="font-size: 16px;">
                     <a matLine>Home</a>
                 </mat-list-item>
-                <mat-list-item (click)="drawer.close()" [routerLink]="['/mobile/search']" style="font-size: 16px;">
+                <mat-list-item (click)="drawer.close()" [routerLink]="['/search']" style="font-size: 16px;">
                     <a matLine>{{'Search' | translate}}</a>
                 </mat-list-item>
-                <mat-list-item (click)="drawer.close()" [routerLink]="['/mobile/add-listing']" style="font-size: 16px;">
+                <mat-list-item (click)="drawer.close()" [routerLink]="['/add-listing']" style="font-size: 16px;">
                     <a matLine>{{"Add listing" | translate}}</a>
+                </mat-list-item>
+                <mat-list-item (click)="drawer.close()" [routerLink]="['/scout']" style="font-size: 16px;">
+                    <a matLine>{{"Create a Scout" | translate}}</a>
                 </mat-list-item>
 
             </mat-nav-list>

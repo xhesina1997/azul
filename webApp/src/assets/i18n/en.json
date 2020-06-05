@@ -36,6 +36,8 @@
   "Manufacturer": "Manufacturer",
   "Model": "Model",
   "Year": "Year",
+  "YearFrom": "Year from",
+  "YearTo": "Year to",
   "Color": "Color",
   "Structure": "Structure",
   "Mileage": "Mileage",
@@ -78,6 +80,9 @@
   "Year to":"Year to",
   "Add listing":"Add listing",
   "You don't have permission":"You have reached maximum number of contemporary posts!",
-  "Similar cars": "Similar cars"
-
+  "Similar cars": "Similar cars",
+  "MoreFilters": "More filters",
+  "LessFilters": "Less filters",
+  "Create new Scout": "Create new Scout",
+  "Create a Scout": "Create a Scout"
 }

@@ -36,6 +36,8 @@
   "Manufacturer": "Prodhues",
   "Model": "Model",
   "Year": "Viti",
+  "YearFrom": "Viti nga",
+  "YearTo": "Viti deri",
   "Color": "Ngjyra",
   "Structure": "Struktura",
   "Mileage": "Kilometrazh",
@@ -78,5 +80,9 @@
   "Year to": "Viti deri",
   "Add listing":"Shto postim",
   "You don't have permission":"Ju keni arritur maksimumin e limitit te postimeve te perkohshme!",
-  "Similar cars": "Makina te ngjashme"
+  "Similar cars": "Makina te ngjashme",
+  "MoreFilters": "Me shume filtra",
+  "LessFilters": "Me pak filtra",
+  "Create new Scout": "Krijo nje Scout te ri",
+  "Create a Scout": "Krijo nje Scout"
 }

@@ -136,7 +136,7 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
     filtersChanged(filters) {
         Object.entries(filters).length == 0 ? this.paginationService.queryOptions.filters = null : this.paginationService.queryOptions.filters = filters;
         console.log(this.paginationService.queryOptions.filters);
-        this.router.navigate(['/mobile/search'], {queryParams: filters})
+        this.router.navigate(['/search'], {queryParams: filters})
     }
 
     sortChanged(event) {
@@ -148,7 +148,7 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
     removeFilter(filterKey) {
         delete this.paginationService.queryOptions.filters[filterKey];
         Object.entries(this.paginationService.queryOptions.filters).length == 0 ? this.paginationService.queryOptions.filters = null : {};
-        this.router.navigate(['/mobile/search'], {queryParams: this.paginationService.queryOptions.filters});
+        this.router.navigate(['/search'], {queryParams: this.paginationService.queryOptions.filters});
         this.fireSearch()
     }
 
@@ -191,7 +191,7 @@ export class ListingsComponent implements OnInit, AfterViewInit, OnDestroy {
     openListing(target) {
         this.paginationService.scrollHeight = this.vsViewport.measureScrollOffset("top");
         this.paginationService.selectedListing = target;
-        this.router.navigate(['/mobile/listing'], {queryParams: {id: target.uuid}})
+        this.router.navigate(['/listing'], {queryParams: {id: target.uuid}})
     }
 
     toggleFilters() {

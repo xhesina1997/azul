@@ -32,7 +32,12 @@ const routes: Routes = [{
         },
         {
             path: 'admin',
-            loadChildren: '../admin/admin.module#AdminModule'},
+            loadChildren: '../admin/admin.module#AdminModule'
+        },
+        {
+            path: 'scout',
+            loadChildren: '../pages/scout/scout.module#ScoutModule'
+        },
         {
             path: '', redirectTo: 'home', pathMatch: 'full'
         },

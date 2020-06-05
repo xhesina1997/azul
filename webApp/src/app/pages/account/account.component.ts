@@ -39,7 +39,7 @@ export class AccountComponent implements OnInit {
             'https://youscout.net/assets/illustrations/meta-img.png',
             'Makina ne shitje, makina te perdorura, tregu me i madh ku mund te gjej makina youscout.net kambio automatike, shitblerje makinash vetura ne kosove makina ne gjermani okazion makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
             'makina ne shitje, makina te perdorura, youscout.net, kambio automatike, shitblerje makinash, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
-            'http://youscout.net/mobile/account'
+            'http://youscout.net/account'
         );
     }
 

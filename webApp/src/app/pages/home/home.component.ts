@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
 
     openListing(target) {
         this.paginationService.selectedListing = target;
-        this.router.navigate(['/mobile/listing'], {queryParams: {id: target.uuid}})
+        this.router.navigate(['/listing'], {queryParams: {id: target.uuid}})
     }
 
     view;

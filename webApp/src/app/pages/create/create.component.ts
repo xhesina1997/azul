@@ -43,7 +43,7 @@ export class CreateComponent implements OnInit, OnDestroy {
             'https://youscout.net/assets/illustrations/meta-img.png',
             'Shto nje makine ne youscout.net, hidh nje makine online, listo makina tirane shkoder durres kavaje korce elbasan fier vlore lushnje',
             'makina ne shitje, makina te perdorura, youscout.net, kambio automatike, shitblerje makinash, merrjep, vetura ne kosove, makina ne gjermani, okazion, makina, tirane, shkoder, durres, kavaje, korce, elbasan, fier, vlore, lushnje',
-            'http://youscout.net/mobile/create'
+            'http://youscout.net/create'
         );
 
         this.createForm = fb.group({
@@ -403,7 +403,7 @@ export class CreateComponent implements OnInit, OnDestroy {
         'Tropojë',
         'Vlorë'
     ];
-      postToBeEdited: any;
+    postToBeEdited: any;
 
     ngOnInit() {
 

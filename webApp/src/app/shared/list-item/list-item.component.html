@@ -41,7 +41,7 @@
             <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/gas-station.png" alt="gas">
             <p style="margin-top:0">{{listing?.fuel}}</p>
         </div>
-        <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+        <div style="color: #8c8c8c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" fxFlex="50" fxLayout="row">
             <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/building.png" alt="city">
             <p style="margin-top:0">{{listing?.city}}</p>
         </div>
@@ -176,8 +176,8 @@
 
 <div *ngIf="view == 'desktop'"
      style="width:100%; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background-color: white;">
-    <div fxLayout="row" fxLayoutAlign="space-between start">
-        <div fxFlex="30" style="height: 148px; overflow: hidden; position: relative;">
+    <div fxLayout="row">
+        <div style="height: 148px; width: 240px; overflow: hidden; position: relative;">
             <button (click)="$event.stopPropagation(); favourite()" mat-icon-button
                     style="position: absolute; bottom: 0; right: 0">
                 <mat-icon *ngIf="listing.favouritedByUser == null; else faved" [color]="'accent'">favorite_border</mat-icon>
@@ -187,9 +187,9 @@
             </button>
             <img src="{{listing?.images[0]?.url != null ? listing?.images[0]?.url : '/assets/illustrations/placeholder.jpg'}}"
                  alt="{{listing?.manufacturer + ' ' + listing?.model + ' ' + listing?.year + ' ' + listing?.title}}"
-                 style=" height: 148px; width: 100%; object-fit:cover;" (click)="open()">
+                 style=" height: 148px; width: 100%; object-fit:cover; cursor: pointer;" (click)="open()">
         </div>
-        <div fxFlex="70" style="margin: 8px; margin-bottom: 2px;" (click)="open()" fxLayout="column">
+        <div style="margin: 8px; width: calc(100% - 240px); cursor: pointer; margin-bottom: 2px;" (click)="open()" fxLayout="column">
             <div fxLayout="row" fxLayoutAlign="space-between start" style="margin-bottom: 10px">
                 <div>
                     <div>
@@ -216,10 +216,10 @@
                          alt="gas">
                     <p style="margin-top:0">{{listing?.fuel}}</p>
                 </div>
-                <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
+                <div style="color: #8c8c8c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 10px;" fxFlex="50" fxLayout="row">
                     <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/building.png"
                          alt="city">
-                    <p style="margin-top:0">{{listing?.city}}</p>
+                    <p title="{{listing?.city}}" style="margin-top:0; width:  180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{listing?.city}}</p>
                 </div>
                 <div style="color: #8c8c8c" fxFlex="50" fxLayout="row">
                     <img style="width: 15px; height: 15px; margin-right: 10px;" src="/assets/icons/license-plate.png"

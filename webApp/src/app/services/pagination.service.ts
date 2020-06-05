@@ -19,7 +19,13 @@ export class PaginationService {
         this.router.events
             .pipe(filter(e => e instanceof RoutesRecognized), pairwise(), map((e: [RoutesRecognized, RoutesRecognized]) => e[0].url))
             .subscribe((prev: string) => {
-                prev.includes('/mobile/listing') ? this.needsScroll = true : this.needsScroll = false;
+                if(prev.includes('/listing')){
+                    this.needsScroll = true
+                    console.log("auto scrolling")
+                }else {
+                    this.needsScroll = false;
+                }
+                // prev.includes('/listing') ? this.needsScroll = true : this.needsScroll = false;
             });
     }
 

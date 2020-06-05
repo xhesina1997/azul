@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
         }
         // this.authenticationApiService.signUp(singUpRequestData).subscribe(data => {
         //     this.authenticationService.signIn(this.username, this.password).then(() => {
-        //         this.router.navigate(['/mobile/search']);
+        //         this.router.navigate(['/search']);
         //     });
         // }, error => {
         //     console.log(error);

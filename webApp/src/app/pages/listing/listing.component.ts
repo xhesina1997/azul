@@ -140,7 +140,7 @@ export class ListingComponent implements OnInit, OnDestroy {
 
     handleItemEvent(event) {
       if (event != null) {
-          this.router.navigate(['/mobile/listing'], {queryParams: {id: event.target.uuid}})
+          this.router.navigate(['/listing'], {queryParams: {id: event.target.uuid}})
       }
     }
     favourite(item){
