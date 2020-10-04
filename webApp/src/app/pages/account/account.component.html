@@ -13,9 +13,11 @@
              [ngStyle.sm]="{'padding': '5px 16px 0 16px'}"
              [ngStyle.xs]="{'padding': '5px 16px 0 16px'}">
             <img style=" border: 1px solid grey; width: 35px; height: 35px; border-radius: 38px; margin-right: 10px"
-                 [attr.src]="user?.photoURL != null ? user.photoURL : 'assets/illustrations/default-profile.png'"
+                 [attr.src]="'assets/illustrations/default-profile.png'"
                  [attr.alt]="user?.displayName">
             <div>
+<!--                 [attr.src]="user?.photoURL != null ? user.photoURL : 'assets/illustrations/default-profile.png'"-->
+
                 <p style="margin: 0; color: #8c8c8c">{{user?.displayName}}</p>
                 <p style="margin: 0; color: #8c8c8c">{{user?.email}}</p>
             </div>
@@ -28,21 +30,58 @@
 
         <mat-tab-group style="" (selectedIndexChange)="handleIndexChange($event)">
             <mat-tab style="width: 33%;" label="{{'My listings' | translate}}">
-                <div style="padding: 16px">
-                    <div *ngFor="let listItem of listingsCreatedByUser"
-                         style="margin-bottom: 10px;"
-                         [ngStyle.lg]="{'padding': '0 180px'}">
-                        <app-list-item (outputEvent)="handleItemEvent($event)" [listing]="listItem"
-                                       [view]="'userSubmission'"></app-list-item>
+                <div style="width: 100%; margin-bottom: 50px;" fxLayout="column" fxLayoutAlign="center center">
+
+                    <div style="width: 100%; max-width: 600px; margin-top: 16px;">
+                        <div *ngFor="let listItem of listingsCreatedByUser"
+                             [ngStyle.sm]="{'margin-left': '10px', 'margin-right': '10px'}"
+                             [ngStyle.xs]="{'margin-left': '10px', 'margin-right': '10px'}"
+                             style="margin-bottom: 10px;">
+                            <app-list-item (outputEvent)="handleItemEvent($event)" [listing]="listItem"
+                                           [view]="'userSubmission'"></app-list-item>
+                        </div>
                     </div>
                 </div>
             </mat-tab>
             <mat-tab style="width: 34%;" label="{{'Saved listings' | translate}}">
-                <div style="padding: 16px">
-                    <div *ngFor="let listItem of favouriteListings"
-                         style="margin-bottom: 10px;"
-                         [ngStyle.lg]="{'padding': '0 180px'}">
-                        <app-list-item [listing]="listItem" [view]="view == 'mobile' ? 'default' : 'desktop'"></app-list-item>
+                <div style="width: 100%; margin-bottom: 50px;" fxLayout="column" fxLayoutAlign="center center">
+
+                    <div style="width: 100%; max-width: 600px; margin-top: 16px;">
+                        <div *ngFor="let listItem of favouriteListings"
+                             [ngStyle.sm]="{'margin-left': '10px', 'margin-right': '10px'}"
+                             [ngStyle.xs]="{'margin-left': '10px', 'margin-right': '10px'}"
+                             style="margin-bottom: 10px;">
+                            <app-list-item [listing]="listItem"
+                                           [view]="view == 'mobile' ? 'default' : 'desktop'"></app-list-item>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab style="width: 34%;" label="{{'Scouts' | translate}}">
+                <div style="width: 100%; margin-bottom: 50px;" fxLayout="column" fxLayoutAlign="center center">
+                    <div style="width: 100%; max-width: 600px; margin-top: 16px;">
+                        <div style="border: 1px solid #e0e0e0;
+                                    border-radius: 8px;
+                                    overflow: hidden;
+                                    background-color: white;
+                                    "
+                             [ngStyle.sm]="{'margin-left': '10px', 'margin-right': '10px'}"
+                             [ngStyle.xs]="{'margin-left': '10px', 'margin-right': '10px'}"
+                             *ngFor="let a of scoutsCreatedByUser">
+                            <div style="margin: 8px;" >
+                                <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px">
+                                <div style="padding-bottom: 8px;" fxFlex="40"><i>{{'Manufacturer' | translate}}: </i>{{a.manufacturer != null ? a.manufacturer : 'any' | translate}}</div>
+                                <div style="padding-bottom: 8px;" fxFlex="40"><i>{{'Model' | translate}}: </i>{{a.model != null ? a.model : 'any' | translate}}</div>
+                                <div style="padding-bottom: 8px;" fxFlex="40"><i>{{'Year' | translate}}: </i>{{a.yearFrom != null ? a.yearFrom : 'any' | translate}} - {{ a.yearTo != null ? a.yearTo : 'any' | translate}}</div>
+                                <div style="padding-bottom: 8px;" fxFlex="40"><i>{{'Price' | translate}}: </i>{{a.priceFrom != null ? a.priceFrom : 'any' | translate}} - {{ a.priceTo != null ? a.priceTo : 'any' | translate}}</div>
+                                </div>
+                                <mat-divider></mat-divider>
+                                <div style="width: 100%">
+                                    <button style="float: right; margin: 8px 0;" mat-raised-button color="primary" (click)="router.navigate(['/scout/results'], {queryParams: {id: a.uuid}})">{{'See all results' | translate}} ({{a.results.length}})</button>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </mat-tab>

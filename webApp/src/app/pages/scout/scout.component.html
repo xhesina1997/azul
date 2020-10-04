@@ -16,25 +16,81 @@
             <div style=" height: 100%; overflow-y: auto">
                 <div [ngStyle.md]="{'padding': '0 16px 0 16px'}"
                      [ngStyle.sm]="{'padding': '0 16px 0 16px'}"
-                     [ngStyle.xs]="{'padding': '0 16px 0 16px'}">
+                     [ngStyle.xs]="{'padding': '0 16px 0 16px'}" style="height: 100%;">
                     <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c; height: 40px;">
-                            <div style="width: 100%">
-                                {{'Create new Scout' | translate}}
-                            </div>
+                        <div style="width: 100%">
+                            {{'Create new Scout' | translate}}
+                        </div>
                     </div>
                     <mat-divider style="margin-bottom: 10px"></mat-divider>
-                    <div style="width: 100%; margin-bottom: 50px;" fxLayout="column" fxLayoutAlign="center center">
 
-                        <div style="text-align: center; color: #8c8c8c; max-width: 400px; height: 40px; margin: 16px 0">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec vehicula nisl, et
-                            ultrices odio.
+                    <div *ngIf="finishedUploading == true" fxLayout="column"
+                         style="height: calc(100% - 135px); width: 100%;">
+
+                        <div fxFlex="5" fxLayout="row" fxLayoutAlign="center center"
+                             style="text-align: center; color: #8c8c8c;">
+                            {{'Scout created successfully' | translate}}
                         </div>
-                        <img style="width: 100%; max-width: 600px; margin: 0 auto;" src="/assets/illustrations/scout1.png" alt="">
+                        <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-stroked-button color="primary" routerLink="/search">
+                                {{'Home' | translate}}
+                            </button> &nbsp;
+                            <button mat-stroked-button (click)="resetView()">
+                                {{'Create new Scout' | translate}}
+                            </button>
+                        </div>
+                        <div fxFlex="85" style="overflow-x: hidden">
+                            <img src="/assets/illustrations/success.png" alt="success"
+                                 style="height: 90%; margin: auto; display: block">
+                        </div>
+                    </div>
+
+                    <div *ngIf="finishedUploading == false" style="width: 100%; margin-bottom: 50px;" fxLayout="column"
+                         fxLayoutAlign="center center">
+
+                        <div class="fade-in" [ngStyle]="{'display': !imgShow ? 'none' : ''}">
+                            <div style="text-align: center; color: #8c8c8c; max-width: 400px; height: 60px; margin: 16px auto">
+                                Your Scout Robot looks all over the internet, finding all the cars for sale right now,
+                                that suits your needs!
+                            </div>
+                            <img style="width: 100%; max-width: 600px; margin: 0 auto;"
+                                 src="/assets/illustrations/scout1.png" alt="">
+                        </div>
+
+                        <div class="fade-in" [ngStyle]="{'display': imgShow ? 'none' : ''}">
+                            <div style="text-align: center; color: #8c8c8c; max-width: 400px; height: 60px; margin: 16px auto">
+                                It will periodically send you a report with the cars you are interested in, rendering
+                                the process of finding the prefect car for you, easier than ever!
+                            </div>
+                            <img style="width: 100%; max-width: 600px; margin: 0 auto;"
+                                 src="/assets/illustrations/scout2.png" alt="">
+                        </div>
 
 
                         <div id="target" style="width: 100%; max-width: 600px; margin-top: 16px;">
+
                             <form [formGroup]="createForm" ngNativeValidate
                                   (ngSubmit)="createItem(createForm.value)">
+
+                                <div style="color: #8c8c8c; margin-top: 24px; margin-bottom: 20px;">
+                                    Tell us how to contact you:
+                                </div>
+
+                                <div fxLayout="row">
+                                    <div fxFlex="100" style="padding-right: 5px">
+                                        <mat-form-field appearance="outline" style="width: 100%">
+                                            <mat-label>
+                                                {{'Email' | translate }}:
+                                            </mat-label>
+                                            <input formControlName="email" matInput email type="email">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div style="color: #8c8c8c; margin-bottom: 20px;">
+                                    Tell us what you are looking for:
+                                </div>
+
                                 <div fxLayout="row wrap">
                                     <div fxFlex="100">
                                         <mat-form-field style="width: 100%" appearance="outline">
@@ -50,7 +106,8 @@
                                                                            placeholderLabel="{{'Search'  | translate}}"
                                                                            noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
                                                 </mat-option>
-                                                <mat-option *ngFor="let prod of filteredManufacturer | async" [value]="prod">
+                                                <mat-option *ngFor="let prod of filteredManufacturer | async"
+                                                            [value]="prod">
                                                     {{prod}}
                                                 </mat-option>
                                             </mat-select>
@@ -76,6 +133,7 @@
                                         </mat-form-field>
                                     </div>
                                 </div>
+
                                 <div fxLayout="row">
                                     <div fxFlex="50" style="padding-right: 5px">
                                         <mat-form-field appearance="outline" style="width: 100%">
@@ -94,6 +152,7 @@
                                         </mat-form-field>
                                     </div>
                                 </div>
+
                                 <div fxLayout="row">
 
                                     <div fxFlex="50" style="padding-right: 5px">
@@ -101,7 +160,7 @@
                                             <mat-label>
                                                 {{'YearFrom' | translate}}:
                                             </mat-label>
-                                            <mat-select ngDefaultControl formControlName="year"
+                                            <mat-select ngDefaultControl formControlName="yearFrom"
                                                         placeholder="{{'YearFrom' | translate}}">
                                                 <mat-option>
                                                     <ngx-mat-select-search [formControl]="searchedYear"
@@ -120,7 +179,7 @@
                                             <mat-label>
                                                 {{'YearTo' | translate}}:
                                             </mat-label>
-                                            <mat-select ngDefaultControl formControlName="year"
+                                            <mat-select ngDefaultControl formControlName="yearTo"
                                                         placeholder="{{'YearTo' | translate}}">
                                                 <mat-option>
                                                     <ngx-mat-select-search [formControl]="searchedYearTo"
@@ -134,31 +193,33 @@
                                         </mat-form-field>
                                     </div>
 
-<!--                                    <div fxFlex="50" style="padding-left: 5px">-->
-<!--                                        <mat-form-field appearance="outline" style="width: 100%">-->
-<!--                                            <mat-label>-->
-<!--                                                {{'Color' | translate}}:-->
-<!--                                            </mat-label>-->
-<!--                                            <mat-select ngDefaultControl formControlName="color"-->
-<!--                                                        placeholder="{{'Color' | translate}}">-->
-<!--                                                <mat-option>-->
-<!--                                                    <ngx-mat-select-search [formControl]="searchedColor"-->
-<!--                                                                           placeholderLabel="{{'Search'  | translate}}"-->
-<!--                                                                           noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>-->
-<!--                                                </mat-option>-->
-<!--                                                <mat-option *ngFor="let color of filteredColors| async" [value]="color">-->
-<!--                                                    {{color}}-->
-<!--                                                </mat-option>-->
-<!--                                            </mat-select>-->
-<!--                                        </mat-form-field>-->
-<!--                                    </div>-->
+                                    <!--                                    <div fxFlex="50" style="padding-left: 5px">-->
+                                    <!--                                        <mat-form-field appearance="outline" style="width: 100%">-->
+                                    <!--                                            <mat-label>-->
+                                    <!--                                                {{'Color' | translate}}:-->
+                                    <!--                                            </mat-label>-->
+                                    <!--                                            <mat-select ngDefaultControl formControlName="color"-->
+                                    <!--                                                        placeholder="{{'Color' | translate}}">-->
+                                    <!--                                                <mat-option>-->
+                                    <!--                                                    <ngx-mat-select-search [formControl]="searchedColor"-->
+                                    <!--                                                                           placeholderLabel="{{'Search'  | translate}}"-->
+                                    <!--                                                                           noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>-->
+                                    <!--                                                </mat-option>-->
+                                    <!--                                                <mat-option *ngFor="let color of filteredColors| async" [value]="color">-->
+                                    <!--                                                    {{color}}-->
+                                    <!--                                                </mat-option>-->
+                                    <!--                                            </mat-select>-->
+                                    <!--                                        </mat-form-field>-->
+                                    <!--                                    </div>-->
 
                                 </div>
 
-                                <div style="text-align: center; margin-bottom: 16px;">
-                                    <button (click)="moreFilters = true"  *ngIf="moreFilters == false" mat-button>{{'MoreFilters' | translate}}</button>
-                                    <button (click)="moreFilters = false" *ngIf="moreFilters == true" mat-button>{{'LessFilters' | translate}}</button>
-                                </div>
+<!--                                <div style="text-align: center; margin-bottom: 16px;">-->
+<!--                                    <button (click)="moreFilters = true" *ngIf="moreFilters == false"-->
+<!--                                            mat-button>{{'MoreFilters' | translate}}</button>-->
+<!--                                    <button (click)="moreFilters = false" *ngIf="moreFilters == true"-->
+<!--                                            mat-button>{{'LessFilters' | translate}}</button>-->
+<!--                                </div>-->
 
                                 <div *ngIf="moreFilters" id="moreFilters">
                                     <div fxLayout="row">
@@ -174,7 +235,8 @@
                                                                                placeholderLabel="{{'Search'  | translate}}"
                                                                                noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
                                                     </mat-option>
-                                                    <mat-option *ngFor="let km of  filteredKilometers| async" [value]="km.value">
+                                                    <mat-option *ngFor="let km of  filteredKilometers| async"
+                                                                [value]="km.value">
                                                         {{km.title}}
                                                     </mat-option>
                                                 </mat-select>
@@ -187,9 +249,12 @@
                                                     {{'Transmission' | translate}}:
                                                 </mat-label>
                                                 <mat-select formControlName="transmission">
-                                                    <mat-option [value]="'automatic'"> {{'Automatic' | translate}}</mat-option>
-                                                    <mat-option [value]="'manual'"> {{'Manual' | translate}}</mat-option>
-                                                    <mat-option [value]="'pedal'"> {{'Pedal shifter' | translate}}</mat-option>
+                                                    <mat-option
+                                                            [value]="'automatic'"> {{'Automatic' | translate}}</mat-option>
+                                                    <mat-option
+                                                            [value]="'manual'"> {{'Manual' | translate}}</mat-option>
+                                                    <mat-option
+                                                            [value]="'pedal'"> {{'Pedal shifter' | translate}}</mat-option>
                                                 </mat-select>
                                             </mat-form-field>
                                         </div>
@@ -201,9 +266,12 @@
                                                     {{'Fuel' | translate}}:
                                                 </mat-label>
                                                 <mat-select formControlName="fuel">
-                                                    <mat-option [value]="'diesel'"> {{'Diesel' | translate}}</mat-option>
-                                                    <mat-option [value]="'gasoline'"> {{'Gasoline' | translate}}</mat-option>
-                                                    <mat-option [value]="'LPG/gasoline'">{{'LPG/gasoline' | translate}}</mat-option>
+                                                    <mat-option
+                                                            [value]="'diesel'"> {{'Diesel' | translate}}</mat-option>
+                                                    <mat-option
+                                                            [value]="'gasoline'"> {{'Gasoline' | translate}}</mat-option>
+                                                    <mat-option
+                                                            [value]="'LPG/gasoline'">{{'LPG/gasoline' | translate}}</mat-option>
                                                 </mat-select>
                                             </mat-form-field>
                                         </div>
@@ -215,8 +283,10 @@
                                                     {{'Plate Registration' | translate}}:
                                                 </mat-label>
                                                 <mat-select formControlName="plateRegistration">
-                                                    <mat-option [value]="'foreign'"> {{'Foreign' | translate}}</mat-option>
-                                                    <mat-option [value]="'domestic'"> {{'Domestic' | translate}}</mat-option>
+                                                    <mat-option
+                                                            [value]="'foreign'"> {{'Foreign' | translate}}</mat-option>
+                                                    <mat-option
+                                                            [value]="'domestic'"> {{'Domestic' | translate}}</mat-option>
                                                 </mat-select>
                                             </mat-form-field>
                                         </div>
@@ -232,7 +302,8 @@
                                                                                placeholderLabel="{{'Search'  | translate}}"
                                                                                noEntriesFoundLabel="{{'No data' | translate}}"></ngx-mat-select-search>
                                                     </mat-option>
-                                                    <mat-option *ngFor="let city of  filteredCities| async" [value]="city">
+                                                    <mat-option *ngFor="let city of  filteredCities| async"
+                                                                [value]="city">
                                                         {{city}}
                                                     </mat-option>
                                                 </mat-select>
@@ -241,12 +312,13 @@
                                     </div>
                                 </div>
 
+                                <button type="submit" mat-raised-button color="primary"
+                                        style="width: 100%; max-width: 600px; padding: 10px 0;">
+                                    {{'Create new Scout' | translate}}
+                                </button>
                             </form>
                         </div>
 
-                        <button mat-raised-button color="primary" style="width: 100%; max-width: 600px; padding: 10px 0;">
-                            {{'Create new Scout' | translate}}
-                        </button>
 
                     </div>
 

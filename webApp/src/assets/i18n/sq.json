@@ -14,7 +14,7 @@
   "Over": "Mbi",
   "Latest listings": "Postimet e fundit",
   "My listings": "Postimet e mia",
-  "Saved listings": "Postime te ruajtura",
+  "Saved listings": "Te preferuarat",
   "Settings": "Parametrat",
   "Confirm Delete": "Konfirmo fshirjen",
   "Are you sure you want to delete post": "A jeni i sigurt qe do ta fshini kete postim?",
@@ -74,8 +74,8 @@
   "Cheapest": "Cmimi me i ulet",
   "Clear": "Fshij",
   "No data": "Ska te dhena",
-  "Price from": "Cmimi nga",
-  "Price to": "Cmimi deri",
+  "Price from": "Cmimi nga (€)",
+  "Price to": "Cmimi deri (€)",
   "Year from": "Viti nga",
   "Year to": "Viti deri",
   "Add listing":"Shto postim",
@@ -84,5 +84,8 @@
   "MoreFilters": "Me shume filtra",
   "LessFilters": "Me pak filtra",
   "Create new Scout": "Krijo nje Scout te ri",
-  "Create a Scout": "Krijo nje Scout"
+  "Create a Scout": "Krijo nje Scout",
+  "Scout created successfully": "Scout-i u krijua me sukses!",
+  "Scouts": "Scout-et",
+  "any" : "cfaredo"
 }

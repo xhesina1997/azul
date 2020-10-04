@@ -1,27 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {map, startWith} from "rxjs/operators";
+import {map, startWith, takeUntil} from "rxjs/operators";
 import {Observable, Subject} from "rxjs";
 import {environment} from "../../../environments/environment";
+import {AuthenticationService} from "../../auth/authentication.service";
+import {AngularFirestore} from "@angular/fire/firestore";
+import {UUID} from "angular2-uuid";
 
 @Component({
   selector: 'app-scout',
   templateUrl: './scout.component.html',
   styleUrls: ['./scout.component.scss']
 })
-export class ScoutComponent implements OnInit {
+export class ScoutComponent implements OnInit, OnDestroy {
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private authenticationService: AuthenticationService,
+              private _fireStore: AngularFirestore){
     this.createForm = fb.group({
-      title: [null],
+      email: [null, Validators.required],
       priceFrom: [null],
       priceTo: [null],
-      currency: [null],
       manufacturer: [null],
       model: [null],
       structure: [null],
-      year: [null],
-      color: [null],
+      yearFrom: [null],
+      yearTo: [null],
       mileage: [null],
       transmission: [null],
       fuel: [null],
@@ -29,6 +33,8 @@ export class ScoutComponent implements OnInit {
       city: [null]
     });
   }
+  finishedUploading: boolean = false;
+  imgShow: boolean = true;
   createForm: FormGroup;
   moreFilters: boolean = false;
   carModelList: any;
@@ -264,15 +270,29 @@ export class ScoutComponent implements OnInit {
     'Tropojë',
     'Vlorë'
   ];
+  private unSubscribeAuthSubject: Subject<any> = new Subject();
 
   ngOnInit() {
     this.subscribeToValueChanges();
     this.getCarBrands();
     this.getCarModels();
     this.populateYears();
+    setInterval(() => {
+      this.imgShow = !this.imgShow;
+    }, 5500)
+    AuthenticationService.loginSubject
+        .pipe(takeUntil(this.unSubscribeAuthSubject))
+        .subscribe(user => {
+          if (user) {
+            this.createForm.patchValue({email : user.email})
+          }
+        });
   }
 
 
+  ngOnDestroy(){
+    this.unSubscribeAuthSubject.complete();
+  }
 
   populateYears() {
     this.productionYear.push(new Date().getFullYear().toString());
@@ -363,7 +383,20 @@ export class ScoutComponent implements OnInit {
   }
 
   createItem(post) {
-
+    post.uuid = UUID.UUID()
+    post.results = [];
+    this._fireStore.collection("scouts").add(post)
+        .then(
+            res => {
+              this.finishedUploading = true;
+            },
+            err => {
+              console.log(err);
+            }
+        );
   }
 
+  resetView(){
+    this.finishedUploading = false;
+  }
 }

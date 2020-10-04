@@ -39,6 +39,9 @@ const routes: Routes = [{
             loadChildren: '../pages/scout/scout.module#ScoutModule'
         },
         {
+            path: 'auth', loadChildren: '../auth/auth.module#AuthModule'
+        },
+        {
             path: '', redirectTo: 'home', pathMatch: 'full'
         },
         {

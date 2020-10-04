@@ -14,7 +14,7 @@
   "Over": "Over",
   "Latest listings": "Latest listings",
   "My listings": "My listings",
-  "Saved listings": "Saved listings",
+  "Saved listings": "Favourites",
   "Settings": "Settings",
   "Confirm Delete": "Confirm Delete",
   "Are you sure you want to delete post": "Are you sure you want to delete post ?",
@@ -74,8 +74,8 @@
   "Cheapest":"Cheapest",
   "Clear":"Clear",
   "No data":"No data",
-  "Price from":"Price from",
-  "Price to":"Price to",
+  "Price from":"Price from (€)",
+  "Price to":"Price to (€)",
   "Year from":"Year from",
   "Year to":"Year to",
   "Add listing":"Add listing",
@@ -84,5 +84,8 @@
   "MoreFilters": "More filters",
   "LessFilters": "Less filters",
   "Create new Scout": "Create new Scout",
-  "Create a Scout": "Create a Scout"
+  "Create a Scout": "Create a Scout",
+  "Scout created successfully": "Scout created successfully!",
+  "Scouts": "Scouts",
+  "any" : "any"
 }

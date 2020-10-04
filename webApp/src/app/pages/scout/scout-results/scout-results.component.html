@@ -1,0 +1,46 @@
+<div fxLayout="row" style="height: 100%">
+    <div fxHide fxShow.lg style="width: calc((100% - 1250px)/2)"></div>
+
+    <div [ngStyle.lg]="{'width':'1250px'}"
+         [ngStyle.md]="{'width':'100%'}"
+         [ngStyle.sm]="{'width':'100%'}"
+         [ngStyle.xs]="{'width':'100%'}"
+         style="height: 100%">
+
+        <div [ngStyle.lg]="{'width':'1250px'}"
+             [ngStyle.md]="{'width':'100%'}"
+             [ngStyle.sm]="{'width':'100%'}"
+             [ngStyle.xs]="{'width':'100%'}"
+             style="height: 100%">
+
+            <div style=" height: 100%; overflow-y: auto">
+                <div [ngStyle.md]="{'padding': '0 16px 0 16px'}"
+                     [ngStyle.sm]="{'padding': '0 16px 0 16px'}"
+                     [ngStyle.xs]="{'padding': '0 16px 0 16px'}" style="height: 100%;">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" style="color: #8c8c8c; height: 40px;">
+                        <div style="width: 100%">
+                            {{'Scout results' | translate}}
+                        </div>
+                    </div>
+                    <mat-divider style="margin-bottom: 10px"></mat-divider>
+
+
+                    <div style="width: 100%; margin-bottom: 50px;" fxLayout="column" fxLayoutAlign="center center">
+
+                        <div *ngIf="items.length > 0" id="target"
+                             style="width: 100%; max-width: 600px; margin-top: 16px;">
+                            <div *ngFor="let listItem of items"
+                                 style="margin-bottom: 10px;">
+                                <app-list-item (outputEvent)="handleItemEvent($event)" [listing]="listItem"
+                                               [view]="view == 'mobile' ? 'default' : 'desktop'"></app-list-item>
+                            </div>
+                        </div>
+
+                        <button mat-button (click)="loadMoreItems()">{{'Load more' | translate}}</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

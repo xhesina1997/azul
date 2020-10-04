@@ -11,9 +11,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+import { ScoutResultsComponent } from './scout-results/scout-results.component';
+import {ListItemModule} from "../../shared/list-item/list-item.module";
 
 @NgModule({
-    declarations: [ScoutComponent],
+    declarations: [ScoutComponent, ScoutResultsComponent],
     imports: [
         CommonModule,
         ScoutRoutingModule,
@@ -25,6 +27,7 @@ import {MatSelectModule} from "@angular/material/select";
         ReactiveFormsModule,
         NgxMatSelectSearchModule,
         MatInputModule,
+        ListItemModule,
         MatSelectModule
     ]
 })

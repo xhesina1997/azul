@@ -6,6 +6,7 @@ import {takeUntil, map} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/storage";
 import {SeoService} from "../../services/seo.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: "app-account",
@@ -19,15 +20,18 @@ export class AccountComponent implements OnInit {
     public dialogRef: any;
       displayed = 0;
       listingsCreatedByUser: any[] = [];
+      scoutsCreatedByUser: any[] = [];
       favouriteListings: any[] = [];
     private unSubscribeAuthSubject: Subject<any> = new Subject();
     private unSubscribeUserListingsSubject: Subject<any> = new Subject();
+    private unSubscribeUserScoutsSubject: Subject<any> = new Subject();
     private unSubscribeFavouritesSubject: Subject<any> = new Subject();
 
       carToBeDeleted: any;
 
     constructor(
         private _fireStore: AngularFirestore,
+        public router: Router,
         private bottomSheet: MatBottomSheet,
         private authenticationService: AuthenticationService,
         public dialog: MatDialog,
@@ -51,6 +55,7 @@ export class AccountComponent implements OnInit {
                 if (user) {
                     this.user = user;
                     this.getUserListings();
+                    this.getUserScouts();
                     this.getUserFavourites();
                 }
             });
@@ -64,6 +69,25 @@ export class AccountComponent implements OnInit {
         this.unSubscribeFavouritesSubject.complete();
         this.unSubscribeUserListingsSubject.complete();
         this.unSubscribeAuthSubject.complete();
+    }
+
+    getUserScouts() {
+        this._fireStore.collection("scouts", ref => ref.where("email", "==", this.user.email))
+            .snapshotChanges()
+            .pipe(
+                map((arr: any) => {
+                    return arr.map(snap => {
+                        const data = snap.payload.doc.data();
+                        return data;
+                    });
+                })
+            )
+            .pipe(takeUntil(this.unSubscribeUserScoutsSubject))
+            .subscribe(res => {
+                this.scoutsCreatedByUser = res;
+                this.unSubscribeUserScoutsSubject.next();
+            });
+
     }
 
     getUserListings() {

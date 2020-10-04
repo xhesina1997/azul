@@ -650,10 +650,10 @@ export class CreateComponent implements OnInit, OnDestroy {
 
                             let resizedUrl =
                                 'https://firebasestorage.googleapis.com/v0/b/azul-50203.appspot.com/o/'
-                                + car.uuid + '%2F' + pf.file.name + '_900x900?alt=media';
+                                + car.uuid + '%2F' + pf.file.name + '?alt=media';
 
                             car.images.push({
-                                name: pf.file.name + '_900x900',
+                                name: pf.file.name,
                                 url: resizedUrl
                             });
 4
@@ -698,10 +698,10 @@ export class CreateComponent implements OnInit, OnDestroy {
 
                             let resizedUrl =
                                 'https://firebasestorage.googleapis.com/v0/b/azul-50203.appspot.com/o/'
-                                + toBeEditedWithoutDoc.uuid + '%2F' + pf.file.name + '_900x900?alt=media';
+                                + toBeEditedWithoutDoc.uuid + '%2F' + pf.file.name + '?alt=media';
 
                             toBeEditedWithoutDoc.images.push({
-                                name: pf.file.name + '_900x900',
+                                name: pf.file.name,
                                 url: resizedUrl
                             });
                         });
